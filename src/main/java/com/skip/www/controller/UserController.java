@@ -37,7 +37,6 @@ public class UserController {
 			
 			session.setAttribute("login", loginResult);
 			
-//			return "redirect:/member/main";
 			return "redirect:/";
 			
 		} else {

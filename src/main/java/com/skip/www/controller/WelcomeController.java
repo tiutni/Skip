@@ -10,7 +10,7 @@ public class WelcomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
 
-	@RequestMapping("/user/main")
+	@RequestMapping("/")
 	public String welcome() {
 		
 		return "user/main";
