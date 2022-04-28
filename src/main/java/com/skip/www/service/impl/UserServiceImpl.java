@@ -13,9 +13,8 @@ import com.skip.www.service.face.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	private static final Logger logger =LoggerFactory.getLogger(UserService.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
-	
 	@Autowired UserDao userDao;
 
 	@Override
@@ -28,6 +27,26 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
+	@Override
+	public boolean join(User user) {
+		
+		// ID 중복 확인
+		if(userDao.selectCntById(user) > 0 ) {
+			return false;
+		}
+		
+		// 회원 가입
+		userDao.insert(user);
+		
+		// 회원가입 결과 확인
+		if(userDao.selectCntById(user) > 0 ) {
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
 	@Override
 	public User viewUserInfo(int userno) {
 

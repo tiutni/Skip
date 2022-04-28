@@ -9,7 +9,7 @@ public class User {
 	private String userNick;
 	private String userEmail;
 	private String userName;
-	private char userRrn;
+	private String userRrn;
 	private String userTelecom;
 	private String userPhone;
 	private Date userRegdate;
@@ -66,10 +66,10 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public char getUserRrn() {
+	public String getUserRrn() {
 		return userRrn;
 	}
-	public void setUserRrn(char userRrn) {
+	public void setUserRrn(String userRrn) {
 		this.userRrn = userRrn;
 	}
 	public String getUserTelecom() {

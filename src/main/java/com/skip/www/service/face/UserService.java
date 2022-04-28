@@ -12,5 +12,21 @@ public interface UserService {
 	 */
 	public boolean login(User user);
 
+	/**
+	 * 회원 가입
+	 * 
+	 * @param user - 신규 회원 정보
+	 * @return 회원 가입 결과
+	 */
+	public boolean join(User user);
+	
+	
+	
+	
+	
+	
+	
 	public User viewUserInfo(int userno);
+	
+	
 }

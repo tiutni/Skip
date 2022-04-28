@@ -13,6 +13,17 @@
 	   AND user_pw = #{userPw}
 </select>
 
+<select id="selectCntById" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_id = #{userId}
+</select>
+
+<insert id="insert" parameterType="com.skip.www.dto.User">
+	INSERT INTO user_tb(user_no, user_id, user_pw, user_nick, user_email, user_name, user_rrn, user_telecom, user_phone)
+	             VALUES(user_seq.nextval, #{userId}, #{userPw}, #{userNick}, #{userEmail}, #{userName}, #{userRrn}, #{userTelecom}, #{userPhone})
+</insert>
+
 <select id="selectUserInfoByUserno" resultType="int" parameterType="com.skip.www.dto.User">
 	SELECT*FROM user_tb
 	WHERE user_no #={userno}
