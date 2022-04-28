@@ -11,4 +11,7 @@ public interface UserDao {
 	 * @return 조회된 행 수
 	 */
 	public int selectCntUser(User user);
+
+	User selectByUseruserno(int userno);
+
 }

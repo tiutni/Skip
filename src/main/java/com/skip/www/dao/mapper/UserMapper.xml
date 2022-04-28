@@ -13,4 +13,10 @@
 	   AND user_pw = #{userPw}
 </select>
 
+<select id="selectUserInfoByUserno" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT*FROM user_tb
+	WHERE user_no #={userno}
+
+</select>
+
 </mapper>

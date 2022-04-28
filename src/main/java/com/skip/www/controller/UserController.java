@@ -6,11 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.skip.www.dto.User;
 import com.skip.www.service.face.UserService;
+
 
 @Controller
 public class UserController {
@@ -48,4 +50,19 @@ public class UserController {
 		}
 		
 	}
+
+	@GetMapping(value="/user/mypage")
+	public void mypage(HttpSession session, Model model) {
+		logger.info("/user/mypage");
+		
+		//Integer.parseInt( session.getAttribute("userno").toString());
+		int userno=(Integer)session.getAttribute("userno");
+		logger.info("/userno:{}",userno);
+		
+		User user =userService.viewUserInfo(userno);
+		logger.info("조회결과{}",user );
+		
+		model.addAttribute("info", user);
+	}
+
 }

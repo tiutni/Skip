@@ -11,4 +11,6 @@ public interface UserService {
 	 * return 로그인 인증 결과
 	 */
 	public boolean login(User user);
+
+	public User viewUserInfo(int userno);
 }
