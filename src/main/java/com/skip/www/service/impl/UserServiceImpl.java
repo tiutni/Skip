@@ -56,8 +56,6 @@ public class UserServiceImpl implements UserService {
 		
 		return false;
 	}
-	
-	
 
 	@Override
 	public ConUserLevel viewConLevel(int userNo) {
