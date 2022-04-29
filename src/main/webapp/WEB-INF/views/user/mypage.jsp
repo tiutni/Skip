@@ -13,8 +13,8 @@
 <hr>
 
 
-	<p>User님의 공연등급: ${cul.user_level}</p>
-	<p>User님의 전시등급: ${eul.user_level}</p>
+	<p>User님의 공연등급: ${cul.userLevel}</p>
+	<p>User님의 전시등급: ${eul.userLevel}</p>
 	
 	
 	<a href="/skip/me"><button>나의 정보</button><br>

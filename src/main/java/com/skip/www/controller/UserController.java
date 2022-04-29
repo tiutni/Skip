@@ -43,12 +43,12 @@ public class UserController {
 		if( loginResult ) {
 			logger.info("로그인 성공");
 			session.setAttribute("login", loginResult);
-			
+			session.setAttribute("userNo", 101);
 			return "redirect:/";
 		} else {
 			logger.info("로그인 실패");
 			session.invalidate();
-			
+			 
 			return "redirect:/user/login";
 		}
 	}

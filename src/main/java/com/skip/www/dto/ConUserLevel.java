@@ -2,24 +2,25 @@ package com.skip.www.dto;
 
 public class ConUserLevel {
 
-	private int ConUserLevelNo;
-	private String UserLevel;
-	
+	private int conUserLevelNo;
+	private String userLevel;
 	
 	@Override
 	public String toString() {
-		return "ConUserLevel [ConUserLevelNo=" + ConUserLevelNo + ", UserLevel=" + UserLevel + "]";
+		return "ConUserLevel [conUserLevelNo=" + conUserLevelNo + ", userLevel=" + userLevel + "]";
 	}
+	
 	public int getConUserLevelNo() {
-		return ConUserLevelNo;
+		return conUserLevelNo;
 	}
 	public void setConUserLevelNo(int conUserLevelNo) {
-		ConUserLevelNo = conUserLevelNo;
+		this.conUserLevelNo = conUserLevelNo;
 	}
 	public String getUserLevel() {
-		return UserLevel;
+		return userLevel;
 	}
 	public void setUserLevel(String userLevel) {
-		UserLevel = userLevel;
+		this.userLevel = userLevel;
 	}
+
 }
