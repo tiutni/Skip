@@ -2,23 +2,25 @@ package com.skip.www.dto;
 
 public class ExUserLevel {
 
-	private int ExUserLevelNo;
-	private String UserLevel;
+	private int exUserLevelNo;
+	private String userLevel;
 	
 	@Override
 	public String toString() {
-		return "ExUserLevel [ExUserLevelNo=" + ExUserLevelNo + ", UserLevel=" + UserLevel + "]";
+		return "ExUserLevel [exUserLevelNo=" + exUserLevelNo + ", userLevel=" + userLevel + "]";
 	}
+	
 	public int getExUserLevelNo() {
-		return ExUserLevelNo;
+		return exUserLevelNo;
 	}
 	public void setExUserLevelNo(int exUserLevelNo) {
-		ExUserLevelNo = exUserLevelNo;
+		this.exUserLevelNo = exUserLevelNo;
 	}
 	public String getUserLevel() {
-		return UserLevel;
+		return userLevel;
 	}
 	public void setUserLevel(String userLevel) {
-		UserLevel = userLevel;
+		this.userLevel = userLevel;
 	}
+	
 }

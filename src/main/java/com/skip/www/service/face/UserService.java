@@ -8,20 +8,24 @@ public interface UserService {
 	
 	/**
 	 * 로그인 인증 처리
-	 * 
 	 * @param user - 입력한 ID/PW 정보
 	 * return 로그인 인증 결과
 	 */
 	public boolean login(User user);
+	
+	/**
+	 * 사용자의 회원번호 조회
+	 * @param user - 회원번호를 조회하려는 사용자의 번호
+	 * @return 사용자의 회원번호
+	 */
+	public int getUserNo(User user);
 
 	/**
 	 * 회원 가입
-	 * 
 	 * @param user - 신규 회원 정보
 	 * @return 회원 가입 결과
 	 */
 	public boolean join(User user);
-	
 	
 	/**
 	 *  공연 회원 등급 조회
@@ -29,7 +33,6 @@ public interface UserService {
 	 * 
 	 */
 	public ConUserLevel viewConLevel(int userNo);
-
 	
 	/**
 	 * 전시 회원 등급 조회
@@ -37,7 +40,4 @@ public interface UserService {
 	 * @return
 	 */
 	public ExUserLevel viewExLevel(int userNo);
-	 
-	
-	
 }
