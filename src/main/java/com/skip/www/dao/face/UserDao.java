@@ -1,5 +1,7 @@
 package com.skip.www.dao.face;
 
+import com.skip.www.dto.ConUserLevel;
+import com.skip.www.dto.ExUserLevel;
 import com.skip.www.dto.User;
 
 public interface UserDao {
@@ -28,7 +30,18 @@ public interface UserDao {
 	public void insert(User user);
 	
 	
-	
-	User selectByUseruserno(int userno);
+	/**
+	 * 공연등급레벨을 조회한다
+	 * @param userNo -회원등급을 조회할 유저 번호
+	 * @return
+	 */
+	public ConUserLevel selectByConUserLevelconuserlevelno(int userNo);
+
+	/**
+	 * 전시등급레벨을 조회한다
+	 * @param userNo -회원등급을 조회할 유저 번호
+	 * @return
+	 */
+	public ExUserLevel selectByExUserLevelconuserlevelno(int userNo);
 
 }

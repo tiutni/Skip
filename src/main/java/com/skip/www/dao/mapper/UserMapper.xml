@@ -19,15 +19,19 @@
 	 WHERE user_id = #{userId}
 </select>
 
-<insert id="insert" parameterType="com.skip.www.dto.User">
-	INSERT INTO user_tb(user_no, user_id, user_pw, user_nick, user_email, user_name, user_rrn, user_telecom, user_phone)
-	             VALUES(user_seq.nextval, #{userId}, #{userPw}, #{userNick}, #{userEmail}, #{userName}, #{userRrn}, #{userTelecom}, #{userPhone})
-</insert>
-
-<select id="selectUserInfoByUserno" resultType="int" parameterType="com.skip.www.dto.User">
-	SELECT*FROM user_tb
-	WHERE user_no #={userno}
-
-</select>
+<!-- 회원 레벨 조회 -->
+	
+	<select id="selectByConUserLevelconuserlevelno" resultType="com.skip.www.dto.ConUserLevel" parameterType="int">
+		SELECT C.con_user_level_no, C.user_level FROM con_user_level C, user_tb U
+		WHERE C.con_user_level_no = U.con_user_level_no
+			AND U.user_no =#{userNo}
+	</select>
+	
+	<select id="selectByExUserLevelconuserlevelno" resultType="com.skip.www.dto.ExUserLevel" parameterType="int">
+		SELECT E.ex_user_level_no, E.user_level FROM ex_user_level E, user_tb U
+		WHERE E.ex_user_level_no = U.ex_user_level_no
+			AND U.user_no =#{userNo}
+	</select>
+	
 
 </mapper>

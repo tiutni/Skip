@@ -27,6 +27,7 @@ $(document).ready(function() {
 
 <hr>
 <a href="/board/list">목록</a>
+<a href="/user/mypage">마이페이지</a>
 
 </div>
 

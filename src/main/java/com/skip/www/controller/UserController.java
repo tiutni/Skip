@@ -10,8 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.skip.www.dto.ConUserLevel;
+import com.skip.www.dto.ExUserLevel;
 import com.skip.www.dto.User;
 import com.skip.www.service.face.UserService;
+
+
 
 
 @Controller
@@ -50,7 +54,7 @@ public class UserController {
 	}
 	
 	// 로그아웃
-	@GetMapping("user/logout")
+	@GetMapping("/user/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
@@ -58,13 +62,13 @@ public class UserController {
 	}
 	
 	// 회원가입
-	@GetMapping("user/join")
+	@GetMapping("/user/join")
 	public void join() {
 		logger.info("user/join [GET]");
 	}
 	
 	// 회원가입 Process
-	@PostMapping("user/join")
+	@PostMapping("/user/join")
 	public String join(User user) {
 		logger.info("user/join [POST]");
 		logger.info("{}", user);
@@ -85,13 +89,29 @@ public class UserController {
 		logger.info("/user/mypage");
 		
 		//Integer.parseInt( session.getAttribute("userno").toString());
-		int userno=(Integer)session.getAttribute("userno");
-		logger.info("/userno:{}",userno);
+		int userNo=(Integer)session.getAttribute("userNo");
+		logger.info("/userno:{}",userNo);
 		
-		User user =userService.viewUserInfo(userno);
-		logger.info("조회결과{}",user );
+//		int ConUserLevel=(Integer)model.getAttribute("conuserlevelno");
+//		logger.info("/userno:{}",ConUserLevel);
+
+
+		ConUserLevel cul = userService.viewConLevel(userNo);
+		logger.info("/ConUserLevelNo:{}",cul);
+
 		
-		model.addAttribute("info", user);
+//		int ExUserLevel=(Integer)model.getAttribute("Exuserlevelno");
+
+		
+		ExUserLevel eul =userService.viewExLevel(userNo);
+		logger.info("/ExUserLevelNo:{}",eul);
+
+		
+		logger.info("조회결과:{}",cul);
+		logger.info("조회결과:{}",eul);
+		
+		model.addAttribute("cul", cul);
+		model.addAttribute("eul", eul);
 	}
 
 }

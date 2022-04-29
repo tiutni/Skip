@@ -12,10 +12,16 @@
 <h1>마이페이지</h1>
 <hr>
 
+
+	<p>User님의 공연등급: ${cul.user_level}</p>
+	<p>User님의 전시등급: ${eul.user_level}</p>
 	
-	<a href="user/mypage"><button>나의 정보</button><br>
-	<a href="user/logout"><button>로그아웃</button></a><br>
-	<a href="/user/main"><button>메인</button></a>
+	
+	<a href="/skip/me"><button>나의 정보</button><br>
+	<a href="/skip/logout"><button>로그아웃</button></a><br>
+	<a href="/skip/main"><button>메인</button></a>
+
+
 
 
 </body>

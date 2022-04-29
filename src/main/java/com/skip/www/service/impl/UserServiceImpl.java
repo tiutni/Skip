@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skip.www.dao.face.UserDao;
+import com.skip.www.dto.ConUserLevel;
+import com.skip.www.dto.ExUserLevel;
 import com.skip.www.dto.User;
 import com.skip.www.service.face.UserService;
 
@@ -47,12 +49,20 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 	
-	@Override
-	public User viewUserInfo(int userno) {
+	
 
-		logger.info("viewUserInfo() 호출");
+	@Override
+	public ConUserLevel viewConLevel(int userNo) {
+
+		logger.info("info() 호출");
 		
-		return userDao.selectByUseruserno(userno);
+		return userDao.selectByConUserLevelconuserlevelno(userNo);
+	}
+
+	@Override
+	public ExUserLevel viewExLevel(int userNo) {
+		logger.info("info()호출");
+		return userDao.selectByExUserLevelconuserlevelno(userNo);
 	}
 
 }
