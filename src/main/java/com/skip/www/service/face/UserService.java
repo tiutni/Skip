@@ -13,6 +13,13 @@ public interface UserService {
 	 * return 로그인 인증 결과
 	 */
 	public boolean login(User user);
+	
+	/**
+	 * 사용자의 회원번호 조회
+	 * @param user - 회원번호를 조회하려는 사용자의 번호
+	 * @return 사용자의 회원번호
+	 */
+	public int getUserNo(User user);
 
 	/**
 	 * 회원 가입

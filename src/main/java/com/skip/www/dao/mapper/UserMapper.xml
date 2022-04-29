@@ -13,6 +13,12 @@
 	   AND user_pw = #{userPw}
 </select>
 
+<select id="selectUserNoByUser" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT user_no
+	  FROM user_tb
+	 WHERE user_id = #{userId}
+</select>
+
 <select id="selectCntById" resultType="int" parameterType="com.skip.www.dto.User">
 	SELECT count(*)
 	  FROM user_tb

@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired UserDao userDao;
 
+	// 로그인
 	@Override
 	public boolean login(User user) {
 		int loginChk = userDao.selectCntUser(user);
@@ -29,6 +30,13 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
+	// 회원번호
+	@Override
+	public int getUserNo(User user) {
+		return userDao.selectUserNoByUser(user);
+	}
+	
+	// 회원가입
 	@Override
 	public boolean join(User user) {
 		
@@ -64,5 +72,4 @@ public class UserServiceImpl implements UserService {
 		logger.info("info()호출");
 		return userDao.selectByExUserLevelconuserlevelno(userNo);
 	}
-
 }

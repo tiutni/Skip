@@ -13,6 +13,13 @@ public interface UserDao {
 	 * @return 조회된 행 수
 	 */
 	public int selectCntUser(User user);
+	
+	/**
+	 * ID를 이용해 회원번호를 조회한다
+	 * @param user - 조회하려는 회원의 ID를 가진 객체
+	 * @return 조회된 회원번호
+	 */
+	public int selectUserNoByUser(User user);
 
 	/**
 	 * 중복된 ID가 존재하는지 확인한다
