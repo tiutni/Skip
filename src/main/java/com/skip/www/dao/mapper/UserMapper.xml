@@ -13,7 +13,7 @@
 	   AND user_pw = #{userPw}
 </select>
 
-<select id="selectUserNoByUser" resultType="int" parameterType="com.skip.www.dto.User">
+<select id="selectUserNoByUser" resultType="int" parameterType="String">
 	SELECT user_no
 	  FROM user_tb
 	 WHERE user_id = #{userId}
@@ -24,6 +24,13 @@
 	  FROM user_tb
 	 WHERE user_id = #{userId}
 </select>
+
+<select id="selectCntByKakaoId" resultType="int" parameterType="HashMap">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_id = #{userEmail}
+</select>
+
 
 <insert id="insert" parameterType="com.skip.www.dto.User">
 	INSERT INTO user_tb(user_no, user_id, user_pw, user_nick, user_email, user_name, user_rrn, user_telecom, user_phone)

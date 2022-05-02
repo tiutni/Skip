@@ -15,22 +15,22 @@ $(document).ready(function() {
 <hr>
 
 <div>
+<a href="/user/login">로그인</a>
+<br> 
+<a href="https://kauth.kakao.com/oauth/authorize?client_id=20a036a9e9a4a55d7de23fa420405573&redirect_uri=http://localhost:8088/user/kakaoLogin&response_type=code">카카오 로그인</a>
+<br>
+<a href="/user/join">회원가입</a>
+<br>  
+<a href="/user/logout">로그아웃</a>
+<a href="https://kauth.kakao.com/oauth/logout?client_id=20a036a9e9a4a55d7de23fa420405573&logout_redirect_uri=http://localhost:8088/user/kakaoLogout">카카오 로그아웃</a>
 
-<c:choose>
-<c:when test="${empty login }">
-	<a href="/user/join">회원가입</a> | <a href="/user/login">로그인</a>
-</c:when>
-<c:when test="${login eq true }">
-	<a href="/user/logout">로그아웃</a>
-</c:when>
-</c:choose>
 
 <hr>
 <a href="/board/list">목록</a>
 <a href="/user/mypage">마이페이지</a>
 
-<h2>${userNo }</h2>
-<h2>${userId }</h2>
+<h2>${userNo}</h2>
+<h2>${userId}</h2>
 
 </div>
 

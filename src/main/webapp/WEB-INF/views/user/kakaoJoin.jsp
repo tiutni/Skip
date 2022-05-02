@@ -1,3 +1,4 @@
+<%@page import="java.util.UUID"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -15,23 +16,13 @@ $(document).ready(function() {
 
 <div class="container">
 
-<h1>회원 가입</h1>
+<h1>Kakao 회원 가입</h1>
 <hr>
 
 <div>
-<form action="/user/join" method="post" class="form-horizontal">
-<div class="form-group">
-	<label for="userId" class="col-sm-4 control-label">아이디</label>
-	<div class="col-sm-5">
-		<input type="text" class="form-control" id="userId" name="userId" placeholder="아이디 입력" value="${userEmail}">
-	</div>
-</div>
-<div class="form-group">
-	<label for="userPw" class="col-sm-4 control-label">비밀번호</label>
-	<div class="col-sm-5">
-		<input type="password" class="form-control" id="userPw" name="userPw" placeholder="비밀번호 입력">
-	</div>
-</div>
+<form action="/user/kakaoJoin" method="post" class="form-horizontal">
+	<input type="hidden" class="form-control" id="userId" name="userId" value="${userId}">
+	<input type="hidden" class="form-control" id="userPw" name="userPw" value="${userPw}">
 <div class="form-group">
 	<label for="userNick" class="col-sm-4 control-label">닉네임</label>
 	<div class="col-sm-5">
@@ -41,7 +32,7 @@ $(document).ready(function() {
 <div class="form-group">
 	<label for="userEmail" class="col-sm-4 control-label">이메일</label>
 	<div class="col-sm-5">
-		<input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="이메일 입력" value="${userEmail}">
+		<input type="text" class="form-control" id="userEmail" name="userEmail" placeholder="이메일 입력"">
 	</div>
 </div>
 <div class="form-group">
