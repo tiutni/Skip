@@ -8,6 +8,7 @@ public class Exhibition {
 	private String adminId;
 	private Date exRegDate;
 	private String exTitle;
+	private String exAddress;
 	private String exContent;
 	private Date exStartDay;
 	private Date exEndDay;
@@ -23,8 +24,8 @@ public class Exhibition {
 	@Override
 	public String toString() {
 		return "Exhibition [exNo=" + exNo + ", adminId=" + adminId + ", exRegDate=" + exRegDate + ", exTitle=" + exTitle
-				+ ", exContent=" + exContent + ", exStartDay=" + exStartDay + ", exEndDay=" + exEndDay
-				+ ", exReserveStartDay=" + exReserveStartDay + ", exReserveEndDay=" + exReserveEndDay
+				+ ", exAddress=" + exAddress + ", exContent=" + exContent + ", exStartDay=" + exStartDay + ", exEndDay="
+				+ exEndDay + ", exReserveStartDay=" + exReserveStartDay + ", exReserveEndDay=" + exReserveEndDay
 				+ ", exEnterStartTime=" + exEnterStartTime + ", exEnterEndTime=" + exEnterEndTime + ", exEnterInterval="
 				+ exEnterInterval + ", exTicketNum=" + exTicketNum + ", exPrice=" + exPrice + ", exActivate="
 				+ exActivate + "]";
@@ -60,6 +61,14 @@ public class Exhibition {
 
 	public void setExTitle(String exTitle) {
 		this.exTitle = exTitle;
+	}
+
+	public String getExAddress() {
+		return exAddress;
+	}
+
+	public void setExAddress(String exAddress) {
+		this.exAddress = exAddress;
 	}
 
 	public String getExContent() {
@@ -149,6 +158,7 @@ public class Exhibition {
 	public void setExActivate(int exActivate) {
 		this.exActivate = exActivate;
 	}
-	
 
+	
+	
 }
