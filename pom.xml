@@ -23,6 +23,19 @@
 	</repositories>
 	
 	<dependencies>
+		
+		<!-- 파일업로드 -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.11.0</version>
+		</dependency>
+		
 	
 		<!--  log4jdbc-remix  -->
 		<!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
@@ -68,6 +81,11 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		
+		
+		
+		
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
