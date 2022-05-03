@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.skip.www.face.NotiDao">
+
+	<resultMap type="com.skip.www.dto.Noti" id="Noti">
+		<id column="noti_no" property="notiNo"/>
+		<result column="noti_title" property="notiTitle"/>
+		<result column="noti_date" property="notiDate"/>
+		<result column="noti_content" property="notiContent"/>
+		<result column="admin_id" property="adminId"/>
+	</resultMap>
+
+	<select id="selectList" resultMap="Noti" parameterType="com.skip.www.util.Paging">
+		SELECT * FROM (
+			SELECT rownum rnum, N.* FROM (
+				SELECT * FROM noti
+				WHERE noti_title LIKE '%' || #{search} || '%' 
+				ORDER BY noti_no DESC
+			) N
+		) NOTI
+		WHERE rnum BETWEEN #{startNo } AND #{endNo }
+	</select>
+
+	<select id="selectCntAll" resultType="int">
+		SELECT count(*) FROM noti
+		WHERE noti_title LIKE '%' || #{search} || '%' 
+	</select>
+
+	<select id="select" resultMap="Noti" parameterType="com.skip.www.dto.Noti">
+		SELECT * FROM noti
+		WHERE Noti_no = #{notiNo}
+	</select>
+	
+	<select id="selectNotiFileByNotiNo" resultType="com.skip.www.dto.NotiFile" parameterType="com.skip.www.dto.Noti">
+		SELECT
+			noti_file_no NotiFileNo
+			, noti_file_originname notiFileOriginName
+			, noti_file_storedname notiFileStoredName
+			, Noti_no NotiNo
+		FROM notifile
+		WHERE noti_no = #{notiNo}
+	</select>
+	
+	<select id="selectNotiFileByNotiFileNo" resultType="com.skip.www.dto.NotiFile" parameterType="com.skip.www.dto.NotiFile">
+		SELECT
+			noti_file_no NotiFileNo
+			, noti_file_originname notiFileOriginName
+			, noti_file_storedname notiFileStoredName
+			, Noti_no NotiNo	
+		FROM notifile
+		WHERE noti_file_no = #{notiFileNo}
+	</select>
+</mapper>
+
+
+
+
