@@ -10,11 +10,13 @@ public class ConReview {
 	private Date conReviewDate;
 	private String conReviewContent;
 	private int conReviewStar;
+	private String userNick;
 
 	@Override
 	public String toString() {
 		return "ConReview [conReviewNo=" + conReviewNo + ", conNo=" + conNo + ", userNo=" + userNo + ", conReviewDate="
-				+ conReviewDate + ", conReviewContent=" + conReviewContent + ", conReviewStar=" + conReviewStar + "]";
+				+ conReviewDate + ", conReviewContent=" + conReviewContent + ", conReviewStar=" + conReviewStar
+				+ ", userNick=" + userNick + "]";
 	}
 
 	public int getConReviewNo() {
@@ -64,7 +66,14 @@ public class ConReview {
 	public void setConReviewStar(int conReviewStar) {
 		this.conReviewStar = conReviewStar;
 	}
-	
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
+	}
 	
 	
 }
