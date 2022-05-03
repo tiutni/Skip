@@ -18,6 +18,7 @@ import com.skip.www.service.face.UserService;
 import com.skip.www.util.Paging;
 
 @Controller
+@RequestMapping(value="/noti")
 public class NotiController {
 
 	private static final Logger logger = LoggerFactory.getLogger(NotiController.class);

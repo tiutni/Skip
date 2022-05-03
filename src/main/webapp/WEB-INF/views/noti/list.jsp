@@ -13,5 +13,9 @@
 </head>
 <body>
 
+<h1>공지사항 목록</h1>
+<hr>
+
+
 </body>
 </html>
