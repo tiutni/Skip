@@ -27,7 +27,7 @@ $(document).ready(function() {
 
 <hr>
 <a href="/board/list">목록</a>
-<a href="/user/mypage">마이페이지</a>
+<a href="/mypage/main">마이페이지</a>
 
 <h2>${userNo }</h2>
 <h2>${userId }</h2>

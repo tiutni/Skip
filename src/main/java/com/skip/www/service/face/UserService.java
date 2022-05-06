@@ -40,4 +40,39 @@ public interface UserService {
 	 * @return
 	 */
 	public ExUserLevel viewExLevel(int userNo);
+
+
+	/**
+	 * 회원정보 수정
+	 * @param updateUser -수정할 회원 정보
+	 */
+	public void updateUserinfo(User updateUser);
+
+	/**
+	 * 수정 할 회원 정보 조회
+	 * @param userNo -회원등급을 수정 할 유저 번호
+	 * @return
+	 */
+	public User viewUserInfo(int userNo);
+
+	/**
+	 * 회원탈퇴
+	 * @param user -삭제할 유저 정보
+	 * @return
+	 */
+	public boolean deleteUserInfo(User user);
+
+
+	
+
+
+
+
+
+	
+
+
+
+
+	
 }

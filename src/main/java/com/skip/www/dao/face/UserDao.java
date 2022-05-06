@@ -48,4 +48,29 @@ public interface UserDao {
 	 */
 	public ExUserLevel selectByExUserLevelconuserlevelno(int userNo);
 
+	public User selectUserinfo(int userNo);
+
+	public void updateUserInfo(User updateUser);
+
+	
+	/**
+	 * 회원정보 삭제
+	 * @param user -삭제할 회원 정보
+	 * @return
+	 */
+	public int deleteUserinfo(User user);
+
+	/**
+	 * 탈퇴 할 회원의 id와 비밀번호 조회
+	 * @param userNo -조회할 no,비밀번호를 가진 객체
+	 * @return
+	 */
+
+	public int selectcountUserInfo(User userNo);
+
+
+
+
+
+
 }

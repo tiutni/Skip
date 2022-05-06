@@ -85,26 +85,22 @@ public class UserController {
 			return "redirect:/user/join";
 		}
 	}
-
-	@GetMapping(value="/user/mypage")
+	//회원의 공연,전시 등급 보여주기
+	@GetMapping(value="/mypage/main")
 	public void mypage(HttpSession session, Model model) {
 		logger.info("/user/mypage");
 		
-		//Integer.parseInt( session.getAttribute("userno").toString());
 		int userNo=(Integer)session.getAttribute("userNo");
 		logger.info("/userno:{}",userNo);
 		
-//		int ConUserLevel=(Integer)model.getAttribute("conuserlevelno");
-//		logger.info("/userno:{}",ConUserLevel);
 
 
+		//공연등급 보기
 		ConUserLevel cul = userService.viewConLevel(userNo);
 		logger.info("/ConUserLevelNo:{}",cul);
 
 		
-//		int ExUserLevel=(Integer)model.getAttribute("Exuserlevelno");
-
-		
+		//전시회 등급 보기
 		ExUserLevel eul =userService.viewExLevel(userNo);
 		logger.info("/ExUserLevelNo:{}",eul);
 
@@ -116,4 +112,68 @@ public class UserController {
 		model.addAttribute("eul", eul);
 	}
 
+	
+	//회원 정보 수정
+	@GetMapping(value="/userinfo/update")
+	public String update(User user, Model model,HttpSession session) {
+		logger.info("/userinfo/update-{}",user);
+		
+		
+		int userNo=(Integer)session.getAttribute("userNo");
+		logger.info("/userno:{}",userNo);
+		
+		//회원정보 조회
+		user=userService.viewUserInfo(userNo);
+		logger.info("조회된 회원 정보{}", user);
+		model.addAttribute("updateUser", user);
+		logger.info("모델값{}",user);
+		
+		return "userinfo/update";
+	}
+	
+	
+	
+	//회원 정보 수정
+	@PostMapping(value="/userinfo/update")
+	public String updateUserInfo(User updateUser) {
+		logger.info("/userinfo/update[ POST]-{}",updateUser);
+		
+		userService.updateUserinfo(updateUser);
+		
+		
+		return "userinfo/update";
+	}
+
+	//회원 탈퇴
+	@GetMapping("/userinfo/delete")
+	public void delete(HttpSession session , User user) {
+		logger.info("/userinfo/delete[GET]");
+		
+		
+		
+	}
+	
+	@PostMapping("/userinfo/delete")
+	public String deleteUserInfo(HttpSession session, User user) {
+		logger.info("/userinfo/delete[POST]-{}",user);
+		
+		
+		//비밀번호 검증
+		
+		int userNo =(int)session.getAttribute("userNo");
+		logger.info("유저번호{}-",userNo);
+
+		user.setUserNo(userNo);
+		
+		if( userService.deleteUserInfo(user) ) {
+			return "redirect:/user/logout";
+			
+		}
+		
+		return "redirect:/userinfo/delete";
+	}
+
+	
+
+	
 }
