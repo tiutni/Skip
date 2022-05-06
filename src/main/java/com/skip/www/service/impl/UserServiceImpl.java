@@ -25,8 +25,8 @@ import com.skip.www.service.face.UserService;
 
 
 @Service
-public class UserServiceImpl implements UserService {
-	
+public  class UserServiceImpl implements UserService {
+
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	@Autowired UserDao userDao;
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean login(User user) {
 		int loginChk = userDao.selectCntUser(user);
-		
+
 		if (loginChk > 0) {
 			return true;
 		}
@@ -156,23 +156,25 @@ public class UserServiceImpl implements UserService {
 	public int getUserNo(String userId) {
 		return userDao.selectUserNoByUser(userId);
 	}
-	
+
 	// 회원가입
 	@Override
 	public boolean join(User user) {
-		
+
 		// ID 중복 확인
 		if(userDao.selectCntById(user) > 0 ) {
 			return false;
 		}
-		
+
 		// 회원 가입
 		userDao.insert(user);
-		
+
 		// 회원가입 결과 확인
 		if(userDao.selectCntById(user) > 0 ) {
+
 			return true;
 		}
+
 		return false;
 	}
 
@@ -180,7 +182,7 @@ public class UserServiceImpl implements UserService {
 	public ConUserLevel viewConLevel(int userNo) {
 
 		logger.info("info() 호출");
-		
+
 		return userDao.selectByConUserLevelconuserlevelno(userNo);
 	}
 
@@ -189,4 +191,55 @@ public class UserServiceImpl implements UserService {
 		logger.info("info()호출");
 		return userDao.selectByExUserLevelconuserlevelno(userNo);
 	}
+
+
+
+	@Override
+	public User viewUserInfo(int userNo) {
+		return userDao.selectUserinfo(userNo);
+	}
+
+
+	@Override
+	public void updateUserinfo(User updateUser) {
+		userDao.updateUserInfo(updateUser);
+	}
+
+	//회원탈퇴를 위한 회원 정보 검증
+	@Override
+	public boolean deleteUserInfo(User user) {
+		
+		
+		if( userDao.selectcountUserInfo(user) > 0 ) {
+			userDao.deleteUserinfo(user);
+			return true;
+		}
+
+		return false;
+
+
+	}
+
+	
+	
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

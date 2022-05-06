@@ -27,8 +27,12 @@ $(document).ready(function() {
 
 <hr>
 <a href="/board/list">목록</a>
+<<<<<<< HEAD
+<a href="/mypage/main">마이페이지</a>
+=======
 <a href="/user/mypage">마이페이지</a>
 <a href="/noti/list">공지사항</a>
+>>>>>>> branch 'master' of https://github.com/GarlicDish/Skip.git
 
 <h2>${userNo}</h2>
 <h2>${userId}</h2>
