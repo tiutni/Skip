@@ -10,13 +10,15 @@ public class ExReview {
 	private Date exReviewDate;
 	private String exReviewContent;
 	private int exReviewStar;
+	private String userNick;
 
 	@Override
 	public String toString() {
 		return "ExReview [exReviewNo=" + exReviewNo + ", exNo=" + exNo + ", userNo=" + userNo + ", exReviewDate="
-				+ exReviewDate + ", exReviewContent=" + exReviewContent + ", exReviewStar=" + exReviewStar + "]";
+				+ exReviewDate + ", exReviewContent=" + exReviewContent + ", exReviewStar=" + exReviewStar
+				+ ", userNick=" + userNick + "]";
 	}
-	
+
 	public int getExReviewNo() {
 		return exReviewNo;
 	}
@@ -63,6 +65,14 @@ public class ExReview {
 	
 	public void setExReviewStar(int exReviewStar) {
 		this.exReviewStar = exReviewStar;
+	}
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
 	}
 	
 

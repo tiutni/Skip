@@ -23,8 +23,21 @@
 	</repositories>
 	
 	<dependencies>
+		
+		<!-- 파일업로드 -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.11.0</version>
+		</dependency>
+		
 	
-	<!--  log4jdbc-remix  -->
+		<!--  log4jdbc-remix  -->
 		<!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
 		<dependency>
 		    <groupId>org.lazyluke</groupId>
@@ -53,6 +66,13 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.5.9</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
 
 		<!-- spring - jdbc -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
@@ -61,6 +81,11 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		
+		
+		
+		
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -92,8 +117,6 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
-		
-		
 		
 		<!-- Logging -->
 		<dependency>
