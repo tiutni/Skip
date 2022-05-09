@@ -4,51 +4,41 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.skip.www.dao.face.MypageDao">
+<mapper namespace="com.skip.www.dao.face.UserDao">
 
 
-
-<select id="selectByConUserLevelconuserlevelno" resultType="com.skip.www.dto.ConUserLevel" parameterType="int">
-	SELECT C.con_user_level_no, C.user_level FROM con_user_level C, user_tb U
-	WHERE C.con_user_level_no = U.con_user_level_no
-		AND U.user_no =#{userNo}
+<select id="selectCntUser" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_id = #{userId}
+	   AND user_pw = #{userPw}
 </select>
 
-<select id="selectByExUserLevelconuserlevelno" resultType="com.skip.www.dto.ExUserLevel" parameterType="int">
-	SELECT E.ex_user_level_no, E.user_level FROM ex_user_level E, user_tb U
-	WHERE E.ex_user_level_no = U.ex_user_level_no
-		AND U.user_no =#{userNo}
+<select id="selectUserNoByUser" resultType="int" parameterType="String">
+	SELECT user_no
+	  FROM user_tb
+	 WHERE user_id = #{userId}
 </select>
 
-<select id="selectUserinfo"  resultType="com.skip.www.dto.User" >
-		SELECT*FROM user_tb
-		WHERE user_no =#{userNo}
-</select>		
+<select id="selectCntById" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_id = #{userId}
+</select>
 
-<update id="updateUserInfo" parameterType="com.skip.www.dto.User">
-	UPDATE user_tb
-	SET   user_pw    =#{userPw} 
-	       ,user_nick  =#{userNick} 
-	       ,user_email =#{userEmail}
-	       ,user_name  =#{userName}
-	       ,user_telecom =#{userTelecom}
-	       ,user_phone   =#{userPhone}
-	WHERE
-		   user_no =#{userNo}		
-</update>
-		   
+<select id="selectCntByKakaoId" resultType="int" parameterType="HashMap">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_id = #{userEmail}
+</select>
+
+
+<insert id="insert" parameterType="com.skip.www.dto.User">
+	INSERT INTO user_tb(user_no, user_id, user_pw, user_nick, user_email, user_name, user_rrn, user_telecom, user_phone)
+	VALUES(user_seq.nextval, #{userId}, #{userPw}, #{userNick}, #{userEmail}, #{userName}, #{userRrn}, #{userTelecom}, #{userPhone})
+</insert>
 		   
 		   	   
-<select id="selectcountUserInfo" resultType="int" parameterType="com.skip.www.dto.User">
-	SELECT count(*) from user_tb
-	WHERE user_no =#{userNo}
-	 AND  user_pw =#{userPw}	
-</select>
 
-
-<delete id="deleteUserinfo" parameterType="com.skip.www.dto.User">
-	DELETE user_tb
-	WHERE user_no = #{userNo}
-</delete>
 
 </mapper>

@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.skip.www.dto.ConUserLevel;
 import com.skip.www.dto.ExUserLevel;
 import com.skip.www.dto.User;
-import com.skip.www.service.face.UserService;
+import com.skip.www.service.face.MypageService;
 
 @Controller
 public class MypageController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
-	@Autowired UserService userService;
+	@Autowired MypageService mypageService;
 	
 	
 	//회원의 공연,전시 등급 보여주기
@@ -38,12 +38,12 @@ public class MypageController {
 
 
 		//공연등급 보기
-		ConUserLevel cul = userService.viewConLevel(userNo);
+		ConUserLevel cul = mypageService.viewConLevel(userNo);
 		logger.info("/ConUserLevelNo:{}",cul);
 
 		
 		//전시회 등급 보기
-		ExUserLevel eul =userService.viewExLevel(userNo);
+		ExUserLevel eul =mypageService.viewExLevel(userNo);
 		logger.info("/ExUserLevelNo:{}",eul);
 
 		
@@ -65,7 +65,7 @@ public class MypageController {
 		logger.info("/userno:{}",userNo);
 		
 		//회원정보 조회
-		user=userService.viewUserInfo(userNo);
+		user=mypageService.viewUserInfo(userNo);
 		logger.info("조회된 회원 정보{}", user);
 		model.addAttribute("updateUser", user);
 		logger.info("모델값{}",user);
@@ -80,7 +80,7 @@ public class MypageController {
 	public String updateUserInfo(User updateUser) {
 		logger.info("/userinfo/update[ POST]-{}",updateUser);
 		
-		userService.updateUserinfo(updateUser);
+		mypageService.updateUserinfo(updateUser);
 		
 		
 		return "userinfo/update";
@@ -107,7 +107,7 @@ public class MypageController {
 
 		user.setUserNo(userNo);
 		
-		if( userService.deleteUserInfo(user) ) {
+		if( mypageService.deleteUserInfo(user) ) {
 			return "redirect:/user/logout";
 			
 		}
