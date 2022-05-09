@@ -7,15 +7,16 @@
 
 <script type="text/javascript">
 
+function button_event(e){
+    if(confirm("회원을 탈퇴시키겠습니까?") == true){
+        location.href="/member/delete?userNo="+ e;
+    }else{
+        return;
+    }
+}
+
 $(document).ready(function(){
-	
-	
-		$("#btnDelete").click(function() {
-			if( confirm("회원을 탈퇴시키겠습니까?") ) 
-			{
-				location.href = "/member/delete?userNo=${user.userNo}"
-			}
-		})
+		
 		
 		$("#btnSearch").click(function() {
 			location.href="/member/list?search="+$("#search").val();
@@ -37,6 +38,7 @@ table, th {
 </style>
 
 <div class="container">
+
 
 <h1>회원 리스트</h1>
 <hr>
@@ -60,7 +62,8 @@ table, th {
 		<td>${user.userNick }</td>
 		<td>${user.exUserLevelNo }</td>
 		<td>${user.conUserLevelNo }</td>
-		<td><button id="btnDelete" class="btn btn-danger">탈퇴</button></td>
+		<%--<td><a href="/member/delete?userNo=${user.userNo }"><button id="btnDelete" class="btn btn-danger">탈퇴</button></a></td> --%>
+		<td><button onclick="button_event(${user.userNo})" id="btnDelete" class="btn btn-danger">탈퇴</button></td>
 	</tr>
 </c:forEach>
 </tbody>
