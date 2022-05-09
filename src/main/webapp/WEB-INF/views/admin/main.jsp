@@ -20,7 +20,8 @@ $(document).ready(function() {
 
 <c:choose>
 <c:when test="${empty login }">
-	<a href="/admin/join">관리자 계정 생성</a> | <a href="/admin/login">로그인</a>
+	<a href="/admin/join">관리자 계정 생성</a> | 
+	<a href="/admin/login">로그인</a>
 </c:when>
 <c:when test="${login eq true }">
 	<a href="/admin/logout">로그아웃</a>
@@ -29,9 +30,10 @@ $(document).ready(function() {
 </c:choose>
 
 <hr>
-<a href="/noti/list">공지사항</a>
-<a href="/faq/list">자주 묻는 질문</a>
-<a href="/qna/list">1대1 문의</a>
+<a href="/noti/list">공지사항</a> |
+<a href="/faq/list">자주 묻는 질문</a> |
+<a href="/qna/list">1대1 문의</a> |
+<a href="/member/list">회원 관리</a>
 
 </div>
 
