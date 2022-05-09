@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.skip.www.dao.face.MypageDao">
+
+
+
+<select id="selectByConUserLevelconuserlevelno" resultType="com.skip.www.dto.ConUserLevel" parameterType="int">
+	SELECT C.con_user_level_no, C.user_level FROM con_user_level C, user_tb U
+	WHERE C.con_user_level_no = U.con_user_level_no
+		AND U.user_no =#{userNo}
+</select>
+
+<select id="selectByExUserLevelconuserlevelno" resultType="com.skip.www.dto.ExUserLevel" parameterType="int">
+	SELECT E.ex_user_level_no, E.user_level FROM ex_user_level E, user_tb U
+	WHERE E.ex_user_level_no = U.ex_user_level_no
+		AND U.user_no =#{userNo}
+</select>
+
+<select id="selectUserinfo"  resultType="com.skip.www.dto.User" >
+		SELECT*FROM user_tb
+		WHERE user_no =#{userNo}
+</select>		
+
+<update id="updateUserInfo" parameterType="com.skip.www.dto.User">
+	UPDATE user_tb
+	SET   user_pw    =#{userPw} 
+	       ,user_nick  =#{userNick} 
+	       ,user_email =#{userEmail}
+	       ,user_name  =#{userName}
+	       ,user_telecom =#{userTelecom}
+	       ,user_phone   =#{userPhone}
+	WHERE
+		   user_no =#{userNo}		
+</update>
+		   
+		   
+		   	   
+<select id="selectcountUserInfo" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*) from user_tb
+	WHERE user_no =#{userNo}
+	 AND  user_pw =#{userPw}	
+</select>
+
+
+<delete id="deleteUserinfo" parameterType="com.skip.www.dto.User">
+	DELETE user_tb
+	WHERE user_no = #{userNo}
+</delete>
+
+</mapper>

@@ -178,48 +178,7 @@ public  class UserServiceImpl implements UserService {
 		return false;
 	}
 
-	@Override
-	public ConUserLevel viewConLevel(int userNo) {
-
-		logger.info("info() 호출");
-
-		return userDao.selectByConUserLevelconuserlevelno(userNo);
-	}
-
-	@Override
-	public ExUserLevel viewExLevel(int userNo) {
-		logger.info("info()호출");
-		return userDao.selectByExUserLevelconuserlevelno(userNo);
-	}
-
-
-
-	@Override
-	public User viewUserInfo(int userNo) {
-		return userDao.selectUserinfo(userNo);
-	}
-
-
-	@Override
-	public void updateUserinfo(User updateUser) {
-		userDao.updateUserInfo(updateUser);
-	}
-
-	//회원탈퇴를 위한 회원 정보 검증
-	@Override
-	public boolean deleteUserInfo(User user) {
-		
-		
-		if( userDao.selectcountUserInfo(user) > 0 ) {
-			userDao.deleteUserinfo(user);
-			return true;
-		}
-
-		return false;
-
-
-	}
-
+	
 	
 	
 
