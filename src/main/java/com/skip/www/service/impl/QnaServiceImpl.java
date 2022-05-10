@@ -34,6 +34,11 @@ public class QnaServiceImpl implements QnaService {
 		return paging;
 	}
 
+	@Override
+	public QnA view(QnA viewQna) {
+		return null;
+	}
+
 }
 
 
