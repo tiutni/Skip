@@ -14,6 +14,6 @@
 <body>
 
 <h1>공지사항 목록</h1>
-<hr>
+<hr> test1
 </body>
 </html>
