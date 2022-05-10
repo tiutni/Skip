@@ -16,6 +16,7 @@
 <h1>공지사항 목록</h1>
 <hr>
 test
+test2
 
 </body>
 </html>
