@@ -84,7 +84,6 @@
 	</script>
 <hr>
 
-<button id="btn-payment">결제</button>
 
 <form>
 <table>
@@ -106,6 +105,8 @@
 </tr>
 </table>
 <div>
+<button id="btn-payment">결제</button>
+
 <button>다음</button>
 <button>취소</button>
 </div>

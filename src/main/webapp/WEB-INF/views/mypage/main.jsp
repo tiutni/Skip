@@ -20,10 +20,10 @@ $(document).ready(function() {
 	<p>${userId }님의 전시등급: ${eul.userLevel}</p>
 	
 	<a href="/"><button>메인</button></a><br>
+	<a href="/mypage/qnalist"><button>1:1 문의</button><br>
 	<a href="/userinfo/update"><button>나의 정보</button><br>
 	<a href="/user/logout"><button>로그아웃</button></a><br>
 	<a href="/userinfo/delete"><button>회원탈퇴</button></a><br>
-
 
 </div><!-- .container end -->
 

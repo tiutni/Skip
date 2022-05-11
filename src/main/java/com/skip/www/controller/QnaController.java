@@ -20,7 +20,7 @@ public class QnaController {
 	
 	@Autowired private QnaService qnaService;
 	
-	@RequestMapping(value="qna/list")
+	@RequestMapping(value="/qna/list")
 	public void list(Paging paramData, Model model) {
 		logger.info("/qna/list");
 		
@@ -38,7 +38,7 @@ public class QnaController {
 		model.addAttribute("list", list);
 		}
 		
-	@RequestMapping("qna/view")
+	@RequestMapping("/qna/view")
 	public String view(QnA viewQna, Model model) {
 		logger.info("/qna/view - {}", viewQna);
 		
@@ -53,6 +53,8 @@ public class QnaController {
 		
 		//모델값 전달 - 문의글
 		model.addAttribute("viewQna", viewQna);
+		
+		
 		
 		return "qna/list";
 		

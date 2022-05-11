@@ -6,7 +6,13 @@
     
 <mapper namespace="com.skip.www.dao.face.MypageDao">
 
-
+	<resultMap type="com.skip.www.dto.QnA" id="Qna">
+		<id column="qna_no" property="qnaNo"/>
+		<result column="user_no" property="userNo"/>
+		<result column="qna_title" property="qnaTitle"/>
+		<result column="qna_content" property="qnaContent"/>
+		<result column="qna_date" property="qnaDate"/>
+	</resultMap>
 
 <select id="selectByConUserLevelconuserlevelno" resultType="com.skip.www.dto.ConUserLevel" parameterType="int">
 	SELECT C.con_user_level_no, C.user_level FROM con_user_level C, user_tb U
@@ -50,5 +56,40 @@
 	DELETE user_tb
 	WHERE user_no = #{userNo}
 </delete>
+
+
+<select id="selectList" parameterType="com.skip.www.util.Paging" resultMap="Qna">
+		SELECT * FROM (
+			SELECT rownum rnum, Q.* FROM (
+				SELECT
+					qna_no,
+					user_no,
+					qna_title,
+					qna_content,
+					qna_date
+				FROM qna
+				where user_no = #{userNo}
+				ORDER BY qna_no DESC
+			) Q
+		) QNA
+		WHERE rnum BETWEEN #{startNo } AND #{endNo }
+	</select>
+
+
+	<select id="selectCntAll" resultType="int">
+		SELECT count(*) FROM qna
+		WHERE qna_title LIKE '%' || #{search} || '%' 
+	
+	</select>
+
+<insert id="insertQna" parameterType="com.skip.www.dto.QnA">
+		<selectKey order="BEFORE" resultType="int" keyProperty="qnaNo">
+			SELECT qna_no_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO qna ( qna_no, qna_title, qna_content, user_no )
+		VALUES ( #{qnaNo}, #{qnaTitle}, #{qnaContent}, #{userNo} )
+	</insert>
+
 
 </mapper>
