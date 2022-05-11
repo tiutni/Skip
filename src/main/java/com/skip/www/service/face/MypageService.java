@@ -59,7 +59,7 @@ public interface MypageService {
 	 * @param paging - 페이징 정보 객체
 	 * @return 페이징이 적용된 게시글 목록
 	 */
-	public List<QnA> list(Paging paging,int userNo);
+	public List<QnA> list(Paging paging);
 
 	/**
 	 * 문의글 목록을 위한 페이징 객체를 생성한다
@@ -72,8 +72,7 @@ public interface MypageService {
 	 * @param paramData - curPage를 저장하고있는 객체
 	 * @return 계산이 완료된 Paging객체
 	 */
-	public Paging getPaging(Paging paramData);
-
+	public Paging getPaging(String curPage, int userNo);
 	
 	public QnA view(QnA viewQna);
 
@@ -82,6 +81,7 @@ public interface MypageService {
 	public QnAFile getAttachFile(QnA viewQna);
 
 	public QnAFile getFile(QnAFile qnaFile);
+
 
 	
 

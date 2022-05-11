@@ -33,9 +33,6 @@ import com.skip.www.dto.User;
 import com.skip.www.service.face.MypageService;
 import com.skip.www.util.Paging;
 
-
-
-
 @Service
 public  class MypageServiceImpl implements MypageService {
 
@@ -43,11 +40,6 @@ public  class MypageServiceImpl implements MypageService {
 
 	@Autowired MypageDao mypageDao;
 	@Autowired private ServletContext context;
-
-	
-
-
-
 
 	@Override
 	public ConUserLevel viewConLevel(int userNo) {
@@ -92,21 +84,30 @@ public  class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<QnA> list(Paging paging,int userNo) {
+	public List<QnA> list(Paging paging) {
 		
-		return mypageDao.selectList(paging,userNo);
+		return mypageDao.selectList(paging);
 	}
 
 	@Override
-	public Paging getPaging(Paging paramData) {
+	public Paging getPaging(String curPage, int userNo) {
+		
+		int page = 0;
+		
+		if( curPage != null && !"".equals(curPage) ) {
+			page = Integer.parseInt(curPage);
+		}
+		
+		int listCount = 5;
 		
 		//총 게시글 수 조회
-		int totalCount = mypageDao.selectCntAll(paramData);
+		int totalCount = mypageDao.selectCntAll(userNo);
 		
 		//페이징 계산
-		Paging paging = new Paging(totalCount, paramData.getCurPage());
-		paging.setSearch(paramData.getSearch());
+		Paging paging = new Paging(totalCount, page, listCount);
 
+		logger.info("Paging : {}", paging);
+		
 		return paging;
 	}
 

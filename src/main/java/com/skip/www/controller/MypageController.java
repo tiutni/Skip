@@ -1,8 +1,6 @@
 package com.skip.www.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.ConUserLevel;
@@ -127,29 +124,27 @@ public class MypageController {
 	}
 
 	
-	@RequestMapping(value="/mypage/qnalist")
-	public void list(HttpSession session, User user, Paging paramData, Model model) {
-		logger.info("/mypage/qnalist");
+			@RequestMapping(value="/mypage/qnalist")
+			public void list(HttpSession session, User user, String curPage, Model model) {
+				logger.info("/mypage/qnalist");
+				
+				int userNo=(Integer)session.getAttribute("userNo");
 		
-		int userNo=(Integer)session.getAttribute("userNo");
-
-		
-		
-		//페이징 계산
-				Paging paging = mypageService.getPaging( paramData );
+				
+				
+				//페이징 계산
+				Paging paging = mypageService.getPaging( curPage, userNo );
 				logger.info("{}", paging);
 				
+				paging.setUserNo(userNo);				
+				
 				//게시글 목록 조회
-				
-				
-				List<QnA> list = mypageService.list(paging,userNo);
-				for(QnA q : list) {
-					logger.info("{}", q);
-				}
+				List<QnA> list = mypageService.list(paging);
 				
 				model.addAttribute("paging", paging);
 				model.addAttribute("list", list);
-				}
+				
+			}
 				
 			@RequestMapping("/mypageqna/qnaview")
 			public String view(QnA viewQna, Model model) {

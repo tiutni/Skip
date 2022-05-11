@@ -16,6 +16,8 @@ public class Paging {
 	
 	
 	private String search; //검색어
+	
+	private int userNo; //유저 번호
 
 	
 	
@@ -57,9 +59,6 @@ public class Paging {
 	}
 	
 	
-	
-	
-	
 	//페이징 정보를 생성하는 메소드
 	private void makePaging() {
 		if(totalCount == 0)	return; //게시글이 없는 경우 중단한다
@@ -69,30 +68,35 @@ public class Paging {
 		if(listCount == 0)	setListCount(10);	//화면에 보여질 게시글 수를 기본 10개로 설정한다
 		if(pageCount == 0)	setPageCount(10);	//화면에 보여질 페이지 수를 기본 10페이지로 설정한다
 		
-		//총 페이지 수 계산
+		//총 페이지수의 계산
 		totalPage = totalCount / listCount;
-		if( totalCount % listCount > 0 )	totalPage++;
-		
-		//현재 페이지값 보정
-		if(curPage > totalPage)	curPage = totalPage;
-		
-		//화면에 보여질 페이지네이션의 시작번호와 끝번호
+				
+		if( totalPage % totalCount > 0 )	totalPage++;
+				
+		//총 페이지의 수 계산 보정 작업
+		if( curPage > totalPage )	totalPage = curPage;
+				
+		//-------------------------------------------------------
+				
+		//화면에 보이는 페이지네이션의 시작 번호, 끝 번호 계산
 		startPage = ( (curPage-1)/pageCount ) * pageCount + 1;
 		endPage = startPage + pageCount - 1;
-		
-		//끝 페이지값 보정
-		if(endPage > totalPage)	endPage = totalPage;
-		
-		//화면에 보여질 게시글의 시작번호와 끝번호
-		startNo = (curPage-1) * listCount + 1;
+
+		//페이지네이션 보정 작업
+		if( endPage > totalPage )	endPage = totalPage;
+
+		//-------------------------------------------------------
+		//화면에 보이는 게시글의 시작 번호, 끝 번호 계산
+		startNo = ( curPage-1 ) * listCount + 1;
 		endNo = curPage * listCount;
+		
 	}
 
 	@Override
 	public String toString() {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
-				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + "]";
+				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", userNo=" + userNo + "]";
 	}
 
 	public int getCurPage() {
@@ -174,5 +178,15 @@ public class Paging {
 	public void setSearch(String search) {
 		this.search = search;
 	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+	
+	
 	
 }

@@ -14,51 +14,51 @@
 		<result column="qna_date" property="qnaDate"/>
 	</resultMap>
 
-<select id="selectByConUserLevelconuserlevelno" resultType="com.skip.www.dto.ConUserLevel" parameterType="int">
-	SELECT C.con_user_level_no, C.user_level FROM con_user_level C, user_tb U
-	WHERE C.con_user_level_no = U.con_user_level_no
-		AND U.user_no =#{userNo}
-</select>
-
-<select id="selectByExUserLevelconuserlevelno" resultType="com.skip.www.dto.ExUserLevel" parameterType="int">
-	SELECT E.ex_user_level_no, E.user_level FROM ex_user_level E, user_tb U
-	WHERE E.ex_user_level_no = U.ex_user_level_no
-		AND U.user_no =#{userNo}
-</select>
-
-<select id="selectUserinfo"  resultType="com.skip.www.dto.User" >
-		SELECT*FROM user_tb
+	<select id="selectByConUserLevelconuserlevelno" resultType="com.skip.www.dto.ConUserLevel" parameterType="int">
+		SELECT C.con_user_level_no, C.user_level FROM con_user_level C, user_tb U
+		WHERE C.con_user_level_no = U.con_user_level_no
+			AND U.user_no =#{userNo}
+	</select>
+	
+	<select id="selectByExUserLevelconuserlevelno" resultType="com.skip.www.dto.ExUserLevel" parameterType="int">
+		SELECT E.ex_user_level_no, E.user_level FROM ex_user_level E, user_tb U
+		WHERE E.ex_user_level_no = U.ex_user_level_no
+			AND U.user_no =#{userNo}
+	</select>
+	
+	<select id="selectUserinfo"  resultType="com.skip.www.dto.User" >
+			SELECT*FROM user_tb
+			WHERE user_no =#{userNo}
+	</select>		
+	
+	<update id="updateUserInfo" parameterType="com.skip.www.dto.User">
+		UPDATE user_tb
+		SET   user_pw    =#{userPw} 
+		       ,user_nick  =#{userNick} 
+		       ,user_email =#{userEmail}
+		       ,user_name  =#{userName}
+		       ,user_telecom =#{userTelecom}
+		       ,user_phone   =#{userPhone}
+		WHERE
+			   user_no =#{userNo}		
+	</update>
+			   
+			   
+			   	   
+	<select id="selectcountUserInfo" resultType="int" parameterType="com.skip.www.dto.User">
+		SELECT count(*) from user_tb
 		WHERE user_no =#{userNo}
-</select>		
-
-<update id="updateUserInfo" parameterType="com.skip.www.dto.User">
-	UPDATE user_tb
-	SET   user_pw    =#{userPw} 
-	       ,user_nick  =#{userNick} 
-	       ,user_email =#{userEmail}
-	       ,user_name  =#{userName}
-	       ,user_telecom =#{userTelecom}
-	       ,user_phone   =#{userPhone}
-	WHERE
-		   user_no =#{userNo}		
-</update>
-		   
-		   
-		   	   
-<select id="selectcountUserInfo" resultType="int" parameterType="com.skip.www.dto.User">
-	SELECT count(*) from user_tb
-	WHERE user_no =#{userNo}
-	 AND  user_pw =#{userPw}	
-</select>
-
-
-<delete id="deleteUserinfo" parameterType="com.skip.www.dto.User">
-	DELETE user_tb
-	WHERE user_no = #{userNo}
-</delete>
-
-
-<select id="selectList" parameterType="com.skip.www.util.Paging" resultMap="Qna">
+		 AND  user_pw =#{userPw}	
+	</select>
+	
+	
+	<delete id="deleteUserinfo" parameterType="com.skip.www.dto.User">
+		DELETE user_tb
+		WHERE user_no = #{userNo}
+	</delete>
+	
+	
+	<select id="selectList" parameterType="com.skip.www.util.Paging" resultType="com.skip.www.dto.QnA">
 		SELECT * FROM (
 			SELECT rownum rnum, Q.* FROM (
 				SELECT
@@ -76,13 +76,12 @@
 	</select>
 
 
-	<select id="selectCntAll" resultType="int">
+	<select id="selectCntAll" parameterType="int" resultType="int">
 		SELECT count(*) FROM qna
-		WHERE qna_title LIKE '%' || #{search} || '%' 
-	
+		WHERE user_no = #{userNo}
 	</select>
 
-<insert id="insertQna" parameterType="com.skip.www.dto.QnA">
+	<insert id="insertQna" parameterType="com.skip.www.dto.QnA">
 		<selectKey order="BEFORE" resultType="int" keyProperty="qnaNo">
 			SELECT qna_no_seq.nextval FROM dual
 		</selectKey>

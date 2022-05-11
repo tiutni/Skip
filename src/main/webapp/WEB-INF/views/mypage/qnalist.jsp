@@ -47,7 +47,7 @@ table, th {
 	<tr>
 		<td>${qna.qnaNo }</td>
 		<td>${qna.userNo }</td>
-		<td><a href="/mypage/qnaview?qnaNo=${qna.qnaNo }">${qna.qnaTitle }</td>
+		<td><a href="/mypage/qnaview?qnaNo=${qna.qnaNo }">${qna.qnaTitle }</a></td>
 		<td>${qna.qnaContent }</td>
 		<td><fmt:formatDate value="${qna.qnaDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	</tr>
@@ -58,6 +58,8 @@ table, th {
 <button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button>
 <span class="pull-left">total : ${paging.totalCount }</span>
 <div class="clearfix"></div>
+
+<c:import url="paging.jsp" />
 
 
 

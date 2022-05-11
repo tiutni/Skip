@@ -58,7 +58,7 @@ public interface MypageDao {
 	 * @param paging - 페이징 정보 객체
 	 * @return 페이징이 적용된 게시글 목록
 	 */
-	public List<QnA> selectList(Paging paging,int userNo);
+	public List<QnA> selectList(Paging paging);
 
 	/**
 	 * 전체 문의글 수를 조회한다
@@ -66,7 +66,7 @@ public interface MypageDao {
 	 * @param paramData - search를 포함한 페이징 객체
 	 * @return 총 게시글 수
 	 */
-	public int selectCntAll(Paging paramData);
+	public int selectCntAll(int userNo);
 
 	public void insertQna(QnA qna);
 
