@@ -27,6 +27,7 @@ $(document).ready(function() {
 
 <hr>
 <a href="/board/list">목록</a>
+<a href="/pay/concert">목록</a>
 <a href="/mypage/main">마이페이지</a>
 <a href="/noti/list">공지사항</a>
 
@@ -36,7 +37,6 @@ $(document).ready(function() {
 </div>
 
 </div><!-- .container end -->
-
 
 
 
