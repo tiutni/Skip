@@ -32,8 +32,23 @@
 
 	<select id="select" resultMap="Noti" parameterType="com.skip.www.dto.Noti">
 		SELECT * FROM noti
-		WHERE Noti_no = #{notiNo}
+		WHERE noti_no = #{notiNo}
 	</select>
+	
+	<insert id="insertNoti" parameterType="com.skip.www.dto.Noti">
+		<selectKey order="BEFORE" resultType="int" keyProperty="notiNo">
+			SELECT board_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO noti ( noti_no, noti_title, noti_date, noti_content, admin_id )
+		VALUES ( #{notiNo}, #{notiTitle}, #{NotiDate}, #{notiContent}, #{adminId} )
+	</insert>
+	
+	<insert id="insertFile" parameterType="com.skip.www.dto.NotiFile">
+		INSERT INTO notiFile ( noti_file_no, noti_file_originname, noti_file_storedname, noti_no )
+		VALUES ( notifile_seq.nextval, #{notiFileOriginName}, #{notiFileStoredName}, #{notiNo} )
+	</insert>
+	
 	
 	<select id="selectNotiFileByNotiNo" resultType="com.skip.www.dto.NotiFile" parameterType="com.skip.www.dto.Noti">
 		SELECT
@@ -41,7 +56,7 @@
 			, noti_file_originname notiFileOriginName
 			, noti_file_storedname notiFileStoredName
 			, Noti_no NotiNo
-		FROM notifile
+		FROM noti_file
 		WHERE noti_no = #{notiNo}
 	</select>
 	
@@ -51,9 +66,27 @@
 			, noti_file_originname notiFileOriginName
 			, noti_file_storedname notiFileStoredName
 			, Noti_no NotiNo	
-		FROM notifile
+		FROM noti_file
 		WHERE noti_file_no = #{notiFileNo}
 	</select>
+	
+	<update id="update" parameterType="com.skip.www.dto.Noti">
+		UPDATE noti
+		SET noti_title = #{notiTitle}
+			, noti_content = #{notiContent}
+		WHERE noti_no = #{notiNo}
+	</update>
+	
+	<delete id="deleteFile" parameterType="com.skip.www.dto.Noti">
+		DELETE noti_file
+		WHERE noti_no = #{notiNo}
+	</delete>
+
+	<delete id="delete" parameterType="com.skip.www.dto.Noti">
+		DELETE noti
+		WHERE noti_no = #{notiNo}
+	</delete>
+	
 </mapper>
 
 

@@ -2,7 +2,6 @@ package com.skip.www.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Noti;
 import com.skip.www.dto.NotiFile;
 import com.skip.www.service.face.NotiService;
-import com.skip.www.service.face.UserService;
 import com.skip.www.util.Paging;
 
 @Controller
@@ -27,8 +27,6 @@ public class NotiController {
 	
 	@Autowired NotiService notiService;
 
-
-	
 	@RequestMapping(value="/list")
 	public void list(Paging paramData, Model model) {
 		logger.info("/noti/list");
@@ -65,9 +63,74 @@ public class NotiController {
 		
 		
 		//첨부파일 정보 모델값 전달
-		NotiFile notiImg = notiService.getAttachNotiFile(viewNoti);
-		model.addAttribute("notiImg", notiImg);
+		NotiFile notiFile = notiService.getAttachFile(viewNoti);
+		model.addAttribute("notiFile", notiFile);
 		
 		return "noti/view";
 	}
+	
+	@GetMapping("/write")
+	public void write() { }
+	
+	@PostMapping("/write")
+	public String writeProcess(Noti noti, MultipartFile file, HttpSession session) {
+		logger.info("/board/write [POST]");
+		logger.info("{}", noti);
+		logger.info("{}", file);
+		
+		noti.setAdminId( (String) session.getAttribute("id") );
+		logger.info("{}", noti);
+		
+		notiService.write(noti, file);
+		
+		return "redirect:/noti/list"; //공지사항 목록
+	}
+	
+	@RequestMapping("/download")
+	public String download(NotiFile notiFile, Model model) {
+		
+		notiFile = notiService.getFile(notiFile);
+		model.addAttribute("downFile", notiFile);
+		
+		return "down";
+	}
+	
+	@GetMapping("/update")
+	public String update(Noti noti, Model model) {
+		logger.info("/noti/update - {}", noti);		
+		
+		//잘못된 게시글 번호 처리
+		if( noti.getNotiNo() < 1 ) {
+			return "redirect:/noti/list";
+		}
+		
+		//수정할 게시글의 상세보기
+		noti = notiService.view(noti);
+		model.addAttribute("updateNoti", noti);
+		
+		//첨부파일 정보 모델값 전달
+		NotiFile notiFile = notiService.getAttachFile(noti);
+		model.addAttribute("notiFile", notiFile);
+		
+		return "noti/update";
+	}
+	
+	@PostMapping("/update")
+	public String updateProcess(Noti noti, MultipartFile file) {
+		logger.info("/noti/update [POST] - {}", noti);
+		
+//		notiService.update(noti);	//게시글만 수정
+		notiService.update(noti, file); //게시글+첨부파일 수정
+		
+		return "redirect:/noti/view?notiNo=" + noti.getNotiNo();
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(Noti noti) {
+		notiService.delete(noti);
+		
+		return "redirect:/noti/list";
+	}
+	
+	
 }

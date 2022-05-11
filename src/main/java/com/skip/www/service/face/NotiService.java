@@ -2,6 +2,8 @@ package com.skip.www.service.face;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.skip.www.dto.Noti;
 import com.skip.www.dto.NotiFile;
 import com.skip.www.util.Paging;
@@ -39,12 +41,20 @@ public interface NotiService {
 	public Noti view(Noti viewNoti);
 	
 	/**
+	 * 공지사항 정보, 첨부파일을 함께 처리한다
+	 * 
+	 * @param noti - 게시글 정보 DTO
+	 * @param file - 첨부파일 정보 DTO
+	 */
+	public void write(Noti noti, MultipartFile file);
+	
+	/**
 	 * 게시글 번호를 이용하여 업로드된 파일 정보를 조회한다
 	 * 
 	 * @param viewNoti - 조회할 게시글 번호를 가진 객체
 	 * @return 첨부파일의 정보
 	 */
-	public NotiFile getAttachNotiFile(Noti viewNoti);
+	public NotiFile getAttachFile(Noti viewNoti);
 
 	/**
 	 * 파일 번호를 이용하여 업로드된 파일 정보를 조회한다
@@ -52,6 +62,31 @@ public interface NotiService {
 	 * @param notiFile - 조회할 파일 번호를 가진 객체
 	 * @return 첨부파일의 정보
 	 */
-	public NotiFile getNotiFile(NotiFile notiFile);
+	public NotiFile getFile(NotiFile notiFile);
 
+	/**
+	 * 공지사항 게시글 수정 처리
+	 * 
+	 * @param noti - 공지사항 게시글 정보 객체
+	 */
+	public void update(Noti noti);
+
+	/**
+	 * 공지사항 게시글 수정 처리
+	 * 첨부파일 수정 처리
+	 * 
+	 * @param noti - 공지사항 게시글 정보 객체
+	 * @param file - 파일업로드 객체
+	 */
+	public void update(Noti noti, MultipartFile file);
+
+	/**
+	 * 게시글 + 첨부파일 삭제 처리
+	 * 
+	 * @param noti - 삭제할 공지사항 게시글의 글번호
+	 */
+	public void delete(Noti noti);
+	
+
+	
 }

@@ -5,6 +5,19 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script type="text/javascript">
+/* $(document).ready(function() {
+	
+	//검색 버튼 클릭
+	$("#btnSearch").click(function() {
+		location.href="/noti/list?search="+$("#search").val();
+	});
+}) */
+</script>
+
+
 
 <!-- 본문 -->
 <section class="bg0 p-t-23 p-b-140">
@@ -49,14 +62,14 @@
 			</div> <!-- 필터, 검색 아이콘 End -->
 			
 			<!-- Search product -->
-			<!-- 검색 기능 -->
+			<!-- 검색 기능(위에 jQuery만 수정하시면 됩니다) -->
 			<div class="dis-none panel-search w-full p-t-10 p-b-15">
 				<div class="bor8 dis-flex p-l-15">
-					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+					<button id="btnSearch" class="btn size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
 
-					<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+					<input class="mtext-107 cl2 size-114 plh2 p-r-15 form-control" type="text" id="search" value="${param.search }" name=" search-product" placeholder="Search">
 				</div>	
 			</div> <!-- 검색 기능 End -->
 
