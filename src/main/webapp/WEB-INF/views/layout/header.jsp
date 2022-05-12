@@ -104,7 +104,7 @@
 							</li>
 
 							<li>
-								<a href="#">FAQ</a>
+								<a href="/faq/list">FAQ</a>
 							</li>
 						</ul>
 					</div>	

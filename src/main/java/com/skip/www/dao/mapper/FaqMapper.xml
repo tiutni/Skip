@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.skip.www.dao.face.FaqDao">
+
+	<resultMap type="com.skip.www.dto.FAQ" id="Faq">
+		<id column="faq_no" property="faqNo"/>
+		<result column="faq_title" property="faqTitle"/>
+		<result column="faq_content" property="faqContent"/>
+		<result column="faq_date" property="faqDate"/>
+		<result column="admin_id" property="adminId"/>
+	</resultMap>
+
+		<select id="selectList" parameterType="com.skip.www.util.Paging" resultMap="Faq">
+		SELECT * FROM (
+			SELECT rownum rnum, F.* FROM (
+				SELECT
+					faq_no,
+					faq_title,
+					faq_content,
+					faq_date,
+					admin_id
+				FROM faq
+				ORDER BY faq_no DESC
+			) F
+		) FAQ
+		WHERE rnum BETWEEN #{startNo } AND #{endNo }
+	</select>
+	
+	<select id="selectCntAll" resultType="int">
+		SELECT count(*) FROM FAQ
+	</select>
+	
+	<select id="select" resultMap="Faq" parameterType="com.skip.www.dto.FAQ">
+			SELECT
+				faq_no,
+				faq_title,
+				faq_content,
+				faq_date,
+				admin_id
+			FROM faq
+		WHERE faq_no = #{faqNo}
+	</select>
+	
+</mapper>
