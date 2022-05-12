@@ -32,4 +32,12 @@ public interface MemberDao {
 	 */
 	public void delete(User user);
 
+	/**
+	 * 회원 번호를 이용하여 회원을 조회한다
+	 * 
+	 * @param viewMember - 조회하려는 회원 번호
+	 * @return 조회된 회원 정보
+	 */
+	public User select(User viewMember);
+
 }

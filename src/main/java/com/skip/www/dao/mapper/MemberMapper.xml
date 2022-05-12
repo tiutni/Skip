@@ -36,5 +36,21 @@
 		DELETE USER_TB
 		WHERE user_no = #{userNo} 
 	</delete>
+	
+	<select id="select" resultMap="User" parameterType="com.skip.www.dto.User">
+			SELECT
+				user_no,
+				user_id,
+				user_nick,
+				user_email,
+				user_name,
+				user_telecom,
+				user_phone,
+				user_regdate,
+				con_user_level_no,
+				ex_user_level_no
+			FROM user_tb
+		WHERE user_no = #{userNo}
+	</select>
 
 </mapper>

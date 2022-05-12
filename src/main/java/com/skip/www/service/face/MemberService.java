@@ -34,4 +34,12 @@ public interface MemberService {
 	 * @param user - 삭제할 회원의 회원번호
 	 */
 	public void delete(User user);
+
+	/**
+	 * 회원 상세보기
+	 * 
+	 * @param viewMember - 상세 조회할 회원 번호 객체
+	 * @return 조회된 상세 회원 객체
+	 */
+	public User view(User viewMember);
 }

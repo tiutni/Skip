@@ -41,4 +41,11 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	@Override
+	public User view(User viewMember) {
+		
+		//상세보기 조회 결과 리턴
+		return memberDao.select(viewMember);
+	}
+
 }

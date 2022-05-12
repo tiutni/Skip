@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.skip.www.dto.FAQ;
 import com.skip.www.dto.User;
 import com.skip.www.service.face.MemberService;
 import com.skip.www.util.Paging;
@@ -45,6 +46,25 @@ public class MemberController {
 		memberService.delete(user);
 		
 			return "redirect:/member/list";
+	}
+	
+	@RequestMapping("member/view")
+	public String view(User viewMember, Model model) {
+		logger.info("/member/view - {}", viewMember);
+		
+		//잘못된 회원 번호 처리
+		if( viewMember.getUserNo() < 1 ) {
+			return "redirect:/member/list";
+		}
+		
+		//회원 조회
+		viewMember = memberService.view(viewMember);
+		logger.info("조회된 게시글 {}", viewMember);
+		
+		//모델값 전달
+		model.addAttribute("viewMember", viewMember);
+		
+		return "member/view";
 	}
 	
 }

@@ -57,7 +57,7 @@ table, th {
 <c:forEach items="${list }" var="user">
 	<tr>
 		<td>${user.userNo }</td>
-		<td>${user.userId }</td>
+		<td><a href="/member/view?userNo=${user.userNo }">${user.userId }</td>
 		<td>${user.userNick }</td>
 		<td>${user.exUserLevelNo }</td>
 		<td>${user.conUserLevelNo }</td>
