@@ -35,7 +35,6 @@
 		    <artifactId>commons-io</artifactId>
 		    <version>2.11.0</version>
 		</dependency>
-		
 	
 		<!--  log4jdbc-remix  -->
 		<!-- https://mvnrepository.com/artifact/org.lazyluke/log4jdbc-remix -->
@@ -82,9 +81,12 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-		
-		
-		
+		<!-- email -->   
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.5</version>
+		</dependency>
 		
 		<!-- Spring -->
 		<dependency>

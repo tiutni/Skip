@@ -12,23 +12,17 @@ public class User {
 	private String userRrn;
 	private String userTelecom;
 	private String userPhone;
+	private String userAddr;
 	private Date userRegdate;
-	private int userActivate;
 	private int conUserLevelNo;
 	private int exUserLevelNo;
-	private Date userEditdate;
-	private int personalInformation;
-	private int gps;
-	private int marketing;
 	
 	@Override
 	public String toString() {
 		return "User [userNo=" + userNo + ", userId=" + userId + ", userPw=" + userPw + ", userNick=" + userNick
 				+ ", userEmail=" + userEmail + ", userName=" + userName + ", userRrn=" + userRrn + ", userTelecom="
-				+ userTelecom + ", userPhone=" + userPhone + ", userRegdate=" + userRegdate + ", userActivate="
-				+ userActivate + ", conUserLevelNo=" + conUserLevelNo + ", exUserLevelNo=" + exUserLevelNo
-				+ ", userEditdate=" + userEditdate + ", personalInformation=" + personalInformation + ", gps=" + gps
-				+ ", marketing=" + marketing + "]";
+				+ userTelecom + ", userPhone=" + userPhone + ", userAddr=" + userAddr + ", userRegdate=" + userRegdate
+				+ ", conUserLevelNo=" + conUserLevelNo + ", exUserLevelNo=" + exUserLevelNo + "]";
 	}
 	public int getUserNo() {
 		return userNo;
@@ -84,17 +78,17 @@ public class User {
 	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
+	public String getUserAddr() {
+		return userAddr;
+	}
+	public void setUserAddr(String userAddr) {
+		this.userAddr = userAddr;
+	}
 	public Date getUserRegdate() {
 		return userRegdate;
 	}
 	public void setUserRegdate(Date userRegdate) {
 		this.userRegdate = userRegdate;
-	}
-	public int getUserActivate() {
-		return userActivate;
-	}
-	public void setUserActivate(int userActivate) {
-		this.userActivate = userActivate;
 	}
 	public int getConUserLevelNo() {
 		return conUserLevelNo;
@@ -107,29 +101,5 @@ public class User {
 	}
 	public void setExUserLevelNo(int exUserLevelNo) {
 		this.exUserLevelNo = exUserLevelNo;
-	}
-	public Date getUserEditdate() {
-		return userEditdate;
-	}
-	public void setUserEditdate(Date userEditdate) {
-		this.userEditdate = userEditdate;
-	}
-	public int getPersonalInformation() {
-		return personalInformation;
-	}
-	public void setPersonalInformation(int personalInformation) {
-		this.personalInformation = personalInformation;
-	}
-	public int getGps() {
-		return gps;
-	}
-	public void setGps(int gps) {
-		this.gps = gps;
-	}
-	public int getMarketing() {
-		return marketing;
-	}
-	public void setMarketing(int marketing) {
-		this.marketing = marketing;
 	}
 }
