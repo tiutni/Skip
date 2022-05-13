@@ -31,7 +31,10 @@
         
         <script src="../../resources/admbootstrap/js/datatables-simple-demo.js"></script>
         
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"> <!-- 아이콘 추가 --> <!-- https://icons.getbootstrap.com -->
+        
     </head>
+    
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -45,9 +48,9 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/admin/update">Admin</a></li>
+                        <li><a class="dropdown-item" href="/admin/update">Modify</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="/admin/logout">Logout</a></li>
                     </ul>
@@ -61,47 +64,35 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Member</div>
                             <a class="nav-link" href="/member/list">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="bi bi-people-fill"></i></div>
                                 회원
                             </a>
                             <div class="sb-sidenav-menu-heading">Exhibition</div>
                             <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="bi bi-calendar-day"></i></div>
                                 전시
                             </a>
                             <div class="sb-sidenav-menu-heading">Concert</div>
                             <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="bi bi-calendar-date"></i></div>
                                 공연
                             </a>
                             <div class="sb-sidenav-menu-heading">Notice</div>
                             <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="bi bi-exclamation-circle"></i></div>
                                 공지사항
-                            </a>
-                            <div class="sb-sidenav-menu-heading">QnA</div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                1:1 문의
                             </a>
                             <div class="sb-sidenav-menu-heading">FAQ</div>
                             <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="bi bi-question-circle"></i></div>
                                 자주 묻는 질문
                             </a>
-                            <div class="sb-sidenav-menu-heading">Admin</div>
+                            <div class="sb-sidenav-menu-heading">QnA</div>
                             <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                관리자
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Main</div>
-                            <a class="nav-link" href="/">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                메인페이지
+                                <div class="sb-nav-link-icon"><i class="bi bi-chat-dots"></i></div>
+                                1:1 문의
                             </a>
                            
-                           
-                               
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

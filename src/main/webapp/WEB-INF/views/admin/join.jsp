@@ -3,55 +3,111 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="/WEB-INF/views/admlayout/header.jsp" />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Admin Join</title>
+        <link href="../../resources/admbootstrap/css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+       
 
-<script type="text/javascript">
-$(document).ready(function() {
-
-	$("#cancel").click(function() {
-		history.go(-1) });
+<script>
+setInterval (function() {
+	var pwd1 = $("#adminPw").val();
+    var pwd2 = $("#adminPw2").val();
+	    if ( pwd1!= "" && pwd2!= "" ){
+	    	  if (pwd1 == pwd2) {
+	              $("#alert-success").css('display', 'inline-block');
+	              $("#alert-danger").css('display', 'none');
+	          } else {
+	              $("#alert-success").css('display', 'none');
+	              $("#alert-danger").css('display', 'inline-block');
+	          }
+	    }
+	}, 300);
 	
-	$("#id").focus();
-	
-})
 </script>
 
-<div class="container">
+        
+    </head>
+    
 
-<h1>관리자 생성</h1>
-<hr>
-
-<div>
-<form action="/admin/join" method="post" class="form-horizontal">
-<div class="form-group">
-	<label for="adminId" class="col-sm-4 control-label">관리자 아이디</label>
-	<div class="col-sm-5">
-		<input type="text" class="form-control" id="adminId" name="adminId" placeholder="아이디 입력" required>
-	<div class="check_font" id="id_check"></div>
-	</div>
-</div>
-<div class="form-group">
-	<label for="adminPw" class="col-sm-4 control-label">비밀번호</label>
-	<div class="col-sm-5">
-		<input type="password" class="form-control" id="adminPw" name="adminPw" placeholder="비밀번호 입력" required>
-	</div>
-</div>
-<div class="form-group">
-	<label for="adminAuth" class="col-sm-4 control-label">관리자가입인증번호</label>
-	<div class="col-sm-5">
-		<input type="text" class="form-control" id="adminAuth" name="adminAuth" placeholder="관리자가입인증번호 입력" required>
-	</div>
-</div>
-<div class="form-group">
-	<div class="col-sm-offset-5">
-		<button class="btn btn-primary">관리자 생성</button>
-		<input type="reset" id="cancel" class="btn btn-danger" value="취소" />
-	</div>
-</div>
-
-</form>
-</div>
-
-</div><!-- .container end -->
-
-<c:import url="/WEB-INF/views/admlayout/footer.jsp" />
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-7">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                                    <div class="card-body">
+                                        <form action="/admin/join" method="post">
+                                        
+                                        
+                                            <div class="row mb-3">
+                                                <div class="d-grid">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="adminId" name="adminId" type="text" autoComplete="off" placeholder="Enter your Admin ID" required />
+                                                        <label for="adminId">Admin ID</label>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                
+                                             
+                                                <div class="row mb-3">
+                                                <div class="d-grid">
+                                                    <div class="form-floating">
+                                                        <input class="form-control" id="adminAuth" name="adminAuth" type="password" autoComplete="off" placeholder="Enter your Authentication Number" required />
+                                                        <label for="adminAuth">Authentication Number</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                          
+                                      
+                                            <div class="row mb-3" class ="pw">
+                                                <div class="d-grid">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input type="password" class="form-control" name="adminPw" id="adminPw" class="pw" autoComplete="off" placeholder="Create a password" required />
+                                                        <label for="adminPw">Password</label>
+                                                    </div>
+                                                </div>
+                                          </div>
+                                          
+                                        
+                                            <div class="row mb-3" class ="pw">
+                                                <div class="d-grid">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input type="password" class="form-control" name="adminPw2" id="adminPw2" class="pw" autoComplete="off" placeholder="Create a password" required />
+                                                        <label for="adminPw">Password</label>
+                                                    </div>
+                                                </div>
+                                          </div>
+                                                
+                                                <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
+    											<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold;">비밀번호가 일치하지 않습니다.</span>
+                                            
+                                            <div class="form-group">
+                                            <div class="mt-4 mb-0">
+                                                <div class="d-grid"><button class="btn btn-primary btn-block" >Create Account</button></div>
+                                            </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="/admin/login">Go to Login</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>

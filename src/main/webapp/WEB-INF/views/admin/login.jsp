@@ -3,47 +3,72 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:import url="/WEB-INF/views/admlayout/header.jsp" />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Admin Login</title>
+        <link href="../../resources/admbootstrap/css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
 
 <script type="text/javascript">
 $(document).ready(function() {
-	
-	$("#cancel").click(function() {
-		history.go(-1) });
 	
 	$("#id").focus();
 	
 })
 </script>
 
-<div class="container">
 
-<h1>관리자 로그인</h1>
-<hr>
-
-<div>
-<form action="/admin/login" method="post" class="form-horizontal">
-<div class="form-group">
-	<label for="id" class="col-sm-4 control-label">아이디</label>
-	<div class="col-sm-5">
-		<input type="text" class="form-control" id="adminId" name="adminId" placeholder="아이디 입력">
-	</div>
-</div>
-<div class="form-group">
-	<label for="pw" class="col-sm-4 control-label">패스워드</label>
-	<div class="col-sm-5">
-		<input type="password" class="form-control" id="adminPw" name="adminPw" placeholder="패스워드 입력">
-	</div>
-</div>
-<div class="form-group">
-	<div class="col-sm-offset-5">
-		<button class="btn btn-primary">로그인</button>
-		<input type="reset" id="cancel" class="btn btn-danger" value="취소" />
-	</div>
-</div>
-</form>
-</div>
+<body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    <div class="card-body">
+                                        
+                                        <form action="/admin/login" method="post">
+                                           
+                                            <div class="form-group">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="adminId" name="adminId" placeholder="ID" required />
+                                                <label for="id">ID</label>
+                                            </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                            <div class="form-floating mb-3">
+                                                <input type="password" class="form-control" id="adminPw" name="adminPw" placeholder="Password" required />
+                                                <label for="pw">Password</label>
+                                            </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <a class="btn btn btn-danger" href="/">Home</a>
+                                                <button class="btn btn-primary">Login</button>
+                                            </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="/admin/join">Creating an Account</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
 
 </div><!-- .container end -->
 
-<c:import url="/WEB-INF/views/admlayout/footer.jsp" />
