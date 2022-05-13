@@ -2,12 +2,12 @@ package com.skip.www.dto;
 
 public class ExImg {
 	
-	private int exImgNo;
-	private String exImgOriginName;
-	private String exImgStoredName;
-	private String exImgPath;
-	private int exImgSize;
-	private int exNo;
+	private int 	exImgNo;			// ex_img_no (PK)		NUMBER			1 전시회 이미지 번호
+	private String 	exImgOriginName;	// ex_img_originName	VARCHAR2(500)	2 전시회 이미지 원본 파일명
+	private String 	exImgStoredName;	// ex_img_storedName	VARCHAR2(500)	3 전시회 이미지 저장 파일명
+	private String 	exImgPath;			// ex_img_path			VARCHAR2(1000)	4 전시회 이미지 저장 경로명
+	private int 	exImgSize;			// ex_img_size			NUMBER			5 전시회 이미지 파일 크기
+	private int 	exNo;				// ex_no (FK)			NUMBER			6 전시회 번호
 
 	@Override
 	public String toString() {

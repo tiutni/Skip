@@ -6,6 +6,41 @@
     
 <mapper namespace="com.skip.www.dao.face.AdminDao">
 
+	<resultMap type="com.skip.www.dto.Exhibition" id="Exhibition">
+		<id 	column="ex_no" 				property="exNo"/>
+		<result column="ex_regdate" 		property="exRegDate"/>
+		<result column="ex_title" 			property="exTitle"/>
+		<result column="ex_address" 		property="exAddress"/>
+		<result column="ex_content" 			property="exContent"/>
+		<result column="ex_startDay" 		property="exStartDay"/>
+		<result column="ex_endDay" 			property="exEndDay"/>
+		<result column="ex_reserveStartDay" 	property="exReserveStartDay"/>
+		<result column="ex_reserveEndDay" 	property="exReserveEndDay"/>
+		<result column="ex_enterStartTime" 	property="exEnterStartTime"/>
+		<result column="ex_enterEndTime" 	property="exEnterEndTime"/>
+		<result column="ex_enterInterval" 	property="exEnterInterval"/>
+		<result column="ex_ticketNum" 		property="exTicketNum"/>
+		<result column="ex_price" 			property="exPrice"/>
+		<result column="ex_activate" 		property="exActivate"/>
+		<result column="admin_id" 			property="adminId"/>
+	</resultMap>
+
+	<resultMap type="com.skip.www.dto.Concert" id="Concert">
+		<id 	column="con_no" 					property="conNo"/>
+		<result column="con_regdate" 				property="conRegDate"/>
+		<result column="con_title" 					property="conTitle"/>
+		<result column="con_address" 				property="conAddress"/>
+		<result column="con_content" 				property="conContent"/>
+		<result column="con_startday" 				property="conStartDay"/>
+		<result column="con_endday" 				property="conEndDay"/>
+		<result column="con_reserveStartdayVIP" 	property="con_reserveStartdayVIP"/>
+		<result column="con_reserveStartday" 		property="conReserveStartDay"/>
+		<result column="con_reserveEndday" 			property="conReserveEndDay"/>
+		<result column="con_activate" 				property="conActivate"/>
+		<result column="admin_id" 					property="adminId"/>
+	</resultMap>
+
+	<!-- 관리자 -->
 	<select id="selectCntAdmin" resultType="int" parameterType="com.skip.www.dto.Admin">
 			SELECT count(*) FROM admin_tb
 			WHERE admin_id = #{adminId} AND admin_pw = #{adminPw}
@@ -32,6 +67,240 @@
 			FROM AUTH 
 			WHERE ADMIN_AUTH = #{adminAuth}
 	</select>
+
+	<!-- 전시 -->
+	<select id="selectExhibitionList" resultMap="Exhibition" parameterType="com.skip.www.util.Paging">
+		SELECT * FROM (
+			SELECT rownum rnum, B.* FROM (
+			
+				SELECT
+					ex_no
+					, ex_regdate
+					, ex_title
+					, ex_address
+					, ex_content
+					, ex_startDay
+					, ex_endDay
+					, ex_reserveStartDay
+					, ex_reserveEndDay
+					, ex_enterStartTime
+					, ex_enterEndTime
+					, ex_enterInterval
+					, ex_ticketNum
+					, ex_price
+					, ex_activate
+					, admin_id
+				FROM Exhibition
+				WHERE ex_title LIKE '%' || #{search} || '%' 
+				ORDER BY ex_no DESC
+				
+			) B
+		) EXHIBITION
+		WHERE rnum BETWEEN #{startNo } AND #{endNo }
+	</select>
+	
+	<select id="selectExhibitionCntAll" resultType="int">
+		SELECT count(*) FROM Exhibition
+		WHERE ex_title LIKE '%' || #{search} || '%' 
+	</select>
+	
+	<select id="selectExhibition" resultMap="Exhibition" parameterType="com.skip.www.dto.Exhibition">
+		SELECT
+			ex_no
+			, ex_regdate
+			, ex_title
+			, ex_address
+			, ex_content
+			, ex_startDay
+			, ex_endDay
+			, ex_reserveStartDay
+			, ex_reserveEndDay
+			, ex_enterStartTime
+			, ex_enterEndTime
+			, ex_enterInterval
+			, ex_ticketNum
+			, ex_price
+			, ex_activate
+			, admin_id
+			FROM Exhibition
+		WHERE Exhibition_no = #{ExhibitionNo}
+	</select>
+	
+	<insert id="insertExhibition" parameterType="com.skip.www.dto.Exhibition">
+		<selectKey order="BEFORE" resultType="int" keyProperty="exNo">
+			SELECT ex_no_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO Exhibition ( 
+			ex_no
+			, ex_regdate
+			, ex_title
+			, ex_address
+			, ex_content
+			, ex_startDay
+			, ex_endDay
+			, ex_reserveStartDay
+			, ex_reserveEndDay
+			, ex_enterStartTime
+			, ex_enterEndTime
+			, ex_enterInterval
+			, ex_ticketNum
+			, ex_price
+			, ex_activate
+			, admin_id
+		)
+		VALUES ( 
+			#{exNo}
+			, #{exRegDate}
+			, #{exTitle}
+			, #{exAddress}
+			, #{exContent}
+			, #{exStartDay}
+			, #{exEndDay}
+			, #{exReserveStartDay}
+			, #{exReserveEndDay}
+			, #{exEnterStartTime}
+			, #{exEnterEndTime}
+			, #{exEnterInterval}
+			, #{exTicketNum}
+			, #{exPrice}
+			, #{exActivate}
+			, #{adminId}
+		)
+	</insert>
+	
+	<update id="updateExhibition" parameterType="com.skip.www.dto.Exhibition">
+		UPDATE Exhibition
+		SET ex_title = #{exTitle}
+			, ex_content = #{exContent}
+		WHERE ex_no = #{exNo}
+	</update>
+
+	<delete id="deleteExhibition" parameterType="com.skip.www.dto.Exhibition">
+		DELETE Exhibition
+		WHERE ex_no = #{exNo}
+	</delete>
+
+
+	<select id="selectExImgByExNo" resultType="com.skip.www.dto.ExImg" parameterType="com.skip.www.dto.Exhibition">
+		SELECT
+			ex_img_no 			exImgNo
+			, ex_img_originName exImgOriginName
+			, ex_img_storedName exImgStoredName
+			, ex_img_path 		exImgPath
+			, ex_img_size 		exImgSize
+			, ex_no		 		exNo
+		FROM ExImg
+		WHERE ex_no = #{exNo}
+	</select>
+	
+	<select id="selectExImgByExImgNo" resultType="com.skip.www.dto.ExImg" parameterType="com.skip.www.dto.ExImg">
+		SELECT
+			ex_img_no 			exImgNo
+			, ex_img_originName exImgOriginName
+			, ex_img_storedName exImgStoredName
+			, ex_img_path 		exImgPath
+			, ex_img_size 		exImgSize
+			, ex_no		 		exNo
+		FROM ExImg
+		WHERE ex_img_no = #{exImgNo}
+	</select>
+	
+	<insert id="insertExImg" parameterType="com.skip.www.dto.ExImg">
+		INSERT INTO ExImg ( 
+			ex_img_no
+			, ex_img_originName
+			, ex_img_storedName
+			, ex_img_path
+			, ex_img_size
+			, ex_no
+		)
+		VALUES ( 
+			ex_img_no_seq.nextval
+			, #{exImgOriginName}
+			, #{exImgStoredName}
+			, #{exImgPath}
+			, #{exImgSize}
+			, #{exNo} 
+		)
+	</insert>
+	
+	<delete id="deleteExImg" parameterType="com.skip.www.dto.Exhibition">
+		DELETE ExImg
+		WHERE ex_no = #{exNo}
+	</delete>
+	
+	<update id="activateExhibition" parameterType="com.skip.www.dto.Exhibition">
+		UPDATE Exhibition
+		SET ex_activate = 1
+		WHERE ex_no = #{exNo}
+	</update>
+	
+	<update id="unactivateExhibition" parameterType="com.skip.www.dto.Exhibition">
+		UPDATE Exhibition
+		SET ex_activate = 0
+		WHERE ex_no = #{exNo}
+	</update>
+
+	
+	<!-- 공연 -->
+<!-- 	<select id="selectList" resultMap="Concert" parameterType="com.skip.www.util.Paging"> -->
+<!-- 		SELECT * FROM ( -->
+<!-- 			SELECT rownum rnum, B.* FROM ( -->
+			
+<!-- 				SELECT -->
+<!-- 					con_no -->
+<!-- 					, con_regdate -->
+<!-- 					, con_title -->
+<!-- 					, con_address -->
+<!-- 					, con_content -->
+<!-- 					, con_startday -->
+<!-- 					, con_endday -->
+<!-- 					, con_reserveStartdayVIP -->
+<!-- 					, con_reserveStartday -->
+<!-- 					, con_reserveEndday -->
+<!-- 					, con_activate -->
+<!-- 					, admin_id -->
+<!-- 				FROM Concert -->
+<!-- 				WHERE con_title LIKE '%' || #{search} || '%'  -->
+<!-- 				ORDER BY ex_no DESC -->
+				
+<!-- 			) B -->
+<!-- 		) CONCERT -->
+<!-- 		WHERE rnum BETWEEN #{startNo } AND #{endNo } -->
+<!-- 	</select> -->
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </mapper>

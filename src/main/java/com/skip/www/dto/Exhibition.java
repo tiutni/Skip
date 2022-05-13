@@ -2,33 +2,33 @@ package com.skip.www.dto;
 
 import java.util.Date;
 
-public class Exhibition {
+public class Exhibition {				//전시회
 	
-	private int exNo;
-	private String adminId;
-	private Date exRegDate;
-	private String exTitle;
-	private String exAddress;
-	private String exContent;
-	private Date exStartDay;
-	private Date exEndDay;
-	private Date exReserveStartDay;
-	private Date exReserveEndDay;
-	private String exEnterStartTime;
-	private String exEnterEndTime;
-	private String exEnterInterval;
-	private int exTicketNum;
-	private int exPrice;
-	private int exActivate;
+	private int 	exNo;				// ex_no (PK)			NUMBER			1  번호
+	private Date 	exRegDate;			// ex_regdate			DATE			2  작성일자
+	private String 	exTitle;			// ex_title				VARCHAR2(100)	3  제목
+	private String 	exAddress;			// ex_address			VARCHAR2(500)	4  주소
+	private String 	exContent;			// ex_content			VARCHAR2(2000)	5  상세내용
+	private Date 	exStartDay;			// ex_startDay			DATE			6  시작일
+	private Date 	exEndDay;			// ex_endDay			DATE			7  종료일
+	private Date 	exReserveStartDay;	// ex_reserveStartDay	DATE			8  예약시작일
+	private Date 	exReserveEndDay;	// ex_reserveEndDay		DATE			9  예약종료일
+	private String 	exEnterStartTime;	// ex_enterStartTime	DATE			10 입장시작시간
+	private String 	exEnterEndTime;		// ex_enterEndTime		DATE			11 입장종료시간
+	private String 	exEnterInterval;	// ex_enterInterval		NUMBER			12 입장간격
+	private int 	exTicketNum;		// ex_ticketNum			NUMBER			13 총티켓수
+	private int 	exPrice;			// ex_price				NUMBER			14 금액
+	private int 	exActivate;			// ex_activate			NUMBER			15 활성화
+	private String 	adminId;			// admin_id (FK)		VARCHAR2(500)	16 글작성자
 
 	@Override
 	public String toString() {
-		return "Exhibition [exNo=" + exNo + ", adminId=" + adminId + ", exRegDate=" + exRegDate + ", exTitle=" + exTitle
-				+ ", exAddress=" + exAddress + ", exContent=" + exContent + ", exStartDay=" + exStartDay + ", exEndDay="
-				+ exEndDay + ", exReserveStartDay=" + exReserveStartDay + ", exReserveEndDay=" + exReserveEndDay
+		return "Exhibition [exNo=" + exNo + ", exRegDate=" + exRegDate + ", exTitle=" + exTitle + ", exAddress="
+				+ exAddress + ", exContent=" + exContent + ", exStartDay=" + exStartDay + ", exEndDay=" + exEndDay
+				+ ", exReserveStartDay=" + exReserveStartDay + ", exReserveEndDay=" + exReserveEndDay
 				+ ", exEnterStartTime=" + exEnterStartTime + ", exEnterEndTime=" + exEnterEndTime + ", exEnterInterval="
 				+ exEnterInterval + ", exTicketNum=" + exTicketNum + ", exPrice=" + exPrice + ", exActivate="
-				+ exActivate + "]";
+				+ exActivate + ", adminId=" + adminId + "]";
 	}
 
 	public int getExNo() {

@@ -1,6 +1,11 @@
 package com.skip.www.dao.face;
 
+import java.util.List;
+
 import com.skip.www.dto.Admin;
+import com.skip.www.dto.ExImg;
+import com.skip.www.dto.Exhibition;
+import com.skip.www.util.Paging;
 
 public interface AdminDao {
 
@@ -44,4 +49,92 @@ public interface AdminDao {
 	 */
 	public int selectAdminAuth(String adminAuth);
 
+	
+	//전시
+	
+	/**
+	 * 페이징을 적용하여 게시글 목록 조회
+	 * 
+	 * 	paging.startNo, paging.endNo를 이용하여 rownum을 조회한다
+	 * 
+	 * @param paging - 페이징 정보 객체
+	 * @return 페이징이 적용된 게시글 목록
+	 */
+	public List<Exhibition> selectExhibitionList(Paging paging);
+
+	/**
+	 * 전체 게시글 수를 조회한다
+	 * 
+	 * @param paramData - search를 포함한 페이징 객체
+	 * @return 총 게시글 수
+	 */
+	public int selectExhibitionCntAll(Paging paramData);
+
+	/**
+	 * 게시글 번호를 이용하여 게시글을 조회한다
+	 * 
+	 * @param viewExhibition - 조회하려는 게시글 번호
+	 * @return 조회된 게시글 정보
+	 */
+	public Exhibition selectExhibition(Exhibition viewExhibition);
+
+	/**
+	 * 게시글 정보를 삽입한다
+	 * 
+	 * @param exhibition - 삽입할 게시글 정보
+	 */
+	public void insertExhibition(Exhibition exhibition);
+	
+	/**
+	 * 게시글 정보 수정
+	 * 
+	 * @param exhibition - 수정할 내용을 가진 게시글 객체
+	 */
+	public void updateExhibition(Exhibition exhibition);
+
+	/**
+	 * 게시글 정보 삭제
+	 * 
+	 * @param exhibition - 삭제할 게시글의 글번호
+	 */
+	public void deleteExhibition(Exhibition exhibition);
+	
+	
+	/**
+	 * 게시글 번호를 이용하여 첨부파일 정보를 조회한다
+	 * 
+	 * @param viewExhibition - 조회할 게시글 번호
+	 * @return 조회된 첨부파일 정보
+	 */
+	public ExImg selectExImgByExNo(Exhibition viewExhibition);
+
+	/**
+	 * 파일 번호를 이용하여 첨부파일 정보를 조회한다
+	 * 
+	 * @param exImg - 조회할 첨부파일 번호
+	 * @return 조회된 첨부파일 정보
+	 */
+	public ExImg selectExImgByExImgNo(ExImg exImg);
+
+	/**
+	 * 첨부파일 정보를 삽입한다
+	 * 
+	 * @param exImg - 삽입할 첨부파일 정보
+	 */
+	public void insertExImg(ExImg exImg);
+	
+	/**
+	 * 게시글을 참조하고 있는 모든 첨부파일을 삭제한다
+	 * 
+	 * @param exhibition - 첨부파일을 삭제할 게시글 번호 객체
+	 */
+	public void deleteExImg(Exhibition exhibition);
+
+	public void activateExhibition(Exhibition exhibition);
+
+	public void unactivateExhibition(Exhibition exhibition);
+
+
+
+	
 }
