@@ -100,7 +100,7 @@
 							</li>
 
 							<li>
-								<a href="#">QnA</a>
+								<a href="/qna/list">QnA</a>
 							</li>
 
 							<li>

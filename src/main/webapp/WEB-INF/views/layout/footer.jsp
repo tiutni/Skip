@@ -41,14 +41,14 @@
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="/qna/list" class="stext-107 cl7 hov-cl1 trans-04">
 								QnA
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								FAQs
+							<a href="/faq/list" class="stext-107 cl7 hov-cl1 trans-04">
+								FAQ
 							</a>
 						</li>
 					</ul>

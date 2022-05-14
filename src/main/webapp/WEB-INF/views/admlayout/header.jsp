@@ -88,7 +88,7 @@
                                 자주 묻는 질문
                             </a>
                             <div class="sb-sidenav-menu-heading">QnA</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/qna/admlist">
                                 <div class="sb-nav-link-icon"><i class="bi bi-chat-dots"></i></div>
                                 1:1 문의
                             </a>

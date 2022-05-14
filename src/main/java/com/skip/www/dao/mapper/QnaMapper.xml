@@ -30,12 +30,36 @@
 		) QNA
 		WHERE rnum BETWEEN #{startNo } AND #{endNo }
 	</select>
-
+	
 	<select id="selectCntAll" resultType="int">
-		SELECT count(*) FROM qna
+		SELECT count(*) FROM QnA
 		WHERE qna_title LIKE '%' || #{search} || '%' 
 	</select>
-
+	
+	<select id="select" resultType="com.skip.www.dto.QnA" parameterType="com.skip.www.dto.QnA">
+		SELECT 
+			qna_no,
+			user_no,
+			qna_title,
+			qna_content,
+			qna_date
+		FROM qna
+		WHERE qna_no = #{qnaNo}
+	</select>
+	
+	<insert id="insertQna" parameterType="com.skip.www.dto.QnA">
+		<selectKey order="BEFORE" resultType="int" keyProperty="qnaNo">
+				SELECT qna_no_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO QNA (qna_no, user_no, qna_title, qna_content)
+		VALUES ( #{qnaNo}, #{userNo}, #{qnaTitle}, #{qnaContent} )
+	</insert>
+	
+	<insert id="insertFile" parameterType="com.skip.www.dto.QnAFile">
+		INSERT INTO QNA_FILE (qna_file_no, qna_file_origin_name, qna_file_stored_name, qna_no )
+		VALUES (qna_file_no_seq.nextval, #{qnaFileOriginName}, #{qnaFileStoredName}, #{qnaNo} )
+	</insert>
 	
 </mapper>
 
