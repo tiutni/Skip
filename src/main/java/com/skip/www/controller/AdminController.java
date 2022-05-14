@@ -47,7 +47,7 @@ public class AdminController {
 			session.setAttribute("login", loginResult);
 			session.setAttribute("id", admin.getAdminId());
 
-			return "redirect:/admin/main";
+			return "redirect:/member/list";
 
 		} else {
 			logger.info("로그인 실패");

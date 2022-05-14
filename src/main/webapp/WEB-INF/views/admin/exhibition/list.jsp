@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -60,7 +61,6 @@ table, th, td {
 				<a onclick="location.href='/admin/exhibition/list'">Exhibition</a>
 			</h3>
 		</div>
-		
 		<br><hr>
 		
 		<!-- 목록 -->
@@ -77,11 +77,12 @@ table, th, td {
 					<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
 				</tr>
 			</thead>
+			
 			<tbody>
 			<c:forEach items="${list }" var="exhibition">
 				<tr>
 					<td style="vertical-align: middle;">${exhibition.exNo }</td>
-					<td style="vertical-align: middle; text-align: left;"><a href="/exhibition/view?exNo=${exhibition.exNo }">${exhibition.exTitle }</a></td>
+					<td style="vertical-align: middle; text-align: left;"><a href="/admin/exhibition/view?exNo=${exhibition.exNo }">${exhibition.exTitle }</a></td>
 					<td style="vertical-align: middle;">${exhibition.adminId }</td>
 					<td style="vertical-align: middle;"><fmt:formatDate value="${exhibition.exRegDate }" pattern="yy-MM-dd"/></td>
 					<td style="vertical-align: middle;">예매된 티켓수 / exhibition.exticketNum</td> 
