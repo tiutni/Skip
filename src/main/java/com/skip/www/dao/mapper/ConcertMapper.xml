@@ -225,6 +225,7 @@
 		WHERE con_review_no = #{conReviewNo}
 	</delete>
 	
+	
 	<select id="selectSeatListByConNoConRound" parameterType="hashmap" resultType="com.skip.www.dto.Seat">
 		SELECT
 			s.seat_seq
@@ -237,6 +238,7 @@
 		AND cr.con_no = #{conNo}
 		AND cr.con_round = #{conRound}
 	</select>
+	
 	
 	<select id="selectVIPSeatPriceByConNo" parameterType="int" resultType="int">	
 		SELECT seat_price FROM (

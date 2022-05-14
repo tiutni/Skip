@@ -1,5 +1,6 @@
 package com.skip.www.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -77,7 +78,7 @@ public class ConcertController {
 		logger.info("Round : {}", round);
 		
 		logger.info("conNo : {}", conNo);
-		
+
 		//conNo로 게시글 상세내역 조회
 		Concert viewConcert = concertService.getConcert(conNo);
 		
@@ -236,11 +237,13 @@ public class ConcertController {
 	public List<Seat> selectSeat(
 			String conNo
 			, String conRound
+			, String date
 			, Model model
 			) {
 		
 		logger.info("conNo : {}", conNo);
 		logger.info("conRound : {}", conRound);
+		logger.info("date : {}", date);
 		
 		HashMap<Object, String> map = new HashMap<Object, String>();
 		
