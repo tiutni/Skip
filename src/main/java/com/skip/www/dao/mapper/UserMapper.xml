@@ -6,15 +6,14 @@
     
 <mapper namespace="com.skip.www.dao.face.UserDao">
 
-
-<select id="selectCntUser" resultType="int" parameterType="com.skip.www.dto.User">
+<select id="selectCntByIdPw" resultType="int" parameterType="com.skip.www.dto.User">
 	SELECT count(*)
 	  FROM user_tb
 	 WHERE user_id = #{userId}
 	   AND user_pw = #{userPw}
 </select>
 
-<select id="selectUserNoByUser" resultType="int" parameterType="String">
+<select id="selectNoById" resultType="int" parameterType="String">
 	SELECT user_no
 	  FROM user_tb
 	 WHERE user_id = #{userId}
@@ -32,13 +31,75 @@
 	 WHERE user_id = #{userEmail}
 </select>
 
+<select id="selectCntByNick" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_nick = #{userNick}
+</select>
 
-<insert id="insert" parameterType="com.skip.www.dto.User">
-	INSERT INTO user_tb(user_no, user_id, user_pw, user_nick, user_email, user_name, user_rrn, user_telecom, user_phone)
-	VALUES(user_seq.nextval, #{userId}, #{userPw}, #{userNick}, #{userEmail}, #{userName}, #{userRrn}, #{userTelecom}, #{userPhone})
+<select id="selectCntByEmail" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_email = #{userEmail}
+</select>
+
+<select id="selectCntByRrn" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_rrn = #{userRrn}
+</select>
+
+<select id="selectCntByPhone" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_phone = #{userPhone}
+</select>
+
+<insert id="insertInfo" parameterType="com.skip.www.dto.User">
+	INSERT INTO user_tb(user_no, user_id, user_pw, user_nick, user_email, user_name, user_rrn, user_addr, user_telecom, user_phone)
+	VALUES(user_seq.nextval, #{userId}, #{userPw}, #{userNick}, #{userEmail}, #{userName}, #{userRrn}, #{userAddr}, #{userTelecom}, #{userPhone})
 </insert>
-		   
-		   	   
 
+<select id="selectCntByNamePhone" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_name = #{userName}
+       AND user_telecom = #{userTelecom}
+       AND user_phone = #{userPhone}
+</select>
 
+<select id="selectIdByNamePhone" resultType="String" parameterType="com.skip.www.dto.User">
+	SELECT user_id
+	  FROM user_tb
+	 WHERE user_name = #{userName}
+       AND user_telecom = #{userTelecom}
+       AND user_phone = #{userPhone}
+</select>
+
+<select id="selectEamilByIdNamePhone" resultType="String" parameterType="com.skip.www.dto.User">
+	SELECT user_email
+	  FROM user_tb
+	 WHERE user_id = #{userId}
+	   AND user_name = #{userName}
+       AND user_telecom = #{userTelecom}
+       AND user_phone = #{userPhone}
+</select>
+
+<update id="updatePw" parameterType="com.skip.www.dto.User">
+	UPDATE user_tb
+	   SET user_pw = #{userPw}
+ 	 WHERE user_id = #{userId}
+ 	   AND user_name = #{userName}
+	   AND user_telecom = #{userTelecom}
+	   AND user_phone = #{userPhone}
+</update>
+
+<select id="selectPwByIdNamePhone" resultType="String" parameterType="com.skip.www.dto.User">
+	SELECT user_pw
+	  FROM user_tb
+	 WHERE user_id = #{userId}
+ 	   AND user_name = #{userName}
+	   AND user_telecom = #{userTelecom}
+	   AND user_phone = #{userPhone}
+</select>
 </mapper>

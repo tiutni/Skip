@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skip.www.dto.User;
 import com.skip.www.service.face.PayService;
@@ -19,6 +20,23 @@ public class PayController {
 	
 	@Autowired PayService payService;
 	
+	@RequestMapping(value="/pay", method=RequestMethod.POST)
+	public void testPay(
+			String count
+			, String price
+			, String date
+			, String round
+			, String selectedSeat
+			) {
+		
+		//미완성코드 값만 잘 받아오나 실험해본 코드입니다.
+		logger.info("count : {}", count);
+		logger.info("price : {}", price);
+		logger.info("date : {}", date);
+		logger.info("round : {}", round);
+		logger.info("selectedSeat : {}", selectedSeat);
+		
+	}
 	
 	@RequestMapping("/pay/concert")
 	public void selectExDate(HttpSession session, Model model) {

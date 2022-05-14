@@ -26,49 +26,73 @@ $(document).ready(function() {
 })
 </script>
 
+<style>
+   #btn{
+		display: flex;
+        justify-content: space-around;
+	}
+</style>
+
+
 <div class="container">
 
-<h1>회원 조회</h1>
-<hr>
+	<div id="layoutSidenav_content">
+           <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">회원 상세 보기</h1>
+                       		 <ol class="breadcrumb mb-4">
+                            		<li class="breadcrumb-item active">View Member details</li>
+                       		 </ol>
+                        			<div class="card mb-4">
+                           				 <div class="card-body">
+                               				 회원 상세 보기 View Member details
+                            			</div>
+                        			</div>
 
-<table class="table table-bordered">
-<tr>
-	<td class="info">회원번호</td><td>${viewMember.userNo }</td>
-</tr>
-<tr>
-	<td class="info">아이디</td><td>${viewMember.userId }</td>
-</tr>	
-<tr>
-	<td class="info">닉네임</td><td>${viewMember.userNick }</td>
-</tr>	
-<tr>	
-	<td class="info">이메일</td><td>${viewMember.userEmail }</td>
-</tr>
-<tr>	
-	<td class="info">이름</td><td>${viewMember.userName }</td>
-</tr>	
-<tr>	
-	<td class="info">통신사</td><td>${viewMember.userTelecom }</td>
-</tr>
-<tr>	
-	<td class="info">휴대폰번호</td><td>${viewMember.userPhone }</td>
-</tr>
-<tr>		
-	<td class="info">회원가입일자</td><td><fmt:formatDate value="${viewMember.userRegdate }" pattern="yy-MM-dd HH:mm:ss"/></td>
-</tr>
-<tr>		
-	<td class="info">공연 회원등급 번호</td><td>${viewMember.conUserLevelNo }</td>
-</tr>
-<tr>		
-	<td class="info">전시회 회원등급 번호</td><td>${viewMember.exUserLevelNo }</td>
-</tr>
-</table>
-
-<div class="text-center">
-	<button id="btnList" class="btn btn-default">목록</button>
-	<button onclick="button_event(${user.userNo})" id="btnDelete" class="btn btn-danger">탈퇴</button>
-</div>
+							
+							<table class="table table-bordered" >
+							
+							<tr>
+								<td class="info">회원번호</td><td>${viewMember.userNo }</td>
+							</tr>
+							<tr>
+								<td class="info">아이디</td><td>${viewMember.userId }</td>
+							</tr>	
+							<tr>
+								<td class="info">닉네임</td><td>${viewMember.userNick }</td>
+							</tr>	
+							<tr>	
+								<td class="info">이메일</td><td>${viewMember.userEmail }</td>
+							</tr>
+							<tr>	
+								<td class="info">이름</td><td>${viewMember.userName }</td>
+							</tr>	
+							<tr>	
+								<td class="info">통신사</td><td>${viewMember.userTelecom }</td>
+							</tr>
+							<tr>	
+								<td class="info">휴대폰번호</td><td>${viewMember.userPhone }</td>
+							</tr>
+							<tr>		
+								<td class="info">회원가입일자</td><td><fmt:formatDate value="${viewMember.userRegdate }" pattern="yy-MM-dd HH:mm:ss"/></td>
+							</tr>
+							<tr>		
+								<td class="info">공연 회원등급 번호</td><td>${viewMember.conUserLevelNo }</td>
+							</tr>
+							<tr>		
+								<td class="info">전시회 회원등급 번호</td><td>${viewMember.exUserLevelNo }</td>
+							</tr>
+							</table>	
+							
+							
+							<div id="btn"><button id="btnList" class="btn btn-primary">목록</button><button onclick="button_event(${user.userNo})" id="btnDelete" class="btn btn-danger">탈퇴</button></div>
+							
+							
+						</div>
+							
+					</main>
+				
+				</div>
 
 </div><!-- .container end -->
 
-<c:import url="/WEB-INF/views/admlayout/footer.jsp" />

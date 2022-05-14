@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.skip.www.dao.face.ConcertDao">
+
+
+	<select id="selectCntAll" parameterType="string" resultType="int">
+	<choose>
+		<when test='search == null or search.equals("")'>
+			SELECT count(*) FROM concert
+			WHERE con_activate = 1
+		</when>
+		
+		<when test='search != null'>
+			SELECT count(*) FROM concert
+			WHERE con_activate = 1
+			AND con_title LIKE '%' || #{search} || '%'
+		</when>		
+	</choose>
+	</select>
+	
+	
+	<select id="selectAllConcert" resultType="com.skip.www.dto.Concert" parameterType="com.skip.www.util.Paging">
+	<choose>
+		<when test='(search == null or search.equals("")) and (sort == null or sort.equals(""))'>
+		SELECT * FROM (
+			SELECT rownum rnum, CON.* FROM (
+				SELECT
+					con_no, admin_id, con_regdate, con_title
+					, con_address, con_content, con_startday, con_endday
+					, con_reserveStartday, con_reserveEndday, con_activate
+					, (SELECT con_img_storedname FROM con_img WHERE con_no = c.con_no) con_img_storedname
+				FROM concert c
+				WHERE con_activate = 1
+				ORDER BY con_no DESC
+			) CON
+		) CONCERT
+		WHERE rnum BETWEEN #{startNo}
+		AND #{endNo}
+		</when>
+		
+		<when test='search != null'>
+		SELECT * FROM (
+			SELECT rownum rnum, CON.* FROM (
+				SELECT
+					con_no, admin_id, con_regdate, con_title
+					, con_address, con_content, con_startday, con_endday
+					, con_reserveStartday, con_reserveEndday, con_activate
+					, (SELECT con_img_storedname FROM con_img WHERE con_no = c.con_no) con_img_storedname
+				FROM concert c
+				WHERE con_activate = 1
+				AND con_title LIKE '%' || #{search} || '%'
+				ORDER BY con_no DESC
+			) CON
+		) CONCERT
+		WHERE rnum BETWEEN #{startNo}
+		AND #{endNo}	
+		</when>	
+		
+		<when test='sort != null and sort.equals("recent")'>
+			SELECT * FROM (
+				SELECT rownum rnum, CON.* FROM (
+					SELECT
+						con_no, admin_id, con_regdate, con_title
+						, con_address, con_content, con_startday, con_endday
+						, con_reserveStartday, con_reserveEndday, con_activate
+						, (SELECT con_img_storedname FROM con_img WHERE con_no = c.con_no) con_img_storedname
+					FROM concert c
+					WHERE con_activate = 1
+					ORDER BY con_no DESC
+				) CON
+			) CONCERT
+			WHERE rnum BETWEEN #{startNo}
+			AND #{endNo}
+		</when>
+		
+		<when test='sort != null and sort.equals("popular")'>
+			SELECT * FROM (
+			    SELECT CON.*, rownum rnum FROM (
+			        SELECT 
+			            con_no, admin_id, con_regdate, con_title
+			            , con_address, con_content, con_startday, con_endday
+			            , con_reserveStartday, con_reserveEndday, con_activate
+			            , (SELECT con_img_storedname FROM con_img WHERE con_no = c.con_no) con_img_storedname
+			            , (SELECT count(*) FROM con_order_ticket cot, seat s, con_round cr
+			                    WHERE cot.seat_seq = s.seat_seq
+			                    AND s.con_round_no = cr.con_round_no
+			                    AND cr.con_no = c.con_no
+			              ) concnt
+			        FROM concert c
+			        ORDER BY concnt DESC
+			    ) CON
+			) CONCERT
+			WHERE rnum BETWEEN #{startNo}
+			AND #{endNo}
+		</when>		
+	</choose>
+	</select>
+	
+	
+	<select id="selectConcertTopList" resultType="com.skip.www.dto.Concert">
+		SELECT * FROM (
+		    SELECT CON.*, rownum rnum FROM (
+		        SELECT 
+		            con_no, admin_id, con_regdate, con_title
+		            , con_address, con_content, con_startday, con_endday
+		            , con_reserveStartday, con_reserveEndday, con_activate
+		            , (SELECT con_img_storedname FROM con_img WHERE con_no = c.con_no) con_img_storedname
+		            , (SELECT count(*) FROM con_order_ticket cot, seat s, con_round cr
+		                    WHERE cot.seat_seq = s.seat_seq
+		                    AND s.con_round_no = cr.con_round_no
+		                    AND cr.con_no = c.con_no
+		              ) concnt
+		        FROM concert c
+		        ORDER BY concnt DESC
+		    ) CON
+		) CONCERT
+		WHERE rnum BETWEEN 1 AND 3
+	</select>
+	
+	<select id="selectConcertByConNo" resultType="com.skip.www.dto.Concert" parameterType="int">
+		SELECT
+			con_no, admin_id, con_regdate, con_title
+			, con_address, con_content, con_startday, con_endday
+			, con_reserveStartday, con_reserveEndday, con_activate
+			, (SELECT con_img_storedname FROM con_img WHERE con_no = c.con_no) con_img_storedname
+		FROM concert c
+		WHERE con_no = #{conNo}
+	</select>
+	
+	<select id="selectCntAllReview" resultType="int" parameterType="int">
+		SELECT count(*) FROM con_review
+		WHERE con_no = #{conNo}
+	</select>
+	
+	
+	<select id="selectConReviewListByConNo" resultType="com.skip.www.dto.ConReview" parameterType="com.skip.www.util.Paging">
+		SELECT * FROM (
+			SELECT rownum rnum, CR.* FROM (
+				SELECT
+					c.con_review_no, c.con_no, c.user_no, c.con_review_date
+					, c.con_review_content, c.con_review_star, u.user_nick
+				FROM con_review c
+				INNER JOIN user_tb u
+				ON c.user_no = u.user_no
+				WHERE con_no = #{conNo}
+				ORDER BY con_review_no DESC
+			) CR
+		) CONREVIEW
+		WHERE rnum BETWEEN #{startNo}
+		AND #{endNo}
+	</select>
+	
+	
+	<insert id="insertConReview" parameterType="com.skip.www.dto.ConReview">
+		INSERT INTO con_review ( con_review_no, con_no, user_no, con_review_content, con_review_star )
+		VALUES ( con_review_no_seq.nextval, #{conNo}, #{userNo}, #{conReviewContent}, #{conReviewStar} )
+	</insert>
+	
+	
+	<select id="selectWishByConNoUserNo" parameterType="com.skip.www.dto.Wish" resultType="int">
+		SELECT count(*) FROM wish
+		WHERE user_no = #{userNo}
+		AND con_no = #{conNo}
+	</select>
+	
+	
+	<delete id="deleteWishByConNoUserNo" parameterType="com.skip.www.dto.Wish">
+		DELETE FROM wish
+		WHERE user_no = #{userNo}
+		AND con_no = #{conNo}
+	</delete>
+	
+
+	<insert id="insertWish" parameterType="com.skip.www.dto.Wish">
+		INSERT INTO wish ( wish_no, user_no, show_type, con_no )
+		VALUES ( wish_no_seq.nextval, #{userNo}, #{showType}, #{conNo} )
+	</insert>
+	
+	<select id="selectAllStar" parameterType="int" resultType="com.skip.www.dto.ConReview">
+		SELECT con_review_star FROM con_review
+		WHERE con_no = #{conNo}
+	</select>
+	
+	<select id="cntAllUser" parameterType="int" resultType="int">
+		SELECT count(*) FROM con_review
+		WHERE con_no = #{conNo}
+	</select>
+	
+	<select id="selectUserNickByUserNo" resultType="string" parameterType="int">
+		SELECT user_nick FROM user_tb
+		WHERE user_no = #{userno}
+	</select>
+	
+	<select id="selectCntOrderByConNoUserNo" parameterType="hashmap" resultType="int">
+		SELECT count(*) cnt FROM (
+			SELECT
+				b.user_no, cr.con_no 
+			FROM 
+				bill b, con_order_ticket cot, seat s, con_round cr 
+			WHERE b.order_no = cot.order_no
+			AND cot.seat_seq = s.seat_seq
+			AND s.con_round_no = cr.con_round_no
+			AND con_no = #{conNo}
+			AND user_no = #{userNo}
+		)
+	</select>
+	
+	<select id="selectCntReviewByConNoUserNo" parameterType="hashmap" resultType="int">
+		SELECT count(*) cnt FROM con_review
+		WHERE con_no = #{conNo}
+		AND user_no = #{userNo}
+	</select>
+	
+	<select id="selectConRoundListByConNo" parameterType="int" resultType="com.skip.www.dto.ConRound">
+		 SELECT * FROM con_round
+		 WHERE con_no = #{conNo}
+	</select>
+	
+	<delete id="deleteConReviewByConReviewNo" parameterType="int">
+		DELETE FROM con_review
+		WHERE con_review_no = #{conReviewNo}
+	</delete>
+	
+	<select id="selectSeatListByConNoConRound" parameterType="hashmap" resultType="com.skip.www.dto.Seat">
+		SELECT
+			s.seat_seq
+			, s.con_round_no
+			, s.seat_level
+			, s.seat_price
+			, s.seat_no
+		FROM seat s, con_round cr
+		WHERE cr.con_round_no = s.con_round_no
+		AND cr.con_no = #{conNo}
+		AND cr.con_round = #{conRound}
+	</select>
+	
+	<select id="selectVIPSeatPriceByConNo" parameterType="int" resultType="int">	
+		SELECT seat_price FROM (
+			SELECT rownum rnum, P.* FROM(
+				SELECT 
+					s.seat_price 
+				FROM con_round cr, seat s
+				WHERE cr.con_round_no = s.con_round_no
+				AND cr.con_no = #{conNo}
+				AND seat_level = 'VIP'
+			) P
+		) PRICE
+		WHERE rnum = 1
+	</select>
+	
+	<select id="selectBasicSeatPriceByConNo" parameterType="int" resultType="int">
+		SELECT seat_price FROM (
+			SELECT rownum rnum, P.* FROM(
+				SELECT 
+					s.seat_price 
+				FROM con_round cr, seat s
+				WHERE cr.con_round_no = s.con_round_no
+				AND cr.con_no = #{conNo}
+				AND seat_level = '기본'
+			) P
+		) PRICE
+		WHERE rnum = 1
+	</select>
+	
+</mapper>
