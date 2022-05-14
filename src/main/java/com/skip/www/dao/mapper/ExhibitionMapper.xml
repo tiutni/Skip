@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.skip.www.dao.face.ExhibitionDao">
+
+
+	<select id="selectCntAll" parameterType="string" resultType="int">
+	<choose>
+		<when test='search == null or search.equals("")'>
+			SELECT count(*) FROM exhibition
+			WHERE ex_activate = 1
+		</when>
+		
+		<when test='search != null'>
+			SELECT count(*) FROM exhibition
+			WHERE ex_activate = 1
+			AND ex_title LIKE '%' || #{search} || '%'
+		</when>
+	</choose>
+	</select>
+	
+	
+	<select id="selectAllConcert" resultType="com.skip.www.dto.Exhibition" parameterType="com.skip.www.util.Paging">
+	<choose>
+		<when test='(search == null or search.equals("")) and (sort == null or sort.equals(""))'>
+		SELECT * FROM (
+			SELECT rownum rnum, EX.* FROM (
+				SELECT
+					ex_no, admin_id, ex_regdate, ex_title, ex_address
+					, ex_content, ex_startDay, ex_endDay, ex_reserveStartDay
+					, ex_reserveEndDay, ex_enterStartTime, ex_enterEndTime
+					, ex_enterInterval, ex_ticketNum, ex_price, ex_activate
+					, (SELECT ex_img_storedname FROM ex_img WHERE ex_no = e.ex_no) ex_img_storedname
+				FROM exhibition e
+				WHERE ex_activate = 1
+				ORDER BY ex_no DESC
+			) EX
+		) EXHIBITION
+		WHERE rnum BETWEEN #{startNo}
+		AND #{endNo}
+		</when>
+		
+		<when test='search != null'>
+		SELECT * FROM (
+			SELECT rownum rnum, EX.* FROM (
+				SELECT
+					ex_no, admin_id, ex_regdate, ex_title, ex_address
+					, ex_content, ex_startDay, ex_endDay, ex_reserveStartDay
+					, ex_reserveEndDay, ex_enterStartTime, ex_enterEndTime
+					, ex_enterInterval, ex_ticketNum, ex_price, ex_activate
+					, (SELECT ex_img_storedname FROM ex_img WHERE ex_no = e.ex_no) ex_img_storedname
+				FROM exhibition e
+				WHERE ex_activate = 1
+				AND ex_title LIKE '%' || #{search} || '%'
+				ORDER BY ex_no DESC
+			) EX
+		) EXHIBITION
+		WHERE rnum BETWEEN #{startNo}
+		AND #{endNo}	
+		</when>	
+		
+		<when test='sort != null and sort.equals("recent")'>
+			SELECT * FROM (
+				SELECT rownum rnum, EX.* FROM (
+					SELECT
+						ex_no, admin_id, ex_regdate, ex_title, ex_address
+						, ex_content, ex_startDay, ex_endDay, ex_reserveStartDay
+						, ex_reserveEndDay, ex_enterStartTime, ex_enterEndTime
+						, ex_enterInterval, ex_ticketNum, ex_price, ex_activate
+						, (SELECT ex_img_storedname FROM ex_img WHERE ex_no = e.ex_no) ex_img_storedname
+					FROM exhibition e
+					WHERE ex_activate = 1
+					ORDER BY ex_no DESC
+				) EX
+			) EXHIBITION
+			WHERE rnum BETWEEN #{startNo}
+			AND #{endNo}
+		</when>
+		
+		<when test='sort != null and sort.equals("popular")'>
+			SELECT * FROM(
+			    SELECT EX.*, rownum rnum FROM(
+			        SELECT 
+			            ex_no, admin_id, ex_regdate, ex_title, ex_address
+						, ex_content, ex_startDay, ex_endDay, ex_reserveStartDay
+						, ex_reserveEndDay, ex_enterStartTime, ex_enterEndTime
+						, ex_enterInterval, ex_ticketNum, ex_price, ex_activate 
+						, (SELECT ex_img_storedname FROM ex_img WHERE ex_no = e.ex_no) ex_img_storedname
+			            , (SELECT count(*) FROM ex_order_ticket WHERE ex_no = e.ex_no) excnt 
+			        FROM exhibition e 
+			        ORDER BY excnt DESC
+			    ) EX
+			) EXHIBITION
+			WHERE rnum BETWEEN #{startNo}
+			AND #{endNo}
+		</when>		
+		
+	</choose>
+	</select>
+	
+	<select id="selectExhibitionTopList" resultType="com.skip.www.dto.Exhibition">
+		SELECT * FROM(
+		    SELECT EX.*, rownum rnum FROM(
+		        SELECT 
+		            ex_no, admin_id, ex_regdate, ex_title, ex_address
+					, ex_content, ex_startDay, ex_endDay, ex_reserveStartDay
+					, ex_reserveEndDay, ex_enterStartTime, ex_enterEndTime
+					, ex_enterInterval, ex_ticketNum, ex_price, ex_activate
+					, (SELECT ex_img_storedname FROM ex_img WHERE ex_no = e.ex_no) ex_img_storedname
+		            , (SELECT count(*) FROM ex_order_ticket WHERE ex_no = e.ex_no) excnt 
+		        FROM exhibition e
+		        ORDER BY excnt DESC
+		    ) EX
+		) EXHIBITION
+		WHERE rnum BETWEEN 1 AND 3
+	</select>
+	
+	<select id="selectExhibitionByExNo" resultType="com.skip.www.dto.Exhibition" parameterType="int">
+		SELECT
+			ex_no, admin_id, ex_regdate, ex_title, ex_address
+			, ex_content, ex_startDay, ex_endDay, ex_reserveStartDay
+			, ex_reserveEndDay, ex_enterStartTime, ex_enterEndTime
+			, ex_enterInterval, ex_ticketNum, ex_price, ex_activate
+			, (SELECT ex_img_storedname FROM ex_img WHERE ex_no = e.ex_no) ex_img_storedname
+		FROM exhibition e
+		WHERE ex_no = #{exNo}
+	</select>
+	
+	
+	<select id="selectCntAllReview" resultType="int" parameterType="int">
+		SELECT count(*) FROM ex_review
+		WHERE ex_no = #{exNo}
+	</select>
+	
+	
+	<select id="selectExReviewListByExNo" resultType="com.skip.www.dto.ExReview" parameterType="com.skip.www.util.Paging">
+		SELECT * FROM (
+			SELECT rownum rnum, ER.* FROM (
+				SELECT
+					e.ex_review_no, e.ex_no, e.user_no, e.ex_review_date
+					, e.ex_review_content, e.ex_review_star, u.user_nick
+				FROM ex_review e
+				INNER JOIN user_tb u
+				ON e.user_no = u.user_no
+				WHERE ex_no = #{exNo}
+				ORDER BY e.ex_review_no DESC
+			) ER
+		) EXREVIEW
+		WHERE rnum BETWEEN #{startNo}
+		AND #{endNo}
+	</select>
+	
+	
+	<insert id="insertExReview" parameterType="com.skip.www.dto.ExReview">
+		INSERT INTO ex_review ( ex_review_no, ex_no, user_no, ex_review_content, ex_review_star )
+		VALUES ( ex_review_no_seq.nextval, #{exNo}, #{userNo}, #{exReviewContent}, #{exReviewStar} )
+	</insert>
+	
+	
+	<select id="selectWishByExNoUserNo" parameterType="com.skip.www.dto.Wish" resultType="int">
+		SELECT count(*) FROM wish
+		WHERE user_no = #{userNo}
+		AND ex_no = #{exNo}
+	</select>
+	
+	
+	<delete id="deleteWishByExNoUserNo" parameterType="com.skip.www.dto.Wish">
+		DELETE FROM wish
+		WHERE user_no = #{userNo}
+		AND ex_no = #{exNo}
+	</delete>
+	
+
+	<insert id="insertWish" parameterType="com.skip.www.dto.Wish">
+		INSERT INTO wish ( wish_no, user_no, show_type, ex_no )
+		VALUES ( wish_no_seq.nextval, #{userNo}, #{showType}, #{exNo} )
+	</insert>
+	
+	<select id="selectAllStar" parameterType="int" resultType="com.skip.www.dto.ExReview">
+		SELECT ex_review_star FROM ex_review
+		WHERE ex_no = #{exNo}
+	</select>
+	
+	<select id="cntAllUser" parameterType="int" resultType="int">
+		SELECT count(*) FROM ex_review
+		WHERE ex_no = #{exNo}
+	</select>
+	
+	<select id="selectCntOrderByExNoUserNo" parameterType="hashmap" resultType="int">
+		SELECT count(*) cnt FROM (
+			SELECT eot.ex_order_ticket_no, eot.ex_no, b.user_no FROM ex_order_ticket eot, bill b
+			WHERE eot.order_no = b.order_no
+			AND eot.ex_no = #{exNo}
+			AND b.user_no = #{userNo}
+		)
+	</select>
+	
+	<select id="selectCntReviewByExNoUserNo" parameterType="hashmap" resultType="int">
+		SELECT count(*) cnt FROM ex_review
+		WHERE ex_no = #{exNo}
+		AND user_no = #{userNo}
+	</select>
+	
+	<delete id="deleteExReviewByExReviewNo" parameterType="int">
+		DELETE FROM ex_review
+		WHERE ex_review_no = #{exReviewNo}
+	</delete>
+	
+</mapper>

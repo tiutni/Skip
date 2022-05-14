@@ -20,15 +20,24 @@ $(document).ready(function() {
 <a href="https://kauth.kakao.com/oauth/authorize?client_id=20a036a9e9a4a55d7de23fa420405573&redirect_uri=http://localhost:8088/user/kakaoLogin&response_type=code">카카오 로그인</a>
 <br>
 <a href="/user/join">회원가입</a>
-<br>  
-<a href="/user/logout">로그아웃</a>
-<a href="https://kauth.kakao.com/oauth/logout?client_id=20a036a9e9a4a55d7de23fa420405573&logout_redirect_uri=http://localhost:8088/user/kakaoLogout">카카오 로그아웃</a>
-
+<br>
 
 <hr>
+  
+<a href="/user/logout">로그아웃</a>
+<br>
+<a href="https://kauth.kakao.com/oauth/logout?client_id=20a036a9e9a4a55d7de23fa420405573&logout_redirect_uri=http://localhost:8088/user/kakaoLogout">카카오 로그아웃</a>
+
+<hr>
+
+<a href="user/findId">아이디 찾기</a>
+<br>
+<a href="user/findPw">비밀번호 찾기</a>
+
+<hr>
+
 <a href="/board/list">목록</a>
-<a href="/pay/concert">공연예약</a>
-<a href="/mypage/main">마이페이지</a>
+<a href="/user/mypage">마이페이지</a>
 <a href="/noti/list">공지사항</a>
 
 <h2>${userNo}</h2>
@@ -37,6 +46,7 @@ $(document).ready(function() {
 </div>
 
 </div><!-- .container end -->
+
 
 
 
