@@ -3,14 +3,15 @@ package com.skip.www.dto;
 public class Seat {
 
 	private int seatSeq;
-	private int conNo;
-	private int seatLevelNo;
+	private String seatLevel;
+	private int seatPrice;
 	private String seatNo;
-
+	private int conRoundNo;
+	
 	@Override
 	public String toString() {
-		return "Seat [seatSeq=" + seatSeq + ", conNo=" + conNo + ", seatLevelNo=" + seatLevelNo + ", seatNo=" + seatNo
-				+ "]";
+		return "Seat [conRoundNo=" + conRoundNo + ", seatLevel=" + seatLevel + ", seatNo=" + seatNo + ", seatPrice="
+				+ seatPrice + ", seatSeq=" + seatSeq + "]";
 	}
 
 	public int getSeatSeq() {
@@ -21,20 +22,20 @@ public class Seat {
 		this.seatSeq = seatSeq;
 	}
 
-	public int getConNo() {
-		return conNo;
+	public String getSeatLevel() {
+		return seatLevel;
 	}
 
-	public void setConNo(int conNo) {
-		this.conNo = conNo;
+	public void setSeatLevel(String seatLevel) {
+		this.seatLevel = seatLevel;
 	}
 
-	public int getSeatLevelNo() {
-		return seatLevelNo;
+	public int getSeatPrice() {
+		return seatPrice;
 	}
 
-	public void setSeatLevelNo(int seatLevelNo) {
-		this.seatLevelNo = seatLevelNo;
+	public void setSeatPrice(int seatPrice) {
+		this.seatPrice = seatPrice;
 	}
 
 	public String getSeatNo() {
@@ -43,6 +44,14 @@ public class Seat {
 
 	public void setSeatNo(String seatNo) {
 		this.seatNo = seatNo;
+	}
+
+	public int getConRoundNo() {
+		return conRoundNo;
+	}
+
+	public void setConRoundNo(int conRoundNo) {
+		this.conRoundNo = conRoundNo;
 	}
 	
 	

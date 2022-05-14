@@ -20,6 +20,7 @@ public class Exhibition {				//전시회
 	private int 	exPrice;			// ex_price				NUMBER			14 금액
 	private int 	exActivate;			// ex_activate			NUMBER			15 활성화
 	private String 	adminId;			// admin_id (FK)		VARCHAR2(500)	16 글작성자
+	private String 	exImgStoredName;	// ex_img_storedname	VARCHAR2(500)	17 전시회 이미지파일 사본명
 
 	@Override
 	public String toString() {
@@ -28,7 +29,7 @@ public class Exhibition {				//전시회
 				+ ", exReserveStartDay=" + exReserveStartDay + ", exReserveEndDay=" + exReserveEndDay
 				+ ", exEnterStartTime=" + exEnterStartTime + ", exEnterEndTime=" + exEnterEndTime + ", exEnterInterval="
 				+ exEnterInterval + ", exTicketNum=" + exTicketNum + ", exPrice=" + exPrice + ", exActivate="
-				+ exActivate + ", adminId=" + adminId + "]";
+				+ exActivate + ", adminId=" + adminId + ", exImgStoredName=" + exImgStoredName + "]";
 	}
 
 	public int getExNo() {
@@ -159,6 +160,13 @@ public class Exhibition {				//전시회
 		this.exActivate = exActivate;
 	}
 
-	
+	public String getExImgStoredName() {
+		return exImgStoredName;
+	}
+
+	public void setExImgStoredName(String exImgStoredName) {
+		this.exImgStoredName = exImgStoredName;
+	}
+
 	
 }

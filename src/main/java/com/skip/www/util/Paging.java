@@ -4,21 +4,30 @@ public class Paging {
 	private int curPage;	//현재 페이지 번호
 	
 	private int totalCount;	//총 게시글 수
+	
 	private int listCount;	//한 페이지 당 보여질 게시글의 수
+	
 	private int totalPage;	//총 페이지의 수
 	
 	private int pageCount;	//한 화면에 출력될 페이지네이션의 개수
+	
 	private int startPage;	//화면에 보이는 시작 페이지네이션 번호
+	
 	private int endPage;	//화면에 보이는 끝 페이지네이션 번호
 	
 	private int startNo;	//화면에 보이는 게시글의 시작 번호
-	private int endNo;	//화면에 보이는 게시글의 끝 번호
 	
+	private int endNo;		//화면에 보이는 게시글의 끝 번호
 	
-	private String search; //검색어
+	private String search;	//검색어 			- 공연/전시회 검색
 	
-	private int userNo; //유저 번호
+	private int userNo;		//유저 번호 		- 마이페이지
 
+	private String sort;	//정렬 				- 공연/전시회 정렬
+	
+	private int conNo;		//공연 게시글 번호	- 공연 전체 조회
+	
+	private int exNo;		//전시 게시글 번호	- 전시회 전체 조회
 	
 	
 	//디폴트 생성자 - 페이징 계산이 완료되지 않는다
@@ -96,7 +105,8 @@ public class Paging {
 	public String toString() {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
-				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", userNo=" + userNo + "]";
+				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", userNo=" + userNo + ", sort="
+				+ sort + ", conNo=" + conNo + ", exNo=" + exNo + "]";
 	}
 
 	public int getCurPage() {
@@ -186,7 +196,29 @@ public class Paging {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-	
-	
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public int getConNo() {
+		return conNo;
+	}
+
+	public void setConNo(int conNo) {
+		this.conNo = conNo;
+	}
+
+	public int getExNo() {
+		return exNo;
+	}
+
+	public void setExNo(int exNo) {
+		this.exNo = exNo;
+	}
 	
 }
