@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ExImg;
+import com.skip.www.dto.ExReview;
 import com.skip.www.dto.Exhibition;
 import com.skip.www.service.face.AdminService;
+import com.skip.www.service.impl.ExhibitionServiceImpl;
 import com.skip.www.util.Paging;
 
 @Controller
@@ -28,6 +30,7 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired private AdminService adminService;
+	@Autowired private ExhibitionServiceImpl exhibitionService;
 
 	@GetMapping("/admin/login")
 	public void login() {
@@ -132,7 +135,7 @@ public class AdminController {
 		for(Exhibition b : list) {
 			logger.info("{}", b);
 		}
-		
+
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
 	}
@@ -161,22 +164,6 @@ public class AdminController {
 		return "/admin/exhibition/view";
 	}
 
-	@GetMapping("/admin/exhibition/write")
-	public void writeExhibition() { }
-	
-	@PostMapping("/admin/exhibition/write")
-	public String writeProcessExhibition(Exhibition exhibition, MultipartFile file, HttpSession session) {
-		logger.info("/exhibition/write [POST]");
-		logger.info("{}", exhibition);
-		logger.info("{}", file);
-		
-		exhibition.setAdminId( (String) session.getAttribute("id") );
-		logger.info("{}", exhibition);
-		
-		adminService.writeExhibition(exhibition, file);
-		
-		return "redirect:/exhibition/list"; //게시글 목록
-	}
 	
 	@RequestMapping("/admin/exhibition/download")
 	public String downloadExImg(ExImg exImg, Model model) {
@@ -189,7 +176,7 @@ public class AdminController {
 	
 	@GetMapping("/admin/exhibition/update")
 	public String updateExhibition(Exhibition exhibition, Model model) {
-		logger.info("/exhibition/update - {}", exhibition);		
+		logger.info("/admin/exhibition/update - {}", exhibition);		
 		
 		//잘못된 게시글 번호 처리
 		if( exhibition.getExNo() < 1 ) {
@@ -223,7 +210,25 @@ public class AdminController {
 		return "redirect:/admin/exhibition/list";
 	}
 	
-	@RequestMapping(value="/admin/exhibition/error")
+	
+	@GetMapping("/admin/exhibition/write")
+	public void writeExhibition() { }
+	
+	@PostMapping("/admin/exhibition/write")
+	public String writeProcessExhibition(Exhibition exhibition, MultipartFile file, HttpSession session) {
+		logger.info("/admin/exhibition/write [POST]");
+		logger.info("{}", exhibition);
+		logger.info("{}", file);
+		
+		exhibition.setAdminId( (String) session.getAttribute("id") );
+		logger.info("{}", exhibition);
+		
+		adminService.writeExhibition(exhibition, file);
+		
+		return "redirect:/admin/exhibition/list"; //게시글 목록
+	}
+
+	@RequestMapping(value="/admin/error")
 	public void error() {}
 
 	@RequestMapping("/admin/exhibition/activate")

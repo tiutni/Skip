@@ -123,7 +123,7 @@
 			, ex_activate
 			, admin_id
 			FROM Exhibition
-		WHERE Exhibition_no = #{ExhibitionNo}
+		WHERE ex_no = #{exNo}
 	</select>
 	
 	<insert id="insertExhibition" parameterType="com.skip.www.dto.Exhibition">
@@ -184,30 +184,30 @@
 
 	<select id="selectExImgByExNo" resultType="com.skip.www.dto.ExImg" parameterType="com.skip.www.dto.Exhibition">
 		SELECT
-			ex_img_no 			exImgNo
-			, ex_img_originName exImgOriginName
-			, ex_img_storedName exImgStoredName
-			, ex_img_path 		exImgPath
-			, ex_img_size 		exImgSize
-			, ex_no		 		exNo
-		FROM ExImg
+			ex_img_no
+			, ex_img_originName
+			, ex_img_storedName
+			, ex_img_path
+			, ex_img_size
+			, ex_no
+		FROM ex_img
 		WHERE ex_no = #{exNo}
 	</select>
 	
 	<select id="selectExImgByExImgNo" resultType="com.skip.www.dto.ExImg" parameterType="com.skip.www.dto.ExImg">
 		SELECT
-			ex_img_no 			exImgNo
-			, ex_img_originName exImgOriginName
-			, ex_img_storedName exImgStoredName
-			, ex_img_path 		exImgPath
-			, ex_img_size 		exImgSize
-			, ex_no		 		exNo
-		FROM ExImg
+			ex_img_no
+			, ex_img_originName
+			, ex_img_storedName
+			, ex_img_path
+			, ex_img_size
+			, ex_no
+		FROM ex_img
 		WHERE ex_img_no = #{exImgNo}
 	</select>
 	
 	<insert id="insertExImg" parameterType="com.skip.www.dto.ExImg">
-		INSERT INTO ExImg ( 
+		INSERT INTO ex_img ( 
 			ex_img_no
 			, ex_img_originName
 			, ex_img_storedName
@@ -226,7 +226,7 @@
 	</insert>
 	
 	<delete id="deleteExImg" parameterType="com.skip.www.dto.Exhibition">
-		DELETE ExImg
+		DELETE ex_img
 		WHERE ex_no = #{exNo}
 	</delete>
 	

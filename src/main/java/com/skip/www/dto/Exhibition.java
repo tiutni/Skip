@@ -3,7 +3,7 @@ package com.skip.www.dto;
 import java.util.Date;
 
 public class Exhibition {				//전시회
-	
+										// exhibition
 	private int 	exNo;				// ex_no (PK)			NUMBER			1  번호
 	private Date 	exRegDate;			// ex_regdate			DATE			2  작성일자
 	private String 	exTitle;			// ex_title				VARCHAR2(100)	3  제목
@@ -20,6 +20,9 @@ public class Exhibition {				//전시회
 	private int 	exPrice;			// ex_price				NUMBER			14 금액
 	private int 	exActivate;			// ex_activate			NUMBER			15 활성화
 	private String 	adminId;			// admin_id (FK)		VARCHAR2(500)	16 글작성자
+	
+										//전시회 (첨부)이미지
+										// ex_img
 	private String 	exImgStoredName;	// ex_img_storedname	VARCHAR2(500)	17 전시회 이미지파일 사본명
 
 	@Override

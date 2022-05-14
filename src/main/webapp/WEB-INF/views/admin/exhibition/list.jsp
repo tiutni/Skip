@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:import url="/WEB-INF/views/layout/header.jsp" />
+<c:import url="/WEB-INF/views/admlayout/header.jsp" />
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -49,80 +49,81 @@ table, th, td {
 }
 </style>
 
-<div class="container">
+<div id="layoutSidenav_content">
+	<main>
 
-	<!-- Exhibition -->
-	<article class="bg0 p-t-23 p-b-140">
-	
-		<!-- 페이지 제목 -->
-		<br>
-		<div class="p-b-10">
-			<h3 class="ltext-103 cl5" style="text-align: center;">
-				<a onclick="location.href='/admin/exhibition/list'">Exhibition</a>
-			</h3>
-		</div>
-		<br><hr>
-		
-		<!-- 목록 -->
-		<div>
-		<table class="table table-striped table-hover">
-			<thead>
-				<tr>
-					<th style="width: 5%; text-align: center; vertical-align: middle;">번호</th>
-					<th style="width: 30%; text-align: center; vertical-align: middle;">제목</th>
-					<th style="width: 10%; text-align: center; vertical-align: middle;">작성자</th>
-					<th style="width: 15%; text-align: center; vertical-align: middle;">작성일</th>
-					<th style="width: 15%; text-align: center; vertical-align: middle;">예매율</th>
-					<th style="width: 15%; text-align: center; vertical-align: middle;">평점</th>
-					<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
-				</tr>
-			</thead>
+		<!-- Exhibition -->
+		<div class="container-fluid px-4">
+			<h1 class="mt-4">전시 관리</h1>
 			
-			<tbody>
-			<c:forEach items="${list }" var="exhibition">
-				<tr>
-					<td style="vertical-align: middle;">${exhibition.exNo }</td>
-					<td style="vertical-align: middle; text-align: left;"><a href="/admin/exhibition/view?exNo=${exhibition.exNo }">${exhibition.exTitle }</a></td>
-					<td style="vertical-align: middle;">${exhibition.adminId }</td>
-					<td style="vertical-align: middle;"><fmt:formatDate value="${exhibition.exRegDate }" pattern="yy-MM-dd"/></td>
-					<td style="vertical-align: middle;">예매된 티켓수 / exhibition.exticketNum</td> 
-					<td style="vertical-align: middle;">대범님푸쉬하면 인계받기</td>
-					<td style="vertical-align: middle;">
-						<c:choose>
-							<c:when test="${ 1 == exhibition.exActivate }">
-								<button onclick="btnUnActivate(${exhibition.exNo})" id="btnUnActivate" class="btn btn-secondary">종료하기</button>
-							</c:when>
-							<c:otherwise>
-								<button onclick="btnActivate(${exhibition.exNo})" id="btnActivate" class="btn btn-primary">재개하기</button>
-							</c:otherwise>
-						</c:choose>
-					</td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
-		</div>
+			<ol class="breadcrumb mb-4">
+			    <li class="breadcrumb-item active">Exhibition Management</li>
+			</ol>
+
+			<div class="card mb-4">
+			    <div class="card-header">
+			        <i class="fas fa-table me-1"></i>전시 목록
+			    </div>
+		
+				<!-- 목록 -->
+				<div class="card-body">
+				
+					<table id="datatablesSimple">
+						<thead>
+							<tr>
+								<th style="width: 5%; text-align: center; vertical-align: middle;">번호</th>
+								<th style="width: 30%; text-align: center; vertical-align: middle;">제목</th>
+								<th style="width: 10%; text-align: center; vertical-align: middle;">작성자</th>
+								<th style="width: 15%; text-align: center; vertical-align: middle;">작성일</th>
+<!-- 								<th style="width: 15%; text-align: center; vertical-align: middle;">예매율</th> -->
+<!-- 								<th style="width: 15%; text-align: center; vertical-align: middle;">평점</th> -->
+								<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
+							</tr>
+						</thead>
 						
-		<!-- 검색 -->
-		<div class="form-inline text-center pull-left">
-			<button id="btnSearch" class="btn btn-primary">검색</button>
-			<input style="width: 300px" class="form-control" type="text" id="search" value="${param.search }" />
-		</div>
-		
-		<!-- 글쓰기 버튼 -->
-		<div><button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button></div>
-		
-		<!-- 페이징 -->
-<%-- 		<div><span class="pull-right">total : ${paging.totalCount }</span></div> --%>
-		<div class="clearfix"></div>
-		
-		<c:import url="/WEB-INF/views/admin/exhibition/paging.jsp" />
+						<tbody>
+						<c:forEach items="${list }" var="exhibition">
+							<tr>
+								<td style="vertical-align: middle;">${exhibition.exNo }</td>
+								<td style="vertical-align: middle; text-align: left;"><a href="/exhibition/view?exNo=${exhibition.exNo }">${exhibition.exTitle }</a></td>
+								<td style="vertical-align: middle;">${exhibition.adminId }</td>
+								<td style="vertical-align: middle;"><fmt:formatDate value="${exhibition.exRegDate }" pattern="yy-MM-dd"/></td>
+<!-- 								<td style="vertical-align: middle;">예매된 티켓수 / exhibition.exticketNum</td>  -->
+<!-- 								<td style="vertical-align: middle;">${exStar }</td> -->
+								<td style="vertical-align: middle;">
+									<c:choose>
+										<c:when test="${ 1 == exhibition.exActivate }">
+											<button onclick="btnUnActivate(${exhibition.exNo})" id="btnUnActivate" class="btn btn-secondary">종료하기</button>
+										</c:when>
+										<c:otherwise>
+											<button onclick="btnActivate(${exhibition.exNo})" id="btnActivate" class="btn btn-primary">재개하기</button>
+										</c:otherwise>
+									</c:choose>
+								</td>
+							</tr>
+						</c:forEach>
+						</tbody>
+					</table>
+					
+					<!-- 글쓰기 버튼 -->
+					<div><button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button></div>
+					
+					<!-- 페이징 -->
+					<div class="clearfix"></div>
+					
+				</div>
+				
+				
+				<c:import url="/WEB-INF/views/admin/exhibition/paging.jsp" />
 	
-	</article><!-- .Exhibition -->
+			</div>
+		</div>
+	
+	</main>
 
-</div><!-- .container -->
+</div><!-- layoutSidenav_content -->
 
-<c:import url="/WEB-INF/views/layout/footer.jsp" />
+<c:import url="/WEB-INF/views/admlayout/footer.jsp" />
 
 
 

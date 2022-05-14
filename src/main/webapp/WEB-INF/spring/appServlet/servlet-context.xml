@@ -41,7 +41,13 @@
 		<beans:property name="maxUploadSizePerFile" value="5242880" /> <!-- 5MB -->
 	</beans:bean>
 	
-	
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/exhibition/*" />
+<!-- 			<mapping path="/admin/concert/*" /> -->
+			<beans:bean class="com.skip.www.interceptor.AdminInterceptor" />
+		</interceptor>
+	</interceptors>	
 	
 	<context:component-scan base-package="com.skip.www.controller, com.skip.www.service" />
 	

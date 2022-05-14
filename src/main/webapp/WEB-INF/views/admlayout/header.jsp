@@ -68,12 +68,12 @@
                                 회원
                             </a>
                             <div class="sb-sidenav-menu-heading">Exhibition</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/admin/exhibition/list">
                                 <div class="sb-nav-link-icon"><i class="bi bi-calendar-day"></i></div>
                                 전시
                             </a>
                             <div class="sb-sidenav-menu-heading">Concert</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/admin/concert/list">
                                 <div class="sb-nav-link-icon"><i class="bi bi-calendar-date"></i></div>
                                 공연
                             </a>

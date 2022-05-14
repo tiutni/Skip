@@ -110,7 +110,6 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	@Transactional
 	public void writeExhibition(Exhibition exhibition, MultipartFile file) {
-		
 		if( "".equals( exhibition.getExTitle() ) ) {
 			exhibition.setExTitle("(제목없음)");
 		}
