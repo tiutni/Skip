@@ -20,14 +20,13 @@ import com.skip.www.service.face.NotiService;
 import com.skip.www.util.Paging;
 
 @Controller
-@RequestMapping(value="/noti")
 public class NotiController {
 
 	private static final Logger logger = LoggerFactory.getLogger(NotiController.class);
 	
 	@Autowired NotiService notiService;
 
-	@RequestMapping(value="/list")
+	@RequestMapping(value="noti/list")
 	public void list(Paging paramData, Model model) {
 		logger.info("/noti/list");
 		
@@ -45,7 +44,26 @@ public class NotiController {
 		model.addAttribute("list", list);
 	}
 	
-	@RequestMapping("/view")
+	@RequestMapping(value="admin/noti/list")
+	public void adminList(Paging paramData, Model model) {
+		logger.info("admin/noti/list");
+		
+		//페이징 계산
+		Paging paging = notiService.getPaging( paramData );
+		logger.info("{}", paging);
+		
+		//게시글 목록 조회
+		List<Noti> list = notiService.list(paging);
+		for(Noti n : list) {
+			logger.info("{}", n);
+		}
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("list", list);
+	}
+	
+	
+	@RequestMapping("noti/view")
 	public String view(Noti viewNoti, Model model, HttpSession session) {
 		logger.info("/noti/view - {}", viewNoti);
 		
@@ -69,12 +87,36 @@ public class NotiController {
 		return "noti/view";
 	}
 	
-	@GetMapping("/write")
+	@RequestMapping("admin/noti/view")
+	public String adminView(Noti viewNoti, Model model, HttpSession session) {
+		logger.info("/noti/view - {}", viewNoti);
+		
+		//잘못된 게시글 번호 처리
+		if( viewNoti.getNotiNo() < 1 ) {
+			return "redirect:/noti/list";
+		}
+		
+		//게시글 조회
+		viewNoti = notiService.view(viewNoti);
+		logger.info("조회된 게시글 {}", viewNoti);
+		
+		//모델값 전달 - 게시글
+		model.addAttribute("viewNoti", viewNoti);
+		
+		
+		//첨부파일 정보 모델값 전달
+		NotiFile notiFile = notiService.getAttachFile(viewNoti);
+		model.addAttribute("notiFile", notiFile);
+		
+		return "admin/noti/view";
+	}
+	
+	@GetMapping("admin/noti/write")
 	public void write() { }
 	
-	@PostMapping("/write")
+	@PostMapping("admin/noti/write")
 	public String writeProcess(Noti noti, MultipartFile file, HttpSession session) {
-		logger.info("/board/write [POST]");
+		logger.info("/noti/write [POST]");
 		logger.info("{}", noti);
 		logger.info("{}", file);
 		
@@ -83,25 +125,25 @@ public class NotiController {
 		
 		notiService.write(noti, file);
 		
-		return "redirect:/noti/list"; //공지사항 목록
+		return "redirect:/admin/noti/list"; //공지사항 목록
 	}
 	
-	@RequestMapping("/download")
+	@RequestMapping("noti/download")
 	public String download(NotiFile notiFile, Model model) {
 		
 		notiFile = notiService.getFile(notiFile);
 		model.addAttribute("downFile", notiFile);
 		
-		return "down";
+		return "noti/down";
 	}
 	
-	@GetMapping("/update")
+	@GetMapping("admin/noti/update")
 	public String update(Noti noti, Model model) {
 		logger.info("/noti/update - {}", noti);		
 		
 		//잘못된 게시글 번호 처리
 		if( noti.getNotiNo() < 1 ) {
-			return "redirect:/noti/list";
+			return "redirect:/admin/noti/list";
 		}
 		
 		//수정할 게시글의 상세보기
@@ -112,24 +154,24 @@ public class NotiController {
 		NotiFile notiFile = notiService.getAttachFile(noti);
 		model.addAttribute("notiFile", notiFile);
 		
-		return "noti/update";
+		return "admin/noti/update";
 	}
 	
-	@PostMapping("/update")
+	@PostMapping("admin/noti/update")
 	public String updateProcess(Noti noti, MultipartFile file) {
 		logger.info("/noti/update [POST] - {}", noti);
 		
-//		notiService.update(noti);	//게시글만 수정
+		notiService.update(noti);	//게시글만 수정
 		notiService.update(noti, file); //게시글+첨부파일 수정
 		
-		return "redirect:/noti/view?notiNo=" + noti.getNotiNo();
+		return "redirect:/admin/noti/view?notiNo=" + noti.getNotiNo();
 	}
 	
-	@RequestMapping("/delete")
+	@RequestMapping("admin/noti/delete")
 	public String delete(Noti noti) {
 		notiService.delete(noti);
 		
-		return "redirect:/noti/list";
+		return "redirect:/admin/noti/list";
 	}
 	
 	

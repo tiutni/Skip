@@ -4,22 +4,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:import url="/WEB-INF/views/layout/header.jsp" />
+<c:import url="/WEB-INF/views/admlayout/header.jsp" />
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#btnList").click(function() {
-		location.href = "/noti/list"
+		location.href = "/admin/noti/list"
 	})
 	
 	$("#btnUpdate").click(function() {
-		location.href = "/noti/update?notiNo=${viewNoti.notiNo}"
+		location.href = "/admin/noti/update?notiNo=${viewNoti.notiNo}"
 	})
 	
 	$("#btnDelete").click(function() {
-		location.href = "/noti/delete?notiNo=${viewNoti.notiNo}"
+		location.href = "/admin/noti/delete?notiNo=${viewNoti.notiNo}"
 	})
 })
 </script>
@@ -68,11 +68,13 @@ td:not(.info) {
 		</tr>
 		</table>
 		
-		<a href="/noti/download?fileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
+		<a href="/admin/noti/download?fileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
 		
 		<br><br><br>
 		<div class="text-center">
 			<button id="btnList" class="btn btn-default">목록</button>
+			<button id="btnUpdate" class="btn btn-primary">수정</button>
+			<button id="btnDelete" class="btn btn-danger">삭제</button>
 		</div>
 		
 
@@ -82,7 +84,6 @@ td:not(.info) {
 </section>
 
 
-<c:import url="/WEB-INF/views/layout/footer.jsp" />
 
 
 

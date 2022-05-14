@@ -4,11 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:import url="/WEB-INF/views/layout/header.jsp" />
+<c:import url="/WEB-INF/views/admlayout/header.jsp" />
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- 스마트 에디터 2 로드 -->
-<script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js"></script>
+<script type="text/javascript" src="../../resources/se2/js/service/HuskyEZCreator.js"></script>
 
 <script type="text/javascript">
 function submitContents(elClickedObj) {
@@ -38,7 +38,7 @@ var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
 	oAppRef: oEditors
 	, elPlaceHolder: "content"
-	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
+	, sSkinURI: "../../resources/se2/SmartEditor2Skin.html"
 	, fCreator: "createSEditor2"
 })
 </script>
@@ -58,7 +58,7 @@ nhn.husky.EZCreator.createInIFrame({
 		
 		
 		
-		<form action="/noti/write" method="post" enctype="multipart/form-data">
+		<form action="/admin/noti/write" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="write">작성자</label>
 			<input type="text" id="write" value="${adminId }" class="form-control" readonly="readonly">
@@ -93,8 +93,6 @@ nhn.husky.EZCreator.createInIFrame({
 
 </section>
 
-
-<c:import url="/WEB-INF/views/layout/footer.jsp" />
 
 
 

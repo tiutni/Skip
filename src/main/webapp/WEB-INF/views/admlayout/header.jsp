@@ -78,7 +78,7 @@
                                 공연
                             </a>
                             <div class="sb-sidenav-menu-heading">Notice</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/admin/noti/list">
                                 <div class="sb-nav-link-icon"><i class="bi bi-exclamation-circle"></i></div>
                                 공지사항
                             </a>

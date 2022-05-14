@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:import url="/WEB-INF/views/layout/header.jsp" />
+<c:import url="/WEB-INF/views/admlayout/header.jsp" />
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- 스마트 에디터 2 로드 -->
@@ -35,7 +35,7 @@ $(document).ready(function() {
 	})
 
 	
-	if( ${empty boardFile} ) {
+	if( ${empty notiFile} ) {
 		$("#newFile").show()
 	} else {
 		$("#originFile").show()
@@ -90,7 +90,7 @@ nhn.husky.EZCreator.createInIFrame({
 
 		
 				
-		<form action="/noti/update" method="post" enctype="multipart/form-data">
+		<form action="/admin/noti/update" method="post" enctype="multipart/form-data">
 		<%-- <input type="hidden" name="notiNo" value="${updateNoti.notiNo }"> --%>
 		<input type="hidden" name="notiNo" value="${param.notiNo }">
 		
@@ -112,7 +112,7 @@ nhn.husky.EZCreator.createInIFrame({
 		
 			<div id="fileBox">
 				<div id="originFile">
-					<a href="/noti/download?fileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
+					<a href="admin/noti/download?fileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
 					<span id="deleteFile">X</span>
 				</div>
 		
@@ -142,7 +142,6 @@ nhn.husky.EZCreator.createInIFrame({
 </section>
 
 
-<c:import url="/WEB-INF/views/layout/footer.jsp" />
 
 
 

@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
-<c:import url="/WEB-INF/views/noti/paging.jsp" />
+
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -76,9 +76,9 @@ td:nth-child(2) {
 		<thead>
 			<tr>
 				<th style="width: 10%;">No</th>
-				<th style="width: 50%;">제목</th>
-				<th style="width: 20%;">작성자</th>
-				<th style="width: 20%;">작성일</th>
+				<th style="width: 60%;">제목</th>
+				<th style="width: 15%;">작성자</th>
+				<th style="width: 15%;">작성일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -93,15 +93,15 @@ td:nth-child(2) {
 		</tbody>
 		</table>
 		
-		<button id="btnWrite" class="btn btn-primary pull-left">글쓰기</button>
 		<span class="pull-right">total : ${paging.totalCount }</span>
 		<div class="clearfix"></div>
 		
 
-	</div><!-- .container -->
+	</div><!-- .container End -->
 
-
-	</div> <!-- .container end -->
+	<c:import url="/WEB-INF/views/noti/paging.jsp" />
+	
+	</div> <!-- .container End -->
 
 </section>
 
