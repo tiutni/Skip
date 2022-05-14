@@ -32,4 +32,25 @@ public interface FaqDao {
 	 */
 	public FAQ select(FAQ viewFaq);
 
+	/**
+	 * 자주 묻는 글 정보를 삽입한다
+	 * 
+	 * @param faq - 삽입할 자주 묻는 글 정보
+	 */
+	public void insertFaq(FAQ faq);
+
+	/**
+	 * 자주 묻는 글 정보 수정
+	 * 
+	 * @param board - 수정할 내용을 가진 자주 묻는 글 객체
+	 */
+	public void update(FAQ faq);
+
+	/**
+	 * 자주 묻는 글 정보 삭제
+	 * 
+	 * @param board - 삭제할 자주 묻는 글의 글번호
+	 */
+	public void delete(FAQ faq);
+
 }

@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:import url="/WEB-INF/views/admlayout/header.jsp" />
+<c:import url="/WEB-INF/views/layout/header.jsp" />
+
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
 
@@ -11,6 +13,14 @@ $(document).ready(function(){
 	
 		$("#btnSearch").click(function() {
 			location.href="/qna/list?search="+$("#search").val();
+		})
+		
+})
+
+$(document).ready(function(){
+	
+		$("#btnWrite").click(function() {
+			location.href="/qna/write"
 		})
 		
 })
@@ -30,7 +40,7 @@ table, th {
 
 <div class="container">
 
-<h1>문의 글 리스트</h1>
+<h1>QnA</h1>
 <hr>
 
 <table class="table table-striped table-hover">
@@ -56,6 +66,10 @@ table, th {
 </tbody>
 </table>
 
+
+<button id="btnWrite" class="btn btn-primary">문의하기</button>
+
+
 <div class="form-inline text-center">
 	<input class="form-control" type="text" id="search" value="${param.search }" placeholder="문의 제목 입력"/>
 	<button id="btnSearch" class="btn">검색</button>
@@ -63,7 +77,8 @@ table, th {
 
 <c:import url="/WEB-INF/views/qna/paging.jsp" />
 
+
 </div><!-- .container -->
 
-<c:import url="/WEB-INF/views/admlayout/footer.jsp" />
+<c:import url="/WEB-INF/views/layout/footer.jsp" />
 

@@ -73,11 +73,6 @@ td:not(.info) {
 		<br><br><br>
 		<div class="text-center">
 			<button id="btnList" class="btn btn-default">목록</button>
-			
-			<c:if test="${adminId eq viewNoti.adminId }">
-				<button id="btnUpdate" class="btn btn-primary">수정</button>
-				<button id="btnDelete" class="btn btn-danger">삭제</button>
-			</c:if>
 		</div>
 		
 

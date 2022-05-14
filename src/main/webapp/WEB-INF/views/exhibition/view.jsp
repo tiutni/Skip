@@ -33,15 +33,20 @@ $(document).ready(function() {
 	});
 	
 	$("#btnPayment").click(function() {
-		if("${userNo}" == "") {
+
+		var isUserNo = "${userNo}";
+		
+		if( isUserNo == "" ) {
+			console.log("${userNo}");
 			alert("로그인 후 이용가능합니다.");
 			location.href='/user/login';
 			return;
-		} else {
-		$("#payForm").submit();
-		
+			
 		}
-	})
+		
+		$("#payForm").submit();
+	
+	});
 	
 	$("#btnSubmit").click(function() {
 		$("#reviewForm").submit();
@@ -306,7 +311,7 @@ function count_ticket(type) {
 <br>
 <label style="margin-left: 74px; font-size: 16px;"><b>관람일</b></label>
 <br>
-<input style="margin-left: 70px;" type="date" id="calendar" name="date" min="<fmt:formatDate value='${viewExhibition.exReserveStartDay }' pattern='yyyy-MM-dd' />" max="<fmt:formatDate value='${viewExhibition.exReserveEndDay }' pattern='yyyy-MM-dd' />" /><br>
+<input style="margin-left: 70px;" type="date" id="calendar" name="date" max="<fmt:formatDate value='${viewExhibition.exReserveEndDay }' pattern='yyyy-MM-dd' />" /><br>
 <br>
 <label style="margin-left: 74px; font-size: 16px;"><b>인원</b></label>
 <br>
@@ -433,6 +438,10 @@ function count_ticket(type) {
 <c:import url="exreviewpaging.jsp"></c:import>
 
 <script type="text/javascript">
+	//예약 최소 날짜를 오늘로 설정함
+	document.getElementById('calendar').min = new Date().toISOString().substring(0, 10);;
+	
+	//달력에 표시되는 기본 날짜는 오늘로 설정함
 	document.getElementById('calendar').value = new Date().toISOString().substring(0, 10);;
 </script>
 

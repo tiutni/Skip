@@ -39,4 +39,3 @@ $(document).ready(function() {
 
 </div><!-- .container end -->
 
-<c:import url="/WEB-INF/views/admlayout/footer.jsp" />

@@ -1,6 +1,5 @@
 package com.skip.www.dao.face;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.skip.www.dto.ConUserLevel;
@@ -70,11 +69,13 @@ public interface MypageDao {
 
 	public void insertQna(QnA qna);
 
-	public QnAFile selectBoardFileByBoardNo(QnA viewQna);
+	public QnAFile selectQnaFileByQnaNo(QnA viewQna);
 
-	public QnAFile selectBoardFileByFileNo(QnAFile qnaFile);
+	public QnAFile selectQnaFileByQnaFileNo(QnAFile qnaFile);
 
 	public QnA select(QnA viewQna);
+
+	public void insertQnaFile(QnAFile qnaFile);
 
 
 

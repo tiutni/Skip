@@ -6,7 +6,7 @@
     
 <mapper namespace="com.skip.www.dao.face.MypageDao">
 
-	<resultMap type="com.skip.www.dto.QnA" id="Qna">
+	<resultMap type="com.skip.www.dto.QnA" id="QnA">
 		<id column="qna_no" property="qnaNo"/>
 		<result column="user_no" property="userNo"/>
 		<result column="qna_title" property="qnaTitle"/>
@@ -75,6 +75,13 @@
 		WHERE rnum BETWEEN #{startNo } AND #{endNo }
 	</select>
 
+	<select id="select" resultMap="QnA" parameterType="com.skip.www.dto.QnA">
+		SELECT
+			qna_no, user_no ,qna_title, qna_content,qna_date
+		FROM qna
+		WHERE qna_no = #{qnaNo}
+	</select>
+	
 
 	<select id="selectCntAll" parameterType="int" resultType="int">
 		SELECT count(*) FROM qna
@@ -86,9 +93,34 @@
 			SELECT qna_no_seq.nextval FROM dual
 		</selectKey>
 		
-		INSERT INTO qna ( qna_no, qna_title, qna_content, user_no )
-		VALUES ( #{qnaNo}, #{qnaTitle}, #{qnaContent}, #{userNo} )
+		INSERT INTO qna ( qna_no, qna_title, qna_content, user_no  )
+		VALUES ( #{qnaNo}, #{qnaTitle}, #{qnaContent}, #{userNo})
 	</insert>
 
+<insert id="insertQnaFile" parameterType="com.skip.www.dto.QnAFile">
+		INSERT INTO qna_File ( qna_file_no, qna_no, qna_file_originname, qna_file_storedname )
+		VALUES ( qna_file_no_seq.nextval, #{qnaNo}, #{qnaFileOriginName}, #{qnaFileStoredName} )
+	</insert>
+
+
+<select id="selectQnaFileByQnaNo" resultType="com.skip.www.dto.QnAFile" parameterType="com.skip.www.dto.QnA">
+		SELECT
+			qna_file_no qnaFileNo
+			, qna_file_originname qnaFileOriginName
+			, qna_file_storedname qnaFileStoredName
+			, qna_no qnaNo
+		FROM qna_File
+		WHERE qna_no = #{qnaNo}
+	</select>
+
+<select id="selectQnaFileByQnaFileNo" resultType="com.skip.www.dto.QnAFile" parameterType="com.skip.www.dto.QnAFile">
+		SELECT
+			qna_file_no qnaFileNo
+			, qna_file_originname qnaFileOriginName
+			, qna_file_storedname qnaFileStoredName
+			, qna_no qnaNo
+		FROM qna_File
+		WHERE qna_file_no = #{qnaFileNo}
+	</select>
 
 </mapper>

@@ -40,5 +40,5 @@
 <div class="wrap">
 
 <header class="header">
-	<h1><a href="/admin/main">SKIP</a></h1>
+	<h1><a href="/mypage/main">SKIP</a></h1>
 </header>

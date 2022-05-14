@@ -39,4 +39,30 @@ public class FaqServiceImpl implements FaqService {
 		//상세보기 조회 결과 리턴
 		return faqDao.select(viewFaq);
 	}
+
+	@Override
+	public void write(FAQ faq) {
+		
+		if( "".equals( faq.getFaqTitle() ) ) {
+			faq.setFaqTitle("(제목이 없습니다)");
+			}
+			faqDao.insertFaq(faq);
+		}
+
+	@Override
+	public void update(FAQ faq) {
+
+		if( "".equals( faq.getFaqTitle() ) ) {
+			faq.setFaqTitle("(제목없음)");
+		}
+		faqDao.update(faq);
+		
+	}
+
+	@Override
+	public void delete(FAQ faq) {
+		
+		faqDao.delete(faq);
+		
+	}
 }

@@ -33,14 +33,19 @@ $(document).ready(function() {
 	});
 	
 	$("#btnPayment").click(function() {
-		if("${userNo}" == "") {
+		
+		var isUserNo = "${userNo}";
+		
+		if( isUserNo == "" ) {
+			console.log("${userNo}");
 			alert("로그인 후 이용가능합니다.");
 			location.href='/user/login';
 			return;
-		} else {
-		$("#payForm").submit();
-		
+			
 		}
+
+		$("#payForm").submit();
+	
 	});
 	
 	$("#btnSubmit").click(function() {
@@ -98,14 +103,18 @@ $(document).ready(function() {
 		
 		
 	});
-
-	$("#round").on('change', function() {
+	
+	$("#round").change(function() {
 
 		$("#selectSeat").empty();
-		
+
+		$("#totalprice").empty();
+
 		document.getElementById('seat').innerHTML = ('<option value="0">-----</option>');
 		
 		var conRound = $("#round").val();
+		
+		var date = $("#calendar").val();
 		
 		$.ajax({
 			url: "/concert/seat"
@@ -113,6 +122,7 @@ $(document).ready(function() {
 			, data: {
 				conNo : "${viewConcert.conNo}"
 				, conRound : conRound
+				, date : date
 			}
 			, dataType: "json"
 			, success: function(data) {
@@ -134,12 +144,14 @@ $(document).ready(function() {
 		});
 		
 	});
-	
+
 	var number = 0;
-
-	document.getElementById("totalprice").innerText = '0';
-
+	
+	console.log(number);
+	
 	const resultPrice = document.getElementById("totalprice");
+	
+	resultPrice.innerText = '0';
 	
 	$("#seat").change(function() {
 		document.getElementById('selectSeat').innerHTML += (
@@ -181,8 +193,6 @@ $(document).ready(function() {
 		
 		resultPrice.innerText = number;
 		
-		console.log(number);
-	
 		document.getElementById("valueOfprice").value = number;
 		
 	});
@@ -367,7 +377,7 @@ $(document).ready(function() {
 <br>
 <label style="margin-left: 74px; font-size: 16px;"><b>관람일</b></label>
 <br>
-<input style="margin-left: 70px;" type="date" id="calendar" name="date" min="<fmt:formatDate value='${viewConcert.conReserveStartDay }' pattern='yyyy-MM-dd' />" max="<fmt:formatDate value='${viewConcert.conReserveEndDay }' pattern='yyyy-MM-dd' />" /><br>
+<input style="margin-left: 70px;" type="date" id="calendar" name="date" max="<fmt:formatDate value='${viewConcert.conReserveEndDay }' pattern='yyyy-MM-dd' />" /><br>
 <br>
 <span style="margin-left: 74px;"><b>회차</b></span>
 <select id="round" name="round">
@@ -496,11 +506,11 @@ $(document).ready(function() {
 <c:import url="conreviewpaging.jsp"></c:import>
 
 <script type="text/javascript">
+	//예약 최소 날짜를 오늘로 설정함
+	document.getElementById('calendar').min = new Date().toISOString().substring(0, 10);;
+
+	//달력에 표시되는 기본 날짜는 오늘로 설정함
 	document.getElementById('calendar').value = new Date().toISOString().substring(0, 10);;
-	
-// 	$('#calendar').val('2022-05-18').prop('disabled', true);
-// 	$('#calendar').val('2022-05-20').prop('disabled', true);
-	
 </script>
 
 <script type="text/javascript">

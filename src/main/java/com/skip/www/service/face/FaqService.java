@@ -36,4 +36,25 @@ public interface FaqService {
 	 */
 	public FAQ view(FAQ viewFaq);
 
+	/**
+	 * 자주 묻는 글 정보
+	 * 
+	 * @param faq - 자주 묻는 글 정보 DTO
+	 */
+	public void write(FAQ faq);
+
+	/**
+	 * 자주 묻는 글 수정 처리
+	 * 
+	 * @param faq - 자주 묻는 글 정보 객체
+	 */
+	public void update(FAQ faq);
+	
+	/**
+	 * 자주 묻는 글 삭제 처리
+	 * 
+	 * @param faq - 삭제할 자주 묻는 글의 글번호
+	 */
+	public void delete(FAQ faq);
+
 }
