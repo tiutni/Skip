@@ -8,7 +8,14 @@ public class QnAFile {
 	private String qnaFilePath;
 	private int qnaFileSize;
 	private int qnaNo;
+	public QnAFile() {
+	}
 	
+	public QnAFile(String qnaFilePath) {
+		super();
+		this.qnaFilePath = qnaFilePath;
+	}
+
 	@Override
 	public String toString() {
 		return "QnAFile [qnaFileNo=" + qnaFileNo + ", qnaFileOriginName=" + qnaFileOriginName + ", qnaFileStoredName="
