@@ -83,7 +83,7 @@
                                 공지사항
                             </a>
                             <div class="sb-sidenav-menu-heading">FAQ</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/faq/admlist">
                                 <div class="sb-nav-link-icon"><i class="bi bi-question-circle"></i></div>
                                 자주 묻는 질문
                             </a>

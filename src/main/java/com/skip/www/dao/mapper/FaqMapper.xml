@@ -45,4 +45,24 @@
 		WHERE faq_no = #{faqNo}
 	</select>
 	
+	<insert id="insertFaq" parameterType="com.skip.www.dto.FAQ">
+		<selectKey order="BEFORE" resultType="int" keyProperty="faqNo">
+			SELECT faq_no_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO FAQ ( faq_no, faq_title, faq_content, admin_id )
+		VALUES ( #{faqNo}, #{faqTitle}, #{faqContent}, #{adminId} )
+	</insert>
+
+	<update id="update" parameterType="com.skip.www.dto.FAQ">
+		UPDATE FAQ
+		SET faq_title = #{faqTitle}
+			, faq_content = #{faqContent}
+		WHERE faq_no = #{faqNo}
+	</update>
+	
+	<delete id="delete" parameterType="com.skip.www.dto.FAQ">
+		DELETE FAQ
+		WHERE faq_no = #{faqNo}
+	</delete>
 </mapper>

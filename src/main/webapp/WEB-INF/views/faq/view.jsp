@@ -18,32 +18,51 @@ $(document).ready(function() {
 })
 </script>
 
-<div class="container">
+<style type="text/css">
+td.info {
+	width: 10%;
+}
+td:not(.info) {
+	width: 40%;
+}
+</style>
 
-<h1>FAQ</h1>
-<hr>
+<section class="bg0 p-t-23 p-b-140">
+	<div class="container">
+		<div class="p-b-10">
+			<h3 class="ltext-103 cl5">
+				FAQ
+			</h3>
+			<br><br><br>
+		</div>
 
-<table class="table table-bordered">
-<tr>
-	<td class="info">글번호</td><td>${viewFaq.faqNo }</td>
-	<td class="info">작성자</td><td>${viewFaq.adminId }</td>
-	<td class="info">작성일</td><td><fmt:formatDate value="${viewFaq.faqDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
-</tr>
-<tr>
-	<td class="info">글제목</td><td colspan="6">${viewFaq.faqTitle }</td>
-</tr>
-<tr>
-	<td class="info" colspan="6">본문</td>
-</tr>
-<tr>
-	<td colspan="6">${viewFaq.faqContent }</td>
-</tr>
-</table>
-
-<div class="text-center">
-	<button id="btnList" class="btn btn-default">목록</button>
-</div>
+		<table class="table table-bordered">
+		<tr>
+			<td class="info">글번호</td><td>${viewFaq.faqNo }</td>
+		</tr>
+		<tr>
+			<td class="info">작성자</td><td>${viewFaq.adminId }</td>
+		</tr>
+		<tr>
+			<td class="info">작성일</td><td><fmt:formatDate value="${viewFaq.faqDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
+		</tr>
+		<tr>
+			<td class="info">글제목</td><td colspan="3">${viewFaq.faqTitle }</td>
+		</tr>
+		<tr>
+			<td class="info" colspan="4">본문</td>
+		</tr>
+		<tr>
+			<td colspan="6">${viewFaq.faqContent }</td>
+		</tr>
+		</table>
+		
+		<div class="text-center">
+			<button id="btnList" class="btn btn-default">목록</button>
+		</div>
 
 </div><!-- .container end -->
+
+</section>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
