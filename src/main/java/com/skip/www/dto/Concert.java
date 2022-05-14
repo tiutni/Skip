@@ -22,9 +22,9 @@ public class Concert {
 	public String toString() {
 		return "Concert [conNo=" + conNo + ", conRegDate=" + conRegDate + ", conTitle=" + conTitle + ", conAddress="
 				+ conAddress + ", conContent=" + conContent + ", conStartDay=" + conStartDay + ", conEndDay="
-				+ conEndDay + ", con_reserveStartdayVIP=" + conReserveStartdayVIP + ", conReserveStartDay="
+				+ conEndDay + ", conReserveStartdayVIP=" + conReserveStartdayVIP + ", conReserveStartDay="
 				+ conReserveStartDay + ", conReserveEndDay=" + conReserveEndDay + ", conActivate=" + conActivate
-				+ ", adminId=" + adminId + "]";
+				+ ", adminId=" + adminId + ", conImgStoredName=" + conImgStoredName + "]";
 	}
 
 	public int getConNo() {
@@ -121,6 +121,14 @@ public class Concert {
 
 	public void setConReserveStartdayVIP(Date conReserveStartdayVIP) {
 		this.conReserveStartdayVIP = conReserveStartdayVIP;
+	}
+
+	public String getConImgStoredName() {
+		return conImgStoredName;
+	}
+
+	public void setConImgStoredName(String conImgStoredName) {
+		this.conImgStoredName = conImgStoredName;
 	}
 	
 	
