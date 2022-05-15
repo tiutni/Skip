@@ -121,6 +121,7 @@
 		WHERE rnum BETWEEN 1 AND 3
 	</select>
 	
+	
 	<select id="selectConcertByConNo" resultType="com.skip.www.dto.Concert" parameterType="int">
 		SELECT
 			con_no, admin_id, con_regdate, con_title
@@ -130,6 +131,7 @@
 		FROM concert c
 		WHERE con_no = #{conNo}
 	</select>
+	
 	
 	<select id="selectCntAllReview" resultType="int" parameterType="int">
 		SELECT count(*) FROM con_review
@@ -180,20 +182,24 @@
 		VALUES ( wish_no_seq.nextval, #{userNo}, #{showType}, #{conNo} )
 	</insert>
 	
+	
 	<select id="selectAllStar" parameterType="int" resultType="com.skip.www.dto.ConReview">
 		SELECT con_review_star FROM con_review
 		WHERE con_no = #{conNo}
 	</select>
+	
 	
 	<select id="cntAllUser" parameterType="int" resultType="int">
 		SELECT count(*) FROM con_review
 		WHERE con_no = #{conNo}
 	</select>
 	
+	
 	<select id="selectUserNickByUserNo" resultType="string" parameterType="int">
 		SELECT user_nick FROM user_tb
 		WHERE user_no = #{userno}
 	</select>
+	
 	
 	<select id="selectCntOrderByConNoUserNo" parameterType="hashmap" resultType="int">
 		SELECT count(*) cnt FROM (
@@ -209,16 +215,19 @@
 		)
 	</select>
 	
+	
 	<select id="selectCntReviewByConNoUserNo" parameterType="hashmap" resultType="int">
 		SELECT count(*) cnt FROM con_review
 		WHERE con_no = #{conNo}
 		AND user_no = #{userNo}
 	</select>
 	
+	
 	<select id="selectConRoundListByConNo" parameterType="int" resultType="com.skip.www.dto.ConRound">
 		 SELECT * FROM con_round
 		 WHERE con_no = #{conNo}
 	</select>
+	
 	
 	<delete id="deleteConReviewByConReviewNo" parameterType="int">
 		DELETE FROM con_review
@@ -253,6 +262,7 @@
 		) PRICE
 		WHERE rnum = 1
 	</select>
+	
 	
 	<select id="selectBasicSeatPriceByConNo" parameterType="int" resultType="int">
 		SELECT seat_price FROM (

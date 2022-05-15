@@ -34,7 +34,7 @@ public class ConcertServiceImpl implements ConcertService {
 			page = Integer.parseInt(curPage);
 		}
 		
-		int listCount = 9;
+		int listCount = 12;
 		
 		//게시글 수 조회하기
 		int totalCount = concertDao.selectCntAll(search);

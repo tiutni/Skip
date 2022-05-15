@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
+
+<c:import url="/WEB-INF/views/layout/header.jsp" />
 
 <!-- Bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -12,31 +11,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-.container {
-	width: 100%;
-	height: 300px;
-	background: #ccc;
-}
-
-.body {
-	width: 1100px;
-	height: 830px;
-	margin: 0 auto;
-}
-
-#search {
-	width: 250px;
-	height: 31.5px;
-	border-radius: 3px;
-}
-
-#btnSearch {
-	width: 35px;
-	height: 32px;
-	margin-left: -7px;
-	padding: 0;
-	border-radius: 3px;
-}
 
 a {
 	color: black;
@@ -48,73 +22,125 @@ a:hover {
 }
 
 </style>
+<script>
+$(document).ready(function() {
+	$("#btnSearch").click(function() {
+		$("#searchForm").submit();
+		
+	})
+
+})
+
+</script>
 
 <meta charset="UTF-8">
 <title>SKIP</title>
 </head>
 <body>
 
-<div class="container">
-<br><br><br>
-<h1 style="text-align: center;">SKIP</h1>
-<form action="/concert/list" method="get" style="text-align: center;">
-<input type="text" id="search" name="search" placeholder="검색어를 입력하세요"/>
-<button id="btnSearch">검색</button>
-</form>
-</div>
+<br><br><br><br>
+<div class="main" style="height: 2600px; width: 1170px; margin: 0 auto;">
 
-<div class="body">
-<br>
-<h3 style="margin-left: 30px;">현재 가장 인기있는 TOP3 공연</h3>
-<c:forEach items="${topList }" var="i">
-	<div style="width: 300px; height: 245px; display: inline-block; margin: 30px; text-align: center;">
-		<div style="width: 300px; height: 210px;">
-			<a href="/concert/view?conNo=${i.conNo }">
-				<img src="/upload/${i.conImgStoredName }" style="height: 210px; width:200px;">
-			</a>
-		</div>
-		<br>
-		<a href="/concert/view?conNo=${i.conNo }"><span><b>${i.conTitle }</b></span></a><br>
-<%-- 		<span style="font-size: 12px;">${i.exAddress }</span> --%>
+	<div class="p-b-10">
+		<h3 class="ltext-103 cl5">현재 가장 인기있는 TOP3 공연</h3>
+		<hr>
+	</div> <!-- class="p-b-10" end -->
+
+	<!-- 공연 top3 리스트 -->
+	<div style="height: 649px; position:relative">
+		<c:forEach items="${topList }" var="i">
+		<div class="concertTop3List" style="width: 33%; height: 610px; padding: 15px; padding-bottom: 35px; display: inline-block;">
+			<div class="block2">
+				<div class="block2-pic hov-img0">
+					<a href="/concert/view?conNo=${i.conNo }">
+						<img src="/upload/${i.conImgStoredName }" style="width: 360px; height:482px;">
+					</a>
+				</div> <!-- "concertImg" -->
+				<div class="block2-txt flex-w flex-t p-t-14">
+					<div class="block2-txt-child1 flex-col-l">
+						<a href="/concert/view?conNo=${i.conNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><b>${i.conTitle }</b></a>
+						<span>${i.conAddress }</span>
+					</div> <!-- "block2-txt-child1 flex-col-l " -->
+				</div> <!-- "block2-txt flex-w flex-t p-t-14" -->
+			</div> <!-- "block2" -->
+		</div> <!-- "concertTop3List" -->
+		</c:forEach>
+	
+		<div class="flex-w flex-sb-m p-b-52">
+			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+				<button onclick="location.href='/concert/list'" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">Concerts</button>
+				<button onclick="location.href='/exhibition/list'" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">Exhibitions</button>
+			</div> <!-- class="flex-w flex-sb-m p-b-52"  -->
+	
+				<!-- 검색창 -->
+			<div class="flex-w flex-c-m m-tb-10">
+				<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+					<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+					<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+					 Search 
+				</div> <!-- "flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search" -->
+			</div><!-- "flex-w flex-c-m m-tb-10" -->
+			
+			<div class="dis-none panel-search w-full p-t-10 p-b-15">
+				<div class="bor8 dis-flex p-l-15">
+						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnSearch" style="margin: 0;">
+							<i class="zmdi zmdi-search">
+							</i>
+						</button>
+					<form action="/concert/list" id="searchForm" method="get" style="text-align: center;">
+						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" id="search" name="search" placeholder="검색어를 입력하세요"/>
+					</form>
+				</div> <!-- "bor8 dis-flex p-l-15" -->
+			</div> <!-- "dis-none panel-search w-full p-t-10 p-b-15" -->
+			
+		</div> <!-- div class="flex-w flex-l-m filter-tope-group m-tb-10" -->	
+		
+	</div> <!-- "row isotope-grid" -->
+	
+	<div class="flex-w flex-sb-m p-b-52">
+		<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+			<!-- 최신순 검색 버튼 -->
+			<form action="/concert/list" method="get">
+				<input type="hidden" name="sort" value="recent"/>
+				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">최신순</button>
+			</form>
+			
+			<!-- 인기순 검색 버튼 -->
+			<form action="/concert/list" method="get">
+				<input type="hidden" name="sort" value="popular"/>
+				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">인기순</button>
+			</form>
+		</div> <!-- "flex-w flex-l-m filter-tope-group m-tb-10" -->
+	</div><!-- class="flex-w flex-sb-m p-b-52"  -->
+	
+	<div style="height: 1673px; position: relative;">
+		<c:if test="${not empty search }">
+		<h3 style="margin-left: 30px;">"${search }"의 검색 결과</h3>
+		</c:if>
+		
+		<c:forEach items="${conList }" var="i">
+			<div class="concertList" style="width: 24.25%; height: 500px; padding: 15px; padding-bottom: 35px; display: inline-block;">
+				<div class="block2">
+					<div class="block2-pic hov-img0">
+						<a href="/concert/view?conNo=${i.conNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+							<img src="/upload/${i.conImgStoredName }" style="width: 255px; height:350px;">
+						</a>
+					</div> <!-- "block2-pic hov-img0 label-new" -->
+				</div> <!-- "block2" -->
+				
+				<div class="block2-txt flex-w flex-t p-t-14">
+					<div class="block2-txt-child1 flex-col-l">
+						<a href="/concert/view?conNo=${i.conNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><b>${i.conTitle }</b></a>
+						<span>${i.conAddress }</span>
+					</div> <!-- "block2-txt-child1 flex-col-l " -->
+				</div> <!-- "block2-txt flex-w flex-t p-t-14" -->
+			</div> <!-- "concertList" -->
+		</c:forEach>
+
+		<!-- 페이징 버튼 생성 -->
+		<c:import url="conpaging.jsp" />
+	
 	</div>
-</c:forEach>
-<hr>
-<button onclick="location.href='/concert/list'" style="margin-left: 30px;">공연</button>
-<button onclick="location.href='/exhibition/list'">전시회</button>
-<br>
-<div class="btnSort" style="margin-left: 30px; margin-top: 10px; display: inline-block;">
-<form action="/concert/list" method="get">
-<input type="hidden" name="sort" value="recent"/>
-<button>최신순</button>
-</form>
-</div>
-<div class="btnSort" style="display: inline-block;">
-<form action="/concert/list" method="get">
-<input type="hidden" name="sort" value="popular"/>
-<button>인기순</button>
-</form>
-</div>
 
-<hr>
-<c:if test="${not empty search }">
-<h3 style="margin-left: 30px;">"${search }"의 검색 결과</h3>
-</c:if>
-<c:forEach items="${conList }" var="i">
-	<div style="width: 300px; height: 245px; display: inline-block; margin: 30px; text-align: center;">
-		<div style="width: 300px; height: 210px;">
-			<a href="/concert/view?conNo=${i.conNo }">
-				<img src="/upload/${i.conImgStoredName }" style="height: 210px; width:200px;">
-			</a>
-		</div>
-		<br>
-		<a href="/concert/view?conNo=${i.conNo }"><span><b>${i.conTitle }</b></span></a><br>
-<%-- 		<span style="font-size: 12px;">${i.conAddress }</span> --%>
-	</div>
-</c:forEach>
-<br><br>
-<c:import url="conpaging.jsp" />
-
-</div>
-
-</body>
-</html>
+</div> <!-- div container -->
+<c:import url="/WEB-INF/views/layout/footer.jsp" />

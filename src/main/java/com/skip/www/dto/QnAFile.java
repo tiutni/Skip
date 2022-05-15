@@ -5,12 +5,15 @@ public class QnAFile {
 	private int qnaFileNo;
 	private String qnaFileOriginName;
 	private String qnaFileStoredName;
+	private String qnaFilePath;
+	private int qnaFileSize;
 	private int qnaNo;
 	
 	@Override
 	public String toString() {
-		return "QnAFile [qnaFileNo=" + qnaFileNo + ", qnaFileOriginName=" + qnaFileOriginName + ", qnaFileStoredName="
-				+ qnaFileStoredName + ", qnaNo=" + qnaNo + "]";
+		return "QnAFile [qnaFileNo=" + qnaFileNo + ", qnaFileOriginName=" + qnaFileOriginName + ", qnaFilePath="
+				+ qnaFilePath + ", qnaFileSize=" + qnaFileSize + ", qnaFileStoredName=" + qnaFileStoredName + ", qnaNo="
+				+ qnaNo + "]";
 	}
 
 	public int getQnaFileNo() {
@@ -43,6 +46,22 @@ public class QnAFile {
 
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
+	}
+
+	public String getQnaFilePath() {
+		return qnaFilePath;
+	}
+
+	public void setQnaFilePath(String qnaFilePath) {
+		this.qnaFilePath = qnaFilePath;
+	}
+
+	public int getQnaFileSize() {
+		return qnaFileSize;
+	}
+
+	public void setQnaFileSize(int qnaFileSize) {
+		this.qnaFileSize = qnaFileSize;
 	}
 	
 }	
