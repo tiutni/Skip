@@ -47,4 +47,47 @@ public interface QnaService {
 	 */
 	public void write(QnA qna, MultipartFile file);
 
+	/**
+	 * 문의글 번호를 이용하여 업로드된 파일 정보를 조회한다
+	 * 
+	 * @param viewQna - 조회할 문의글 번호를 가진 객체
+	 * @return 첨부파일의 정보
+	 */
+	public QnAFile getAttachFile(QnA viewQna);
+
+	/**
+	 * 파일 번호를 이용하여 업로드된 파일 정보를 조회한다
+	 * 
+	 * @param qnaFile - 조회할 파일 번호를 가진 객체
+	 * @return 첨부파일의 정보
+	 */
+	public QnAFile getFile(QnAFile qnaFile);
+
+	/**
+	 * 문의글 수정 처리
+	 * 첨부파일 수정 처리
+	 * 
+	 * @param qna - 문의글 정보 객체
+	 */
+	public void update(QnA qna);
+	
+	/**
+	 * 문의글 수정 처리
+	 * 첨부파일 수정 처리
+	 * 
+	 * @param qna - 문의글 정보 객체
+	 */
+	public void update(QnA qna, MultipartFile file);
+
+	/**
+	 * 문의글 + 첨부파일 삭제 처리
+	 * 
+	 * @param qna - 삭제할 문의글의 글번호
+	 */
+	public void delete(QnA qna);
+
+	//관리자
+	public void admdelete(QnA qna);
+
+
 }

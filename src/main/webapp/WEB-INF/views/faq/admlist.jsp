@@ -38,11 +38,7 @@ table, th {
   
                             <li class="breadcrumb-item active">FAQ Management</li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                FAQ 관리 FAQ Management
-                            </div>
-                        </div>
+                        
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -52,22 +48,12 @@ table, th {
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>작성일</th>
+                                            <th width=10%>No</th>
+                                            <th width=50%>제목</th>
+                                            <th width=20%>작성자</th>
+                                            <th width=20%>작성일</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>작성일</th>
-                                        </tr>
-                                    </tfoot>
-
-
 
  									<tbody>
 										<c:forEach items="${list }" var="faq">

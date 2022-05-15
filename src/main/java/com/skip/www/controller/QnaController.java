@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.QnA;
+import com.skip.www.dto.QnAFile;
 import com.skip.www.service.face.QnaService;
 import com.skip.www.util.Paging;
 
@@ -77,6 +78,10 @@ public class QnaController {
 		//모델값 전달
 		model.addAttribute("viewQna", viewQna);
 		
+		//첨부파일 정보 모델 값 전달
+		QnAFile qnaFile = qnaService.getAttachFile(viewQna);
+		model.addAttribute("qnaFile", qnaFile);
+		
 		return "qna/view";
 	}
 				@RequestMapping(value="qna/admview") //관리자가 볼 수 있는 상세보기 입니다
@@ -94,6 +99,10 @@ public class QnaController {
 					
 					//모델값 전달
 					model.addAttribute("viewQna", viewQna);
+					
+					//첨부파일 정보 모델 값 전달
+					QnAFile qnaFile = qnaService.getAttachFile(viewQna);
+					model.addAttribute("qnaFile", qnaFile);
 					
 					return "qna/admview";
 				}
@@ -129,8 +138,46 @@ public class QnaController {
 		//수정할 문의글의 상세보기
 		qna = qnaService.view(qna);
 		model.addAttribute("updateQna", qna);
-			
+		
+		//첨부파일 정보 모델 값 전달
+		QnAFile qnaFile = qnaService.getAttachFile(qna);
+		model.addAttribute("qnaFile", qnaFile);
+		
 		return "qna/update";
 		}
+	
+	@PostMapping("qna/update")
+	public String updateProcess(QnA qna, MultipartFile file) {
+		logger.info("/qna/update[POST] - {}", qna);
 		
+		qnaService.update(qna, file);
+		
+		return "redirect:/qna/view?qnaNo=" + qna.getQnaNo();
+	}
+	
+		
+	@RequestMapping("qna/download")
+	public String download(QnAFile qnaFile, Model model) {
+		
+		qnaFile = qnaService.getFile(qnaFile);
+		model.addAttribute("downFile", qnaFile);
+		
+		return "down";
+	}
+	
+	@RequestMapping("qna/delete")
+	public String delete(QnA qna) {
+		qnaService.delete(qna);
+		
+		return "redirect:/qna/list";
+	}
+	
+	//관리자
+	@RequestMapping("qna/admdelete")
+	public String admdelete(QnA qna) {
+		qnaService.admdelete(qna);
+		
+		return "redirect:/qna/admlist";
+	}
+	
 }

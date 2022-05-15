@@ -28,11 +28,7 @@ table, th {
   
                             <li class="breadcrumb-item active">QnA Management</li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                QnA 관리 QnA Management
-                            </div>
-                        </div>
+                        
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -42,24 +38,13 @@ table, th {
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>회원 번호</th>
-                                            <th>문의 제목</th>
-                                            <th>문의 내용</th>
-                                            <th>문의 날짜</th>
+                                            <th width=10%>No</th>
+                                            <th width=20%>회원 번호</th>
+                                            <th width=40%>문의 제목</th>
+                                            <th width=40%>문의 내용</th>
+                                            <th width=20%>문의 날짜</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                          <tr>
-                                            <th>No</th>
-                                            <th>회원 번호</th>
-                                            <th>문의 제목</th>
-                                            <th>문의 내용</th>
-                                            <th>문의 날짜</th>
-                                        </tr>
-                                    </tfoot>
-
-
 
  									<tbody>
 										<c:forEach items="${list }" var="qna">

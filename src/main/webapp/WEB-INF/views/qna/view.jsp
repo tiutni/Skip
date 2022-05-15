@@ -44,19 +44,25 @@ table, th {
 <table class="table table-bordered">
 <tr>
 	<td class="info">글번호</td><td>${viewQna.qnaNo }</td>
+</tr>
+<tr>	
 	<td class="info">유저번호</td><td>${viewQna.qnaNo }</td>
+</tr>
+<tr>
 	<td class="info">문의날짜</td><td><fmt:formatDate value="${viewQna.qnaDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 </tr>
 	
 <tr>
-	<td class="info">문의제목</td><td colspan="5">${viewQna.qnaTitle }</td>
+	<td class="info">문의제목</td><td>${viewQna.qnaTitle }</td>
 </tr>
-	
 <tr>
-	<td class="info">문의내용</td><td colspan="5">${viewQna.qnaContent }</td>
+	<td class="info">문의내용</td><td>${viewQna.qnaContent }</td>
+</tr>
+<tr>
+	<td class="info">첨부파일</td><td><a href="/qna/download?qnaFileNo=${qnaFile.qnaFileNo }">${qnaFile.qnaFileOriginName }</a>
+	</td>
 </tr>
 </table>
-
 
 <div class="text-center">
 	<button id="btnList" class="btn btn-default">목록</button>

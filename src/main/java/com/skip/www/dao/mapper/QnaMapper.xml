@@ -61,5 +61,32 @@
 		VALUES (qna_file_no_seq.nextval, #{qnaFileOriginName}, #{qnaFileStoredName}, #{qnaNo} )
 	</insert>
 	
+	<select id="selectQnaFileByQnaNo" resultType="com.skip.www.dto.QnAFile" parameterType="com.skip.www.dto.QnA">
+		SELECT qna_file_no, qna_file_origin_name, qna_file_stored_name, qna_no FROM qna_file
+		WHERE qna_no = #{qnaNo}
+	</select>
+	
+	<select id="selectQnaFileByQnaFileNo" resultType="com.skip.www.dto.QnAFile" parameterType="com.skip.www.dto.QnAFile">
+		SELECT qna_file_no, qna_file_origin_name, qna_file_stored_name, qna_no FROM qna_file
+		WHERE qna_file_no = #{qnaFileNo}
+	</select>
+	
+	<update id="update" parameterType="com.skip.www.dto.QnA">
+		UPDATE qna
+		SET qna_title = #{qnaTitle}
+			, qna_content = #{qnaContent}
+		WHERE qna_no = #{qnaNo}		
+	</update>
+	
+	<delete id="deleteFile" parameterType="com.skip.www.dto.QnA">
+		DELETE qna_file
+		WHERE qna_no = #{qnaNo}
+	</delete>
+	
+	<delete id="delete" parameterType="com.skip.www.dto.QnA">
+		DELETE qna
+		WHERE qna_no = #{qnaNo}
+	</delete>
+	
 </mapper>
 

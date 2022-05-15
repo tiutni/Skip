@@ -49,4 +49,41 @@ public interface QnaDao {
 	 */
 	public void insertFile(QnAFile qnaFile);
 
+	/**
+	 * 문의글 번호를 이용하여 첨부파일 정보를 조회한다
+	 * 
+	 * @param viewQna - 조회할 문의글 번호
+	 * @return 조회된 첨부파일 정보
+	 */
+	public QnAFile selectQnaFileByQnaNo(QnA viewQna);
+
+	/**
+	 * 파일 번호를 이용하여 첨부파일 정보를 조회한다
+	 * 
+	 * @param qnaFile - 조회할 첨부파일 번호
+	 * @return 조회된 첨부파일 정보
+	 */
+	public QnAFile selectQnaFileByQnaFileNo(QnAFile qnaFile);
+
+	/**
+	 * 문의글 정보 수정
+	 * 
+	 * @param qna - 수정할 내용을 가진 문의글 객체
+	 */
+	public void update(QnA qna);
+
+	/**
+	 * 문의글을 참조하고 있는 모든 첨부파일을 삭제한다
+	 * 
+	 * @param qna - 첨부파일을 삭제할 문의글 번호 객체
+	 */
+	public void deleteFile(QnA qna);
+
+	/**
+	 * 문의글 정보 삭제
+	 * 
+	 * @param qna - 삭제할 문의글의 글번호
+	 */
+	public void delete(QnA qna);
+
 }

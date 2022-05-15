@@ -14,7 +14,7 @@ $(document).ready(function() {
 	})
 	
 	$("#btnDelete").click(function() {
-		location.href = "/qna/delete?qnaNo=${viewQna.qnaNo}"
+		location.href = "/qna/admdelete?qnaNo=${viewQna.qnaNo}"
 	})
 	
 })
@@ -62,6 +62,10 @@ $(document).ready(function() {
 								<tr>
 									<td colspan="6">${viewQna.qnaContent }</td>
 								</tr>
+								<tr>
+									<td class="info">첨부파일</td><td><a href="/qna/download?qnaFileNo=${qnaFile.qnaFileNo }">${qnaFile.qnaFileOriginName }</a></td>
+								</tr>
+								
 							</table>	
 							
 							<div class="text-center">
@@ -69,6 +73,7 @@ $(document).ready(function() {
 									<button id="btnDelete" class="btn btn-danger">삭제</button>
 								
 							</div>
+							
 							
 						</div>
 							

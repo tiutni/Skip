@@ -39,11 +39,7 @@ table {
   
                             <li class="breadcrumb-item active">Member Management</li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                회원 관리 Member Management
-                            </div>
-                        </div>
+                        
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -61,18 +57,6 @@ table {
                                             <th>회원 관리</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>회원 아이디</th>
-                                            <th>회원 닉네임</th>
-                                            <th>전시 회원등급</th>
-                                            <th>공연 회원등급</th>
-                                            <th>회원 관리</th>
-                                        </tr>
-                                    </tfoot>
-
-
 
  									<tbody>
 									<c:forEach items="${list }" var="user">
