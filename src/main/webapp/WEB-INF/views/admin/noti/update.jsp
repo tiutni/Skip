@@ -7,12 +7,13 @@
 <c:import url="/WEB-INF/views/admlayout/header.jsp" />
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <!-- 스마트 에디터 2 로드 -->
 <script type="text/javascript" src="/resources/se2/js/service/HuskyEZCreator.js"></script>
 
 <script type="text/javascript">
 function submitContents(elClickedObj) {
-	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", [])
+	oEditors.getById["notiContent"].exec("UPDATE_CONTENTS_FIELD", [])
 	
 	try {
 		elClickedObj.form.submit();
@@ -20,31 +21,31 @@ function submitContents(elClickedObj) {
 }
 
 $(document).ready(function() {
+	// 등록 버튼
 	$("#btnUpdate").click(function() {
 		submitContents($("#btnUpdate"))
 		
 		$("form").submit();
 	})
-})
-</script>
-
-<script type="text/javascript">
-$(document).ready(function() {
+	
+	// 취소 버튼
 	$("#cancel").click(function() {
 		history.go(-1)
 	})
-
 	
+	// 첨부파일 보여주기
 	if( ${empty notiFile} ) {
 		$("#newFile").show()
 	} else {
 		$("#originFile").show()
 	}
 	
+	// 첨부파일 삭제
 	$("#deleteFile").click(function() {
 		$("#originFile").toggleClass("through")
 		$("#newFile").toggle();
 	})
+
 })
 </script>
 
@@ -52,14 +53,33 @@ $(document).ready(function() {
 var oEditors = [];
 nhn.husky.EZCreator.createInIFrame({
 	oAppRef: oEditors
-	, elPlaceHolder: "content"
+	, elPlaceHolder: "notiContent"
 	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
 	, fCreator: "createSEditor2"
 })
 </script>
 
 
+
 <style type="text/css">
+table {
+	table-layout: fixed;
+}
+
+table, th {
+	text-align: center;
+}
+
+a {
+	text-decoration-line: none;
+	color: white;
+}
+
+#btn{
+	display: flex;
+    justify-content: space-around;
+}
+
 .through {
 	text-decoration: line-through;
 }
@@ -73,7 +93,55 @@ nhn.husky.EZCreator.createInIFrame({
 #newFile, #originFile {
 	display: none;
 }
+
 </style>
+
+
+<div class="container">
+
+	<div id="layoutSidenav_content">
+    	<main>
+	        <div class="container-fluid px-4">
+	            <h1 class="mt-4">공지사항 수정</h1>
+	            
+           		<ol class="breadcrumb mb-4">
+                	<li class="breadcrumb-item active">Edit Notice details</li>
+           		</ol>
+	
+				<form action="/admin/noti/update" method="post" enctype="multipart/form-data">
+
+					<div class="form-group">
+						<label for="write">작성자</label>
+						<input type="text" id="write" value="${adminId }" class="form-control" readonly="readonly">
+					</div>
+					
+					<div class="form-group">
+						<label for="title">제목</label>
+						<input type="text" id="notiTitle" name="notiTitle" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="notiContent">본문</label>
+						<textarea rows="10" style="width: 100%;" id="notiContent" name="notiContent"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="notiFile">첨부파일</label>
+						<input type="file" id="notiFile" name="notiFile">
+					</div>
+			
+					<br><br>
+					<div id="btn">
+						<button class="btn btn-primary" id="btnWrite">등록</button>
+						<input type="reset" id="cancel" class="btn btn-danger" value="취소">
+						
+					</div>
+	
+				</form>
+
+			</div>
+		</main>
+	</div>
+</div><!-- .container end -->
+
 
 
 

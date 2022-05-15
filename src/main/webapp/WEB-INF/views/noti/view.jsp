@@ -13,20 +13,13 @@ $(document).ready(function() {
 	$("#btnList").click(function() {
 		location.href = "/noti/list"
 	})
-	
-	$("#btnUpdate").click(function() {
-		location.href = "/noti/update?notiNo=${viewNoti.notiNo}"
-	})
-	
-	$("#btnDelete").click(function() {
-		location.href = "/noti/delete?notiNo=${viewNoti.notiNo}"
-	})
 })
 </script>
 
 <style type="text/css">
 td.info {
 	width: 10%;
+	text-align: center;
 }
 td:not(.info) {
 	width: 40%;
@@ -72,7 +65,7 @@ td:not(.info) {
 		
 		<br><br><br>
 		<div class="text-center">
-			<button id="btnList" class="btn btn-default">목록</button>
+			<button id="btnList" class="btn btn-primary">목록</button>
 		</div>
 		
 

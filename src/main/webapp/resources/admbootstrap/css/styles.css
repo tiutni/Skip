@@ -11630,23 +11630,24 @@ body {
 
 .dataTable-table > thead > tr > th {
   vertical-align: bottom;
-  text-align: left;
+  text-align: center;
   border-bottom: none;
 }
 
 .dataTable-table > tfoot > tr > th {
   vertical-align: bottom;
-  text-align: left;
+  text-align: center;
 }
 
 .dataTable-table th {
   vertical-align: bottom;
-  text-align: left;
+  text-align: center;
 }
 
 .dataTable-table th a {
   text-decoration: none;
   color: inherit;
+  text-align: center;
 }
 
 .dataTable-sorter {
