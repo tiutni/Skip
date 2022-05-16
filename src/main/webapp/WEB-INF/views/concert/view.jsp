@@ -380,6 +380,8 @@ $(document).ready(function() {
 
 <div class="select" style="width: 330px; height: 318px; float: right; margin-right: 80px; margin-top: 30px;">
 <form action="/pay" method="post" id="payForm">
+<input type="hidden" name="userNo" value="${userNo }" />
+<input type="hidden" name="conNo" value="${viewConcert.conNo }" />
 <fieldset style="border: 2px solid #ccc; border-radius: 10px; height: 318px;">
 <br>
 <span style="font-size: 23px; margin-left:75px; margin-top: 10px;"><b>인원 및 날짜 선택</b></span><br>

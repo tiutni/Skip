@@ -1,8 +1,5 @@
 package com.skip.www.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -26,7 +23,10 @@ public class PayController {
 	
 	@RequestMapping(value="/pay", method=RequestMethod.POST)
 	public void testPay(
-			String count
+			int userNo
+			, int conNo
+			, String exNo
+			, String count
 			, String price
 			, String date
 			, String round
@@ -35,6 +35,9 @@ public class PayController {
 			) {
 		
 		//미완성코드 값만 잘 받아오나 실험해본 코드입니다.
+		logger.info("userNo : {}", userNo);
+		logger.info("conNo : {}", conNo);
+		logger.info("exNo : {}", exNo);
 		logger.info("count : {}", count);
 		logger.info("price : {}", price);
 		logger.info("date : {}", date);

@@ -305,6 +305,8 @@ function count_ticket(type) {
 
 <div class="select" style="width: 330px; height: 290px; float: right; margin-right: 80px; margin-top: 30px;">
 <form action="/pay" method="post" id="payForm">
+<input type="hidden" name="userNo" value="${userNo }" />
+<input type="hidden" name="exNo" value="${viewExhibition.exNo }" />
 <fieldset style="border: 2px solid #ccc; border-radius: 10px;">
 <br>
 <span style="font-size: 23px; margin-left:75px; margin-top: 10px;"><b>인원 및 날짜 선택</b></span><br>
