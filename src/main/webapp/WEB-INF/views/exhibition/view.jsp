@@ -361,9 +361,9 @@ function count_ticket(type) {
 <br>
 <h1 style="margin-left: 50px;">리뷰 Review (${cntReview })</h1>
 <span style="margin-left: 50px; font-size: 25px;"><b>평점</b></span><span style="margin-left: 5px; font-size: 23px;">${exStar }</span>
-<c:if test="${not empty userNo and isTicketing and isReview}">
+<%-- <c:if test="${not empty userNo and isTicketing and isReview}"> --%>
 <button id="btnWrite" style="margin-left: 10px;"><b>작성하기</b></button>
-</c:if>
+<%-- </c:if> --%>
 <br>
 
 <div id="popup" style="text-align: center;">
