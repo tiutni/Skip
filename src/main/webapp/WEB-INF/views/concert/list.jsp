@@ -38,11 +38,13 @@ $(document).ready(function() {
 		<c:forEach items="${topList }" var="i">
 		<div class="concertTop3List" style="width: 33%; height: 610px; padding: 15px; padding-bottom: 35px; display: inline-block;">
 			<div class="block2">
+				<!-- 공연 사진 -->
 				<div class="block2-pic hov-img0">
 					<a href="/concert/view?conNo=${i.conNo }">
 						<img src="/upload/${i.conImgStoredName }" style="width: 360px; height:482px;">
 					</a>
 				</div> <!-- class="block2-pic hov-img0" -->
+				<!-- 공연 정보(이름, 주소) -->
 				<div class="block2-txt flex-w flex-t p-t-14">
 					<div class="block2-txt-child1 flex-col-l">
 						<a href="/concert/view?conNo=${i.conNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><b>${i.conTitle }</b></a>
@@ -52,14 +54,15 @@ $(document).ready(function() {
 			</div> <!-- "block2" -->
 		</div> <!-- "concertTop3List" -->
 		</c:forEach>
-	
+		
+		<!-- 공연/전시회 이동 버튼 -->
 		<div class="flex-w flex-sb-m">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 				<button onclick="location.href='/concert/list'" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">Concerts</button>
 				<button onclick="location.href='/exhibition/list'" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">Exhibitions</button>
 			</div> <!-- class="flex-w flex-sb-m p-b-52"  -->
 	
-			<!-- 검색창 -->
+			<!-- 검색 버튼 -->
 			<div class="flex-w flex-c-m m-tb-10">
 				<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 					<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
@@ -68,6 +71,7 @@ $(document).ready(function() {
 				</div> <!-- "flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search" -->
 			</div><!-- "flex-w flex-c-m m-tb-10" -->
 			
+			<!-- 검색 폼 -->
 			<div class="dis-none panel-search w-full p-t-10 p-b-15">
 				<div class="bor8 dis-flex p-l-15">
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnSearch" style="margin: 0;">
@@ -84,20 +88,22 @@ $(document).ready(function() {
 		
 	</div>
 	
+	<!-- 줄맞추기용 div -->
 	<div class="flex-w flex-sb-m p-b-5">
 		<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 		</div>	
 	</div>
 	
+	<!-- 최신순/인기순 정렬 버튼 -->
 	<div class="flex-w flex-sb-m p-b-52">
 		<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-			<!-- 최신순 검색 버튼 -->
+			<!-- 최신순 검색 버튼 폼 -->
 			<form action="/concert/list" method="get">
 				<input type="hidden" name="sort" value="recent"/>
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">최신순</button>
 			</form>
 			
-			<!-- 인기순 검색 버튼 -->
+			<!-- 인기순 검색 버튼 폼 -->
 			<form action="/concert/list" method="get">
 				<input type="hidden" name="sort" value="popular"/>
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">인기순</button>
@@ -105,6 +111,7 @@ $(document).ready(function() {
 		</div> <!-- "flex-w flex-l-m filter-tope-group m-tb-10" -->
 	</div><!-- class="flex-w flex-sb-m p-b-52"  -->
 	
+	<!-- 공연 목록 -->
 	<div style="position: relative;">
 		<c:if test="${not empty search }">
 			<h3>"${search }"의 검색 결과</h3>
@@ -114,6 +121,7 @@ $(document).ready(function() {
 		<c:forEach items="${conList }" var="i">
 			<div class="concertList" style="width: 24.7%; height: 500px; padding: 15px; padding-bottom: 35px; display: inline-block;">
 				<div class="block2">
+					<!-- 공연 이미지 -->
 					<div class="block2-pic hov-img0">
 						<a href="/concert/view?conNo=${i.conNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 							<img src="/upload/${i.conImgStoredName }" style="width: 249px; height:350px;">
@@ -122,6 +130,7 @@ $(document).ready(function() {
 				</div> <!-- "block2" -->
 				
 				<div class="block2-txt flex-w flex-t p-t-14">
+					<!-- 공연 정보(이름, 주소) -->
 					<div class="block2-txt-child1 flex-col-l">
 						<a href="/concert/view?conNo=${i.conNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><b>${i.conTitle }</b></a>
 						<span>${i.conAddress }</span>
@@ -135,7 +144,7 @@ $(document).ready(function() {
 	
 	</div>
 <br><br><br><br>
-</div> <!-- div "container-fluid" -->
+</div> <!-- "container-fluid" -->
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
 
