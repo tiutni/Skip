@@ -2,6 +2,7 @@ package com.skip.www.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.UUID;
@@ -114,12 +115,6 @@ public class AdminServiceImpl implements AdminService {
 		if( "".equals( exhibition.getExTitle() ) ) {
 			exhibition.setExTitle("(제목없음)");
 		}
-		
-//		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-//		exhibition.setExStartDayString(fm.format(exhibition.getExStartDay()));
-//		exhibition.setExEndDayString(fm.format(exhibition.getExEndDay()));
-//		exhibition.setExReserveStartDayString(fm.format(exhibition.getExReserveStartDay()));
-//		exhibition.setExReserveEndDayString(fm.format(exhibition.getExReserveEndDay()));
 		
 		adminDao.insertExhibition(exhibition);
 	

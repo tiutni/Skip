@@ -1,5 +1,6 @@
 package com.skip.www.service.face;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -97,6 +98,7 @@ public interface AdminService {
 	 * 
 	 * @param exhibition - 게시글 정보 DTO
 	 * @param file - 첨부파일 정보 DTO
+	 * @throws ParseException 
 	 */
 	public void writeExhibition(Exhibition exhibition, MultipartFile file);
 

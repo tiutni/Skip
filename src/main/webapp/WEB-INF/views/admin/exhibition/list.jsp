@@ -23,7 +23,15 @@ function btnActivate(exNo){
     }else{
         return;
     }
-}  
+}
+
+function btnDelete(exNo){
+    if(confirm("전시를 삭제하시겠습니까?") == true){
+        location.href="/admin/exhibition/delete?exNo="+ exNo;
+    }else{
+        return;
+    }
+}
 
 $(document).ready(function() {
 	//글쓰기 버튼 클릭
@@ -75,9 +83,8 @@ table, th, td {
 								<th style="width: 30%; text-align: center; vertical-align: middle;">제목</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">작성자</th>
 								<th style="width: 15%; text-align: center; vertical-align: middle;">작성일</th>
-<!-- 								<th style="width: 15%; text-align: center; vertical-align: middle;">예매율</th> -->
-<!-- 								<th style="width: 15%; text-align: center; vertical-align: middle;">평점</th> -->
 								<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
+								<th style="width: 10%; text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
 						
@@ -88,8 +95,6 @@ table, th, td {
 								<td style="vertical-align: middle; text-align: left;"><a href="/exhibition/view?exNo=${exhibition.exNo }">${exhibition.exTitle }</a></td>
 								<td style="vertical-align: middle;">${exhibition.adminId }</td>
 								<td style="vertical-align: middle;"><fmt:formatDate value="${exhibition.exRegDate }" pattern="yy-MM-dd"/></td>
-<!-- 								<td style="vertical-align: middle;">예매된 티켓수 / exhibition.exticketNum</td>  -->
-<!-- 								<td style="vertical-align: middle;">${exStar }</td> -->
 								<td style="vertical-align: middle;">
 									<c:choose>
 										<c:when test="${ 1 == exhibition.exActivate }">
@@ -99,6 +104,9 @@ table, th, td {
 											<button onclick="btnActivate(${exhibition.exNo})" id="btnActivate" class="btn btn-primary">재개하기</button>
 										</c:otherwise>
 									</c:choose>
+								</td>
+								<td style="vertical-align: middle;">
+									<button onclick="btnDelete(${exhibition.exNo})" id="btnDelete" class="btn btn-secondary">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
