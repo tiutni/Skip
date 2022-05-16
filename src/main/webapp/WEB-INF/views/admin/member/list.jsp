@@ -4,9 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:import url="/WEB-INF/views/admlayout/header.jsp" />
+
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+
 <script type="text/javascript">
+
+
+function button_event(e){
+    if(confirm("회원을 탈퇴시키겠습니까?") == true){
+        location.href="/admin/member/delete?userNo="+ e;
+    }else{
+        return;
+    }
+}      
 </script>
 
 <style type="text/css">
@@ -14,55 +25,56 @@ table {
 	table-layout: fixed;
 }
 
-table, th {
+table {
 	text-align: center;
 }
-</style>
 
+</style>
 
 <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">QnA 관리</h1>
+                        <h1 class="mt-4">회원 관리</h1>
                         <ol class="breadcrumb mb-4">
   
-                            <li class="breadcrumb-item active">QnA Management</li>
+                            <li class="breadcrumb-item active">Member Management</li>
                         </ol>
                         
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                QnA
+                                Member
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th width=10%>No</th>
-                                            <th width=20%>회원 번호</th>
-                                            <th width=40%>문의 제목</th>
-                                            <th width=40%>문의 내용</th>
-                                            <th width=20%>문의 날짜</th>
+                                            <th>No</th>
+                                            <th>회원 아이디</th>
+                                            <th>회원 닉네임</th>
+                                            <th>전시 회원등급</th>
+                                            <th>공연 회원등급</th>
+                                            <th>회원 관리</th>
                                         </tr>
                                     </thead>
 
  									<tbody>
-										<c:forEach items="${list }" var="qna">
-											<tr>
-												<td>${qna.qnaNo }</td>
-												<td>${qna.userNo }</td>
-												<td><a href="/qna/admview?qnaNo=${qna.qnaNo }">${qna.qnaTitle }</td>
-												<td>${qna.qnaContent }</td>
-												<td><fmt:formatDate value="${qna.qnaDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
+									<c:forEach items="${list }" var="user">
+										<tr>
+											<td>${user.userNo }</td>
+											<td><a href="/admin/member/view?userNo=${user.userNo }">${user.userId }</td>
+											<td>${user.userNick }</td>
+											<td>${user.exUserLevelNo }</td>
+											<td>${user.conUserLevelNo }</td>
+											<td><button onclick="button_event(${user.userNo})" id="btnDelete" class="btn btn-danger">탈퇴</button></td>
 											</tr>
-										</c:forEach>
-									</tbody>
+											</c:forEach>
+											</tbody>
+
                                 </table>
-                                
+                            
 							</div>
-								
                         </div>
-                        	 </div>
-								 
+                    </div>
                 </main>
          </div>

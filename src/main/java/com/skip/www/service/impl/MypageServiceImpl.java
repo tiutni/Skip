@@ -135,10 +135,9 @@ public  class MypageServiceImpl implements MypageService {
 		//파일이 저장될 이름
 		String qnaFileOriginName = qnafile.getOriginalFilename();
 		String qnaFileStoredName = qnaFileOriginName + UUID.randomUUID().toString().split("-")[4];
-		String qnaFilePath = "upload";
-		int qnaFileSize = (int)qnafile.getSize();
-		
-		
+
+
+
 		//저장될 파일 정보 객체
 		File dest = new File(storedFolder, qnaFileStoredName);
 
@@ -156,10 +155,9 @@ public  class MypageServiceImpl implements MypageService {
 		qnaFile.setQnaNo( qna.getQnaNo() );
 		qnaFile.setQnaFileOriginName(qnaFileOriginName);
 		qnaFile.setQnaFileStoredName(qnaFileStoredName);
-		qnaFile.setQnaFilePath(qnaFilePath);
-		qnaFile.setQnaFileSize(qnaFileSize);
 
-//		logger.info("qna파일{}- ",qna);
+
+		//		logger.info("qna파일{}- ",qna);
 		mypageDao.insertQnaFile(qnaFile);
 
 		logger.info("파일{}- ",qnaFile);
@@ -179,11 +177,65 @@ public  class MypageServiceImpl implements MypageService {
 
 	}
 
-//	@Override
-//	public void qnaupdate(QnA qna, MultipartFile file) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
+	@Override
+	public void update(QnA qna) {
+		if( "".equals( qna.getQnaTitle() ) ) {
+			qna.setQnaTitle("(제목없음)");
+		}
+		mypageDao.update(qna);
+
+	}
+
+	@Override
+	public void update(QnA qna , MultipartFile file) {
+		
+		//에러 날 듯 다시 확인하기
+		this.update(qna);
+
+		//-------------------------------------------
+
+		//업로드된 파일 처리
+
+		//빈 파일일 경우
+
+		if( file.getSize() <= 0 ) {
+			return;
+		}
+
+		//파일이 저장될 경로
+		String storedPath = context.getRealPath("upload");
+		File storedFolder = new File(storedPath);
+		if( !storedFolder.exists() ) {
+			storedFolder.mkdir();
+		}
+
+		//파일이 저장될 이름
+		String qnaFileOriginName = file.getOriginalFilename();
+		String qnaFileStoredName = qnaFileOriginName + UUID.randomUUID().toString().split("-")[4];
+
+		//저장될 파일 정보 객체
+		File dest = new File(storedFolder, qnaFileStoredName);
+
+		try {
+			file.transferTo(dest);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		QnAFile qnaFile = new QnAFile();
+		qnaFile.setQnaNo( qna.getQnaNo() );
+		qnaFile.setQnaFileOriginName(qnaFileOriginName);
+		qnaFile.setQnaFileStoredName(qnaFileStoredName);
+
+		//문의글에 연결되어있는 기존의 첨부파일 정보를 삭제한다
+		mypageDao.deleteFile(qna);
+
+		mypageDao.insertFile(qnaFile);
+	}
+
+
 
 }
 

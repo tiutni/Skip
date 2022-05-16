@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.QnA;
 import com.skip.www.dto.QnAFile;
+import com.skip.www.dto.QnAMent;
 import com.skip.www.util.Paging;
 
 public interface QnaService {
@@ -88,6 +89,7 @@ public interface QnaService {
 
 	//관리자
 	public void admdelete(QnA qna);
-
+	
+	public void write(QnAMent qnament);
 
 }

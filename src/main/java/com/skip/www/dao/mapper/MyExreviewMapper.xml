@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.skip.www.dao.face.MyExreviewDao">
+
+
+	<select id="selectCntAllReview" resultType="int" parameterType="int">
+		SELECT * FROM ex_review
+		WHERE user_no = #{userNo}
+	</select>
+	
+<!-- 	<select id="selectConReviewListByConNo" resultType="com.skip.www.dto.ConReview" parameterType="com.skip.www.util.Paging"> -->
+	<select id="selectExReviewListByExNo" resultType="hashmap" parameterType="com.skip.www.util.Paging">
+		SELECT * FROM (
+			 SELECT rownum rnum, EX.* FROM (
+  				SELECT
+        			ex_review_no, 
+        			R.ex_no, 
+        			R.user_no, 
+        			ex_review_date,
+        			ex_review_content, 
+        			ex_review_star,
+        			E.ex_title
+  				FROM ex_review R, exhibition E
+  				WHERE user_no = #{userNo}
+  					AND R.ex_no = E.ex_no
+  				ORDER BY ex_review_no DESC
+ 			) EX
+		) ExReview
+		WHERE rnum BETWEEN #{startNo} AND #{endNo}
+	</select>
+
+</mapper>

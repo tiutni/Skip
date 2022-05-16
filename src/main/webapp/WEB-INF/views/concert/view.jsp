@@ -21,6 +21,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	// 리뷰 삭제 버튼
 	$("#btnReviewDelete").click(function() {
 		if(confirm("리뷰를 삭제하시겠습니까?") == true) {
 			$("#reviewdelete").submit();
@@ -32,6 +33,7 @@ $(document).ready(function() {
 
 	});
 	
+	// 결제 버튼
 	$("#btnPayment").click(function() {
 		
 		var isUserNo = "${userNo}";
@@ -48,10 +50,12 @@ $(document).ready(function() {
 	
 	});
 	
+	// 리뷰 작성 버튼
 	$("#btnSubmit").click(function() {
 		$("#reviewForm").submit();
 	});
 	
+	// 위시리스트 목록에 있는지 구분
 	if(${isWish}) {
 		$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 25px; height: 25px;">');
 		
@@ -60,6 +64,7 @@ $(document).ready(function() {
 		
 	}
 	
+	// 위시리스트 버튼 클릭시 발생 하는 이벤트 ajax
 	$("#btnWish").click(function() {
 		
 		var isUserNo = "${userNo}";
@@ -104,6 +109,7 @@ $(document).ready(function() {
 		
 	});
 	
+	//회차 목록 변경시 이벤트
 	$("#round").change(function() {
 
 		$("#selectSeat").empty();
@@ -153,6 +159,7 @@ $(document).ready(function() {
 	
 	console.log("number : " + number);
 
+	// 좌석 변경시 발생하는 이벤트 ajax
 	$("#seat").change(function() {
 		
 		document.getElementById('selectSeat').innerHTML += (
@@ -433,9 +440,9 @@ $(document).ready(function() {
 <br>
 <h1 style="margin-left: 50px;">리뷰 Review (${cntReview })</h1>
 <span style="margin-left: 50px; font-size: 25px;"><b>평점</b></span><span style="margin-left: 5px; font-size: 23px;">${conStar }</span>
-<c:if test="${not empty userNo and isTicketing and isReview}">
+<%-- <c:if test="${not empty userNo and isTicketing and isReview}"> --%>
 <button id="btnWrite" style="margin-left: 10px;"><b>작성하기</b></button>
-</c:if>
+<%-- </c:if> --%>
 <br>
 
 <div id="popup" style="text-align: center;">

@@ -11,7 +11,7 @@
 
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
-		location.href = "/faq/write"
+		location.href = "/admin/faq/write"
 	})
 	
 })
@@ -59,9 +59,9 @@ table, th {
 										<c:forEach items="${list }" var="faq">
 											<tr>
 												<td>${faq.faqNo }</td>
-												<td><a href="/faq/admview?faqNo=${faq.faqNo }">${faq.faqTitle }</td>
+												<td><a href="view?faqNo=${faq.faqNo }">${faq.faqTitle }</td>
 												<td>${faq.adminId }</td>
-												<td><fmt:formatDate value="${faq.faqDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
+												<td><fmt:formatDate value="${faq.faqDate }" pattern="yy-MM-dd"/></td>
 											</tr>
 										</c:forEach>
 									</tbody>

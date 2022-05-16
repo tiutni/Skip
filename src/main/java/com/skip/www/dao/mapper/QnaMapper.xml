@@ -57,17 +57,17 @@
 	</insert>
 	
 	<insert id="insertFile" parameterType="com.skip.www.dto.QnAFile">
-		INSERT INTO QNA_FILE (qna_file_no, qna_file_origin_name, qna_file_stored_name, qna_no )
+		INSERT INTO QNA_FILE (qna_file_no, qna_file_originname, qna_file_storedname, qna_no )
 		VALUES (qna_file_no_seq.nextval, #{qnaFileOriginName}, #{qnaFileStoredName}, #{qnaNo} )
 	</insert>
 	
 	<select id="selectQnaFileByQnaNo" resultType="com.skip.www.dto.QnAFile" parameterType="com.skip.www.dto.QnA">
-		SELECT qna_file_no, qna_file_origin_name, qna_file_stored_name, qna_no FROM qna_file
+		SELECT qna_file_no, qna_file_originname, qna_file_storedname, qna_no FROM qna_file
 		WHERE qna_no = #{qnaNo}
 	</select>
 	
 	<select id="selectQnaFileByQnaFileNo" resultType="com.skip.www.dto.QnAFile" parameterType="com.skip.www.dto.QnAFile">
-		SELECT qna_file_no, qna_file_origin_name, qna_file_stored_name, qna_no FROM qna_file
+		SELECT qna_file_no, qna_file_originname, qna_file_storedname, qna_no FROM qna_file
 		WHERE qna_file_no = #{qnaFileNo}
 	</select>
 	
@@ -87,6 +87,18 @@
 		DELETE qna
 		WHERE qna_no = #{qnaNo}
 	</delete>
+	
+	
+	<insert id="insertQnAMent" parameterType="com.skip.www.dto.QnAMent">
+		
+		<selectKey order="BEFORE" resultType="int" keyProperty="qnaNo">
+				SELECT qna_ment_no_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO qna_ment (qna_ment_no, qna_no, qna_ment_content, admin_id)
+		VALUES ( qna_ment_no_seq.nextval, #{qnaNo}, #{qnaMentContent}, #{adminId} )
+		
+	</insert>
 	
 </mapper>
 

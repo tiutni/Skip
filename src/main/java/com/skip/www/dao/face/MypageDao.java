@@ -77,6 +77,12 @@ public interface MypageDao {
 
 	public void insertQnaFile(QnAFile qnaFile);
 
+	public void update(QnA qna);
+
+	public void deleteFile(QnA qna);
+
+	public void insertFile(QnAFile qnaFile);
+
 
 
 }

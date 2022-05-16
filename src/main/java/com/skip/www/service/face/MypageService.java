@@ -82,7 +82,9 @@ public interface MypageService {
 
 	public QnAFile getFile(QnAFile qnaFile);
 
-//	public void qnaupdate(QnA qna, MultipartFile file);
+	public void update(QnA qna);
+
+	public void update(QnA qna, MultipartFile file);
 
 
 	

@@ -38,11 +38,13 @@ $(document).ready(function() {
 		<c:forEach items="${topList }" var="i">
 		<div class="exhibitionTop3List" style="width: 33%; height: 610px; padding: 15px; padding-bottom: 35px; display: inline-block;">
 			<div class="block2">
+				<!-- 전시회 사진 -->
 				<div class="block2-pic hov-img0">
 					<a href="/exhibition/view?exNo=${i.exNo }">
 						<img src="/upload/${i.exImgStoredName }" style="width: 360px; height:482px;">
 					</a>
 				</div> <!-- "block2-pic hov-img0" -->
+				<!-- 전시회 정보(이름, 주소) -->
 				<div class="block2-txt flex-w flex-t p-t-14">
 					<div class="block2-txt-child1 flex-col-l">
 						<a href="/exhibition/view?exNo=${i.exNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><b>${i.exTitle }</b></a>
@@ -53,13 +55,14 @@ $(document).ready(function() {
 		</div> <!-- "exhibitionTop3List" -->
 		</c:forEach>
 
+		<!-- 공연/전시회 이동 버튼 -->
 		<div class="flex-w flex-sb-m">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 				<button onclick="location.href='/concert/list'" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">Concerts</button>
 				<button onclick="location.href='/exhibition/list'" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">Exhibitions</button>	
 			</div><!-- "flex-w flex-l-m filter-tope-group m-tb-10" -->
 			
-			<!-- 검색창 -->
+			<!-- 검색 버튼 -->
 			<div class="flex-w flex-c-m m-tb-10">
 				<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 					<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
@@ -68,6 +71,7 @@ $(document).ready(function() {
 				</div> <!-- "flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search" -->
 			</div><!-- "flex-w flex-c-m m-tb-10" -->
 			
+			<!-- 검색 폼 -->
 			<div class="dis-none panel-search w-full p-t-10 p-b-15">
 				<div class="bor8 dis-flex p-l-15">
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnSearch" style="margin: 0;">
@@ -84,11 +88,13 @@ $(document).ready(function() {
 
 	</div>
 
+	<!-- 줄맞추기용 div -->
 	<div class="flex-w flex-sb-m p-b-5">
 		<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 		</div>	
 	</div>
 	
+	<!-- 최신순/인기순 정렬 버튼 -->
 	<div class="flex-w flex-sb-m p-b-52">
 		<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 			<!-- 최신순 검색 버튼 -->
@@ -105,7 +111,7 @@ $(document).ready(function() {
 		</div> <!-- "flex-w flex-l-m filter-tope-group m-tb-10" -->
 	</div><!-- class="flex-w flex-sb-m p-b-52"  -->
 
-
+	<!-- 전시회 목록 -->
 	<div style="position: relative;">
 		<c:if test="${not empty search }">
 			<h3>"${search }"의 검색 결과</h3>
@@ -115,6 +121,7 @@ $(document).ready(function() {
 		<c:forEach items="${exList }" var="i">
 			<div class="exhibitionList" style="width: 24.7%; height: 500px; padding: 15px; padding-bottom: 35px; display: inline-block;">
 				<div class="block2">
+					<!-- 전시회 이미지 -->
 					<div class="block2-pic hov-img0">
 						<a href="/exhibition/view?exNo=${i.exNo }"  class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 							<img src="/upload/${i.exImgStoredName }" style="width: 249px; height: 350px;">
@@ -123,6 +130,7 @@ $(document).ready(function() {
 				</div> <!-- "block2" -->
 				
 				<div class="block2-txt flex-w flex-t p-t-14">
+					<!-- 전시회 정보(이름, 주소) -->
 					<div class="block2-txt-child1 flex-col-l">
 						<a href="/exhibition/view?exNo=${i.exNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><b>${i.exTitle }</b></a>
 						<span>${i.exAddress }</span>
