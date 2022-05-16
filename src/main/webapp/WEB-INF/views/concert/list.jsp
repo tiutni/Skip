@@ -41,7 +41,7 @@ $(document).ready(function() {
 				<!-- 공연 사진 -->
 				<div class="block2-pic hov-img0">
 					<a href="/concert/view?conNo=${i.conNo }">
-						<img src="/upload/${i.conImgStoredName }" style="width: 360px; height:482px;">
+						<img src="/upload/${i.conImgStoredName }" style="width: 347px; height:482px;">
 					</a>
 				</div> <!-- class="block2-pic hov-img0" -->
 				<!-- 공연 정보(이름, 주소) -->
@@ -124,7 +124,7 @@ $(document).ready(function() {
 					<!-- 공연 이미지 -->
 					<div class="block2-pic hov-img0">
 						<a href="/concert/view?conNo=${i.conNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-							<img src="/upload/${i.conImgStoredName }" style="width: 249px; height:350px;">
+							<img src="/upload/${i.conImgStoredName }" style="width: 251px; height:350px;">
 						</a>
 					</div> <!-- "block2-pic hov-img0 -->
 				</div> <!-- "block2" -->

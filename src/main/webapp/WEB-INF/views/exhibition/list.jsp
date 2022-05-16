@@ -41,7 +41,7 @@ $(document).ready(function() {
 				<!-- 전시회 사진 -->
 				<div class="block2-pic hov-img0">
 					<a href="/exhibition/view?exNo=${i.exNo }">
-						<img src="/upload/${i.exImgStoredName }" style="width: 360px; height:482px;">
+						<img src="/upload/${i.exImgStoredName }" style="width: 347px; height:482px;">
 					</a>
 				</div> <!-- "block2-pic hov-img0" -->
 				<!-- 전시회 정보(이름, 주소) -->
@@ -124,7 +124,7 @@ $(document).ready(function() {
 					<!-- 전시회 이미지 -->
 					<div class="block2-pic hov-img0">
 						<a href="/exhibition/view?exNo=${i.exNo }"  class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-							<img src="/upload/${i.exImgStoredName }" style="width: 249px; height: 350px;">
+							<img src="/upload/${i.exImgStoredName }" style="width: 251px; height: 350px;">
 						</a>
 					</div> <!-- "block2-pic hov-img0" -->
 				</div> <!-- "block2" -->
