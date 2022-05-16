@@ -91,23 +91,23 @@ table, th, td {
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exStartDay">전시 시작일</label>
-						<input type="date" id="exStartDay" name="exStartDay" class="form-control" value="2022-05-16">
+						<label for="exStartDayString">전시 시작일</label>
+						<input type="date" id="exStartDayString" name="exStartDayString" class="form-control" value="2022-05-16">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exEndDay">전시 종료일</label>
-						<input type="date" id="exEndDay" name="exEndDay" class="form-control" value="2022-05-31">
+						<label for="exEndDayString">전시 종료일</label>
+						<input type="date" id="exEndDayString" name="exEndDayString" class="form-control" value="2022-05-31">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exReserveStartDay">예약시작일</label>
-						<input type="date" id="exReserveStartDay" name="exReserveStartDay" class="form-control" value="2022-05-16">
+						<label for="exReserveStartDayString">예약시작일</label>
+						<input type="date" id="exReserveStartDayString" name="exReserveStartDayString" class="form-control" value="2022-05-16">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exReserveEndDay">예약종료일</label>
-						<input type="date" id="exReserveEndDay" name="exReserveEndDay" class="form-control" value="2022-05-31">
+						<label for="exReserveEndDayString">예약종료일</label>
+						<input type="date" id="exReserveEndDayString" name="exReserveEndDayString" class="form-control" value="2022-05-31">
 					</div>
 					<br>
 					<div class="form-group">
@@ -150,24 +150,3 @@ table, th, td {
 </div><!-- layoutSidenav_content -->
 
 <c:import url="/WEB-INF/views/admlayout/footer.jsp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

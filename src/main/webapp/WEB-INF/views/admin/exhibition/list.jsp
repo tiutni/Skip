@@ -25,6 +25,14 @@ function btnActivate(exNo){
     }
 }
 
+function btnUpdate(exNo){
+    if(confirm("전시를 수정하시겠습니까?") == true){
+        location.href="/admin/exhibition/update?exNo="+ exNo;
+    }else{
+        return;
+    }
+}
+
 function btnDelete(exNo){
     if(confirm("전시를 삭제하시겠습니까?") == true){
         location.href="/admin/exhibition/delete?exNo="+ exNo;
@@ -84,6 +92,7 @@ table, th, td {
 								<th style="width: 10%; text-align: center; vertical-align: middle;">작성자</th>
 								<th style="width: 15%; text-align: center; vertical-align: middle;">작성일</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
+								<th style="width: 10%; text-align: center; vertical-align: middle;">수정</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
@@ -104,6 +113,9 @@ table, th, td {
 											<button onclick="btnActivate(${exhibition.exNo})" id="btnActivate" class="btn btn-primary">재개하기</button>
 										</c:otherwise>
 									</c:choose>
+								</td>
+								<td style="vertical-align: middle;">
+									<button onclick="btnUpdate(${exhibition.exNo})" id="btnUpdate" class="btn btn-secondary">수정</button>
 								</td>
 								<td style="vertical-align: middle;">
 									<button onclick="btnDelete(${exhibition.exNo})" id="btnDelete" class="btn btn-secondary">삭제</button>
