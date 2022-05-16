@@ -61,7 +61,7 @@ td:not(.info) {
 		</tr>
 		</table>
 		
-		<a href="/noti/download?fileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
+		<a href="/noti/download?notiFileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
 		
 		<br><br><br>
 		<div class="text-center">

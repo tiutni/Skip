@@ -34,15 +34,6 @@ $(document).ready(function() {
 })
 </script>
 
-<script type="text/javascript">
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-	oAppRef: oEditors
-	, elPlaceHolder: "notiContent"
-	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
-	, fCreator: "createSEditor2"
-})
-</script>
 
 <style type="text/css">
 table {
@@ -81,7 +72,7 @@ a {
 
 					<div class="form-group">
 						<label for="write">작성자</label>
-						<input type="text" id="write" value="${adminId }" class="form-control" readonly="readonly">
+						<input type="text" id="write" value="${id }" class="form-control" readonly="readonly">
 					</div>
 					
 					<div class="form-group">
@@ -109,6 +100,18 @@ a {
 			</div>
 		</main>
 	</div>
+	
+	
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors
+	, elPlaceHolder: "notiContent"
+	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
+	, fCreator: "createSEditor2"
+})
+</script>
+
 </div><!-- .container end -->
 
 

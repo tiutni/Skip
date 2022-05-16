@@ -45,6 +45,7 @@
 	
 	<!-- DownloadView 빈 설정 -->
 	<beans:bean id="down" class="com.skip.www.view.DownloadView" />
+	<beans:bean id="notiFileDown" class="com.skip.www.view.NotiDownloadView" />
 	
 	<!-- MultipartResolver 설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

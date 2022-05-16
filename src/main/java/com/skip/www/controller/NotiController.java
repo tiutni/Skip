@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Noti;
@@ -89,7 +90,7 @@ public class NotiController {
 	
 	@RequestMapping("admin/noti/view")
 	public String adminView(Noti viewNoti, Model model, HttpSession session) {
-		logger.info("/noti/view - {}", viewNoti);
+		logger.info("admin/noti/view - {}", viewNoti);
 		
 		//잘못된 게시글 번호 처리
 		if( viewNoti.getNotiNo() < 1 ) {
@@ -115,12 +116,13 @@ public class NotiController {
 	public void write() { }
 	
 	@PostMapping("admin/noti/write")
-	public String writeProcess(Noti noti, MultipartFile file, HttpSession session) {
-		logger.info("/noti/write [POST]");
+	public String writeProcess(Noti noti, @RequestParam("notiFile") MultipartFile file, HttpSession session) {
+		logger.info("admin/noti/write [POST]");
 		logger.info("{}", noti);
 		logger.info("{}", file);
 		
 		noti.setAdminId( (String) session.getAttribute("id") );
+
 		logger.info("{}", noti);
 		
 		notiService.write(noti, file);
@@ -132,14 +134,14 @@ public class NotiController {
 	public String download(NotiFile notiFile, Model model) {
 		
 		notiFile = notiService.getFile(notiFile);
-		model.addAttribute("downFile", notiFile);
+		model.addAttribute("notiFile", notiFile);
 		
-		return "noti/down";
+		return "notiFileDown";
 	}
 	
 	@GetMapping("admin/noti/update")
 	public String update(Noti noti, Model model) {
-		logger.info("/noti/update - {}", noti);		
+		logger.info("admin/noti/update - {}", noti);		
 		
 		//잘못된 게시글 번호 처리
 		if( noti.getNotiNo() < 1 ) {
@@ -158,10 +160,10 @@ public class NotiController {
 	}
 	
 	@PostMapping("admin/noti/update")
-	public String updateProcess(Noti noti, MultipartFile file) {
-		logger.info("/noti/update [POST] - {}", noti);
+	public String updateProcess(Noti noti, @RequestParam("notiFile") MultipartFile file) {
+		logger.info("/admin/noti/update [POST] - {}", noti);
 		
-		notiService.update(noti);	//게시글만 수정
+//		notiService.update(noti);	//게시글만 수정
 		notiService.update(noti, file); //게시글+첨부파일 수정
 		
 		return "redirect:/admin/noti/view?notiNo=" + noti.getNotiNo();

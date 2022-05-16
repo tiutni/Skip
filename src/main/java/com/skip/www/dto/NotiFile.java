@@ -5,15 +5,12 @@ public class NotiFile {
 	private int notiFileNo;
 	private String notiFileOriginName;
 	private String notiFileStoredName;
-	private String notiFilePath;
-	private int notiFileSize;
 	private int notiNo;
 	
 	@Override
 	public String toString() {
 		return "NotiFile [notiFileNo=" + notiFileNo + ", notiFileOriginName=" + notiFileOriginName + ", notiFileStoredName="
-				+ notiFileStoredName + ", notiFilePath=" + notiFilePath + ", notiFileSize=" + notiFileSize + ", notiNo="
-				+ notiNo + "]";
+				+ notiFileStoredName + ",  notiNo=" + notiNo + "]";
 	}
 	
 	public int getNotiFileNo() {
@@ -33,18 +30,6 @@ public class NotiFile {
 	}
 	public void setNotiFileStoredName(String notiFileStoredName) {
 		this.notiFileStoredName = notiFileStoredName;
-	}
-	public String getNotiFilePath() {
-		return notiFilePath;
-	}
-	public void setNotiFilePath(String notiFilePath) {
-		this.notiFilePath = notiFilePath;
-	}
-	public int getNotiFileSize() {
-		return notiFileSize;
-	}
-	public void setNotiFileSize(int notiFileSize) {
-		this.notiFileSize = notiFileSize;
 	}
 	public int getNotiNo() {
 		return notiNo;

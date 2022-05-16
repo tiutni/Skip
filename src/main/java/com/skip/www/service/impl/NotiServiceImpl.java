@@ -58,7 +58,7 @@ public class NotiServiceImpl implements NotiService {
 	public void write(Noti noti, MultipartFile file) {
 	
 		if( "".equals( noti.getNotiTitle() ) ) {
-			noti.setNotiTitle("(제목없음)");
+			noti.setNotiTitle("(제목이 없습니다)");
 		}
 		notiDao.insertNoti(noti);
 	
@@ -77,11 +77,11 @@ public class NotiServiceImpl implements NotiService {
 		}
 
 		//파일이 저장될 이름
-		String originName = file.getOriginalFilename();
-		String storedName = originName + UUID.randomUUID().toString().split("-")[4];
+		String notiFileOriginName = file.getOriginalFilename();
+		String notiFileStoredName = notiFileOriginName + UUID.randomUUID().toString().split("-")[4];
 		
 		//저장될 파일 정보 객체
-		File dest = new File(storedFolder, storedName);
+		File dest = new File(storedFolder, notiFileStoredName);
 
 		try {
 			file.transferTo(dest);
@@ -95,8 +95,8 @@ public class NotiServiceImpl implements NotiService {
 
 		NotiFile notiFile = new NotiFile();
 		notiFile.setNotiNo( noti.getNotiNo() );
-		notiFile.setNotiFileOriginName(originName);
-		notiFile.setNotiFileStoredName(storedName);
+		notiFile.setNotiFileOriginName(notiFileOriginName);
+		notiFile.setNotiFileStoredName(notiFileStoredName);
 		
 		notiDao.insertFile(notiFile);
 		
@@ -150,11 +150,11 @@ public class NotiServiceImpl implements NotiService {
 		}
 
 		//파일이 저장될 이름
-		String originName = file.getOriginalFilename();
-		String storedName = originName + UUID.randomUUID().toString().split("-")[4];
+		String notiFileOriginName = file.getOriginalFilename();
+		String notiFileStoredName = notiFileOriginName + UUID.randomUUID().toString().split("-")[4];
 		
 		//저장될 파일 정보 객체
-		File dest = new File(storedFolder, storedName);
+		File dest = new File(storedFolder, notiFileStoredName);
 
 		try {
 			file.transferTo(dest);
@@ -168,8 +168,8 @@ public class NotiServiceImpl implements NotiService {
 
 		NotiFile notiFile = new NotiFile();
 		notiFile.setNotiNo( noti.getNotiNo() );
-		notiFile.setNotiFileOriginName(originName);
-		notiFile.setNotiFileStoredName(storedName);
+		notiFile.setNotiFileOriginName(notiFileOriginName);
+		notiFile.setNotiFileStoredName(notiFileStoredName);
 		
 		
 		//게시글에 연결되어있는 기존의 모든 첨부파일 정보를 삭제한다
