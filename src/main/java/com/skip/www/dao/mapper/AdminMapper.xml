@@ -144,10 +144,10 @@
 			, #{exTitle}
 			, #{exAddress}
 			, #{exContent}
-			, to_date(#{exStartDay}, 'YYYY-MM-DD')
-			, to_date(#{exEndDay}, 'YYYY-MM-DD')
-			, to_date(#{exReserveStartDay}, 'YYYY-MM-DD')
-			, to_date(#{exReserveEndDay}, 'YYYY-MM-DD')
+			, to_date(#{exStartDayString}, 'YYYY-MM-DD')
+			, to_date(#{exEndDayString}, 'YYYY-MM-DD')
+			, to_date(#{exReserveStartDayString}, 'YYYY-MM-DD')
+			, to_date(#{exReserveEndDayString}, 'YYYY-MM-DD')
 			, to_date(#{exEnterStartTime}, 'HH24:MI:SS')
 			, to_date(#{exEnterEndTime}, 'HH24:MI:SS')
 			, #{exPrice}

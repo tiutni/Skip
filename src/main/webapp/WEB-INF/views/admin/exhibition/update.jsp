@@ -32,18 +32,18 @@ $(document).ready(function() {
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#cancel").click(function() {
-		history.go(-1)
+		history.go(-1);
 	})
 
 	
-	if( ${empty boardFile} ) {
-		$("#newFile").show()
+	if( ${empty exImg} ) {
+		$("#newFile").show();
 	} else {
-		$("#originFile").show()
+		$("#originFile").show();
 	}
 	
 	$("#deleteFile").click(function() {
-		$("#originFile").toggleClass("through")
+		$("#originFile").toggleClass("through");
 		$("#newFile").toggle();
 	})
 })
@@ -77,98 +77,109 @@ table, th, td {
 	<main>
 	
 		<!-- Exhibition -->
-			<div class="container-fluid px-4">
-			<h1 class="mt-4">전시 관리</h1>
-			
-			<ol class="breadcrumb mb-4">
-			    <li class="breadcrumb-item active">Exhibition Management</li>
-			</ol>
-
-			<div class="card mb-4">
-			    <div class="card-header">
-			        <i class="fas fa-table me-1"></i>전시 수정
-			    </div>
-				    
-				<!-- 목록 -->
-				<div class="card-body">
+		<div class="container-fluid px-4">
+		<h1 class="mt-4">전시 관리</h1>
 		
-					<form action="/admin/exhibition/update" method="post" enctype="multipart/form-data">
-					<div class="form-group">
-						<label for="exAdminId">작성자</label>
-						<input type="text" id="exAdminId" name="adminId" value="${id}" class="form-control" readonly="readonly">
+		<ol class="breadcrumb mb-4">
+		    <li class="breadcrumb-item active">Exhibition Management</li>
+		</ol>
+
+		<div class="card mb-4">
+		    <div class="card-header">
+		        <i class="fas fa-table me-1"></i>전시 수정
+		    </div>
+			    
+			<!-- 목록 -->
+			<div class="card-body">
+	
+				<form action="/admin/exhibition/update" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="exNo" value="${exhibition.exNo }">
+				<div class="form-group">
+					<label for="exAdminId">작성자</label>
+					<input type="text" id="exAdminId" name="adminId" value="${id}" class="form-control" readonly="readonly">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exTitle">제목</label>
+					<input type="text" id="exTitle" name="exTitle" class="form-control">
+				</div>
+				<br>
+				<div class="form-group">
+					<div id="fileBox">
+						<div id="originFile">
+							<a href="/admin/exhibition/download?exImgNo=${exImg.exImgNo }">${exImg.exImgOriginName }</a>
+							<span id="deleteFile">X</span>
+						</div>
+				
+						<div id="newFile">
+							<hr>
+							<label for="file">새로운 첨부파일</label>
+							<input type="file" id="file" name="file">
+							<small>** 새로운 파일로 첨부하면 기존 파일은 삭제됩니다</small>
+						</div>
 					</div>
-					<br>
-					<div class="form-group">
-						<label for="exTitle">제목</label>
-						<input type="text" id="exTitle" name="exTitle" class="form-control">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="file">첨부파일</label>
-						<input type="file" id="file" name="file">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="content">본문</label>
-						<textarea rows="10" style="width: 100%;" id="content" name="exContent"></textarea>
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="exAddress">위치</label>
-						<input type="text" id="exAddress" name="exAddress" class="form-control" value="서울 종로구 세종대로 175">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="exStartDay">전시 시작일</label>
-						<input type="date" id="exStartDay" name="exStartDay" class="form-control" value="2022-05-16">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="exEndDay">전시 종료일</label>
-						<input type="date" id="exEndDay" name="exEndDay" class="form-control" value="2022-05-31">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="exReserveStartDay">예약시작일</label>
-						<input type="date" id="exReserveStartDay" name="exReserveStartDay" class="form-control" value="2022-05-16">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="exReserveEndDay">예약종료일</label>
-						<input type="date" id="exReserveEndDay" name="exReserveEndDay" class="form-control" value="2022-05-31">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="exEnterStartTime">입장시작시간</label>
-						<input type="time" id="exEnterStartTime" name="exEnterStartTime" class="form-control" value="10:00:00">
-					</div>
-					
-					<div class="form-group">
-						<label for="exEnterEndTime">입장종료시간</label>
-						<input type="time" id="exEnterEndTime" name="exEnterEndTime" class="form-control" value="18:00:00">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="exPrice">티켓당 금액</label>
-						<input type="number" id="exPrice" name="exPrice" class="form-control" value="10000">
-					</div>
-					<br>
-					
-					<div class="text-center">
-						<button class="btn btn-primary" id="btnWrite">작성</button>
-						<input type="reset" id="cancel" class="btn btn-danger" value="취소">
-					</div>
-					</form>
-					
-					<script type="text/javascript">
-					var oEditors = [];
-					nhn.husky.EZCreator.createInIFrame({
-						oAppRef: oEditors
-						, elPlaceHolder: "content"
-						, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
-						, fCreator: "createSEditor2"
-					})
-					</script>
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="content">본문</label>
+					<textarea rows="10" style="width: 100%;" id="content" name="exContent"></textarea>
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exAddress">위치</label>
+					<input type="text" id="exAddress" name="exAddress" class="form-control" value="서울 종로구 세종대로 175">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exStartDayString">전시 시작일</label>
+					<input type="date" id="exStartDayString" name="exStartDayString" class="form-control" value="2022-05-16">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exEndDayString">전시 종료일</label>
+					<input type="date" id="exEndDayString" name="exEndDayString" class="form-control" value="2022-05-31">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exReserveStartDayString">예약시작일</label>
+					<input type="date" id="exReserveStartDayString" name="exReserveStartDayString" class="form-control" value="2022-05-16">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exReserveEndDayString">예약종료일</label>
+					<input type="date" id="exReserveEndDayString" name="exReserveEndDayString" class="form-control" value="2022-05-31">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exEnterStartTime">입장시작시간</label>
+					<input type="time" id="exEnterStartTime" name="exEnterStartTime" class="form-control" value="10:00:00">
+				</div>
+				<div class="form-group">
+					<label for="exEnterEndTime">입장종료시간</label>
+					<input type="time" id="exEnterEndTime" name="exEnterEndTime" class="form-control" value="18:00:00">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exPrice">티켓당 금액</label>
+					<input type="number" id="exPrice" name="exPrice" class="form-control" value="10000">
+				</div>
+				<br>
+				
+				<div class="text-center">
+					<button class="btn btn-primary" id="btnUpdate">수정</button>
+					<input type="reset" id="cancel" class="btn btn-danger" value="취소">
+				</div>
+				</form>
+				
+				<script type="text/javascript">
+				var oEditors = [];
+				nhn.husky.EZCreator.createInIFrame({
+					oAppRef: oEditors
+					, elPlaceHolder: "content"
+					, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
+					, fCreator: "createSEditor2"
+				})
+				</script>
 					
 				</div>
 			</div>
@@ -178,53 +189,3 @@ table, th, td {
 </div><!-- layoutSidenav_content -->
 
 <c:import url="/WEB-INF/views/admlayout/footer.jsp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-
-	<div id="fileBox">
-		<div id="originFile">
-			<a href="/admin/exhibition/download?fileNo=${boardFile.fileNo }">${boardFile.originName }</a>
-			<span id="deleteFile">X</span>
-		</div>
-
-		<div id="newFile">
-			<hr>
-			<label for="file">새로운 첨부파일</label>
-			<input type="file" id="file" name="file">
-			<small>** 새로운 파일로 첨부하면 기존 파일은 삭제됩니다</small>
-		</div>
-	</div>
-
-</div>
-
-<div class="text-center">
-	<button class="btn btn-primary" id="btnUpdate">수정</button>
-	<input type="reset" id="cancel" class="btn btn-danger" value="취소">
-</div>
-</form>
-
-<script type="text/javascript">
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-	oAppRef: oEditors
-	, elPlaceHolder: "content"
-	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
-	, fCreator: "createSEditor2"
-})
-</script>
-
-</div><!-- .container end -->
-
-<c:import url="/WEB-INF/views/layout/footer.jsp" />

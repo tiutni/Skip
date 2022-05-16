@@ -165,8 +165,6 @@ public class AdminController {
 		return "/admin/exhibition/view";
 	}
 
-	//---사용안함---ㄱ
-	
 	@RequestMapping("/admin/exhibition/download")
 	public String downloadExImg(ExImg exImg, Model model) {
 		
@@ -212,8 +210,6 @@ public class AdminController {
 		return "redirect:/admin/exhibition/list";
 	}
 
-	//ㄴ---사용안함---
-	
 	@GetMapping("/admin/exhibition/write")
 	public void writeExhibition() { }
 	
