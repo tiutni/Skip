@@ -79,6 +79,8 @@ private static final Logger logger = LoggerFactory.getLogger(ConcertController.c
 		//exNo로 게시글 상세내역 조회
 		Exhibition viewExhibition = exhibitionService.getExhibition(exNo);
 		
+		logger.info("Exhibition : " + viewExhibition);
+		
 		//Paging 객체 생성
 		Paging paging = exhibitionService.getExhibitionReviewPaging(curPage, exNo);
 		

@@ -13,8 +13,8 @@ public class Exhibition {				//전시회
 	private Date 	exEndDay;			// ex_endDay			DATE			7  종료일
 	private Date 	exReserveStartDay;	// ex_reserveStartDay	DATE			8  예약시작일
 	private Date 	exReserveEndDay;	// ex_reserveEndDay		DATE			9  예약종료일
-	private String 	exEnterStartTime;	// ex_enterStartTime	DATE			10 입장시작시간
-	private String 	exEnterEndTime;		// ex_enterEndTime		DATE			11 입장종료시간
+	private Date 	exEnterStartTime;	// ex_enterStartTime	DATE			10 입장시작시간
+	private Date 	exEnterEndTime;		// ex_enterEndTime		DATE			11 입장종료시간
 	private String 	exEnterInterval;	// ex_enterInterval		NUMBER			12 입장간격
 	private int 	exTicketNum;		// ex_ticketNum			NUMBER			13 총티켓수
 	private int 	exPrice;			// ex_price				NUMBER			14 금액
@@ -96,16 +96,16 @@ public class Exhibition {				//전시회
 	public void setExReserveEndDay(Date exReserveEndDay) {
 		this.exReserveEndDay = exReserveEndDay;
 	}
-	public String getExEnterStartTime() {
+	public Date getExEnterStartTime() {
 		return exEnterStartTime;
 	}
-	public void setExEnterStartTime(String exEnterStartTime) {
+	public void setExEnterStartTime(Date exEnterStartTime) {
 		this.exEnterStartTime = exEnterStartTime;
 	}
-	public String getExEnterEndTime() {
+	public Date getExEnterEndTime() {
 		return exEnterEndTime;
 	}
-	public void setExEnterEndTime(String exEnterEndTime) {
+	public void setExEnterEndTime(Date exEnterEndTime) {
 		this.exEnterEndTime = exEnterEndTime;
 	}
 	public String getExEnterInterval() {

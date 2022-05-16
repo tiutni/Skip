@@ -1,5 +1,8 @@
 package com.skip.www.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skip.www.dto.Pay;
 import com.skip.www.dto.User;
 import com.skip.www.service.face.PayService;
 
@@ -27,6 +31,7 @@ public class PayController {
 			, String date
 			, String round
 			, String selectedSeat
+			, Pay pay
 			) {
 		
 		//미완성코드 값만 잘 받아오나 실험해본 코드입니다.

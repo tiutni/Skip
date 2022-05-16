@@ -16,7 +16,10 @@ public class Concert {
 	private Date 	conReserveEndDay;		// con_reserveEndday		DATE			10 공연 예약종료일
 	private int 	conActivate;			// con_activate				NUMBER			11 공연 활성화
 	private String 	adminId;				// admin_id	(FK)			VARCHAR2(500)	12 관리자ID(작성자)
-	private String conImgStoredName;		// con_img_storedName		VARCHAR2(500)	13 공연 이미지파일 사본명
+	
+											// 공연 (첨부)이미지
+											// con_img
+	private String 	conImgStoredName;		// con_img_storedName		VARCHAR2(500)	13 공연 이미지파일 사본명
 	
 	@Override
 	public String toString() {

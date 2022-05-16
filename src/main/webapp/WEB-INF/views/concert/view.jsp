@@ -40,7 +40,7 @@ $(document).ready(function() {
 			console.log("${userNo}");
 			alert("로그인 후 이용가능합니다.");
 			location.href='/user/login';
-			return;
+			return false;
 			
 		}
 
@@ -70,7 +70,7 @@ $(document).ready(function() {
 			console.log("${userNo}");
 			alert("로그인 후 이용가능합니다.");
 			location.href='/user/login';
-			return;
+			return false;
 			
 		}
 		
@@ -143,28 +143,30 @@ $(document).ready(function() {
 			
 		});
 		
+		number = 0;
+		
 	});
-
-	var number = 0;
-	
-	console.log(number);
 	
 	const resultPrice = document.getElementById("totalprice");
+
+	var number;
 	
-	resultPrice.innerText = '0';
-	
+	console.log("number : " + number);
+
 	$("#seat").change(function() {
+		
 		document.getElementById('selectSeat').innerHTML += (
 				'<div class="seatbox" style="display: inline-block;"><span class="' + $("#seat option:checked").attr('id') +'">' 
 					+ $("#seat option:checked").attr('id') + 
 				'</span><button class="remove" type="button" style="margin-right: 5px; border: 1px solid red; border-radius: 3px; background: red; color: white;">x</button>'
 				+'<input type="hidden" name="selectedSeat" value="' + $("#seat option:checked").attr('id') +'" /></div>'
 				);
+
 		
 		//넘버 변수 안에 선택한 좌석의 값(금액) 더해주기
 		number += parseInt($("#seat option:checked").val());
 		
-		console.log(number);
+		console.log("number : " + number);
 	
 		//선택한 값 중복선택 불가능
 		$("#seat option:checked").prop('disabled', true);
@@ -393,7 +395,9 @@ $(document).ready(function() {
 <input type="hidden" id="valueOfprice" name="price" />
 <span style="margin-left: 70px;"><b>총 결제 금액</b></span>
 <span id="totalprice">0</span>
+<c:if test="${viewConcert.conActivate eq 1}">
 <button id="btnPayment" style="margin-left: 66px; margin-top: 13px; margin-bottom: 20px;">결제하기</button>
+</c:if>
 </fieldset>
 </form>
 <br>

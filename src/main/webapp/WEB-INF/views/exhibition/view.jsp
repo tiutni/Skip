@@ -40,7 +40,7 @@ $(document).ready(function() {
 			console.log("${userNo}");
 			alert("로그인 후 이용가능합니다.");
 			location.href='/user/login';
-			return;
+			return false;
 			
 		}
 		
@@ -326,7 +326,9 @@ function count_ticket(type) {
 <span style="margin-left: 70px;"><b>총 결제 금액</b></span>
 <span id="totalprice">0</span>
 <br>
+<c:if test="${viewExhibition.exActivate eq 1}">
 <button id="btnPayment" style="margin-left: 66px; margin-top: 13px; margin-bottom: 20px;">결제하기</button>
+</c:if>
 </fieldset>
 </form>
 </div>

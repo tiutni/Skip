@@ -30,7 +30,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 			page = Integer.parseInt(curPage);
 		}
 		
-		int listCount = 9;
+		int listCount = 12;
 		
 		//게시글 수 조회하기
 		int totalCount = exhibitionDao.selectCntAll(search);
