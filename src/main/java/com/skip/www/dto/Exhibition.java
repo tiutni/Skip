@@ -9,10 +9,10 @@ public class Exhibition {				//전시회
 	private String 	exTitle;			// ex_title				VARCHAR2(100)	3  제목
 	private String 	exAddress;			// ex_address			VARCHAR2(500)	4  주소
 	private String 	exContent;			// ex_content			VARCHAR2(2000)	5  상세내용
-	private Date 	exStartDay;			// ex_startDay			DATE			6  시작일
-	private Date 	exEndDay;			// ex_endDay			DATE			7  종료일
-	private Date 	exReserveStartDay;	// ex_reserveStartDay	DATE			8  예약시작일
-	private Date 	exReserveEndDay;	// ex_reserveEndDay		DATE			9  예약종료일
+	private String 	exStartDay;			// ex_startDay			DATE			6  시작일
+	private String 	exEndDay;			// ex_endDay			DATE			7  종료일
+	private String 	exReserveStartDay;	// ex_reserveStartDay	DATE			8  예약시작일
+	private String 	exReserveEndDay;	// ex_reserveEndDay		DATE			9  예약종료일
 	private String 	exEnterStartTime;	// ex_enterStartTime	DATE			10 입장시작시간
 	private String 	exEnterEndTime;		// ex_enterEndTime		DATE			11 입장종료시간
 	private String 	exEnterInterval;	// ex_enterInterval		NUMBER			12 입장간격
@@ -83,38 +83,6 @@ public class Exhibition {				//전시회
 		this.exContent = exContent;
 	}
 
-	public Date getExStartDay() {
-		return exStartDay;
-	}
-
-	public void setExStartDay(Date exStartDay) {
-		this.exStartDay = exStartDay;
-	}
-
-	public Date getExEndDay() {
-		return exEndDay;
-	}
-
-	public void setExEndDay(Date exEndDay) {
-		this.exEndDay = exEndDay;
-	}
-
-	public Date getExReserveStartDay() {
-		return exReserveStartDay;
-	}
-
-	public void setExReserveStartDay(Date exReserveStartDay) {
-		this.exReserveStartDay = exReserveStartDay;
-	}
-
-	public Date getExReserveEndDay() {
-		return exReserveEndDay;
-	}
-
-	public void setExReserveEndDay(Date exReserveEndDay) {
-		this.exReserveEndDay = exReserveEndDay;
-	}
-
 	public String getExEnterStartTime() {
 		return exEnterStartTime;
 	}
@@ -169,6 +137,38 @@ public class Exhibition {				//전시회
 
 	public void setExImgStoredName(String exImgStoredName) {
 		this.exImgStoredName = exImgStoredName;
+	}
+
+	public String getExStartDay() {
+		return exStartDay;
+	}
+
+	public void setExStartDay(String exStartDay) {
+		this.exStartDay = exStartDay;
+	}
+
+	public String getExEndDay() {
+		return exEndDay;
+	}
+
+	public void setExEndDay(String exEndDay) {
+		this.exEndDay = exEndDay;
+	}
+
+	public String getExReserveStartDay() {
+		return exReserveStartDay;
+	}
+
+	public void setExReserveStartDay(String exReserveStartDay) {
+		this.exReserveStartDay = exReserveStartDay;
+	}
+
+	public String getExReserveEndDay() {
+		return exReserveEndDay;
+	}
+
+	public void setExReserveEndDay(String exReserveEndDay) {
+		this.exReserveEndDay = exReserveEndDay;
 	}
 
 	

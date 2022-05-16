@@ -11,15 +11,13 @@
 		<result column="ex_regdate" 		property="exRegDate"/>
 		<result column="ex_title" 			property="exTitle"/>
 		<result column="ex_address" 		property="exAddress"/>
-		<result column="ex_content" 			property="exContent"/>
+		<result column="ex_content" 		property="exContent"/>
 		<result column="ex_startDay" 		property="exStartDay"/>
 		<result column="ex_endDay" 			property="exEndDay"/>
-		<result column="ex_reserveStartDay" 	property="exReserveStartDay"/>
+		<result column="ex_reserveStartDay" property="exReserveStartDay"/>
 		<result column="ex_reserveEndDay" 	property="exReserveEndDay"/>
 		<result column="ex_enterStartTime" 	property="exEnterStartTime"/>
 		<result column="ex_enterEndTime" 	property="exEnterEndTime"/>
-		<result column="ex_enterInterval" 	property="exEnterInterval"/>
-		<result column="ex_ticketNum" 		property="exTicketNum"/>
 		<result column="ex_price" 			property="exPrice"/>
 		<result column="ex_activate" 		property="exActivate"/>
 		<result column="admin_id" 			property="adminId"/>
@@ -85,8 +83,6 @@
 					, ex_reserveEndDay
 					, ex_enterStartTime
 					, ex_enterEndTime
-					, ex_enterInterval
-					, ex_ticketNum
 					, ex_price
 					, ex_activate
 					, admin_id
@@ -117,8 +113,6 @@
 			, ex_reserveEndDay
 			, ex_enterStartTime
 			, ex_enterEndTime
-			, ex_enterInterval
-			, ex_ticketNum
 			, ex_price
 			, ex_activate
 			, admin_id
@@ -133,7 +127,6 @@
 		
 		INSERT INTO Exhibition ( 
 			ex_no
-			, ex_regdate
 			, ex_title
 			, ex_address
 			, ex_content
@@ -143,28 +136,21 @@
 			, ex_reserveEndDay
 			, ex_enterStartTime
 			, ex_enterEndTime
-			, ex_enterInterval
-			, ex_ticketNum
 			, ex_price
-			, ex_activate
 			, admin_id
 		)
 		VALUES ( 
 			#{exNo}
-			, #{exRegDate}
 			, #{exTitle}
 			, #{exAddress}
 			, #{exContent}
-			, #{exStartDay}
-			, #{exEndDay}
-			, #{exReserveStartDay}
-			, #{exReserveEndDay}
-			, #{exEnterStartTime}
-			, #{exEnterEndTime}
-			, #{exEnterInterval}
-			, #{exTicketNum}
+			, to_date(#{exStartDay}, 'YYYY-MM-DD')
+			, to_date(#{exEndDay}, 'YYYY-MM-DD')
+			, to_date(#{exReserveStartDay}, 'YYYY-MM-DD')
+			, to_date(#{exReserveEndDay}, 'YYYY-MM-DD')
+			, to_date(#{exEnterStartTime}, 'HH24:MI:SS')
+			, to_date(#{exEnterEndTime}, 'HH24:MI:SS')
 			, #{exPrice}
-			, #{exActivate}
 			, #{adminId}
 		)
 	</insert>
@@ -187,8 +173,6 @@
 			ex_img_no
 			, ex_img_originName
 			, ex_img_storedName
-			, ex_img_path
-			, ex_img_size
 			, ex_no
 		FROM ex_img
 		WHERE ex_no = #{exNo}
@@ -199,8 +183,6 @@
 			ex_img_no
 			, ex_img_originName
 			, ex_img_storedName
-			, ex_img_path
-			, ex_img_size
 			, ex_no
 		FROM ex_img
 		WHERE ex_img_no = #{exImgNo}
@@ -211,16 +193,12 @@
 			ex_img_no
 			, ex_img_originName
 			, ex_img_storedName
-			, ex_img_path
-			, ex_img_size
 			, ex_no
 		)
 		VALUES ( 
 			ex_img_no_seq.nextval
 			, #{exImgOriginName}
 			, #{exImgStoredName}
-			, #{exImgPath}
-			, #{exImgSize}
 			, #{exNo} 
 		)
 	</insert>

@@ -87,64 +87,42 @@ table, th, td {
 					<br>
 					<div class="form-group">
 						<label for="exAddress">위치</label>
-						<input type="text" id="exAddress" name="exAddress" class="form-control">
-					</div>
-					<br>
-					
-					
-					<input style="margin-left: 70px;" type="date" id="calendar" name="date" 
-					min="<fmt:formatDate value='${viewExhibition.exReserveStartDay }' pattern='yyyy-MM-dd' />" 
-					max="<fmt:formatDate value='${viewExhibition.exReserveEndDay }' pattern='yyyy-MM-dd' />" /><br>
-					
-					
-					<div class="form-group">
-						<label for="exReserveStartDay">시작일</label>
-						<input type="date" id="calendar" name="exReserveStartDay" class="form-control">
+						<input type="text" id="exAddress" name="exAddress" class="form-control" value="서울 종로구 세종대로 175">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exReserveEndDay">종료일</label>
-						<input type="text" id="exReserveEndDay" name="exReserveEndDay" class="form-control">
+						<label for="exStartDay">전시 시작일</label>
+						<input type="date" id="exStartDay" name="exStartDay" class="form-control" value="2022-05-16">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="title">휴무일</label>
-						<input type="text" id="exAddress" name="exAddress" class="form-control">
+						<label for="exEndDay">전시 종료일</label>
+						<input type="date" id="exEndDay" name="exEndDay" class="form-control" value="2022-05-31">
 					</div>
 					<br>
 					<div class="form-group">
 						<label for="exReserveStartDay">예약시작일</label>
-						<input type="text" id="exReserveStartDay" name="exReserveStartDay" class="form-control">
+						<input type="date" id="exReserveStartDay" name="exReserveStartDay" class="form-control" value="2022-05-16">
 					</div>
 					<br>
 					<div class="form-group">
 						<label for="exReserveEndDay">예약종료일</label>
-						<input type="text" id="exReserveEndDay" name="exReserveEndDay" class="form-control">
+						<input type="date" id="exReserveEndDay" name="exReserveEndDay" class="form-control" value="2022-05-31">
 					</div>
 					<br>
 					<div class="form-group">
 						<label for="exEnterStartTime">입장시작시간</label>
-						<input type="text" id="exEnterStartTime" name="exEnterStartTime" class="form-control">
+						<input type="time" id="exEnterStartTime" name="exEnterStartTime" class="form-control" value="10:00:00">
 					</div>
 					
 					<div class="form-group">
 						<label for="exEnterEndTime">입장종료시간</label>
-						<input type="text" id="exEnterEndTime" name="exEnterEndTime" class="form-control">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="exEnterInterval">입장시간간격</label>
-						<input type="text" id="exEnterInterval" name="exEnterInterval" class="form-control">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="exTicketNum">하루당 판매할 총티켓수</label>
-						<input type="text" id="exTicketNum" name="exTicketNum" class="form-control">
+						<input type="time" id="exEnterEndTime" name="exEnterEndTime" class="form-control" value="18:00:00">
 					</div>
 					<br>
 					<div class="form-group">
 						<label for="exPrice">티켓당 금액</label>
-						<input type="text" id="exPrice" name="exPrice" class="form-control">
+						<input type="number" id="exPrice" name="exPrice" class="form-control" value="10000">
 					</div>
 					<br>
 					
