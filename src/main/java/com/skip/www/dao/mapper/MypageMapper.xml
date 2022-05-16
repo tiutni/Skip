@@ -123,4 +123,10 @@
 		WHERE qna_file_no = #{qnaFileNo}
 	</select>
 
+	<update id="update" parameterType="com.skip.www.dto.QnA">
+		UPDATE qna
+		SET qna_title = #{qnaTitle}
+			, qna_content = #{qnaContent}
+		WHERE qna_no = #{qnaNo}		
+	</update>
 </mapper>

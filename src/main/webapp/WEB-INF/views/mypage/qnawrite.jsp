@@ -34,15 +34,7 @@ $(document).ready(function() {
 })
 </script>
 
-<script type="text/javascript">
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-	oAppRef: oEditors
-	, elPlaceHolder: "content"
-	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
-	, fCreator: "createSEditor2"
-})
-</script>
+
 
 
 
@@ -54,7 +46,7 @@ nhn.husky.EZCreator.createInIFrame({
 	<div class="container">
 		<div class="p-b-10">
 			<h3 class="ltext-103 cl5">
-				1:1 문의 작성
+				Schreiben
 			</h3>
 			<br><br><br>
 		</div>
@@ -85,7 +77,15 @@ nhn.husky.EZCreator.createInIFrame({
 </div>
 </form>
 
-
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors
+	, elPlaceHolder: "content"
+	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
+	, fCreator: "createSEditor2"
+})
+</script>
 
 </div><!-- .container end -->
 
