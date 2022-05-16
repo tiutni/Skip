@@ -22,7 +22,7 @@ $(document).ready(function() {
 })
 
 function button_event(e){
-    if(confirm("회원을 탈퇴시키겠습니까?") == true){
+    if(confirm("게시글을 삭제하시겠습니까?") == true){
         location.href="/admin/noti/delete?notiNo="+ e;
     }else{
         return;
