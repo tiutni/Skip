@@ -1,6 +1,5 @@
 package com.skip.www.controller;
 
-import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ExImg;
-import com.skip.www.dto.ExReview;
 import com.skip.www.dto.Exhibition;
 import com.skip.www.service.face.AdminService;
-import com.skip.www.service.impl.ExhibitionServiceImpl;
 import com.skip.www.util.Paging;
 
 @Controller
@@ -31,7 +28,6 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired private AdminService adminService;
-	@Autowired private ExhibitionServiceImpl exhibitionService;
 
 	@GetMapping("/admin/login")
 	public void login() {
@@ -171,7 +167,7 @@ public class AdminController {
 		exImg = adminService.getExImg(exImg);
 		model.addAttribute("downExImg", exImg);
 		
-		return "/admin/exhibition/down";
+		return "downExhibition";
 	}
 	
 	@GetMapping("/admin/exhibition/update")
