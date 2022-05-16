@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Admin Join</title>
+        <title>SKIP Admin Join</title>
         <link href="../../resources/admbootstrap/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -35,10 +35,14 @@ setInterval (function() {
 </script>
 
         
-    </head>
+</head>
     
 
-    <body class="bg-primary">
+<br><br>
+<h1 style= "color: white; font-size: 40p; text-align: center;" >SKIP ADMIN</h1>
+<br><br>
+
+    <body class="bg-dark">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
