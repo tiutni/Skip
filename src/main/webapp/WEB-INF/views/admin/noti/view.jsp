@@ -73,7 +73,11 @@ table, th {
 							<tr>	
 								<td colspan="4">${viewNoti.notiContent }</td>
 							</tr>
-							</table><br><br>	
+							</table>
+								
+							<div id="notiOriginFile">
+								<a href="/noti/download?notiFileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
+							</div><br><br><br>
 							
 							<div id="btn">
 								<button id="btnList" class="btn btn-primary">목록</button>

@@ -30,23 +30,23 @@
 		WHERE noti_title LIKE '%' || #{search} || '%' 
 	</select>
 
-	<select id="select" resultMap="Noti" parameterType="com.skip.www.dto.Noti">
+	<select id="select" resultType="com.skip.www.dto.Noti" parameterType="com.skip.www.dto.Noti">
 		SELECT * FROM noti
 		WHERE noti_no = #{notiNo}
 	</select>
 	
 	<insert id="insertNoti" parameterType="com.skip.www.dto.Noti">
 		<selectKey order="BEFORE" resultType="int" keyProperty="notiNo">
-			SELECT board_seq.nextval FROM dual
+			SELECT noti_no_seq.nextval FROM dual
 		</selectKey>
 		
-		INSERT INTO noti ( noti_no, noti_title, noti_date, noti_content, admin_id )
-		VALUES ( #{notiNo}, #{notiTitle}, #{NotiDate}, #{notiContent}, #{adminId} )
+		INSERT INTO noti ( noti_no, noti_title, noti_content, admin_id )
+		VALUES ( #{notiNo}, #{notiTitle}, #{notiContent}, #{adminId} )
 	</insert>
 	
 	<insert id="insertFile" parameterType="com.skip.www.dto.NotiFile">
-		INSERT INTO notiFile ( noti_file_no, noti_file_originname, noti_file_storedname, noti_no )
-		VALUES ( notifile_seq.nextval, #{notiFileOriginName}, #{notiFileStoredName}, #{notiNo} )
+		INSERT INTO noti_file ( noti_file_no, noti_file_originname, noti_file_storedname, noti_no )
+		VALUES ( noti_file_no_seq.nextval, #{notiFileOriginName}, #{notiFileStoredName}, #{notiNo} )
 	</insert>
 	
 	

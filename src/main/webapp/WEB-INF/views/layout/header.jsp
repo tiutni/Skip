@@ -285,3 +285,9 @@
 			</div>
 		</div>
 	</section> <!-- Slider End -->
+	
+	<a class="qanBtn" href="여기에 카카오톡 아이디값" target="_blank"
+	style="width: 68px;height: 69px;position: fixed;
+	background: url('/img/kakaolink_btn_medium.png');
+	z-index: 100;right: 20px;bottom: 90px;">
+	</a>

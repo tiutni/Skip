@@ -35,44 +35,27 @@ $(document).ready(function() {
 	
 	// 첨부파일 보여주기
 	if( ${empty notiFile} ) {
-		$("#newFile").show()
+		$("#notiNewFile").show()
 	} else {
-		$("#originFile").show()
+		$("#notiOriginFile").show()
 	}
 	
 	// 첨부파일 삭제
-	$("#deleteFile").click(function() {
-		$("#originFile").toggleClass("through")
-		$("#newFile").toggle();
+	$("#notiDeleteFile").click(function() {
+		$("#notiOriginFile").toggleClass("through")
+		$("#notiNewFile").toggle();
 	})
 
-})
-</script>
-
-<script type="text/javascript">
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-	oAppRef: oEditors
-	, elPlaceHolder: "notiContent"
-	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
-	, fCreator: "createSEditor2"
 })
 </script>
 
 
 
 <style type="text/css">
-table {
-	table-layout: fixed;
-}
-
-table, th {
-	text-align: center;
-}
 
 a {
 	text-decoration-line: none;
-	color: white;
+/* 	color: white; */
 }
 
 #btn{
@@ -84,15 +67,15 @@ a {
 	text-decoration: line-through;
 }
 
-#deleteFile {
+#notiDeleteFile {
 	font-size: 1.5em;
 	font-weight: bold;
 	color: red;
 }
 
-#newFile, #originFile {
-	display: none;
-}
+/* #notiNewFile, #notiOriginFile { */
+/* 	display: none; */
+/* } */
 
 </style>
 
@@ -110,29 +93,41 @@ a {
 	
 				<form action="/admin/noti/update" method="post" enctype="multipart/form-data">
 
+					<input type="hidden" name="notiNo" value="${param.notiNo }">
+					
 					<div class="form-group">
 						<label for="write">작성자</label>
-						<input type="text" id="write" value="${adminId }" class="form-control" readonly="readonly">
+						<input type="text" id="write" value="${id }" class="form-control" readonly="readonly">
 					</div>
 					
 					<div class="form-group">
-						<label for="title">제목</label>
-						<input type="text" id="notiTitle" name="notiTitle" class="form-control">
+						<label for="notiTitle">제목</label>
+						<input type="text" id="notiTitle" name="notiTitle" class="form-control" value="${updateNoti.notiTitle }">
 					</div>
 					<div class="form-group">
 						<label for="notiContent">본문</label>
-						<textarea rows="10" style="width: 100%;" id="notiContent" name="notiContent"></textarea>
+						<textarea rows="10" style="width: 100%;" id="notiContent" name="notiContent">${updateNoti.notiContent }</textarea>
 					</div>
 					<div class="form-group">
-						<label for="notiFile">첨부파일</label>
-						<input type="file" id="notiFile" name="notiFile">
+						<div id="fileBox">
+							<div id="notiOriginFile">
+								<a href="/noti/download?notiFileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
+								<span id="notiDeleteFile">X</span>
+							</div>
+					
+							<div id="notiNewFile">
+								<hr>
+								<label for="notiFile">새로운 첨부파일</label>
+								<input type="file" id="notiFile" name="notiFile">
+								<small>** 새로운 파일로 첨부하면 기존 파일은 삭제됩니다</small>
+							</div>
+						</div>
 					</div>
-			
-					<br><br>
-					<div id="btn">
-						<button class="btn btn-primary" id="btnWrite">등록</button>
+					
+					<br><br><br>
+					<div class="text-center">
+						<button class="btn btn-primary" id="btnUpdate">수정</button>
 						<input type="reset" id="cancel" class="btn btn-danger" value="취소">
-						
 					</div>
 	
 				</form>
@@ -140,74 +135,22 @@ a {
 			</div>
 		</main>
 	</div>
+	
+	
+<script type="text/javascript">
+var oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+	oAppRef: oEditors
+	, elPlaceHolder: "notiContent"
+	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
+	, fCreator: "createSEditor2"
+})
+</script>
+	
+	
 </div><!-- .container end -->
 
 
-
-
-
-<!-- NOTICE 수정하기 -->
-<section class="bg0 p-t-23 p-b-140">
-	<div class="container">
-		<div class="p-b-10">
-			<h3 class="ltext-103 cl5">
-				Notice 수정
-			</h3>
-			<br><br><br>
-		</div>
-
-		
-				
-		<form action="/admin/noti/update" method="post" enctype="multipart/form-data">
-		<%-- <input type="hidden" name="notiNo" value="${updateNoti.notiNo }"> --%>
-		<input type="hidden" name="notiNo" value="${param.notiNo }">
-		
-		<div class="form-group">
-			<label for="write">작성자</label>
-			<input type="text" id="write" value="${adminId }" class="form-control" readonly="readonly">
-		</div>
-		
-		<div class="form-group">
-			<label for="title">제목</label>
-			<input type="text" id="title" name="title" class="form-control" value="${updateNoti.notiTitle }">
-		</div>
-		<div class="form-group">
-			<label for="content">본문</label>
-			<textarea rows="10" style="width: 100%;" id="content" name="content">${updateNoti.notiContent }</textarea>
-		</div>
-		
-		<div class="form-group">
-		
-			<div id="fileBox">
-				<div id="originFile">
-					<a href="admin/noti/download?fileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
-					<span id="deleteFile">X</span>
-				</div>
-		
-				<div id="newFile">
-					<hr>
-					<label for="file">새로운 첨부파일</label>
-					<input type="file" id="file" name="file">
-					<small>** 새로운 파일로 첨부하면 기존 파일은 삭제됩니다</small>
-				</div>
-			</div>
-		
-		</div>
-		
-		
-		<br><br><br>
-		<div class="text-center">
-			<button class="btn btn-primary" id="btnUpdate">수정</button>
-			<input type="reset" id="cancel" class="btn btn-danger" value="취소">
-		</div>
-		</form>
-
-				
-
-
-	</div> <!-- .container end -->
-
-</section>
 
 
 
