@@ -42,7 +42,7 @@ public class FaqController {
 		model.addAttribute("list", list);
 	}
 	
-	@RequestMapping(value="faq/admlist")
+	@RequestMapping(value="admin/faq/list")
 	public void admlist(Paging paramData, Model model) {
 		logger.info("/faq/admlist");
 		
@@ -78,13 +78,13 @@ public class FaqController {
 		
 		return "faq/view";
 	}
-	@RequestMapping("faq/admview")
+	@RequestMapping("admin/faq/view")
 	public String admview(FAQ viewFaq, Model model) {
-		logger.info("/faq/view - {}", viewFaq);
+		logger.info("/admin/faq/view - {}", viewFaq);
 		
 		//잘못된 자주 묻는 글 번호 처리
 		if( viewFaq.getFaqNo() < 1 ) {
-			return "redirect:/faq/admlist";
+			return "redirect:/admin/faq/list";
 		}
 		
 		//자주 묻는 글 조회
@@ -94,10 +94,10 @@ public class FaqController {
 		//모델값 전달
 		model.addAttribute("viewFaq", viewFaq);
 		
-		return "faq/admview";
+		return "admin/faq/view";
 	}
 	
-	@GetMapping("faq/write")
+	@GetMapping("admin/faq/write")
 	public void write() { }
 	
 	@PostMapping("faq/write")
@@ -110,38 +110,38 @@ public class FaqController {
 		
 		faqService.write(faq);
 		
-		return "redirect:/faq/admlist"; //관리자 FAQ 목록
+		return "redirect:/admin/faq/list"; //관리자 FAQ 목록
 	}
 	
-	@GetMapping("faq/update")
+	@GetMapping("admin/faq/update")
 	public String update(FAQ faq, Model model) {
 		logger.info("/faq/update - {}", faq);		
 		
 		//잘못된 자주 묻는 글 번호 처리
 		if( faq.getFaqNo() < 1 ) {
-			return "redirect:/faq/admlist";
+			return "redirect:/faq/list";
 		}
 		
 		//수정할 자주 묻는 글의 상세보기
 		faq = faqService.view(faq);
 		model.addAttribute("updateFaq", faq);
 		
-		return "faq/update";
+		return "admin/faq/update";
 	}
 	
-	@PostMapping("faq/update")
+	@PostMapping("admin/faq/update")
 	public String updateProcess(FAQ faq) {
 		logger.info("/faq/update [POST] - {}", faq);
 		
 		faqService.update(faq); //자주 묻는 글 수정
 		
-		return "redirect:/faq/admlist";
+		return "redirect:/admin/faq/list";
 	}
 	
 	@RequestMapping("faq/delete")
 	public String delete(FAQ faq) {
 		faqService.delete(faq);
 		
-		return "redirect:/faq/admlist";
+		return "redirect:/admin/faq/list";
 	}
 }

@@ -62,6 +62,12 @@ table, th {
 	<td class="info">첨부파일</td><td><a href="/qna/download?qnaFileNo=${qnaFile.qnaFileNo }">${qnaFile.qnaFileOriginName }</a>
 	</td>
 </tr>
+<tr>
+	<td class="info">답변내용</td><td>${viewQna.qnaContent }</td>
+</tr>
+<tr>
+	<td class="info">답변날짜</td><td>${viewQna.qnaContent }</td>
+</tr>
 </table>
 
 <div class="text-center">

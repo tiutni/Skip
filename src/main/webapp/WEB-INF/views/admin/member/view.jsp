@@ -12,7 +12,7 @@
 
 function button_event(e){
     if(confirm("회원을 탈퇴시키겠습니까?") == true){
-        location.href="/member/delete?userNo="+ e;
+        location.href="/admin/member/delete?userNo="+ e;
     }else{
         return;
     }
@@ -20,7 +20,7 @@ function button_event(e){
 
 $(document).ready(function() {
 	$("#btnList").click(function() {
-		location.href = "/member/list"
+		location.href = "/admin/member/list"
 	})
 	
 })

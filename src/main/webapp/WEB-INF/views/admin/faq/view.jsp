@@ -12,11 +12,11 @@
 
 $(document).ready(function() {
 	$("#btnList").click(function() {
-		location.href = "/faq/admlist"
+		location.href = "/admin/faq/list"
 	})
 	
 	$("#btnUpdate").click(function() {
-		location.href = "/faq/update?faqNo=${viewFaq.faqNo}"
+		location.href = "/admin/faq/update?faqNo=${viewFaq.faqNo}"
 	})
 	
 	$("#btnDelete").click(function() {
@@ -53,7 +53,7 @@ $(document).ready(function() {
 								<tr>
 									<td class="info">글번호</td><td>${viewFaq.faqNo }</td>
 									<td class="info">작성자</td><td>${viewFaq.adminId }</td>
-									<td class="info">작성일</td><td><fmt:formatDate value="${viewFaq.faqDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
+									<td class="info">작성일</td><td><fmt:formatDate value="${viewFaq.faqDate }" pattern="yy-MM-dd"/></td>
 								</tr>
 								<tr>
 									<td class="info">글제목</td><td colspan="6">${viewFaq.faqTitle }</td>

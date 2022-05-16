@@ -58,13 +58,19 @@ a {
 
 <div class="container">
 
-<h1>FAQ 수정하기</h1>
-<hr>
+	<div id="layoutSidenav_content">
+    	<main>
+	        <div class="container-fluid px-4">
+	            <h1 class="mt-4">FAQ 수정</h1>
+	            
+           		<ol class="breadcrumb mb-4">
+                	<li class="breadcrumb-item active">Edit FAQ details</li>
+           		</ol>
+	
 
-<form action="/faq/update" method="post" enctype="multipart/form-data">
+<form action="/admin/faq/update" method="post" enctype="multipart/form-data">
 
 <input type="hidden" name="faqNo" value="${param.faqNo }">
-
 
 <div class="form-group">
 	<label for="write">작성자</label>
@@ -80,14 +86,19 @@ a {
 	<textarea rows="10" style="width: 100%;" id="faqContent" name="faqContent">"${updateFaq.faqContent }"</textarea>
 </div>
 
-
-	<div class="text-center">
-	
-		<button class="btn btn-primary" id="btnUpdate">수정</button>
-		<input type="reset" id="cancel" class="btn btn-danger" value="취소">
-		
+			
+				<div class="text-center">
+				
+					<button class="btn btn-primary" id="btnUpdate">수정</button>
+					<input type="reset" id="cancel" class="btn btn-danger" value="취소">
+					
+					</div>
+				</form>
+			
+			</div>
+		</main>
 	</div>
-</form>
+</div><!-- .container end -->
 
 <script type="text/javascript">
 var oEditors = [];

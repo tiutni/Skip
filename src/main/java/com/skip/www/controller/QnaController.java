@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.QnA;
 import com.skip.www.dto.QnAFile;
+import com.skip.www.dto.QnAMent;
 import com.skip.www.service.face.QnaService;
 import com.skip.www.util.Paging;
 
@@ -44,9 +45,9 @@ public class QnaController {
 		model.addAttribute("list", list);
 		}
 	
-				@RequestMapping(value="qna/admlist") // 관리자가 볼 수 있는 리스트입니다
+				@RequestMapping(value="admin/qna/list") // 관리자가 볼 수 있는 리스트입니다
 				public void admlist(Paging paramData, Model model) {
-					logger.info("/qna/admlist");
+					logger.info("admin//qna/list");
 					
 					//페이징 계산
 					Paging paging = qnaService.getPaging( paramData );
@@ -84,13 +85,13 @@ public class QnaController {
 		
 		return "qna/view";
 	}
-				@RequestMapping(value="qna/admview") //관리자가 볼 수 있는 상세보기 입니다
+				@RequestMapping(value="admin/qna/view") //관리자가 볼 수 있는 상세보기 입니다
 				public String admview(QnA viewQna, Model model ) {
-					logger.info("/qna/admview - {}", viewQna);
+					logger.info("/admin/qna/view - {}", viewQna);
 					
 					// 잘못된 문의글 번호 처리
 					if( viewQna.getQnaNo() < 1 ) {
-						return "redirect:/qna/admlist";
+						return "redirect:/admin/qna/list";
 					}
 					
 					//문의글 조회
@@ -104,7 +105,7 @@ public class QnaController {
 					QnAFile qnaFile = qnaService.getAttachFile(viewQna);
 					model.addAttribute("qnaFile", qnaFile);
 					
-					return "qna/admview";
+					return "admin/qna/view";
 				}
 	
 	@GetMapping("qna/write")
@@ -173,11 +174,29 @@ public class QnaController {
 	}
 	
 	//관리자
-	@RequestMapping("qna/admdelete")
+	@RequestMapping("admin/qna/delete")
 	public String admdelete(QnA qna) {
 		qnaService.admdelete(qna);
 		
-		return "redirect:/qna/admlist";
+		return "redirect:/admin/qna/list";
 	}
 	
+	@GetMapping("admin/qna/write")
+	public void admwrite() {
+		
+	}
+	
+	@PostMapping("admin/qna/write")
+	public String admwriteProcess(QnAMent qnament, HttpSession session) {
+		logger.info("/admin/qna/write [POST]");
+		logger.info("{}", qnament);
+		
+		qnament.setQnaNo( (int) session.getAttribute("qnaNo") ); 
+		qnament.setAdminId( (String) session.getAttribute("adminId") );
+		 		 	
+		qnaService.write(qnament);
+		
+		return "redirect:/admin/qna/list";
+		
+	}
 }
