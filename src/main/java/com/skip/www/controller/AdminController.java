@@ -247,9 +247,9 @@ public class AdminController {
 	}
 	
 	
-	//전시
+	//공연
 	
-	@RequestMapping(value="/admin/exhibition/list")
+	@RequestMapping(value="/admin/concert/list")
 	public void listConcert(Paging paramData, Model model) {
 		logger.info("/admin/exhibiton/list");
 		
@@ -267,13 +267,13 @@ public class AdminController {
 		model.addAttribute("list", list);
 	}
 	
-	@RequestMapping("/admin/exhibition/view")
+	@RequestMapping("/admin/concert/view")
 	public String viewConcert(Concert viewConcert, Model model, HttpSession session) {
-		logger.info("/admin/exhibition/view - {}", viewConcert);
+		logger.info("/admin/concert/view - {}", viewConcert);
 		
 		//잘못된 게시글 번호 처리
 		if( viewConcert.getConNo() < 1 ) {
-			return "redirect:/admin/exhibition/list";
+			return "redirect:/admin/concert/list";
 		}
 		
 		//게시글 조회
@@ -288,80 +288,80 @@ public class AdminController {
 		ConImg exImg = adminService.getAttachConImg(viewConcert);
 		model.addAttribute("exImg", exImg);
 		
-		return "/admin/exhibition/view";
+		return "/admin/concert/view";
 	}
 	
-	@GetMapping("/admin/exhibition/write")
+	@GetMapping("/admin/concert/write")
 	public void writeConcert() { }
 	
-	@PostMapping("/admin/exhibition/write")
-	public String writeProcessConcert(Concert exhibition, MultipartFile file, HttpSession session) {
-		logger.info("/admin/exhibition/write [POST]");
-		logger.info("{}", exhibition);
+	@PostMapping("/admin/concert/write")
+	public String writeProcessConcert(Concert concert, MultipartFile file, HttpSession session) {
+		logger.info("/admin/concert/write [POST]");
+		logger.info("{}", concert);
 		logger.info("{}", file);
 		
-		exhibition.setAdminId( (String) session.getAttribute("id") );
-		logger.info("{}", exhibition);
+		concert.setAdminId( (String) session.getAttribute("id") );
+		logger.info("{}", concert);
 		
-		adminService.writeConcert(exhibition, file);
+		adminService.writeConcert(concert, file);
 		
-		return "redirect:/admin/exhibition/list"; //게시글 목록
+		return "redirect:/admin/concert/list"; //게시글 목록
 	}
 	
-	@GetMapping("/admin/exhibition/update")
-	public String updateConcert(Concert exhibition, Model model) {
-		logger.info("/admin/exhibition/update - {}", exhibition);		
+	@GetMapping("/admin/concert/update")
+	public String updateConcert(Concert concert, Model model) {
+		logger.info("/admin/concert/update - {}", concert);		
 		
 		//잘못된 게시글 번호 처리
-		if( exhibition.getConNo() < 1 ) {
-			return "redirect:/admin/exhibition/list";
+		if( concert.getConNo() < 1 ) {
+			return "redirect:/admin/concert/list";
 		}
 		
 		//수정할 게시글의 상세보기
-		exhibition = adminService.viewConcert(exhibition);
-		model.addAttribute("updateConcert", exhibition);
+		concert = adminService.viewConcert(concert);
+		model.addAttribute("updateConcert", concert);
 		
 		//첨부파일 정보 모델값 전달
-		ConImg exImg = adminService.getAttachConImg(exhibition);
+		ConImg exImg = adminService.getAttachConImg(concert);
 		model.addAttribute("exImg", exImg);
 		
-		return "/admin/exhibition/update";
+		return "/admin/concert/update";
 	}
 	
-	@PostMapping("/admin/exhibition/update")
-	public String updateProcessConcert(Concert exhibition, MultipartFile file) {
-		logger.info("/admin/exhibition/update [POST] - {}", exhibition);
+	@PostMapping("/admin/concert/update")
+	public String updateProcessConcert(Concert concert, MultipartFile file) {
+		logger.info("/admin/concert/update [POST] - {}", concert);
 		
-		adminService.updateConcert(exhibition, file); //게시글+첨부파일 수정
+		adminService.updateConcert(concert, file); //게시글+첨부파일 수정
 		
-		return "redirect:/admin/exhibition/view?exhibitionNo=" + exhibition.getConNo();
+		return "redirect:/admin/concert/view?concertNo=" + concert.getConNo();
 	}
 	
-	@RequestMapping("/admin/exhibition/delete")
-	public String deleteConcert(Concert exhibition) {
-		adminService.deleteConcert(exhibition);
+	@RequestMapping("/admin/concert/delete")
+	public String deleteConcert(Concert concert) {
+		adminService.deleteConcert(concert);
 		
-		return "redirect:/admin/exhibition/list";
+		return "redirect:/admin/concert/list";
 	}
 	
-	@RequestMapping("/admin/exhibition/activate")
-	public String activateConcert(HttpServletRequest request, Concert exhibition) {
-		adminService.activateConcert(exhibition);
-		
-		String referer = request.getHeader("Referer");
-		return "redirect:"+ referer;
-	}
-	
-	@RequestMapping("/admin/exhibition/unactivate")
-	public String unactivateConcert(HttpServletRequest request, Concert exhibition) {
-		adminService.unactivateConcert(exhibition);
+	@RequestMapping("/admin/concert/activate")
+	public String activateConcert(HttpServletRequest request, Concert concert) {
+		adminService.activateConcert(concert);
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:"+ referer;
 	}
 	
+	@RequestMapping("/admin/concert/unactivate")
+	public String unactivateConcert(HttpServletRequest request, Concert concert) {
+		adminService.unactivateConcert(concert);
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:"+ referer;
+	}
 	
-	@RequestMapping("/admin/exhibition/download")
+	
+	@RequestMapping("/admin/concert/download")
 	public String downloadConImg(ConImg exImg, Model model) {
 		
 		exImg = adminService.getConImg(exImg);

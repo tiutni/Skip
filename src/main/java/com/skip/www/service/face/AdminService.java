@@ -1,6 +1,5 @@
 package com.skip.www.service.face;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
