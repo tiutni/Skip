@@ -18,14 +18,18 @@
 		SELECT * FROM (
 			SELECT rownum rnum, Q.* FROM (
 				SELECT
-					qna_no,
-					user_no,
-					qna_title,
-					qna_content,
-					qna_date
-				FROM qna
-				WHERE qna_title LIKE '%' || #{search} || '%' 
-				ORDER BY qna_no DESC
+					A.qna_no,
+					A.user_no,
+					A.qna_title,
+					A.qna_content,
+					A.qna_date,
+                    B.qna_ment_content
+				FROM qna A ,
+                qna_ment B
+				WHERE 1=1
+                and A.qna_no = B.qna_no (+)
+				and qna_title LIKE '%' || #{search} || '%' 
+				ORDER BY A.qna_no DESC
 			) Q
 		) QNA
 		WHERE rnum BETWEEN #{startNo } AND #{endNo }
@@ -88,17 +92,33 @@
 		WHERE qna_no = #{qnaNo}
 	</delete>
 	
+	<!-- 문의답변 -->
 	
 	<insert id="insertQnAMent" parameterType="com.skip.www.dto.QnAMent">
 		
-		<selectKey order="BEFORE" resultType="int" keyProperty="qnaNo">
-				SELECT qna_ment_no_seq.nextval FROM dual
+		<selectKey order="BEFORE" resultType="int" keyProperty="qnaMentNo">
+			SELECT qna_ment_no_seq.nextval FROM dual
 		</selectKey>
 		
 		INSERT INTO qna_ment (qna_ment_no, qna_no, qna_ment_content, admin_id)
-		VALUES ( qna_ment_no_seq.nextval, #{qnaNo}, #{qnaMentContent}, #{adminId} )
+		VALUES ( #{qnaMentNo}, #{qnaNo}, #{qnaMentContent}, #{adminId} )
 		
 	</insert>
 	
+	<!-- 상세페이지에서 답변보기 -->
+	<select id="selectQnAMent" parameterType="com.skip.www.dto.QnA" resultType="com.skip.www.dto.QnAMent">
+		SELECT * FROM (
+			
+				SELECT
+					qna_ment_no
+					, qna_no
+					, qna_ment_content
+					, admin_id
+					, qna_ment_date
+				FROM qna_ment
+				WHERE qna_no = #{qnaNo}
+				)
+		
+	</select>
+	
 </mapper>
-

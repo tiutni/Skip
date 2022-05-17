@@ -29,7 +29,6 @@ table {
 }
 
 table, th {
-	text-align: center;
 }
 </style>
 
@@ -69,7 +68,7 @@ table, th {
 		<thead>
 			<tr>
 				<th style="width: 10%;">No</th>
-				<th style="width: 20%;">회원 번호</th>
+				<th style="width: 20%;">회원 아이디</th>
 				<th style="width: 30%;">문의 제목</th>
 				<th style="width: 20%;">문의 날짜</th>
 			</tr>
@@ -78,7 +77,7 @@ table, th {
 		<c:forEach items="${list }" var="qna">
 			<tr>
 				<td>${qna.qnaNo }</td>
-				<td>${qna.userNo }</td>
+				<td>${userId }</td>
 				<td><a href="/qna/view?qnaNo=${qna.qnaNo }">${qna.qnaTitle }</td>
 				<td><fmt:formatDate value="${qna.qnaDate }" pattern="yyyy-MM-dd "/></td>
 			</tr>

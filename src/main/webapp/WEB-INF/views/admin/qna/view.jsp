@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <c:import url="/WEB-INF/views/admlayout/header.jsp" />
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -14,12 +15,23 @@ $(document).ready(function() {
 	})
 	
 	$("#btnDelete").click(function() {
-		location.href = "/admin/qna/delete?qnaNo=${viewQna.qnaNo}"
+		if(confirm("QnA 게시글을 삭제하시겠습니까?") == true){
+		
+			location.href = "/admin/qna/delete?qnaNo=${viewQna.qnaNo}"
+			}else{
+        	
+			return;
+			
+    	}
 	})
 	
 	$("#btnWrite").click(function() {
 		location.href = "/admin/qna/write?qnaNo=${viewQna.qnaNo}"
 	})
+	
+})
+
+$(document).ready(function(){
 	
 })
 </script>
@@ -70,10 +82,30 @@ $(document).ready(function() {
 									<td class="info">첨부파일</td><td><a href="/qna/download?qnaFileNo=${qnaFile.qnaFileNo }">${qnaFile.qnaFileOriginName }</a></td>
 								</tr>
 								<tr>
-									<td class="info">답변내용</td><td>${qnament.qnaMentContent} </td>
+									<td class="info">답변 내용</td>
+									
+									<td>
+										<c:forEach items="${QnAMentList }" var="qnament">${qnament.qnaMentContent }</c:forEach>
+									</td>
+								</tr>
+								<tr>
+									<td class="info">답변 날짜</td>
+									
+									<td>
+										<c:forEach items="${QnAMentList }" var="qnament"><fmt:formatDate value="${qnament.qnaMentDate }" pattern="yy-MM-dd HH:mm:ss"/></c:forEach>
+									</td>
+								</tr>
+								<tr>
+									<td class="info">답변 작성자</td>
+									
+									<td>
+										<c:forEach items="${QnAMentList }" var="qnament">${qnament.adminId }</c:forEach>
+									</td>
 								</tr>
 								
 							</table>	
+							
+							
 							
 							<div class="text-center">
 									<button id="btnList" class="btn btn-primary">목록</button>

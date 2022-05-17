@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:import url="/WEB-INF/views/layout/header.jsp" />
+
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <!-- 스마트 에디터 2 로드 -->
@@ -36,6 +38,13 @@ $(document).ready(function() {
 			$("#qnaNewFile").toggle();
 		})
 })
+
+$(document).ready(function() {
+	
+	$("#cancel").click(function() {
+		history.go(-1)
+	})
+})
 </script>
 
 
@@ -62,8 +71,7 @@ table, th {
 
 <div class="container">
 
-<h1>문의 글 수정</h1>
-<hr>
+<br>
 
 <form action="/qna/update" method="post" enctype="multipart/form-data">
 <input type ="hidden" name="qnaNo" value="${param.qnaNo }">
@@ -104,6 +112,7 @@ table, th {
 	<button class="btn btn-primary" id="btnUpdate">수정</button>
 	<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 </div>
+<br>
 
 </form>
 
@@ -120,4 +129,6 @@ nhn.husky.EZCreator.createInIFrame({
 
 
 </div><!-- .container end -->
+
+<c:import url="/WEB-INF/views/layout/footer.jsp" />
 

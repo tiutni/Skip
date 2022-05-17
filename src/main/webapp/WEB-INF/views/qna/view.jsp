@@ -15,12 +15,25 @@ $(document).ready(function() {
 	})
 	
 	$("#btnUpdate").click(function() {
+		
 		location.href = "/qna/update?qnaNo=${viewQna.qnaNo}"
 	})
 	
 	$("#btnDelete").click(function() {
+		if(confirm("QnA 게시글을 삭제하시겠습니까?") == true){
+			
 		location.href = "/qna/delete?qnaNo=${viewQna.qnaNo}"
+		
+		}else{
+    	
+		return;
+		
+		}
 	})
+})
+
+$(document).ready(function(){
+	
 })
 
 </script>
@@ -38,8 +51,7 @@ table, th {
 
 <div class="container">
 
-<h1>문의글 상세보기</h1>
-<hr>
+<br>
 
 <table class="table table-bordered">
 <tr>
@@ -63,22 +75,23 @@ table, th {
 	</td>
 </tr>
 <tr>
-	<td class="info">답변내용</td><td>${viewQna.qnaContent }</td>
+	<td class="info">답변내용</td><td><c:forEach items="${QnAMentList }" var="qnament">${qnament.qnaMentContent }</c:forEach></td>
 </tr>
 <tr>
-	<td class="info">답변날짜</td><td>${viewQna.qnaContent }</td>
+	<td class="info">답변날짜</td><td><c:forEach items="${QnAMentList }" var="qnament"><fmt:formatDate value="${qnament.qnaMentDate }" pattern="yy-MM-dd HH:mm:ss"/></c:forEach></td>
 </tr>
 </table>
 
 <div class="text-center">
-	<button id="btnList" class="btn btn-default">목록</button>
+	<button id="btnList" class="btn btn-primary">목록</button>
 	
 	<c:if test="${userNo eq viewQna.userNo }">
-		<button id="btnUpdate" class="btn btn-primary">수정</button>
+		<button id="btnUpdate" class="btn btn-success">수정</button>
 		<button id="btnDelete" class="btn btn-danger">삭제</button>
 	</c:if>
+	
 </div>
-
+<br>
 
 </div><!-- .container -->
 

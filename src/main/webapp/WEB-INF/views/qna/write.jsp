@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:import url="/WEB-INF/views/layout/header.jsp" />
+
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -18,12 +23,19 @@ function submitContents(elClickedObj) {
 }
 
 $(document).ready(function() {
-
 	
 	$("#btnWrite").click(function() {
 		submitContents($("#btnWrite"))
 		
 		$("form").submit();
+	})
+	
+})
+
+$(document).ready(function() {
+	
+	$("#cancel").click(function() {
+		history.go(-1)
 	})
 })
 
@@ -42,8 +54,7 @@ table, th {
 
 <div class="container">
 
-<h1>문의하기</h1>
-<hr>
+<br>
 
 <form action="/qna/write" method="post" enctype="multipart/form-data">
 
@@ -70,20 +81,19 @@ table, th {
 	<button class="btn btn-primary" id="btnWrite">작성</button>
 	<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 </div>
+<br>
 
 </form>
-
-<script type="text/javascript">
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-	oAppRef: oEditors
-	, elPlaceHolder: "qnaContent"
-	, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
-	, fCreator: "createSEditor2"
-})
-</script>
-
-
-
 </div><!-- .container end -->
+	
+	<script type="text/javascript">
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef: oEditors
+		, elPlaceHolder: "qnaContent"
+		, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
+		, fCreator: "createSEditor2"
+	})
+	</script>
 
+<c:import url="/WEB-INF/views/layout/footer.jsp" />
