@@ -43,7 +43,7 @@ setInterval (function() {
 </script>
 </head>
 
-  <body class="bg-primary">
+  <body class="bg-dark">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
