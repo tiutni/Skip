@@ -236,7 +236,6 @@ public class AdminController {
 		return "redirect:"+ referer;
 	}
 
-	
 	@RequestMapping("/admin/exhibition/download")
 	public String downloadExImg(ExImg exImg, Model model) {
 		
@@ -359,7 +358,6 @@ public class AdminController {
 		String referer = request.getHeader("Referer");
 		return "redirect:"+ referer;
 	}
-	
 	
 	@RequestMapping("/admin/concert/download")
 	public String downloadConImg(ConImg exImg, Model model) {

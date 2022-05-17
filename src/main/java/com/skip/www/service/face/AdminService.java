@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Admin;
+import com.skip.www.dto.ConImg;
+import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
 import com.skip.www.util.Paging;
@@ -44,17 +46,8 @@ public interface AdminService {
 	public boolean checkAuth(String adminAuth);
 	
 	
-	//전시
+	//공통
 	
-
-	/**
-	 * 페이징이 적용된 게시글 목록 조회
-	 * 
-	 * @param paging - 페이징 정보 객체
-	 * @return 페이징이 적용된 게시글 목록
-	 */
-	public List<Exhibition> listExhibition(Paging paging);
-
 	/**
 	 * 게시글 목록을 위한 페이징 객체를 생성한다
 	 * 
@@ -67,6 +60,17 @@ public interface AdminService {
 	 * @return 계산이 완료된 Paging객체
 	 */
 	public Paging getPaging(Paging paramData);
+	
+	
+	//전시
+
+	/**
+	 * 페이징이 적용된 게시글 목록 조회
+	 * 
+	 * @param paging - 페이징 정보 객체
+	 * @return 페이징이 적용된 게시글 목록
+	 */
+	public List<Exhibition> listExhibition(Paging paging);
 
 	/**
 	 * 게시글 상세보기
@@ -126,5 +130,75 @@ public interface AdminService {
 	public void activateExhibition(Exhibition exhibition);
 
 	public void unactivateExhibition(Exhibition exhibition);
+	
+	
+	//공연
+
+	/**
+	 * 페이징이 적용된 게시글 목록 조회
+	 * 
+	 * @param paging - 페이징 정보 객체
+	 * @return 페이징이 적용된 게시글 목록
+	 */
+	public List<Concert> listConcert(Paging paging);
+
+	/**
+	 * 게시글 상세보기
+	 * 
+	 * @param viewConcert - 상세 조회할 게시글 번호 객체
+	 * @return 조회된 상세 게시글 객체
+	 */
+	public Concert viewConcert(Concert viewConcert);
+
+	/**
+	 * 게시글 번호를 이용하여 업로드된 파일 정보를 조회한다
+	 * 
+	 * @param viewConcert - 조회할 게시글 번호를 가진 객체
+	 * @return 첨부파일의 정보
+	 */
+	public ConImg getAttachConImg(Concert viewConcert);
+
+	/**
+	 * 파일 번호를 이용하여 업로드된 파일 정보를 조회한다
+	 * 
+	 * @param conImg - 조회할 파일 번호를 가진 객체
+	 * @return 첨부파일의 정보
+	 */
+	public ConImg getConImg(ConImg conImg);
+	
+	/**
+	 * 게시글 정보, 첨부파일을 함께 처리한다
+	 * 
+	 * @param concert - 게시글 정보 DTO
+	 * @param file - 첨부파일 정보 DTO
+	 */
+	public void writeConcert(Concert concert, MultipartFile file);
+
+	/**
+	 * 게시글 수정 처리
+	 * 
+	 * @param concert - 게시글 정보 객체
+	 */
+	public void updateConcert(Concert concert);
+
+	/**
+	 * 게시글 수정 처리
+	 * 첨부파일 수정 처리
+	 * 
+	 * @param concert - 게시글 정보 객체
+	 * @param file - 파일업로드 객체
+	 */
+	public void updateConcert(Concert concert, MultipartFile file);
+
+	/**
+	 * 게시글 + 첨부파일 삭제 처리
+	 * 
+	 * @param concert - 삭제할 게시글의 글번호
+	 */
+	public void deleteConcert(Concert concert);
+
+	public void activateConcert(Concert concert);
+
+	public void unactivateConcert(Concert concert);
 
 }
