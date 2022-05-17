@@ -66,6 +66,7 @@
 			WHERE ADMIN_AUTH = #{adminAuth}
 	</select>
 
+
 	<!-- 전시 -->
 	<select id="selectExhibitionList" resultMap="Exhibition" parameterType="com.skip.www.util.Paging">
 		SELECT * FROM (
@@ -222,63 +223,156 @@
 
 	
 	<!-- 공연 -->
-<!-- 	<select id="selectList" resultMap="Concert" parameterType="com.skip.www.util.Paging"> -->
-<!-- 		SELECT * FROM ( -->
-<!-- 			SELECT rownum rnum, B.* FROM ( -->
+	<select id="selectConcertList" resultMap="Concert" parameterType="com.skip.www.util.Paging">
+		SELECT * FROM (
+			SELECT rownum rnum, B.* FROM (
 			
-<!-- 				SELECT -->
-<!-- 					con_no -->
-<!-- 					, con_regdate -->
-<!-- 					, con_title -->
-<!-- 					, con_address -->
-<!-- 					, con_content -->
-<!-- 					, con_startday -->
-<!-- 					, con_endday -->
-<!-- 					, con_reserveStartdayVIP -->
-<!-- 					, con_reserveStartday -->
-<!-- 					, con_reserveEndday -->
-<!-- 					, con_activate -->
-<!-- 					, admin_id -->
-<!-- 				FROM Concert -->
-<!-- 				WHERE con_title LIKE '%' || #{search} || '%'  -->
-<!-- 				ORDER BY ex_no DESC -->
+				SELECT
+					con_no
+					, con_regdate
+					, con_title
+					, con_address
+					, con_content
+					, con_startday
+					, con_endday
+					, con_reserveStartdayVIP
+					, con_reserveStartday
+					, con_reserveEndday
+					, con_activate
+					, admin_id
+				FROM Concert
+				WHERE con_title LIKE '%' || #{search} || '%' 
+				ORDER BY con_no DESC
 				
-<!-- 			) B -->
-<!-- 		) CONCERT -->
-<!-- 		WHERE rnum BETWEEN #{startNo } AND #{endNo } -->
-<!-- 	</select> -->
+			) B
+		) CONCERT
+		WHERE rnum BETWEEN #{startNo } AND #{endNo }
+	</select>
 	
+	<select id="selectConcertCntAll" resultType="int">
+		SELECT count(*) FROM Concert
+		WHERE con_title LIKE '%' || #{search} || '%' 
+	</select>
+	
+	<select id="selectConcert" resultMap="Concert" parameterType="com.skip.www.dto.Concert">
+		SELECT
+			con_no
+			, con_regdate
+			, con_title
+			, con_address
+			, con_content
+			, con_startDay
+			, con_endDay
+			, con_reserveStartDay
+			, con_reserveEndDay
+			, con_enterStartTime
+			, con_enterEndTime
+			, con_price
+			, con_activate
+			, admin_id
+			FROM Concert
+		WHERE con_no = #{conNo}
+	</select>
+	
+	<insert id="insertConcert" parameterType="com.skip.www.dto.Concert">
+		<selectKey order="BEFORE" resultType="int" keyProperty="conNo">
+			SELECT con_no_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO Concert ( 
+			con_no
+			, con_title
+			, con_address
+			, con_content
+			, con_startDay
+			, con_endDay
+			, con_reserveStartDay
+			, con_reserveEndDay
+			, con_enterStartTime
+			, con_enterEndTime
+			, con_price
+			, admin_id
+		)
+		VALUES ( 
+			#{conNo}
+			, #{conTitle}
+			, #{conAddress}
+			, #{conContent}
+			, to_date(#{conStartDayString}, 'YYYY-MM-DD')
+			, to_date(#{conEndDayString}, 'YYYY-MM-DD')
+			, to_date(#{conReserveStartDayString}, 'YYYY-MM-DD')
+			, to_date(#{conReserveEndDayString}, 'YYYY-MM-DD')
+			, to_date(#{conEnterStartTime}, 'HH24:MI:SS')
+			, to_date(#{conEnterEndTime}, 'HH24:MI:SS')
+			, #{conPrice}
+			, #{adminId}
+		)
+	</insert>
+	
+	<update id="updateConcert" parameterType="com.skip.www.dto.Concert">
+		UPDATE Concert
+		SET con_title = #{conTitle}
+			, con_content = #{conContent}
+		WHERE con_no = #{conNo}
+	</update>
+
+	<delete id="deleteConcert" parameterType="com.skip.www.dto.Concert">
+		DELETE Concert
+		WHERE con_no = #{conNo}
+	</delete>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<select id="selectConImgByConNo" resultType="com.skip.www.dto.ConImg" parameterType="com.skip.www.dto.Concert">
+		SELECT
+			con_img_no
+			, con_img_originName
+			, con_img_storedName
+			, con_no
+		FROM con_img
+		WHERE con_no = #{conNo}
+	</select>
+	
+	<select id="selectConImgByConImgNo" resultType="com.skip.www.dto.ConImg" parameterType="com.skip.www.dto.ConImg">
+		SELECT
+			con_img_no
+			, con_img_originName
+			, con_img_storedName
+			, con_no
+		FROM con_img
+		WHERE con_img_no = #{conImgNo}
+	</select>
+	
+	<insert id="insertConImg" parameterType="com.skip.www.dto.ConImg">
+		INSERT INTO con_img ( 
+			con_img_no
+			, con_img_originName
+			, con_img_storedName
+			, con_no
+		)
+		VALUES ( 
+			con_img_no_seq.nextval
+			, #{conImgOriginName}
+			, #{conImgStoredName}
+			, #{conNo} 
+		)
+	</insert>
+	
+	<delete id="deleteConImg" parameterType="com.skip.www.dto.Concert">
+		DELETE con_img
+		WHERE con_no = #{conNo}
+	</delete>
+	
+	<update id="activateConcert" parameterType="com.skip.www.dto.Concert">
+		UPDATE Concert
+		SET con_activate = 1
+		WHERE con_no = #{conNo}
+	</update>
+	
+	<update id="unactivateConcert" parameterType="com.skip.www.dto.Concert">
+		UPDATE Concert
+		SET con_activate = 0
+		WHERE con_no = #{conNo}
+	</update>
 
 
 </mapper>

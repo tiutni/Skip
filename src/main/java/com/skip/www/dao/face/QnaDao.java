@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skip.www.dto.QnA;
 import com.skip.www.dto.QnAFile;
+import com.skip.www.dto.QnAMent;
 import com.skip.www.util.Paging;
 
 
@@ -85,5 +86,7 @@ public interface QnaDao {
 	 * @param qna - 삭제할 문의글의 글번호
 	 */
 	public void delete(QnA qna);
+
+	public void insertQnAMent(QnAMent qnament);
 
 }

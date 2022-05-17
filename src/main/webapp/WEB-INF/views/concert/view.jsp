@@ -21,6 +21,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	// 리뷰 삭제 버튼
 	$("#btnReviewDelete").click(function() {
 		if(confirm("리뷰를 삭제하시겠습니까?") == true) {
 			$("#reviewdelete").submit();
@@ -32,6 +33,7 @@ $(document).ready(function() {
 
 	});
 	
+	// 결제 버튼
 	$("#btnPayment").click(function() {
 		
 		var isUserNo = "${userNo}";
@@ -48,10 +50,12 @@ $(document).ready(function() {
 	
 	});
 	
+	// 리뷰 작성 버튼
 	$("#btnSubmit").click(function() {
 		$("#reviewForm").submit();
 	});
 	
+	// 위시리스트 목록에 있는지 구분
 	if(${isWish}) {
 		$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 25px; height: 25px;">');
 		
@@ -60,6 +64,7 @@ $(document).ready(function() {
 		
 	}
 	
+	// 위시리스트 버튼 클릭시 발생 하는 이벤트 ajax
 	$("#btnWish").click(function() {
 		
 		var isUserNo = "${userNo}";
@@ -104,6 +109,7 @@ $(document).ready(function() {
 		
 	});
 	
+	//회차 목록 변경시 이벤트
 	$("#round").change(function() {
 
 		$("#selectSeat").empty();
@@ -153,6 +159,7 @@ $(document).ready(function() {
 	
 	console.log("number : " + number);
 
+	// 좌석 변경시 발생하는 이벤트 ajax
 	$("#seat").change(function() {
 		
 		document.getElementById('selectSeat').innerHTML += (
@@ -373,6 +380,8 @@ $(document).ready(function() {
 
 <div class="select" style="width: 330px; height: 318px; float: right; margin-right: 80px; margin-top: 30px;">
 <form action="/pay" method="post" id="payForm">
+<input type="hidden" name="userNo" value="${userNo }" />
+<input type="hidden" name="conNo" value="${viewConcert.conNo }" />
 <fieldset style="border: 2px solid #ccc; border-radius: 10px; height: 318px;">
 <br>
 <span style="font-size: 23px; margin-left:75px; margin-top: 10px;"><b>인원 및 날짜 선택</b></span><br>

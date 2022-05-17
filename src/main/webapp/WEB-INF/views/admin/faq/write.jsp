@@ -39,11 +39,6 @@ $(document).ready(function() {
 </script>
 
 
-
-
-
-
-
 <style type="text/css">
 table {
 	table-layout: fixed;
@@ -63,33 +58,45 @@ a {
 
 <div class="container">
 
-<h1>FAQ 글쓰기</h1>
-<hr>
+	<div id="layoutSidenav_content">
+    	<main>
+	        <div class="container-fluid px-4">
+	            <h1 class="mt-4">FAQ 작성</h1>
+	            
+           		<ol class="breadcrumb mb-4">
+                	<li class="breadcrumb-item active">Write FAQ details</li>
+           		</ol>
 
-<form action="/faq/write" method="post" enctype="multipart/form-data">
-
-<div class="form-group">
-	<label for="write">작성자</label>
-	<input type="text" id="write" value="${id }" class="form-control" readonly="readonly">
-</div>
-
-<div class="form-group">
-	<label for="title">제목</label>
-	<input type="text" id="faqTitle" name="faqTitle" class="form-control">
-</div>
-<div class="form-group">
-	<label for="faqContent">본문</label>
-	<textarea rows="10" style="width: 100%;" id="faqContent" name="faqContent"></textarea>
-</div>
-
-
-	<div class="text-center">
+						<form action="/faq/write" method="post" enctype="multipart/form-data">
+						
+						<div class="form-group">
+							<label for="write">작성자</label>
+							<input type="text" id="write" value="${id }" class="form-control" readonly="readonly">
+						</div>
+						
+						<div class="form-group">
+							<label for="title">제목</label>
+							<input type="text" id="faqTitle" name="faqTitle" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="faqContent">본문</label>
+							<textarea rows="10" style="width: 100%;" id="faqContent" name="faqContent"></textarea>
+						</div>
+						
+						
+							<div class="text-center">
+							
+								<button class="btn btn-primary" id="btnWrite">작성</button>
+								<input type="reset" id="cancel" class="btn btn-danger" value="취소">
+								
+							</div>
 	
-		<button class="btn btn-primary" id="btnWrite">작성</button>
-		<input type="reset" id="cancel" class="btn btn-danger" value="취소">
-		
+				</form>
+
+			</div>
+		</main>
 	</div>
-</form>
+</div><!-- .container end -->
 
 <script type="text/javascript">
 var oEditors = [];
@@ -103,4 +110,5 @@ nhn.husky.EZCreator.createInIFrame({
 
 
 
-</div><!-- .container end -->
+
+

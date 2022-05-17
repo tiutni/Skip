@@ -2,6 +2,18 @@
     pageEncoding="UTF-8"%>
     
     
+    
+<!-- 플로팅 버튼 CSS 스타일 -->
+<style>
+/* 실시간 문의하기 버튼 스타일 */
+.qnaBtn {
+  position: fixed;
+  top: 85%; /* 브라우저 윗쪽 끝에서부터의 거리 */
+  right: 50%; /* 왼쪽에 배치하려면 right를 left로 변경 */
+  margin-right: -48%; /* 가운데를 기준으로 오른쪽 거리 */
+  z-index: 99;
+}
+</style>
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -136,12 +148,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 
 
+
+	<!-- 실시간채팅 버튼 -->
+	<div class="qnaBtn hidden-md hidden-sm hidden-xs">
+  		<a href="http://localhost:8088/chat.do">
+    		<img src="../../resources/images/icons/qnaBtn.png" width="76px" height="76px">
+ 		</a>
+	</div>
+
+
+
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
+
+
 
 	<!-- Modal1 -->
 	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">

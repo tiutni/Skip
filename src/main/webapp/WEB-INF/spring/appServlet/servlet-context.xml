@@ -47,6 +47,7 @@
 	<beans:bean id="down" class="com.skip.www.view.DownloadView" />
 	<beans:bean id="notiFileDown" class="com.skip.www.view.NotiDownloadView" />
 	<beans:bean id="downExhibition" class="com.skip.www.view.ExhibitionDownloadView" />
+	<beans:bean id="downConcert" class="com.skip.www.view.ConcertDownloadView" />
 	<beans:bean id="downQna" class="com.skip.www.view.QnaDownloadView" />
 	
 	
@@ -61,6 +62,10 @@
 		<interceptor>
 			<mapping path="/admin/exhibition/*" />
 <!-- 			<mapping path="/admin/concert/*" /> -->
+			<mapping path="/admin/member/*" />
+			<mapping path="/admin/noti/*" />  	
+			<mapping path="/admin/faq/*" />
+			<mapping path="/admin/qna/*" />
 			<beans:bean class="com.skip.www.interceptor.AdminInterceptor" />
 		</interceptor>
 	</interceptors>	

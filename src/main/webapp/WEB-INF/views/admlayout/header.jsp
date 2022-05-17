@@ -2,7 +2,19 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+
+<!-- 플로팅 버튼 CSS 스타일 -->
+<style>
+/* 실시간 문의하기 버튼 스타일 */
+.qnaBtn {
+  position: fixed;
+  top: 85%; /* 브라우저 윗쪽 끝에서부터의 거리 */
+  right: 50%; /* 왼쪽에 배치하려면 right를 left로 변경 */
+  margin-right: -48%; /* 가운데를 기준으로 오른쪽 거리 */
+  z-index: 99;
+}
+
+</style>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -63,7 +75,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Member</div>
-                            <a class="nav-link" href="/member/list">
+                            <a class="nav-link" href="/admin/member/list">
                                 <div class="sb-nav-link-icon"><i class="bi bi-people-fill"></i></div>
                                 회원
                             </a>
@@ -83,12 +95,12 @@
                                 공지사항
                             </a>
                             <div class="sb-sidenav-menu-heading">FAQ</div>
-                            <a class="nav-link" href="/faq/admlist">
+                            <a class="nav-link" href="/admin/faq/list">
                                 <div class="sb-nav-link-icon"><i class="bi bi-question-circle"></i></div>
                                 자주 묻는 질문
                             </a>
                             <div class="sb-sidenav-menu-heading">QnA</div>
-                            <a class="nav-link" href="/qna/admlist">
+                            <a class="nav-link" href="/admin/qna/list">
                                 <div class="sb-nav-link-icon"><i class="bi bi-chat-dots"></i></div>
                                 1:1 문의
                             </a>
@@ -103,3 +115,9 @@
             </div>
             
             
+		<!-- 실시간채팅 버튼 -->
+		<div class="qnaBtn hidden-md hidden-sm hidden-xs">
+	  		<a href="http://localhost:8088/chat.do">
+	    		<img src="../../resources/images/icons/qnaBtn.png" width="76px" height="76px">
+	 		</a>
+		</div>
