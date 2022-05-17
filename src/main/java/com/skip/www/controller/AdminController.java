@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Admin;
+import com.skip.www.dto.ConImg;
+import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
 import com.skip.www.service.face.AdminService;
@@ -47,7 +49,7 @@ public class AdminController {
 			session.setAttribute("login", loginResult);
 			session.setAttribute("id", admin.getAdminId());
 
-			return "redirect:/member/list";
+			return "redirect:/admin/member/list";
 
 		} else {
 			logger.info("로그인 실패");
@@ -117,6 +119,10 @@ public class AdminController {
 	}
 	
 
+	@RequestMapping(value="/admin/error")
+	public void error() {}
+
+	
 	//전시
 	
 	@RequestMapping(value="/admin/exhibition/list")
@@ -161,13 +167,21 @@ public class AdminController {
 		return "/admin/exhibition/view";
 	}
 
-	@RequestMapping("/admin/exhibition/download")
-	public String downloadExImg(ExImg exImg, Model model) {
+	@GetMapping("/admin/exhibition/write")
+	public void writeExhibition() { }
+	
+	@PostMapping("/admin/exhibition/write")
+	public String writeProcessExhibition(Exhibition exhibition, MultipartFile file, HttpSession session) {
+		logger.info("/admin/exhibition/write [POST]");
+		logger.info("{}", exhibition);
+		logger.info("{}", file);
 		
-		exImg = adminService.getExImg(exImg);
-		model.addAttribute("downExImg", exImg);
+		exhibition.setAdminId( (String) session.getAttribute("id") );
+		logger.info("{}", exhibition);
 		
-		return "downExhibition";
+		adminService.writeExhibition(exhibition, file);
+		
+		return "redirect:/admin/exhibition/list"; //게시글 목록
 	}
 	
 	@GetMapping("/admin/exhibition/update")
@@ -206,26 +220,6 @@ public class AdminController {
 		return "redirect:/admin/exhibition/list";
 	}
 
-	@GetMapping("/admin/exhibition/write")
-	public void writeExhibition() { }
-	
-	@PostMapping("/admin/exhibition/write")
-	public String writeProcessExhibition(Exhibition exhibition, MultipartFile file, HttpSession session) {
-		logger.info("/admin/exhibition/write [POST]");
-		logger.info("{}", exhibition);
-		logger.info("{}", file);
-		
-		exhibition.setAdminId( (String) session.getAttribute("id") );
-		logger.info("{}", exhibition);
-		
-		adminService.writeExhibition(exhibition, file);
-		
-		return "redirect:/admin/exhibition/list"; //게시글 목록
-	}
-
-	@RequestMapping(value="/admin/error")
-	public void error() {}
-
 	@RequestMapping("/admin/exhibition/activate")
 	public String activateExhibition(HttpServletRequest request, Exhibition exhibition) {
 		adminService.activateExhibition(exhibition);
@@ -241,5 +235,140 @@ public class AdminController {
 		String referer = request.getHeader("Referer");
 		return "redirect:"+ referer;
 	}
+
+	
+	@RequestMapping("/admin/exhibition/download")
+	public String downloadExImg(ExImg exImg, Model model) {
 		
+		exImg = adminService.getExImg(exImg);
+		model.addAttribute("downExImg", exImg);
+		
+		return "downExhibition";
+	}
+	
+	
+	//전시
+	
+	@RequestMapping(value="/admin/exhibition/list")
+	public void listConcert(Paging paramData, Model model) {
+		logger.info("/admin/exhibiton/list");
+		
+		//페이징 계산
+		Paging paging = adminService.getPaging( paramData );
+		logger.info("{}", paging);
+		
+		//게시글 목록 조회
+		List<Concert> list = adminService.listConcert(paging);
+		for(Concert b : list) {
+			logger.info("{}", b);
+		}
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("/admin/exhibition/view")
+	public String viewConcert(Concert viewConcert, Model model, HttpSession session) {
+		logger.info("/admin/exhibition/view - {}", viewConcert);
+		
+		//잘못된 게시글 번호 처리
+		if( viewConcert.getConNo() < 1 ) {
+			return "redirect:/admin/exhibition/list";
+		}
+		
+		//게시글 조회
+		viewConcert = adminService.viewConcert(viewConcert);
+		logger.info("조회된 게시글 {}", viewConcert);
+		
+		//모델값 전달 - 게시글
+		model.addAttribute("viewConcert", viewConcert);
+		
+		
+		//첨부파일 정보 모델값 전달
+		ConImg exImg = adminService.getAttachConImg(viewConcert);
+		model.addAttribute("exImg", exImg);
+		
+		return "/admin/exhibition/view";
+	}
+	
+	@GetMapping("/admin/exhibition/write")
+	public void writeConcert() { }
+	
+	@PostMapping("/admin/exhibition/write")
+	public String writeProcessConcert(Concert exhibition, MultipartFile file, HttpSession session) {
+		logger.info("/admin/exhibition/write [POST]");
+		logger.info("{}", exhibition);
+		logger.info("{}", file);
+		
+		exhibition.setAdminId( (String) session.getAttribute("id") );
+		logger.info("{}", exhibition);
+		
+		adminService.writeConcert(exhibition, file);
+		
+		return "redirect:/admin/exhibition/list"; //게시글 목록
+	}
+	
+	@GetMapping("/admin/exhibition/update")
+	public String updateConcert(Concert exhibition, Model model) {
+		logger.info("/admin/exhibition/update - {}", exhibition);		
+		
+		//잘못된 게시글 번호 처리
+		if( exhibition.getConNo() < 1 ) {
+			return "redirect:/admin/exhibition/list";
+		}
+		
+		//수정할 게시글의 상세보기
+		exhibition = adminService.viewConcert(exhibition);
+		model.addAttribute("updateConcert", exhibition);
+		
+		//첨부파일 정보 모델값 전달
+		ConImg exImg = adminService.getAttachConImg(exhibition);
+		model.addAttribute("exImg", exImg);
+		
+		return "/admin/exhibition/update";
+	}
+	
+	@PostMapping("/admin/exhibition/update")
+	public String updateProcessConcert(Concert exhibition, MultipartFile file) {
+		logger.info("/admin/exhibition/update [POST] - {}", exhibition);
+		
+		adminService.updateConcert(exhibition, file); //게시글+첨부파일 수정
+		
+		return "redirect:/admin/exhibition/view?exhibitionNo=" + exhibition.getConNo();
+	}
+	
+	@RequestMapping("/admin/exhibition/delete")
+	public String deleteConcert(Concert exhibition) {
+		adminService.deleteConcert(exhibition);
+		
+		return "redirect:/admin/exhibition/list";
+	}
+	
+	@RequestMapping("/admin/exhibition/activate")
+	public String activateConcert(HttpServletRequest request, Concert exhibition) {
+		adminService.activateConcert(exhibition);
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:"+ referer;
+	}
+	
+	@RequestMapping("/admin/exhibition/unactivate")
+	public String unactivateConcert(HttpServletRequest request, Concert exhibition) {
+		adminService.unactivateConcert(exhibition);
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:"+ referer;
+	}
+	
+	
+	@RequestMapping("/admin/exhibition/download")
+	public String downloadConImg(ConImg exImg, Model model) {
+		
+		exImg = adminService.getConImg(exImg);
+		model.addAttribute("downConImg", exImg);
+		
+		return "downConcert";
+	}
+	
+	
 }
