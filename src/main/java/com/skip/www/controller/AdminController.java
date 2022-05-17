@@ -130,7 +130,7 @@ public class AdminController {
 		logger.info("/admin/exhibiton/list");
 		
 		//페이징 계산
-		Paging paging = adminService.getPaging( paramData );
+		Paging paging = adminService.getPagingExhibition( paramData );
 		logger.info("{}", paging);
 		
 		//게시글 목록 조회
@@ -210,7 +210,7 @@ public class AdminController {
 		
 		adminService.updateExhibition(exhibition, file); //게시글+첨부파일 수정
 		
-		return "redirect:/admin/exhibition/view?exhibitionNo=" + exhibition.getExNo();
+		return "redirect:/admin/exhibition/view?exNo=" + exhibition.getExNo();
 	}
 	
 	@RequestMapping("/admin/exhibition/delete")
@@ -250,10 +250,10 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/concert/list")
 	public void listConcert(Paging paramData, Model model) {
-		logger.info("/admin/exhibiton/list");
+		logger.info("/admin/concert/list");
 		
 		//페이징 계산
-		Paging paging = adminService.getPaging( paramData );
+		Paging paging = adminService.getPagingConcert( paramData );
 		logger.info("{}", paging);
 		
 		//게시글 목록 조회
@@ -284,8 +284,8 @@ public class AdminController {
 		
 		
 		//첨부파일 정보 모델값 전달
-		ConImg exImg = adminService.getAttachConImg(viewConcert);
-		model.addAttribute("exImg", exImg);
+		ConImg conImg = adminService.getAttachConImg(viewConcert);
+		model.addAttribute("conImg", conImg);
 		
 		return "/admin/concert/view";
 	}
@@ -321,8 +321,8 @@ public class AdminController {
 		model.addAttribute("updateConcert", concert);
 		
 		//첨부파일 정보 모델값 전달
-		ConImg exImg = adminService.getAttachConImg(concert);
-		model.addAttribute("exImg", exImg);
+		ConImg conImg = adminService.getAttachConImg(concert);
+		model.addAttribute("conImg", conImg);
 		
 		return "/admin/concert/update";
 	}
@@ -333,7 +333,7 @@ public class AdminController {
 		
 		adminService.updateConcert(concert, file); //게시글+첨부파일 수정
 		
-		return "redirect:/admin/concert/view?concertNo=" + concert.getConNo();
+		return "redirect:/admin/concert/view?conNo=" + concert.getConNo();
 	}
 	
 	@RequestMapping("/admin/concert/delete")
@@ -360,10 +360,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/concert/download")
-	public String downloadConImg(ConImg exImg, Model model) {
+	public String downloadConImg(ConImg conImg, Model model) {
 		
-		exImg = adminService.getConImg(exImg);
-		model.addAttribute("downConImg", exImg);
+		conImg = adminService.getConImg(conImg);
+		model.addAttribute("downConImg", conImg);
 		
 		return "downConcert";
 	}

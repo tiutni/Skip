@@ -31,7 +31,7 @@
 		<result column="con_content" 				property="conContent"/>
 		<result column="con_startday" 				property="conStartDay"/>
 		<result column="con_endday" 				property="conEndDay"/>
-		<result column="con_reserveStartdayVIP" 	property="con_reserveStartdayVIP"/>
+		<result column="con_reserveStartdayVIP" 	property="conReserveStartdayVIP"/>
 		<result column="con_reserveStartday" 		property="conReserveStartDay"/>
 		<result column="con_reserveEndday" 			property="conReserveEndDay"/>
 		<result column="con_activate" 				property="conActivate"/>
@@ -141,7 +141,7 @@
 			, admin_id
 		)
 		VALUES ( 
-			#{exNo}
+			ex_no_seq.nextval
 			, #{exTitle}
 			, #{exAddress}
 			, #{exContent}
@@ -149,17 +149,27 @@
 			, to_date(#{exEndDayString}, 'YYYY-MM-DD')
 			, to_date(#{exReserveStartDayString}, 'YYYY-MM-DD')
 			, to_date(#{exReserveEndDayString}, 'YYYY-MM-DD')
-			, to_date(#{exEnterStartTime}, 'HH24:MI:SS')
-			, to_date(#{exEnterEndTime}, 'HH24:MI:SS')
+			, to_date(#{exEnterStartTimeString}, 'HH24:MI:SS')
+			, to_date(#{exEnterEndTimeString}, 'HH24:MI:SS')
 			, #{exPrice}
 			, #{adminId}
 		)
 	</insert>
 	
-	<update id="updateExhibition" parameterType="com.skip.www.dto.Exhibition">
+	<update id="updateExhibition" parameterType="com.skip.www.dto.Exhibition"> 
 		UPDATE Exhibition
-		SET ex_title = #{exTitle}
+		SET ex_no
+			, ex_title = #{exTitle}
+			, ex_address = #{exAddress}
 			, ex_content = #{exContent}
+			, ex_startDay = to_date(#{exStartDayString}, 'YYYY-MM-DD')
+			, ex_endDay = to_date(#{exEndDayString}, 'YYYY-MM-DD')
+			, ex_reserveStartDay = to_date(#{exReserveStartDayString}, 'YYYY-MM-DD')
+			, ex_reserveEndDay = to_date(#{exReserveEndDayString}, 'YYYY-MM-DD')
+			, ex_enterStartTime = to_date(#{exEnterStartTimeString}, 'HH24:MI:SS')
+			, ex_enterEndTime = to_date(#{exEnterEndTimeString}, 'HH24:MI:SS')
+			, ex_price = #{exPrice}
+			, admin_id = #{adminId}
 		WHERE ex_no = #{exNo}
 	</update>
 
@@ -263,11 +273,9 @@
 			, con_content
 			, con_startDay
 			, con_endDay
+			, con_reserveStartdayVIP
 			, con_reserveStartDay
 			, con_reserveEndDay
-			, con_enterStartTime
-			, con_enterEndTime
-			, con_price
 			, con_activate
 			, admin_id
 			FROM Concert
@@ -286,11 +294,9 @@
 			, con_content
 			, con_startDay
 			, con_endDay
+			, con_reserveStartdayVIP
 			, con_reserveStartDay
 			, con_reserveEndDay
-			, con_enterStartTime
-			, con_enterEndTime
-			, con_price
 			, admin_id
 		)
 		VALUES ( 
@@ -300,11 +306,9 @@
 			, #{conContent}
 			, to_date(#{conStartDayString}, 'YYYY-MM-DD')
 			, to_date(#{conEndDayString}, 'YYYY-MM-DD')
+			, to_date(#{conReserveStartdayVIP}, 'YYYY-MM-DD')
 			, to_date(#{conReserveStartDayString}, 'YYYY-MM-DD')
 			, to_date(#{conReserveEndDayString}, 'YYYY-MM-DD')
-			, to_date(#{conEnterStartTime}, 'HH24:MI:SS')
-			, to_date(#{conEnterEndTime}, 'HH24:MI:SS')
-			, #{conPrice}
 			, #{adminId}
 		)
 	</insert>

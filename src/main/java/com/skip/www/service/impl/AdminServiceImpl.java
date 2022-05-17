@@ -28,7 +28,6 @@ public class AdminServiceImpl implements AdminService {
 	AdminDao adminDao;
 	
 	@Autowired private ServletContext context;
-//	@Autowired private CommentDao commentDao;
 
 	@Override
 	public boolean login(Admin admin) {
@@ -80,11 +79,17 @@ public class AdminServiceImpl implements AdminService {
 
 			}
 
+	//전시--------------------------------------------------------------
 	
-	//공통
+	//전시--------------------------------------------------------------
 	
 	@Override
-	public Paging getPaging(Paging paramData) {
+	public List<Exhibition> listExhibition(Paging paging) {
+		
+		return adminDao.selectExhibitionList(paging);
+	}
+	@Override
+	public Paging getPagingExhibition(Paging paramData) {
 		
 		//총 게시글 수 조회
 		int totalCount = adminDao.selectExhibitionCntAll(paramData);
@@ -94,15 +99,6 @@ public class AdminServiceImpl implements AdminService {
 		paging.setSearch(paramData.getSearch());
 
 		return paging;
-	}
-	
-	
-	//전시
-	
-	@Override
-	public List<Exhibition> listExhibition(Paging paging) {
-		
-		return adminDao.selectExhibitionList(paging);
 	}
 
 	@Override
@@ -256,7 +252,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	
-	//공연
+	//공연--------------------------------------------------------------
 	
 	@Override
 	public List<Concert> listConcert(Paging paging) {
@@ -264,6 +260,18 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectConcertList(paging);
 	}
 
+	@Override
+	public Paging getPagingConcert(Paging paramData) {
+		
+		//총 게시글 수 조회
+		int totalCount = adminDao.selectConcertCntAll(paramData);
+		
+		//페이징 계산
+		Paging paging = new Paging(totalCount, paramData.getCurPage());
+		paging.setSearch(paramData.getSearch());
+
+		return paging;
+	}
 	@Override
 	public Concert viewConcert(Concert viewConcert) {
 		

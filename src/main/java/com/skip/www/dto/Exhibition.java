@@ -29,7 +29,8 @@ public class Exhibition {				//전시회
 	private String 	exEndDayString;				// ex_endDay			DATE	7  종료일
 	private String 	exReserveStartDayString;	// ex_reserveStartDay	DATE	8  예약시작일
 	private String 	exReserveEndDayString;		// ex_reserveEndDay		DATE	9  예약종료일
-	
+	private Date 	exEnterStartTimeString;		// ex_enterStartTime	DATE			10 입장시작시간
+	private Date 	exEnterEndTimeString;		// ex_enterEndTime		DATE			11 입장종료시간
 	@Override
 	public String toString() {
 		return "Exhibition [exNo=" + exNo + ", exRegDate=" + exRegDate + ", exTitle=" + exTitle + ", exAddress="
@@ -39,9 +40,10 @@ public class Exhibition {				//전시회
 				+ exEnterInterval + ", exTicketNum=" + exTicketNum + ", exPrice=" + exPrice + ", exActivate="
 				+ exActivate + ", adminId=" + adminId + ", exImgStoredName=" + exImgStoredName + ", exStartDayString="
 				+ exStartDayString + ", exEndDayString=" + exEndDayString + ", exReserveStartDayString="
-				+ exReserveStartDayString + ", exReserveEndDayString=" + exReserveEndDayString + "]";
+				+ exReserveStartDayString + ", exReserveEndDayString=" + exReserveEndDayString
+				+ ", exEnterStartTimeString=" + exEnterStartTimeString + ", exEnterEndTimeString="
+				+ exEnterEndTimeString + "]";
 	}
-	
 	public int getExNo() {
 		return exNo;
 	}
@@ -168,7 +170,17 @@ public class Exhibition {				//전시회
 	public void setExReserveEndDayString(String exReserveEndDayString) {
 		this.exReserveEndDayString = exReserveEndDayString;
 	}
-	
-	
+	public Date getExEnterStartTimeString() {
+		return exEnterStartTimeString;
+	}
+	public void setExEnterStartTimeString(Date exEnterStartTimeString) {
+		this.exEnterStartTimeString = exEnterStartTimeString;
+	}
+	public Date getExEnterEndTimeString() {
+		return exEnterEndTimeString;
+	}
+	public void setExEnterEndTimeString(Date exEnterEndTimeString) {
+		this.exEnterEndTimeString = exEnterEndTimeString;
+	}
 	
 }

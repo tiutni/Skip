@@ -52,7 +52,7 @@ public interface AdminDao {
 	public int selectAdminAuth(String adminAuth);
 
 	
-	//전시
+	//전시--------------------------------------------------------------
 	
 	/**
 	 * 페이징을 적용하여 게시글 목록 조회
@@ -137,7 +137,7 @@ public interface AdminDao {
 	public void unactivateExhibition(Exhibition exhibition);
 	
 	
-	//전시
+	//공연--------------------------------------------------------------
 	
 	/**
 	 * 페이징을 적용하여 게시글 목록 조회

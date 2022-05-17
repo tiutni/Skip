@@ -23,7 +23,7 @@ public class MemberController {
 
 	@RequestMapping(value="admin/member/list")
 	public void list(Paging paramData, Model model) {
-		logger.info("/member/list");
+		logger.info("/admin/member/list");
 		
 		//페이징 계산
 		Paging paging = memberService.getPaging( paramData );

@@ -21,13 +21,22 @@ public class Concert {
 											// con_img
 	private String 	conImgStoredName;		// con_img_storedName		VARCHAR2(500)	13 공연 이미지파일 사본명
 	
+	private String 	conStartDayString;			// con_startday				DATE			6  공연 시작일
+	private String 	conEndDayString;				// con_endday				DATE			7  공연 종료일
+	private String	conReserveStartdayVIPString;	// con_reserveStartdayVIP	DATE			8  공연 예약시작일(VIP)
+	private String 	conReserveStartDayString;		// con_reserveStartday		DATE			9  공연 예약시작일
+	private String 	conReserveEndDayString;		// con_reserveEndday		DATE			10 공연 예약종료일
+	
 	@Override
 	public String toString() {
 		return "Concert [conNo=" + conNo + ", conRegDate=" + conRegDate + ", conTitle=" + conTitle + ", conAddress="
 				+ conAddress + ", conContent=" + conContent + ", conStartDay=" + conStartDay + ", conEndDay="
 				+ conEndDay + ", conReserveStartdayVIP=" + conReserveStartdayVIP + ", conReserveStartDay="
 				+ conReserveStartDay + ", conReserveEndDay=" + conReserveEndDay + ", conActivate=" + conActivate
-				+ ", adminId=" + adminId + ", conImgStoredName=" + conImgStoredName + "]";
+				+ ", adminId=" + adminId + ", conImgStoredName=" + conImgStoredName + ", conStartDayString="
+				+ conStartDayString + ", conEndDayString=" + conEndDayString + ", conReserveStartdayVIPString="
+				+ conReserveStartdayVIPString + ", conReserveStartDayString=" + conReserveStartDayString
+				+ ", conReserveEndDayString=" + conReserveEndDayString + "]";
 	}
 
 	public int getConNo() {
@@ -38,12 +47,12 @@ public class Concert {
 		this.conNo = conNo;
 	}
 
-	public String getAdminId() {
-		return adminId;
+	public Date getConRegDate() {
+		return conRegDate;
 	}
 
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
+	public void setConRegDate(Date conRegDate) {
+		this.conRegDate = conRegDate;
 	}
 
 	public String getConTitle() {
@@ -70,14 +79,6 @@ public class Concert {
 		this.conContent = conContent;
 	}
 
-	public Date getConRegDate() {
-		return conRegDate;
-	}
-
-	public void setConRegDate(Date conRegDate) {
-		this.conRegDate = conRegDate;
-	}
-
 	public Date getConStartDay() {
 		return conStartDay;
 	}
@@ -92,6 +93,14 @@ public class Concert {
 
 	public void setConEndDay(Date conEndDay) {
 		this.conEndDay = conEndDay;
+	}
+
+	public Date getConReserveStartdayVIP() {
+		return conReserveStartdayVIP;
+	}
+
+	public void setConReserveStartdayVIP(Date conReserveStartdayVIP) {
+		this.conReserveStartdayVIP = conReserveStartdayVIP;
 	}
 
 	public Date getConReserveStartDay() {
@@ -118,12 +127,12 @@ public class Concert {
 		this.conActivate = conActivate;
 	}
 
-	public Date getConReserveStartdayVIP() {
-		return conReserveStartdayVIP;
+	public String getAdminId() {
+		return adminId;
 	}
 
-	public void setConReserveStartdayVIP(Date conReserveStartdayVIP) {
-		this.conReserveStartdayVIP = conReserveStartdayVIP;
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
 	}
 
 	public String getConImgStoredName() {
@@ -133,6 +142,46 @@ public class Concert {
 	public void setConImgStoredName(String conImgStoredName) {
 		this.conImgStoredName = conImgStoredName;
 	}
-	
+
+	public String getConStartDayString() {
+		return conStartDayString;
+	}
+
+	public void setConStartDayString(String conStartDayString) {
+		this.conStartDayString = conStartDayString;
+	}
+
+	public String getConEndDayString() {
+		return conEndDayString;
+	}
+
+	public void setConEndDayString(String conEndDayString) {
+		this.conEndDayString = conEndDayString;
+	}
+
+	public String getConReserveStartdayVIPString() {
+		return conReserveStartdayVIPString;
+	}
+
+	public void setConReserveStartdayVIPString(String conReserveStartdayVIPString) {
+		this.conReserveStartdayVIPString = conReserveStartdayVIPString;
+	}
+
+	public String getConReserveStartDayString() {
+		return conReserveStartDayString;
+	}
+
+	public void setConReserveStartDayString(String conReserveStartDayString) {
+		this.conReserveStartDayString = conReserveStartDayString;
+	}
+
+	public String getConReserveEndDayString() {
+		return conReserveEndDayString;
+	}
+
+	public void setConReserveEndDayString(String conReserveEndDayString) {
+		this.conReserveEndDayString = conReserveEndDayString;
+	}
+
 	
 }

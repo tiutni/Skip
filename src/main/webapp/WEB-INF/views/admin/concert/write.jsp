@@ -111,13 +111,13 @@ table, th, td {
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exEnterStartTime">입장시작시간</label>
-						<input type="time" id="exEnterStartTime" name="exEnterStartTime" class="form-control" value="10:00:00">
+						<label for="exEnterStartTimeString">입장시작시간</label>
+						<input type="time" id="exEnterStartTimeString" name="exEnterStartTimeString" class="form-control" value="10:00:00">
 					</div>
 					
 					<div class="form-group">
-						<label for="exEnterEndTime">입장종료시간</label>
-						<input type="time" id="exEnterEndTime" name="exEnterEndTime" class="form-control" value="18:00:00">
+						<label for="exEnterEndTimeString">입장종료시간</label>
+						<input type="time" id="exEnterEndTimeString" name="exEnterEndTimeString" class="form-control" value="18:00:00">
 					</div>
 					<br>
 					<div class="form-group">
