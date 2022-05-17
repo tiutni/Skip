@@ -9,11 +9,13 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dao.face.QnaDao;
 import com.skip.www.dto.QnA;
 import com.skip.www.dto.QnAFile;
+import com.skip.www.dto.QnAMent;
 import com.skip.www.service.face.QnaService;
 import com.skip.www.util.Paging;
 
@@ -50,6 +52,7 @@ public class QnaServiceImpl implements QnaService {
 	}
 	
 	@Override
+	@Transactional 
 	public void write(QnA qna, MultipartFile file) {
 		
 		if( "".equals( qna.getQnaTitle() ) ) {
@@ -170,4 +173,10 @@ public class QnaServiceImpl implements QnaService {
 	public void admdelete(QnA qna) {
 		qnaDao.delete(qna);
 	}
+
+	@Override
+	public void write(QnAMent qnament) {
+		qnaDao.insertQnAMent(qnament);
+	}
+
 }

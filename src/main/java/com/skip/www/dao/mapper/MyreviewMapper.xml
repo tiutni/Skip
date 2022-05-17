@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.skip.www.dao.face.MyreviewDao">
+
+
+	<select id="selectCntAllReview" resultType="int" parameterType="int">
+		SELECT * FROM con_review
+		WHERE user_no = #{userNo}
+	</select>
+	
+<!-- 	<select id="selectConReviewListByConNo" resultType="com.skip.www.dto.ConReview" parameterType="com.skip.www.util.Paging"> -->
+	<select id="selectConReviewListByConNo" resultType="hashmap" parameterType="com.skip.www.util.Paging">
+		SELECT * FROM (
+			 SELECT rownum rnum, CR.* FROM (
+  				SELECT
+        			con_review_no, 
+        			R.con_no, 
+        			R.user_no, 
+        			con_review_date,
+        			con_review_content, 
+        			con_review_star,
+        			C.con_title
+  				FROM con_review R, concert C
+  				WHERE user_no = #{userNo}
+  					AND R.con_no = C.con_no
+  				ORDER BY con_review_no DESC
+ 			) CR
+		) ConReview
+		WHERE rnum BETWEEN #{startNo} AND #{endNo}
+	</select>
+
+</mapper>

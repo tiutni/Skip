@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Admin Login</title>
+        <title>SKIP Admin Login</title>
         <link href="../../resources/admbootstrap/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -24,8 +24,11 @@ $(document).ready(function() {
 })
 </script>
 
+<br><br>
+<h1 style= "color: white; font-size: 40p; text-align: center;" >SKIP ADMIN</h1>
+<br><br>
 
-<body class="bg-primary">
+<body class="bg-dark">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>

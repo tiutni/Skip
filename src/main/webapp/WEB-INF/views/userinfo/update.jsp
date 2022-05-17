@@ -3,6 +3,14 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:import url="/WEB-INF/views/layout/header.jsp" />
+
+
+<!-- jQuery 2.2.4 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#cancel").click(function() {
@@ -13,12 +21,36 @@ $(document).ready(function() {
 })
 </script>
 
+<style type="text/css">
+table {
+	table-layout: fixed;
+}
+
+table, th {
+	text-align: center;
+}
+
+td:nth-child(2) {
+	text-align: left;
+}
+</style>
+
+
+<!-- 회원 정보 수정 -->
+<section class="bg0 p-t-23 p-b-140">
+	<div class="container">
+		<div class="p-b-10">
+			<h3 class="ltext-103 cl5">
+				My Information Update
+			</h3>
+		</div>
+         <br><br><br>
+		
+			
+
+
+
 <div class="container">
-
-<h1>회원 정보 수정</h1>
-<hr>
-
-<div>
 <form action="/userinfo/update" method="post" class="form-horizontal">
 <input type="hidden" name="userNo" value="${updateUser.userNo }">
 
@@ -59,17 +91,29 @@ $(document).ready(function() {
 	</div>
 </div>
 <div class="form-group">
-	<label for="userTelecom" class="col-sm-4 control-label">통신사</label>
-	<div class="col-sm-5">
-		<input type="text" class="form-control" id="userTelecom"  value="${updateUser.userTelecom }" name="userTelecom" >
-	</div>
-</div>
-<div class="form-group">
 	<label for="userPhone" class="col-sm-4 control-label">휴대폰 번호</label>
 	<div class="col-sm-5">
-		<input type="text" class="form-control" id="userPhone" name="userPhone" value="${updateUser.userPhone }" >
+		<select id="userTelecom" name="userTelecom">
+			<option value="SKT" selected>SKT</option>
+			<option value="KT">KT</option>
+			<option value="LG">LG</option>
+		</select>
+		<input type="text" class="form-control" id="userPhone" value="${updateUser.userPhone}" name="userPhone" >
 	</div>
+	<div class="check" id="userPhoneCheck"></div>
 </div>
+<div class="form-group">
+	<label for="userAddr" class="col-sm-4 control-label">주소</label>
+	<div class="col-sm-5">
+		<input type="text" class="form-control" id="userAddr1" name="userAddr" value="${updateUser.userAddr }" >
+		<button type="button" id="userAddrSearch" name="userAddrSearch">검색</button>
+		<br>
+		<input type="text" class="form-control" id="userAddr2" name="userAddr"  >
+	</div>
+	<div class="check" id="userAddrCheck"></div>
+</div>
+
+<br><br>
 
 <div class="form-group">
 	<div class="col-sm-offset-5">
@@ -82,3 +126,8 @@ $(document).ready(function() {
 </div>
 
 </div><!-- .container end -->
+
+</section>
+
+<c:import url="/WEB-INF/views/layout/footer.jsp" />
+

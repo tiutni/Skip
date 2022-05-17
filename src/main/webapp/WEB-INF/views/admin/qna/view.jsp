@@ -10,11 +10,15 @@
 
 $(document).ready(function() {
 	$("#btnList").click(function() {
-		location.href = "/qna/admlist"
+		location.href = "/admin/qna/list"
 	})
 	
 	$("#btnDelete").click(function() {
-		location.href = "/qna/admdelete?qnaNo=${viewQna.qnaNo}"
+		location.href = "/admin/qna/delete?qnaNo=${viewQna.qnaNo}"
+	})
+	
+	$("#btnWrite").click(function() {
+		location.href = "/admin/qna/write?qnaNo=${viewQna.qnaNo}"
 	})
 	
 })
@@ -65,12 +69,17 @@ $(document).ready(function() {
 								<tr>
 									<td class="info">첨부파일</td><td><a href="/qna/download?qnaFileNo=${qnaFile.qnaFileNo }">${qnaFile.qnaFileOriginName }</a></td>
 								</tr>
+								<tr>
+									<td class="info">답변내용</td><td>${qnament.qnaMentContent} </td>
+								</tr>
 								
 							</table>	
 							
 							<div class="text-center">
 									<button id="btnList" class="btn btn-primary">목록</button>
+									<button id="btnWrite" class="btn btn-success">답변</button>
 									<button id="btnDelete" class="btn btn-danger">삭제</button>
+									
 								
 							</div>
 							

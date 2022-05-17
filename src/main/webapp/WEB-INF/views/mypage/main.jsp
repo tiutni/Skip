@@ -19,25 +19,35 @@ $(document).ready(function() {
 <section class="bg0 p-t-23 p-b-140">
 	<div class="container">
 		<div class="p-b-10">
-			<h3 class="ltext-103 cl5">
+			<h2 class="ltext-103 cl5">
 				MyPage
-			</h3>
+			</h2>
 		</div>
-
+		<hr>
 		
 
 
-	<p>${userId }님의 공연등급: ${cul.userLevel}</p>
-	<p>${userId }님의 전시등급: ${eul.userLevel}</p>
+	<h3>${userId } Concert Grade: ${cul.userLevel}</h3>
+	<h3>${userId } Exhibition Grade: ${eul.userLevel}</h3>
+	<hr>
 	
-	<a href="/"><button>메인</button></a><br>
-	<a href="/mypage/myorder"><button>나의 예약</button><br>
-	<a href="/mypage/myreview"><button>내가 남긴 리뷰</button><br>
-	<a href="/mypage/qnalist"><button>나의 1:1 문의</button><br>
-	<a href="/userinfo/update"><button>나의 정보</button><br>
-	<a href="/user/logout"><button>로그아웃</button></a><br>
-	<a href="/userinfo/delete"><button>회원탈퇴</button></a><br>
-
+	
+<section class="bg0 p-t-23 p-b-140">
+	<div class="container">
+		<div class="p-b-10">
+			<h6 class="ltext-103 cl5">	
+	
+	<a href="/"><button>Main</button></a><br>
+	<a href="/mypage/myorder"><button>My Order</button></a><br>
+	<a href="/mypage/myreviewlist"><button>My Concert Review</button></a><br>
+	<a href="/mypage/myexreviewlist"><button>My Exhibition Review</button></a><br>
+	<a href="/mypage/qnalist"><button>My QnA</button></a><br>
+	<a href="/userinfo/update"><button>My Information</button></a><br>
+	<a href="/user/logout"><button>LogOut</button></a><br>
+	<a href="/userinfo/delete"><button>Withdrawal</button></a><br>
+		</h6>
+	</div>
+	</div>	
 </div><!-- .container end -->
 
 </section>
