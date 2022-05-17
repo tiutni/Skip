@@ -68,7 +68,13 @@
 			<mapping path="/admin/qna/*" />
 			<beans:bean class="com.skip.www.interceptor.AdminInterceptor" />
 		</interceptor>
-	</interceptors>	
+		
+		<interceptor>
+			<mapping path="/qna/**/" />
+			<exclude-mapping path="/qna/list"/>
+			<beans:bean class="com.skip.www.interceptor.UserInterceptor" />
+		</interceptor>
+	</interceptors>
 
 	<!-- 웹소켓 ChattingHandler 맵핑 -->
 	<websocket:handlers>
