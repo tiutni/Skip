@@ -58,7 +58,7 @@ td:not(.info) {
 		</table>
 		
 		<div class="text-center">
-			<button id="btnList" class="btn btn-default">목록</button>
+			<button id="btnList" class="btn btn-primary">목록</button>
 		</div>
 
 </div><!-- .container end -->
