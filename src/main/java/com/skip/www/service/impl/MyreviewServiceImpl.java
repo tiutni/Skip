@@ -32,6 +32,8 @@ public class MyreviewServiceImpl implements MyreviewService {
 
 		int listCount = 5;
 
+		logger.info("getConcertReviewPaging - {}", userNo);
+		
 		//게시글 수 조회하기
 		int totalCount = myreviewDao.selectCntAllReview(userNo);
 

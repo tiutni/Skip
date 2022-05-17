@@ -83,6 +83,8 @@ public interface MypageDao {
 
 	public void insertFile(QnAFile qnaFile);
 
+	public void delete(QnA qna);
+
 
 
 }

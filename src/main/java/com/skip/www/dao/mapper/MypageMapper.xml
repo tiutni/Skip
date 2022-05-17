@@ -129,4 +129,15 @@
 			, qna_content = #{qnaContent}
 		WHERE qna_no = #{qnaNo}		
 	</update>
+	
+	<delete id="deleteFile" parameterType="com.skip.www.dto.QnA">
+		DELETE qna_file
+		WHERE qna_no = #{qnaNo}
+	</delete>
+	
+	<delete id="delete" parameterType="com.skip.www.dto.QnA">
+		DELETE qna
+		WHERE qna_no = #{qnaNo}
+	</delete>
+	
 </mapper>

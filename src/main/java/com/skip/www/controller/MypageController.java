@@ -188,13 +188,13 @@ public class MypageController {
 		return "redirect:/mypage/qnalist"; //게시글 목록
 	}
 
-	@RequestMapping("/download")
-	public String download(QnAFile qnaFile, Model model) {
+	@RequestMapping("/mypage/download")
+	public String qnadownload(QnAFile qnaFile, Model model) {
 
 		qnaFile = mypageService.getFile(qnaFile);
 		model.addAttribute("qnaFile", qnaFile);
 
-		return "down";
+		return "downQna";
 	}
 
 	@GetMapping("/mypage/qnaupdate")
@@ -227,4 +227,11 @@ public class MypageController {
 		return "redirect:/mypage/qnaview?qnaNo=" + qna.getQnaNo();
 	}
 
+
+	@RequestMapping("/mypage/qnadelete")
+	public String delete(QnA qna) {
+		mypageService.delete(qna);
+		
+		return "redirect:/mypage/qnalist";
+	}
 }

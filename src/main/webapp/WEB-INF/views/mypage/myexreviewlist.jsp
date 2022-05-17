@@ -41,10 +41,12 @@ table, th {
 
 <style type="text/css">
 .grid_cont {
-	font-size: medium;
-	border: 1px solid #ccc;
+	font-size: large;
+	border: 2px solid #ccc;
+	border-color: #FFF5EE;
+	background-color: #F5F5F5;
 	margin: 5px;
-	
+	border-radius: 10px;
 	display: grid;
 }
 .grid_cont {
@@ -56,8 +58,8 @@ table, th {
 <c:forEach items="${list }" var="exreview">
 <div class="grid_cont">
 	<div class="cont_row">
-	<div class="cont">${exreview.CON_TITLE }</div>
-	<div class="cont"><a href="/exhibition/view?conNo=${exreview.EX_NO }">${conreview.EX_REVIEW_CONTENT }</a></div>
+	<div class="cont">${exreview.EX_TITLE }</div>
+	<div class="cont"><a href="/exhibition/view?exNo=${exreview.EX_NO }">${exreview.EX_REVIEW_CONTENT }</a></div>
 	</div>
 	
 	<div class="cont_row">
@@ -90,48 +92,7 @@ table, th {
 </c:forEach>
 
 
-<!-- <table class="table table-striped table-hover"> -->
-<!-- <tbody> -->
-<%-- <c:forEach items="${list }" var="conreview"> --%>
-<!-- 	<tr> -->
-<%-- 		<td><fmt:formatDate value="${conreview.conReviewDate }" pattern="yy-MM-dd HH:mm:ss"/></td> --%>
-<%-- 		<td><a href="/concert/view?conNo=${conreview.conNo }">${conreview.conReviewContent }</a></td> --%>
-<%-- 		<td>${conreview.conReviewStar }</td> --%>
-<!-- 		<td> -->
-<%-- 		<c:choose> --%>
-<%-- 			<c:when test="${conreview.conReviewStar eq 5 }"> --%>
-<!-- 			<span style="font-size: 12px; color: rgb(255,201,14);">★★★★★</span> -->
-<%-- 			</c:when> --%>
-			
-<%-- 			<c:when test="${conreview.conReviewStar eq 4 }"> --%>
-<!-- 			<span style="font-size: 12px; color: rgb(255,201,14);">★★★★☆</span> -->
-<%-- 			</c:when> --%>
-			
-<%-- 			<c:when test="${conreview.conReviewStar eq 3 }"> --%>
-<!-- 			<span style="font-size: 12px; color: rgb(255,201,14);">★★★☆☆</span> -->
-<%-- 			</c:when> --%>
-			
-<%-- 			<c:when test="${conreview.conReviewStar eq 2 }"> --%>
-<!-- 			<span style="font-size: 12px; color: rgb(255,201,14);">★★☆☆☆</span> -->
-<%-- 			</c:when> --%>
-			
-<%-- 			<c:when test="${conreview.conReviewStar eq 1 }"> --%>
-<!-- 			<span style="font-size: 12px; color: rgb(255,201,14);">★☆☆☆☆</span> -->
-<%-- 			</c:when> --%>
-<%-- 		</c:choose> --%>
-<!-- 		</td> -->
-<!-- 	</tr> -->
-<%-- </c:forEach> --%>
-<!-- </tbody> -->
-<!-- </table>		 -->
-
-
-
-
-
-
-
-<c:import url="myconreviewpaging.jsp" />
+<c:import url="myexreviewpaging.jsp" />
 
 	</div><!-- .container -->
 

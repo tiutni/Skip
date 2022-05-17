@@ -31,6 +31,9 @@ public class MyExreviewServiceImpl implements MyExreviewService {
 
 		int listCount = 5;
 
+		logger.info("getConcertReviewPaging - {}", userNo);
+
+		
 		//게시글 수 조회하기
 		int totalCount = myexreviewDao.selectCntAllReview(userNo);
 

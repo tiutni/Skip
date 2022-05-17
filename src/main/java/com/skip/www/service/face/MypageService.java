@@ -86,6 +86,8 @@ public interface MypageService {
 
 	public void update(QnA qna, MultipartFile file);
 
+	public void delete(QnA qna);
+
 
 	
 

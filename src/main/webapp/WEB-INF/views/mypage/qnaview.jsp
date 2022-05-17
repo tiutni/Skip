@@ -16,11 +16,11 @@ $(document).ready(function() {
 	})
 	
 	$("#btnUpdate").click(function() {
-		location.href = "/board/update?boardNo=${viewQna.qnaNo }"
+		location.href = "/mypage/qnaupdate?qnaNo=${viewQna.qnaNo }"
 	})
 	
 	$("#btnDelete").click(function() {
-		location.href = "/board/delete?boardNo=${viewQna.qnaNo }"
+		location.href = "/mypage/qnadelete?qnaNo=${viewQna.qnaNo }"
 	})
 })
 
@@ -69,7 +69,7 @@ td:not(.info) {
 </tr>
 </table>
 
-<a href="/qna/download?fileNo=${qnaFile.qnaFileNo }">${qnaFile.qnaFileOriginName }</a>
+<a href="/mypage/download?qnaFileNo=${qnaFile.qnaFileNo }">${qnaFile.qnaFileOriginName }</a>
 
 <br><br><br>
 <div class="text-center">

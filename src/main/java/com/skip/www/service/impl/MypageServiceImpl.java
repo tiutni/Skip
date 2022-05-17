@@ -190,7 +190,6 @@ public  class MypageServiceImpl implements MypageService {
 	@Override
 	public void update(QnA qna , MultipartFile file) {
 		
-		//에러 날 듯 다시 확인하기
 		this.update(qna);
 
 		//-------------------------------------------
@@ -235,28 +234,14 @@ public  class MypageServiceImpl implements MypageService {
 		mypageDao.insertFile(qnaFile);
 	}
 
+	@Override
+	public void delete(QnA qna) {
+		mypageDao.deleteFile(qna);
+		mypageDao.delete(qna);
+		
+	}
+
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

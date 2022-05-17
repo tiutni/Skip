@@ -71,9 +71,8 @@ table, th {
 <thead>
 	<tr>
 		<th style="width: 10%;">NO</th>
-		<th style="width: 30%;">회원 번호</th>
-		<th style="width: 20%;">문의 제목</th>
-		<th style="width: 20%;">문의 내용</th>
+		<th style="width: 20%;">회원 번호</th>
+		<th style="width: 30%;">문의 제목</th>
 		<th style="width: 20%;">문의 날짜</th>
 	</tr>
 </thead>
@@ -83,20 +82,25 @@ table, th {
 		<td>${qna.qnaNo }</td>
 		<td>${qna.userNo }</td>
 		<td><a href="/mypage/qnaview?qnaNo=${qna.qnaNo }">${qna.qnaTitle }</a></td>
-		<td>${qna.qnaContent }</td>
 		<td><fmt:formatDate value="${qna.qnaDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	</tr>
 </c:forEach>
 </tbody>
 </table>
 
-<button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button>
 <span class="pull-left">total : ${paging.totalCount }</span>
 <div class="clearfix"></div>
 
-<c:import url="paging.jsp" />
+<div class="text-center">
+
+	<button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button>
+</div>
 
 	</div><!-- .container -->
+
+
+	<c:import url="paging.jsp" />
+
 
 
 	</div><!-- .container -->
@@ -104,4 +108,3 @@ table, th {
 	
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
-

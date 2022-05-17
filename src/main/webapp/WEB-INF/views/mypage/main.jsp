@@ -27,8 +27,8 @@ $(document).ready(function() {
 		
 
 
-	<h3>${userId } Concert Grade: ${cul.userLevel}</h3>
-	<h3>${userId } Exhibition Grade: ${eul.userLevel}</h3>
+	<h3>${userId }'s Concert Grade - ${cul.userLevel}</h3>
+	<h3>${userId }'s Exhibition Grade - ${eul.userLevel}</h3>
 	<hr>
 	
 	

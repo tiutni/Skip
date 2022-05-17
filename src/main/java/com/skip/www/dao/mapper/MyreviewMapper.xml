@@ -8,7 +8,7 @@
 
 
 	<select id="selectCntAllReview" resultType="int" parameterType="int">
-		SELECT * FROM con_review
+		SELECT count(*) FROM con_review
 		WHERE user_no = #{userNo}
 	</select>
 	
