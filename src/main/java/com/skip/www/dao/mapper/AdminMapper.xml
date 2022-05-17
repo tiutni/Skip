@@ -141,7 +141,7 @@
 			, admin_id
 		)
 		VALUES ( 
-			ex_no_seq.nextval
+			#{exNo}
 			, #{exTitle}
 			, #{exAddress}
 			, #{exContent}
@@ -158,7 +158,7 @@
 	
 	<update id="updateExhibition" parameterType="com.skip.www.dto.Exhibition"> 
 		UPDATE Exhibition
-		SET ex_no
+		SET ex_no = #{exNo}
 			, ex_title = #{exTitle}
 			, ex_address = #{exAddress}
 			, ex_content = #{exContent}

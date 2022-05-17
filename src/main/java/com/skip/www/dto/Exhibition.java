@@ -29,8 +29,9 @@ public class Exhibition {				//전시회
 	private String 	exEndDayString;				// ex_endDay			DATE	7  종료일
 	private String 	exReserveStartDayString;	// ex_reserveStartDay	DATE	8  예약시작일
 	private String 	exReserveEndDayString;		// ex_reserveEndDay		DATE	9  예약종료일
-	private Date 	exEnterStartTimeString;		// ex_enterStartTime	DATE			10 입장시작시간
-	private Date 	exEnterEndTimeString;		// ex_enterEndTime		DATE			11 입장종료시간
+	private String 	exEnterStartTimeString;		// ex_enterStartTime	DATE			10 입장시작시간
+	private String 	exEnterEndTimeString;		// ex_enterEndTime		DATE			11 입장종료시간
+	
 	@Override
 	public String toString() {
 		return "Exhibition [exNo=" + exNo + ", exRegDate=" + exRegDate + ", exTitle=" + exTitle + ", exAddress="
@@ -44,142 +45,188 @@ public class Exhibition {				//전시회
 				+ ", exEnterStartTimeString=" + exEnterStartTimeString + ", exEnterEndTimeString="
 				+ exEnterEndTimeString + "]";
 	}
+
 	public int getExNo() {
 		return exNo;
 	}
+
 	public void setExNo(int exNo) {
 		this.exNo = exNo;
 	}
+
 	public Date getExRegDate() {
 		return exRegDate;
 	}
+
 	public void setExRegDate(Date exRegDate) {
 		this.exRegDate = exRegDate;
 	}
+
 	public String getExTitle() {
 		return exTitle;
 	}
+
 	public void setExTitle(String exTitle) {
 		this.exTitle = exTitle;
 	}
+
 	public String getExAddress() {
 		return exAddress;
 	}
+
 	public void setExAddress(String exAddress) {
 		this.exAddress = exAddress;
 	}
+
 	public String getExContent() {
 		return exContent;
 	}
+
 	public void setExContent(String exContent) {
 		this.exContent = exContent;
 	}
+
 	public Date getExStartDay() {
 		return exStartDay;
 	}
+
 	public void setExStartDay(Date exStartDay) {
 		this.exStartDay = exStartDay;
 	}
+
 	public Date getExEndDay() {
 		return exEndDay;
 	}
+
 	public void setExEndDay(Date exEndDay) {
 		this.exEndDay = exEndDay;
 	}
+
 	public Date getExReserveStartDay() {
 		return exReserveStartDay;
 	}
+
 	public void setExReserveStartDay(Date exReserveStartDay) {
 		this.exReserveStartDay = exReserveStartDay;
 	}
+
 	public Date getExReserveEndDay() {
 		return exReserveEndDay;
 	}
+
 	public void setExReserveEndDay(Date exReserveEndDay) {
 		this.exReserveEndDay = exReserveEndDay;
 	}
+
 	public Date getExEnterStartTime() {
 		return exEnterStartTime;
 	}
+
 	public void setExEnterStartTime(Date exEnterStartTime) {
 		this.exEnterStartTime = exEnterStartTime;
 	}
+
 	public Date getExEnterEndTime() {
 		return exEnterEndTime;
 	}
+
 	public void setExEnterEndTime(Date exEnterEndTime) {
 		this.exEnterEndTime = exEnterEndTime;
 	}
+
 	public String getExEnterInterval() {
 		return exEnterInterval;
 	}
+
 	public void setExEnterInterval(String exEnterInterval) {
 		this.exEnterInterval = exEnterInterval;
 	}
+
 	public int getExTicketNum() {
 		return exTicketNum;
 	}
+
 	public void setExTicketNum(int exTicketNum) {
 		this.exTicketNum = exTicketNum;
 	}
+
 	public int getExPrice() {
 		return exPrice;
 	}
+
 	public void setExPrice(int exPrice) {
 		this.exPrice = exPrice;
 	}
+
 	public int getExActivate() {
 		return exActivate;
 	}
+
 	public void setExActivate(int exActivate) {
 		this.exActivate = exActivate;
 	}
+
 	public String getAdminId() {
 		return adminId;
 	}
+
 	public void setAdminId(String adminId) {
 		this.adminId = adminId;
 	}
+
 	public String getExImgStoredName() {
 		return exImgStoredName;
 	}
+
 	public void setExImgStoredName(String exImgStoredName) {
 		this.exImgStoredName = exImgStoredName;
 	}
+
 	public String getExStartDayString() {
 		return exStartDayString;
 	}
+
 	public void setExStartDayString(String exStartDayString) {
 		this.exStartDayString = exStartDayString;
 	}
+
 	public String getExEndDayString() {
 		return exEndDayString;
 	}
+
 	public void setExEndDayString(String exEndDayString) {
 		this.exEndDayString = exEndDayString;
 	}
+
 	public String getExReserveStartDayString() {
 		return exReserveStartDayString;
 	}
+
 	public void setExReserveStartDayString(String exReserveStartDayString) {
 		this.exReserveStartDayString = exReserveStartDayString;
 	}
+
 	public String getExReserveEndDayString() {
 		return exReserveEndDayString;
 	}
+
 	public void setExReserveEndDayString(String exReserveEndDayString) {
 		this.exReserveEndDayString = exReserveEndDayString;
 	}
-	public Date getExEnterStartTimeString() {
+
+	public String getExEnterStartTimeString() {
 		return exEnterStartTimeString;
 	}
-	public void setExEnterStartTimeString(Date exEnterStartTimeString) {
+
+	public void setExEnterStartTimeString(String exEnterStartTimeString) {
 		this.exEnterStartTimeString = exEnterStartTimeString;
 	}
-	public Date getExEnterEndTimeString() {
+
+	public String getExEnterEndTimeString() {
 		return exEnterEndTimeString;
 	}
-	public void setExEnterEndTimeString(Date exEnterEndTimeString) {
+
+	public void setExEnterEndTimeString(String exEnterEndTimeString) {
 		this.exEnterEndTimeString = exEnterEndTimeString;
 	}
 	

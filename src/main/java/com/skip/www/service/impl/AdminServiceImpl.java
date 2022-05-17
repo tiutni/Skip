@@ -88,6 +88,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return adminDao.selectExhibitionList(paging);
 	}
+	
 	@Override
 	public Paging getPagingExhibition(Paging paramData) {
 		
@@ -272,6 +273,7 @@ public class AdminServiceImpl implements AdminService {
 
 		return paging;
 	}
+	
 	@Override
 	public Concert viewConcert(Concert viewConcert) {
 		

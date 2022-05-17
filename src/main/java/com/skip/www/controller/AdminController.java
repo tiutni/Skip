@@ -164,7 +164,7 @@ public class AdminController {
 		ExImg exImg = adminService.getAttachExImg(viewExhibition);
 		model.addAttribute("exImg", exImg);
 
-		return "/admin/exhibition/view";
+		return "admin/exhibition/view";
 	}
 
 	@GetMapping("/admin/exhibition/write")
@@ -210,7 +210,8 @@ public class AdminController {
 		
 		adminService.updateExhibition(exhibition, file); //게시글+첨부파일 수정
 		
-		return "redirect:/admin/exhibition/view?exNo=" + exhibition.getExNo();
+		return "redirect:/admin/exhibition/list";
+//		return "redirect:/admin/exhibition/view?exNo=" + exhibition.getExNo();
 	}
 	
 	@RequestMapping("/admin/exhibition/delete")
