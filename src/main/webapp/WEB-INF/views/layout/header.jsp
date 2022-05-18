@@ -229,7 +229,7 @@ function deleteWish(wishNo){
 					<div id="wishList">
 						<!-- 비로그인상태 -->
 						<c:if test="${not login }">
-						<strong>로그인이 필요합니다</strong><br>
+							<strong>로그인이 필요합니다</strong><br>
 						</c:if>
 					</div>
 				

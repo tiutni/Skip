@@ -64,6 +64,6 @@ public class WishListController {
 	public String delete(Wish wishNo) {
 		wishListService.delete(wishNo);
 		
-		return "redirect:/wish/list";
+		return "redirect:/";
 	}
 }
