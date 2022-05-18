@@ -200,30 +200,30 @@ public class MypageController {
 	@GetMapping("/mypage/qnaupdate")
 	public String update(QnA qna, Model model) {
 		logger.info("/mypage/qnaupdate - {}", qna);		
-		
+
 		//잘못된 게시글 번호 처리
 		if( qna.getQnaNo() < 1 ) {
 			return "redirect:/mypage/qnalist";
 		}
-		
+
 		//수정할 게시글의 상세보기
 		qna = mypageService.view(qna);
 		model.addAttribute("qnaupdate", qna);
-		
+
 		//첨부파일 정보 모델값 전달
 		QnAFile qnaFile = mypageService.getAttachFile(qna);
 		model.addAttribute("qnaFile", qnaFile);
-		
+
 		return "mypage/qnaupdate";
 	}
 
 	@PostMapping("/mypage/qnaupdate")
 	public String updateProcess(QnA qna, MultipartFile file) {
 		logger.info("/mypage/qnaupdate [POST] - {}", qna);
-		
+
 		mypageService.update(qna);	//게시글만 수정
 		mypageService.update(qna, file); //게시글+첨부파일 수정
-		
+
 		return "redirect:/mypage/qnaview?qnaNo=" + qna.getQnaNo();
 	}
 
@@ -231,7 +231,7 @@ public class MypageController {
 	@RequestMapping("/mypage/qnadelete")
 	public String delete(QnA qna) {
 		mypageService.delete(qna);
-		
+
 		return "redirect:/mypage/qnalist";
 	}
 }
