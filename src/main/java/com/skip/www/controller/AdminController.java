@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ConImg;
+import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
@@ -142,30 +143,6 @@ public class AdminController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
 	}
-	
-	@RequestMapping("/admin/exhibition/view")
-	public String viewExhibition(Exhibition viewExhibition, Model model, HttpSession session) {
-		logger.info("/admin/exhibition/view - {}", viewExhibition);
-		
-		//잘못된 게시글 번호 처리
-		if( viewExhibition.getExNo() < 1 ) {
-			return "redirect:/admin/exhibition/list";
-		}
-		
-		//게시글 조회
-		viewExhibition = adminService.viewExhibition(viewExhibition);
-		logger.info("조회된 게시글 {}", viewExhibition);
-		
-		//모델값 전달 - 게시글
-		model.addAttribute("viewExhibition", viewExhibition);
-		
-		
-		//첨부파일 정보 모델값 전달
-		ExImg exImg = adminService.getAttachExImg(viewExhibition);
-		model.addAttribute("exImg", exImg);
-
-		return "admin/exhibition/view";
-	}
 
 	@GetMapping("/admin/exhibition/write")
 	public void writeExhibition() { }
@@ -266,44 +243,21 @@ public class AdminController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
 	}
-	
-	@RequestMapping("/admin/concert/view")
-	public String viewConcert(Concert viewConcert, Model model, HttpSession session) {
-		logger.info("/admin/concert/view - {}", viewConcert);
-		
-		//잘못된 게시글 번호 처리
-		if( viewConcert.getConNo() < 1 ) {
-			return "redirect:/admin/concert/list";
-		}
-		
-		//게시글 조회
-		viewConcert = adminService.viewConcert(viewConcert);
-		logger.info("조회된 게시글 {}", viewConcert);
-		
-		//모델값 전달 - 게시글
-		model.addAttribute("viewConcert", viewConcert);
-		
-		
-		//첨부파일 정보 모델값 전달
-		ConImg conImg = adminService.getAttachConImg(viewConcert);
-		model.addAttribute("conImg", conImg);
-
-		return "admin/concert/view";
-	}
 
 	@GetMapping("/admin/concert/write")
 	public void writeConcert() { }
 	
 	@PostMapping("/admin/concert/write")
-	public String writeProcessConcert(Concert concert, MultipartFile file, HttpSession session) {
+	public String writeProcessConcert(Concert concert, MultipartFile fileConImg, MultipartFile fileConSeatImg, HttpSession session) {
 		logger.info("/admin/concert/write [POST]");
 		logger.info("{}", concert);
-		logger.info("{}", file);
+		logger.info("{}", fileConImg);
+		logger.info("{}", fileConSeatImg);
 		
 		concert.setAdminId( (String) session.getAttribute("id") );
 		logger.info("{}", concert);
 		
-		adminService.writeConcert(concert, file);
+		adminService.writeConcert(concert, fileConImg, fileConSeatImg);
 		
 		return "redirect:/admin/concert/list"; //게시글 목록
 	}
@@ -320,20 +274,24 @@ public class AdminController {
 		//수정할 게시글의 상세보기
 		concert = adminService.viewConcert(concert);
 		model.addAttribute("updateConcert", concert);
+
 		
-		
-		//첨부파일 정보 모델값 전달
+		//첨부파일1 정보 모델값 전달
 		ConImg conImg = adminService.getAttachConImg(concert);
 		model.addAttribute("conImg", conImg);
+		
+		//첨부파일2 정보 모델값 전달
+		ConSeatImg conSeatImg = adminService.getAttachConSeatImg(concert);
+		model.addAttribute("conSeatImg", conSeatImg);
 		
 		return "/admin/concert/update";
 	}
 	
 	@PostMapping("/admin/concert/update")
-	public String updateProcessConcert(Concert concert, MultipartFile file) {
+	public String updateProcessConcert(Concert concert, MultipartFile fileConImg, MultipartFile fileConSeatImg) {
 		logger.info("/admin/concert/update [POST] - {}", concert);
 		
-		adminService.updateConcert(concert, file); //게시글+첨부파일 수정
+		adminService.updateConcert(concert, fileConImg, fileConSeatImg); //게시글+첨부파일 수정
 		
 		return "redirect:/admin/concert/list";
 	}
@@ -361,13 +319,22 @@ public class AdminController {
 		return "redirect:"+ referer;
 	}
 
-	@RequestMapping("/admin/concert/download")
+	@RequestMapping("/admin/concert/con_img/download")
 	public String downloadConImg(ConImg conImg, Model model) {
 		
 		conImg = adminService.getConImg(conImg);
 		model.addAttribute("downConImg", conImg);
 		
-		return "downConcert";
+		return "downConImg";
+	}
+
+	@RequestMapping("/admin/concert/con_seatimg/download")
+	public String downloadConSeatImg(ConSeatImg conSeatImg, Model model) {
+		
+		conSeatImg = adminService.getConSeatImg(conSeatImg);
+		model.addAttribute("downConSeatImg", conSeatImg);
+		
+		return "downConSeatImg";
 	}
 	
 	

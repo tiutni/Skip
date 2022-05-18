@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.skip.www.dao.face.AdminDao;
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ConImg;
+import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
@@ -282,7 +283,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	@Transactional
-	public void writeConcert(Concert concert, MultipartFile file) {
+	public void writeConcert(Concert concert, MultipartFile fileConImg, MultipartFile fileConSeatImg) {
 		if( "".equals( concert.getConTitle() ) ) {
 			concert.setConTitle("(제목없음)");
 		}
@@ -292,7 +293,7 @@ public class AdminServiceImpl implements AdminService {
 		//-----------------------------------------------------
 		
 		//빈 파일일 경우
-		if( file.getSize() <= 0 ) {
+		if( fileConImg.getSize() <= 0 ) {
 			return;
 		}
 		
@@ -304,14 +305,14 @@ public class AdminServiceImpl implements AdminService {
 		}
 
 		//파일이 저장될 이름
-		String originName = file.getOriginalFilename();
-		String storedName = originName + UUID.randomUUID().toString().split("-")[4];
+		String originNameConImg = fileConImg.getOriginalFilename();
+		String storedNameConImg = originNameConImg + UUID.randomUUID().toString().split("-")[4];
 		
 		//저장될 파일 정보 객체
-		File dest = new File(storedFolder, storedName);
+		File dest = new File(storedFolder, storedNameConImg);
 
 		try {
-			file.transferTo(dest);
+			fileConImg.transferTo(dest);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -322,21 +323,42 @@ public class AdminServiceImpl implements AdminService {
 
 		ConImg conImg = new ConImg();
 		conImg.setConNo( concert.getConNo() );
-		conImg.setConImgOriginName(originName);
-		conImg.setConImgStoredName(storedName);
+		conImg.setConImgOriginName(originNameConImg);
+		conImg.setConImgStoredName(storedNameConImg);
 		
 		adminDao.insertConImg(conImg);
+	
+		//-----------------------------------------------------
 		
-	}
+		//빈 파일일 경우
+		if( fileConSeatImg.getSize() <= 0 ) {
+			return;
+		}
 
-	@Override
-	public ConImg getAttachConImg(Concert viewConcert) {
-		return adminDao.selectConImgByConNo(viewConcert);
-	}
+		//파일이 저장될 이름
+		String originNameConSeatImg = fileConSeatImg.getOriginalFilename();
+		String storedNameConSeatImg = originNameConSeatImg + UUID.randomUUID().toString().split("-")[4];
+		
+		//저장될 파일 정보 객체
+		File dest2 = new File(storedFolder, storedNameConSeatImg);
 
-	@Override
-	public ConImg getConImg(ConImg conImg) {
-		return adminDao.selectConImgByConImgNo(conImg);
+		try {
+			fileConSeatImg.transferTo(dest2);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		//-----------------------------------------------------
+
+		ConSeatImg conSeatImg = new ConSeatImg();
+		conSeatImg.setConNo( concert.getConNo() );
+		conSeatImg.setConSeatImgOriginName(originNameConSeatImg);
+		conSeatImg.setConSeatImgStoredName(storedNameConSeatImg);
+		
+		adminDao.insertConSeatImg(conSeatImg);
+		
 	}
 
 	@Override
@@ -351,16 +373,14 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	@Transactional
-	public void updateConcert(Concert concert, MultipartFile file) {
+	public void updateConcert(Concert concert, MultipartFile fileConImg, MultipartFile fileConSeatImg) {
 		
 		this.updateConcert(concert);
 		
-		//-------------------------------------------------------
-		
-		//업로드된 파일 처리
+		//-----------------------------------------------------
 		
 		//빈 파일일 경우
-		if( file.getSize() <= 0 ) {
+		if( fileConImg.getSize() <= 0 ) {
 			return;
 		}
 		
@@ -372,14 +392,14 @@ public class AdminServiceImpl implements AdminService {
 		}
 
 		//파일이 저장될 이름
-		String originName = file.getOriginalFilename();
-		String storedName = originName + UUID.randomUUID().toString().split("-")[4];
+		String originNameConImg = fileConImg.getOriginalFilename();
+		String storedNameConImg = originNameConImg + UUID.randomUUID().toString().split("-")[4];
 		
 		//저장될 파일 정보 객체
-		File dest = new File(storedFolder, storedName);
+		File dest = new File(storedFolder, storedNameConImg);
 
 		try {
-			file.transferTo(dest);
+			fileConImg.transferTo(dest);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -390,15 +410,45 @@ public class AdminServiceImpl implements AdminService {
 
 		ConImg conImg = new ConImg();
 		conImg.setConNo( concert.getConNo() );
-		conImg.setConImgOriginName(originName);
-		conImg.setConImgStoredName(storedName);
+		conImg.setConImgOriginName(originNameConImg);
+		conImg.setConImgStoredName(storedNameConImg);
 		
-		
-		//게시글에 연결되어있는 기존의 모든 첨부파일 정보를 삭제한다
+		//게시글에 연결되어있는 기존의 모든 첨부파일 정보를 삭제하고 다시 넣는다
 		adminDao.deleteConImg(concert);
-		
-		
 		adminDao.insertConImg(conImg);
+		
+		//-----------------------------------------------------
+		
+		//빈 파일일 경우
+		if( fileConSeatImg.getSize() <= 0 ) {
+			return;
+		}
+
+		//파일이 저장될 이름
+		String originNameConSeatImg = fileConSeatImg.getOriginalFilename();
+		String storedNameConSeatImg = originNameConSeatImg + UUID.randomUUID().toString().split("-")[4];
+		
+		//저장될 파일 정보 객체
+		File dest2 = new File(storedFolder, storedNameConSeatImg);
+
+		try {
+			fileConSeatImg.transferTo(dest2);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		//-----------------------------------------------------
+
+		ConSeatImg conSeatImg = new ConSeatImg();
+		conSeatImg.setConNo( concert.getConNo() );
+		conSeatImg.setConSeatImgOriginName(originNameConSeatImg);
+		conSeatImg.setConSeatImgStoredName(storedNameConSeatImg);
+
+		//게시글에 연결되어있는 기존의 모든 첨부파일 정보를 삭제하고 다시 넣는다
+		adminDao.deleteConSeatImg(concert);
+		adminDao.insertConSeatImg(conSeatImg);
 		
 	}
 
@@ -423,5 +473,24 @@ public class AdminServiceImpl implements AdminService {
 		adminDao.unactivateConcert(concert);
 	}
 
-	
+	@Override
+	public ConImg getAttachConImg(Concert viewConcert) {
+		return adminDao.selectConImgByConNo(viewConcert);
+	}
+
+	@Override
+	public ConImg getConImg(ConImg conImg) {
+		return adminDao.selectConImgByConImgNo(conImg);
+	}
+
+	@Override
+	public ConSeatImg getAttachConSeatImg(Concert viewConcert) {
+		return adminDao.selectConSeatImgByConNo(viewConcert);
+	}
+
+	@Override
+	public ConSeatImg getConSeatImg(ConSeatImg conSeatImg) {
+		return adminDao.selectConSeatImgByConSeatImgNo(conSeatImg);
+	}
+
 }

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.AbstractView;
 import com.skip.www.dto.ConImg;
 import com.skip.www.dto.ExImg;
 
-public class ConcertDownloadView extends AbstractView{
+public class ConImgDownloadView extends AbstractView{
 
 	@Autowired private ServletContext context; 
 	
@@ -29,7 +29,6 @@ public class ConcertDownloadView extends AbstractView{
 		ConImg file = (ConImg) model.get("downConImg");
 		
 		//업로드된 파일의 객체
-		
 		File src = new File(context.getRealPath("upload"), file.getConImgStoredName());
 		
 		//서버의 파일 입력 스트림

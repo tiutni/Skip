@@ -47,7 +47,8 @@
 	<beans:bean id="down" class="com.skip.www.view.DownloadView" />
 	<beans:bean id="notiFileDown" class="com.skip.www.view.NotiDownloadView" />
 	<beans:bean id="downExhibition" class="com.skip.www.view.ExhibitionDownloadView" />
-	<beans:bean id="downConcert" class="com.skip.www.view.ConcertDownloadView" />
+	<beans:bean id="downConImg" class="com.skip.www.view.ConImgDownloadView" />
+	<beans:bean id="downConSeatImg" class="com.skip.www.view.ConSeatImgDownloadView" />
 	<beans:bean id="downQna" class="com.skip.www.view.QnaDownloadView" />
 	
 	

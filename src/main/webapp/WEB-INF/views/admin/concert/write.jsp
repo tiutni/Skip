@@ -76,15 +76,15 @@ table, th, td {
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="file">공연이미지</label>
-						<input type="file" id="file" name="file">
+						<label for="fileConImg">공연이미지</label>
+						<input type="file" id="fileConImg" name="fileConImg">
 					</div>
 					<br>
-<!-- 					<div class="form-group"> -->
-<!-- 						<label for="file">배치도</label> -->
-<!-- 						<input type="file" id="file" name="file"> -->
-<!-- 					</div> -->
-<!-- 					<br> -->
+					<div class="form-group">
+						<label for="fileConSeatImg">배치도</label>
+						<input type="file" id="fileConSeatImg" name="fileConSeatImg">
+					</div>
+					<br>
 					<div class="form-group">
 						<label for="content">본문</label>
 						<textarea rows="10" style="width: 100%;" id="content" name="conContent"></textarea>

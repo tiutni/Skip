@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ConImg;
+import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
@@ -165,9 +166,10 @@ public interface AdminService {
 	 * 게시글 정보, 첨부파일을 함께 처리한다
 	 * 
 	 * @param concert - 게시글 정보 DTO
-	 * @param file - 첨부파일 정보 DTO
+	 * @param fileConImg - 첨부파일 정보 DTO
+	 * @param fileConSeatImg - 첨부파일 정보 DTO
 	 */
-	public void writeConcert(Concert concert, MultipartFile file);
+	public void writeConcert(Concert concert, MultipartFile fileConImg, MultipartFile fileConSeatImg);
 
 	/**
 	 * 게시글 수정 처리
@@ -181,9 +183,10 @@ public interface AdminService {
 	 * 첨부파일 수정 처리
 	 * 
 	 * @param concert - 게시글 정보 객체
-	 * @param file - 파일업로드 객체
+	 * @param fileConImg - 파일업로드 객체
+	 * @param fileConSeatImg - 파일업로드 객체
 	 */
-	public void updateConcert(Concert concert, MultipartFile file);
+	public void updateConcert(Concert concert, MultipartFile fileConImg, MultipartFile fileConSeatImg);
 
 	/**
 	 * 게시글 + 첨부파일 삭제 처리
@@ -211,5 +214,21 @@ public interface AdminService {
 	 * @return 첨부파일의 정보
 	 */
 	public ConImg getConImg(ConImg conImg);
+
+	/**
+	 * 게시글 번호를 이용하여 업로드된 파일 정보를 조회한다
+	 * 
+	 * @param viewConcert - 조회할 게시글 번호를 가진 객체
+	 * @return 첨부파일의 정보
+	 */
+	public ConSeatImg getAttachConSeatImg(Concert viewConcert);
+
+	/**
+	 * 파일 번호를 이용하여 업로드된 파일 정보를 조회한다
+	 * 
+	 * @param conSeatImg - 조회할 파일 번호를 가진 객체
+	 * @return 첨부파일의 정보
+	 */
+	public ConSeatImg getConSeatImg(ConSeatImg conSeatImg);
 
 }
