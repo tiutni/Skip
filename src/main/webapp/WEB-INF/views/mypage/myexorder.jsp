@@ -10,7 +10,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
-		location.href = "/mypage/myorder"
+		location.href = "/mypage/myexorder"
 	})
 	
 	
@@ -35,53 +35,40 @@ table, th {
 	<div class="container">
 		<div class="p-b-10">
 			<h3 class="ltext-103 cl5">
-				MY ORDER
+				MY Exhibition Order
 			</h3>
 		</div>
 
+	
+
 <table class="table table-striped table-hover">
 <thead>
 	<tr>
-		<th style="width: 15%;">전시회 티켓</th>
+		<th style="width: 15%;">전시회 티켓번호</th>
 		<th style="width: 15%;">주문 번호</th>
 		<th style="width: 15%;">전시회 번호</th>
-		<th style="width: 15%;">매수</th>
+		<th style="width: 15%;">총매수</th>
+		
 	</tr>
 </thead>
 <tbody>
-<c:forEach items="${list }" var="exorder">
+<c:forEach items="${exlist }" var="exorder">
 	<tr>
-		<td>${exorder.conOrderTicketNo }</td>
+		<td>${exorder.exOrderTicketNo }</td>
 		<td>${exorder.orderNo }</td>
-		<td>${exorder.seatSeq }</td>
+		<td>${exorder.exOrderCount }</td>
+		<td>${exorder.exNo }</td>
+		
 	</tr>
 </c:forEach>
 </tbody>
 </table>		
 
-<table class="table table-striped table-hover">
-<thead>
-	<tr>
-		<th style="width: 15%;">공연 티켓</th>
-		<th style="width: 15%;">주문 번호</th>
-		<th style="width: 15%;">공연 좌석</th>
-	</tr>
-</thead>
-<tbody>
-<c:forEach items="${list }" var="conorder">
-	<tr>
-		<td>${conorder.exOrderTicketNo }</td>
-		<td>${conorder.orderNo }</td>
-		<td>${conorder.exNo }</td>
-		<td>${conorder.exOrderCount }</td>
-	</tr>
-</c:forEach>
-</tbody>
-</table>		
+<span class="pull-left">total : ${paging.totalCount }</span>
+<div class="clearfix"></div>
 
 
-
-<c:import url="paging.jsp" />
+<c:import url="myexorderpaging.jsp" />
 
 	</div><!-- .container -->
 

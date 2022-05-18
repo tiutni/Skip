@@ -7,24 +7,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skip.www.dao.face.MyorderDao;
-import com.skip.www.dto.ConOrderTicket;
+import com.skip.www.dao.face.MyexorderDao;
 import com.skip.www.dto.ExOrderTicket;
-import com.skip.www.service.face.MyorderService;
+import com.skip.www.service.face.MyconorderService;
+import com.skip.www.service.face.MyexorderService;
 import com.skip.www.util.Paging;
 
 @Service
-public class MyorderServiceImpl implements MyorderService{
+public class MyexorderServiceImpl implements MyexorderService{
+
+	private static final Logger logger = LoggerFactory.getLogger(MyexorderService.class);
 	
-	private static final Logger logger = LoggerFactory.getLogger(MyorderService.class);
-
-	@Autowired MyorderDao myorderDao;
-
-	@Override
-	public List<ExOrderTicket> list(Paging paging) {
-		return myorderDao.selectList(paging);
-	}
-
+	@Autowired MyexorderDao myexorderDao;
+	
 	@Override
 	public Paging getPaging(String curPage, int userNo) {
 		int page = 0;
@@ -34,25 +29,28 @@ public class MyorderServiceImpl implements MyorderService{
 		}
 
 		int listCount = 10;
+		
+		logger.info("getPaging- {}", userNo);
 
 		//총 게시글 수 조회
-		int totalCount = myorderDao.selectCntAll(userNo);
+		int totalCount = myexorderDao.selectCntAll(userNo);
+		
+		
+		logger.info("Paging : {}", page);
+		logger.info("List : {}", listCount);
 
+		
 		//페이징 계산
 		Paging paging = new Paging(totalCount, page, listCount);
 
-		logger.info("Paging : {}", paging);
+		
 
 		return paging;
 	}
 
 	@Override
-	public List<ConOrderTicket> conlist(Paging paging) {
-		return myorderDao.selectconList(paging);
+	public List<ExOrderTicket> exlist(Paging paging) {
+		return myexorderDao.selectexList(paging);
 	}
 
-
-
-	
-	
 }

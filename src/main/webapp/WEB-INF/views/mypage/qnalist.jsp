@@ -88,13 +88,9 @@ table, th {
 </tbody>
 </table>
 
+<button id="btnWrite" class="btn btn-primary pull-right">문의하기</button>
 <span class="pull-left">total : ${paging.totalCount }</span>
 <div class="clearfix"></div>
-
-<div class="text-center">
-
-	<button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button>
-</div>
 
 	</div><!-- .container -->
 

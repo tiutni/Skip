@@ -38,7 +38,8 @@ $(document).ready(function() {
 			<h6 class="ltext-103 cl5">	
 	
 	<a href="/"><button>Main</button></a><br>
-	<a href="/mypage/myorder"><button>My Order</button></a><br>
+	<a href="/mypage/myconorder"><button>My Concert Order</button></a><br>
+	<a href="/mypage/myexorder"><button>My Exhibition Order</button></a><br>
 	<a href="/mypage/myreviewlist"><button>My Concert Review</button></a><br>
 	<a href="/mypage/myexreviewlist"><button>My Exhibition Review</button></a><br>
 	<a href="/mypage/qnalist"><button>My QnA</button></a><br>
