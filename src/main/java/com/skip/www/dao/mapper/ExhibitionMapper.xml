@@ -118,6 +118,23 @@
 		WHERE rnum BETWEEN 1 AND 3
 	</select>
 	
+	<select id="selectTop6ExList" resultType="com.skip.www.dto.Exhibition">
+		SELECT * FROM (
+			SELECT rownum rnum, EX.* FROM (
+				SELECT
+					ex_no, admin_id, ex_regdate, ex_title, ex_address
+					, ex_content, ex_startDay, ex_endDay, ex_reserveStartDay
+					, ex_reserveEndDay, ex_enterStartTime, ex_enterEndTime
+					, ex_enterInterval, ex_ticketNum, ex_price, ex_activate
+					, (SELECT ex_img_storedname FROM ex_img WHERE ex_no = e.ex_no) ex_img_storedname
+				FROM exhibition e
+				WHERE ex_activate = 1
+				ORDER BY ex_no DESC
+			) EX
+		) EXHIBITION
+		WHERE rnum BETWEEN 1 AND 6
+	</select>
+	
 	<select id="selectExhibitionByExNo" resultType="com.skip.www.dto.Exhibition" parameterType="int">
 		SELECT
 			ex_no, admin_id, ex_regdate, ex_title, ex_address

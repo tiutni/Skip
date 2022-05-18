@@ -3,6 +3,8 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+
 <div class="text-center">
 
 <ul class="pagination">
@@ -16,7 +18,7 @@
 	<li><a href="<%=request.getContextPath() %>/concert/list">처음</a></li>
 </c:if>
 	
-	
+
 <%-- 이전 페이징 리스트로 이동 --%>
 <c:choose>
 	<c:when test="${paging.curPage < 11}">
@@ -36,7 +38,7 @@
 <c:if test="${paging.curPage > 1 }">
 	<li>
 		<a href="<%=request.getContextPath() %>/concert/list?curPage=${paging.curPage - 1}">
-			&lt; 
+			◀
 		</a>
 	</li>
 </c:if>
@@ -66,7 +68,7 @@
 <c:if test="${paging.curPage < paging.totalPage }">
 	<li>
 		<a href="<%=request.getContextPath() %>/concert/list?curPage=${paging.curPage + 1 }">
-			&gt; 
+			▶
 		</a>
 	</li>
 </c:if>

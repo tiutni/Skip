@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.skip.www.dto.ConReview;
 import com.skip.www.dto.ConRound;
+import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
-import com.skip.www.dto.Exhibition;
 import com.skip.www.dto.Seat;
 import com.skip.www.dto.Wish;
 import com.skip.www.util.Paging;
@@ -37,7 +37,7 @@ public interface ConcertDao {
 
 	public String selectUserNickByUserNo(int userno);
 
-	public List<Exhibition> selectConcertTopList();
+	public List<Concert> selectConcertTopList();
 
 	public int selectCntReviewByConNoUserNo(HashMap<Object, String> map);
 
@@ -52,5 +52,11 @@ public interface ConcertDao {
 	public int selectVIPSeatPriceByConNo(int conNo);
 
 	public int selectBasicSeatPriceByConNo(int conNo);
+
+	public List<Seat> selectUnreservedSeatListByConNoDateConRound(HashMap<Object, String> map);
+
+	public ConSeatImg selectConSeatimgByConNo(int conNo);
+
+	public List<Concert> selectTop6ConList();
 
 }
