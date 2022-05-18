@@ -169,4 +169,9 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 		
 	}
 
+	@Override
+	public List<Exhibition> getTop6ExhibitionList() {
+		return exhibitionDao.selectTop6ExList();
+	}
+
 }

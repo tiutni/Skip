@@ -3,9 +3,8 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
+
+<c:import url="/WEB-INF/views/layout/header.jsp" />
 
 <!-- Bootstrap 3 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -53,6 +52,7 @@ $(document).ready(function() {
 	// 리뷰 작성 버튼
 	$("#btnSubmit").click(function() {
 		$("#reviewForm").submit();
+		
 	});
 	
 	// 위시리스트 목록에 있는지 구분
@@ -116,7 +116,7 @@ $(document).ready(function() {
 
 		$("#totalprice").empty();
 
-		document.getElementById('seat').innerHTML = ('<option value="0">-----</option>');
+		document.getElementById('seat').innerHTML = ('<option hidden>좌석 선택</option>');
 		
 		var conRound = $("#round").val();
 		
@@ -141,6 +141,8 @@ $(document).ready(function() {
 
 				}
 				
+				resultPrice.innerText = 0;
+				
 			}
 			, error: function(err) {
 				console.log("실패");
@@ -158,14 +160,14 @@ $(document).ready(function() {
 	var number;
 	
 	console.log("number : " + number);
-
+	
 	// 좌석 변경시 발생하는 이벤트 ajax
 	$("#seat").change(function() {
 		
 		document.getElementById('selectSeat').innerHTML += (
 				'<div class="seatbox" style="display: inline-block;"><span class="' + $("#seat option:checked").attr('id') +'">' 
 					+ $("#seat option:checked").attr('id') + 
-				'</span><button class="remove" type="button" style="margin-right: 5px; border: 1px solid red; border-radius: 3px; background: red; color: white;">x</button>'
+				'</span><button class="remove" type="button" style="width: 14px; height: 16px; margin-right: 5px; margin-left: 3px; border: 1px solid #ef3f43; border-radius: 3px; background: #ef3f43; color: white; font-size: 6px; position: relative; top: -2px;"><b>x</b></button>'
 				+'<input type="hidden" name="selectedSeat" value="' + $("#seat option:checked").attr('id') +'" /></div>'
 				);
 
@@ -207,21 +209,27 @@ $(document).ready(function() {
 	});
 	
 });
-
 </script>
 
 <style type="text/css">
-.container {
-	width: 1100px;
-	height: 830px;
-	margin: 0 auto;
+
+.information {
+	width: 545px;
+	height: 400px;
+	margin-left: 35px;
 }
 
+.information > li {
+	font-size: 1.6rem;
+	margin-bottom: 10px;
+}
+
+
 .review {
-	width: 1000px;
+	width: 95.5%;
 	height: 90px;
-	margin-left: 50px;
-	margin-right: 50px;
+	margin-left: 20px;
+	margin-right: 20px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 }
@@ -241,10 +249,53 @@ $(document).ready(function() {
 	background: white;
 }
 
+#mapWrap {
+	display: none;
+	position:absolute;
+	width: 500px;
+	height: 495px;
+	z-index: 1;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: white;
+}
+
+#mapContent {
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;	 
+}
+
+#map {
+	width: 450px;
+	height: 400px;
+	border: 1px solid #ccc;
+	margin: 25px;
+	margin-top: 5px;
+}
+
+#seatWrap {
+	display: none;
+	position:absolute;
+	width: 500px;
+	height: 741px;
+	z-index: 1;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: white;
+	
+}
+
+#seatContent {
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;	 
+}
+
 #popup .popup_content {
 	width: 450px;
 	height: 390px;
-	background: #ccc;
+	background: white;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	position: absolute;
@@ -264,20 +315,33 @@ $(document).ready(function() {
 
 #popup {
 	display: none;
-	position:absolute;
-	width:100%;
-	height:100%;
-	z-index:1;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+ 	z-index:1;
+}
+
+#menuTable {
+	height: 50px;
+	font-size: 20px;
+}
+
+#menuTable td {
+	text-align: center;
+	width: 100px;
+	padding: 10px;
+}
+
+.infoWrap > ul > li {
+	margin-bottom: 10px;
 }
 
 #btnPayment {
-	font-size: 30px;
-	width: 200px;
-	height: 46px;
-	border: 1px solid skyblue;
-	border-radius: 5px;
-	background: skyblue;
-	color: white;
+ 	font-size: 30px; 
+ 	width: 330px; 
+ 	height: 55px;
+ 	margin-top: 10px;
+	
 }
 
 #reviewForm fieldset {
@@ -293,6 +357,7 @@ $(document).ready(function() {
 #reviewForm input[type=radio] {
 	display: none;
 }
+
 #reviewForm label {
 	font-size: 3em;
 	color: transparent;
@@ -313,9 +378,16 @@ $(document).ready(function() {
 
 #reviewContent {
 	width: 400px;
-	height: 150px;
+	height: 175px;
 	resize: none;
-	border-radius: 5px;	 
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-left: 24px;
+	padding: 5px;
+}
+
+#reviewContent :hover {
+	outline: 0;
 }
 
 #btnCancel {
@@ -324,6 +396,7 @@ $(document).ready(function() {
 	border-radius: 3px;
 	margin-right: 5px;
 	font-size: 15px;
+	display: inline-block;
 }
 
 #btnSubmit {
@@ -332,22 +405,16 @@ $(document).ready(function() {
 	border-radius: 3px;
 	margin-left: 5px;
 	font-size: 15px;
+	display: inline-block;
 }
 
 #btnWrite {
-	font-size: 15px;
-	width: 80px;
-	height: 25px;
-	border: 1px solid skyblue;
-	border-radius: 3px;
-	color: white;
-	background: skyblue;
-}
-
-#btnUpdate, #btnDelete {
-		font-size: 10px;
-		background: white;
-		border: 0;
+ 	font-size: 12px;
+ 	width: 80px;
+ 	height: 25px;
+ 	display: inline-block;
+ 	position: relative;
+ 	left: 611px;
 }
 
 #btnReviewDelete {
@@ -361,181 +428,365 @@ $(document).ready(function() {
 
 </style>
 <meta charset="UTF-8">
-<title>SKIP</title>
+<title>${viewConcert.conTitle }</title>
 </head>
 <body>
 
-<div class="container">
-<br><br>
-<div style="font-size: 25px; margin-left: 80px; display: inline-block;"><b>${viewConcert.conTitle }</b></div>
-<button type="button" id="btnWish"></button>
+<div class="container-fluid" style="width: 1280px; display: flex;">
+	<br><br>
+	<div class="info" style="width: 71%; float:left;">
 
-<hr><br>
+		<!-- 공연 제목 -->
+		<div class="conTitle" style="display: inline-block;">
+			<h3 class="ltext-103 cl5">${viewConcert.conTitle }</h3>
+		</div> <!-- conTitle -->
+		
+		<!-- 별점 -->
+		<div class="starPoint" style="margin-bottom: 10px;">
+			<c:choose>
+				<c:when test="${conStar <= 5.0 and conStar > 4.0 }">
+					<span style="font-size: 20px; color: rgb(255,201,14);">★★★★★</span>
+				</c:when>
+					
+				<c:when test="${conStar <= 4.0 and conStar > 3.0 }">
+					<span style="font-size: 20px; color: rgb(255,201,14);">★★★★☆</span>
+				</c:when>
+					
+				<c:when test="${conStar <= 3.0 and conStar > 2.0 }">
+					<span style="font-size: 20px; color: rgb(255,201,14);">★★★☆☆</span>
+				</c:when>
+					
+				<c:when test="${conStar <= 2.0 and conStar > 1.0 }">
+					<span style="font-size: 20px; color: rgb(255,201,14);">★★☆☆☆</span>
+				</c:when>
+					
+				<c:when test="${conStar <= 1.0 and conStar > 0.0 }">
+					<span style="font-size: 20px; color: rgb(255,201,14);">★☆☆☆☆</span>
+				</c:when>
+				
+				<c:when test="${conStar eq 0.0}">
+					<span style="font-size: 20px; color: rgb(255,201,14);">☆☆☆☆☆</span>
+				</c:when>
+			</c:choose>
+			<span style="font-size: 1.4rem">${conStar }</span>
+			
+			<!-- 위시리스트 -->
+			<div class="wishList" style="margin-left: 145px; display: inline-block;">
+				<button type="button" id="btnWish"></button>
+			</div> <!-- wishList -->
+			
+		</div> <!-- starPoint -->
 
-<div class="picture" style="width: 600px; height: 650px; float: left; margin-left: 50px;">
-	<img src="/upload/${viewConcert.conImgStoredName }" style="width: 500px; height:648px; margin-left: 30px;">
-</div>
-
-<div id="map" style="width: 330px; height: 300px; float: right; margin-right: 80px;"></div>
-
-<div class="select" style="width: 330px; height: 318px; float: right; margin-right: 80px; margin-top: 30px;">
-<form action="/pay" method="post" id="payForm">
-<input type="hidden" name="userNo" value="${userNo }" />
-<input type="hidden" name="conNo" value="${viewConcert.conNo }" />
-<fieldset style="border: 2px solid #ccc; border-radius: 10px; height: 318px;">
-<br>
-<span style="font-size: 23px; margin-left:75px; margin-top: 10px;"><b>인원 및 날짜 선택</b></span><br>
-<br>
-<label style="margin-left: 74px; font-size: 16px;"><b>관람일</b></label>
-<br>
-<input style="margin-left: 70px;" type="date" id="calendar" name="date" max="<fmt:formatDate value='${viewConcert.conReserveEndDay }' pattern='yyyy-MM-dd' />" /><br>
-<br>
-<span style="margin-left: 74px;"><b>회차</b></span>
-<select id="round" name="round">
-	<option value="0">선택없음</option>
-	<c:forEach items="${conRoundList}" var="i">
-		<option class="option" value="${i.conRound }"><fmt:formatDate value="${i.conRoundStartTime }" pattern="HH:mm" /></option>
-	</c:forEach>
-</select>
-<br>
-<span style="margin-left: 74px;"><b>좌석</b></span>
-<select id="seat" name="seat"></select>
-<div id="selectSeat" style="margin-left: 70px;"></div>
-<input type="hidden" id="valueOfprice" name="price" />
-<span style="margin-left: 70px;"><b>총 결제 금액</b></span>
-<span id="totalprice">0</span>
-<c:if test="${viewConcert.conActivate eq 1}">
-<button id="btnPayment" style="margin-left: 66px; margin-top: 13px; margin-bottom: 20px;">결제하기</button>
-</c:if>
-</fieldset>
-</form>
-<br>
-</div>
-
-<div class="information" style="width: 910px; height: 250px; margin-left: 80px; float: left; margin-top: 40px;">
-<span><b>정보</b></span>
-<br>
-<span>${viewConcert.conContent }</span>
-<br><br>
-<span><b>장소</b></span>
-<span>${viewConcert.conAddress }</span>
-<br><br>
-<span><b>기간</b></span>
-<span>
-	<fmt:formatDate value="${viewConcert.conStartDay }" pattern="yyyy.MM.dd" /> ~ <fmt:formatDate value="${viewConcert.conEndDay }" pattern="yyyy.MM.dd" />
-</span>
-<br><br>
-<span><b>가격</b></span>
-<span>기본 <fmt:formatNumber type="number" maxFractionDigits="3" value="${basicSeatPrice }"/>원</span>
-<span>VIP <fmt:formatNumber type="number" maxFractionDigits="3" value="${vipSeatPrice }"/>원</span>
-</div>
-
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br>
-<br><br>
-<hr>
-
-<br>
-<h1 style="margin-left: 50px;">리뷰 Review (${cntReview })</h1>
-<span style="margin-left: 50px; font-size: 25px;"><b>평점</b></span><span style="margin-left: 5px; font-size: 23px;">${conStar }</span>
-<%-- <c:if test="${not empty userNo and isTicketing and isReview}"> --%>
-<button id="btnWrite" style="margin-left: 10px;"><b>작성하기</b></button>
-<%-- </c:if> --%>
-<br>
-
-<div id="popup" style="text-align: center;">
-<div class="popup_content">
-<h1 style="margin-bottom: 0;">리뷰 작성</h1>
-<form action="/concert/reviewwrite" id="reviewForm" method="post">
-<input type="hidden" id="conNo" name="conNo" value="${viewConcert.conNo }"/>
-<fieldset>
-<input type="radio" name="reviewStar" value="5" id="rate1"/><label for="rate1">★</label>
-<input type="radio" name="reviewStar" value="4" id="rate2"/><label for="rate2">★</label>
-<input type="radio" name="reviewStar" value="3" id="rate3"/><label for="rate3">★</label>
-<input type="radio" name="reviewStar" value="2" id="rate4"/><label for="rate4">★</label>
-<input type="radio" name="reviewStar" value="1" id="rate5" checked="checked"/><label for="rate5">★</label>
-</fieldset>
-<textarea id="reviewContent" name="reviewContent" placeholder="내용을 입력하세요"></textarea><br><br>
-<button type="button" id="btnCancel">취소</button>
-<button type="button" id="btnSubmit">등록</button>
-</form>
-</div>
-
-<div class="popup_layer"></div>
-
-</div>
-<br>
-<c:if test="${empty reviewList }">
-<div style="margin: 50px; margin-top:10px;">
-<span>등록된 리뷰가 없습니다</span>
-</div>
-</c:if>
-
-<c:if test="${not empty reviewList }">
-<c:forEach items="${reviewList }" var="i">
-<div class="review">
-<span style="font-size: 12px; margin-left: 10px; margin-top: 10px;">${i.userNick }</span>
-<c:choose>
-	<c:when test="${i.conReviewStar eq 5 }">
-	<span style="font-size: 12px; color: rgb(255,201,14);">★★★★★</span>
-	</c:when>
+		<div class="conInfo">
+			<div style="height:500px;">
+				<!-- 공연 사진 -->
+				<div class="picture" style="width: 300; height: 400px; float: left; border:1px solid #eee;">
+					<img src="/upload/${viewConcert.conImgStoredName }" style="width: 300px; height:400px;">
+				</div> <!-- picture -->
+				
+				
+				<!-- 공연 정보 -->
+				<ul class="information" style="display: inline-block;">
+					
+					<!-- 공연장 위치 -->
+					<li>
+						<!-- 카카오 지도 -->
+						<div id="mapWrap">
+							<div id="mapContent">
+								<div id="mapAddress" style="margin-top: 5px; margin-left: 10px;">
+									<span style="font-size: 16px;"><b>공연장 위치</b></span>
+									<button id="closeMap" style="float: right; margin-right: 8px; font-size: 18px;">X</button>
+								</div> <!-- .mapAddress -->
+								<hr style="margin-top: 5px; margin-bottom: 5px;">
+								<div class="kakaoMap">
+									<span style="margin-left: 10px;">
+										주소 : ${viewConcert.conAddress}
+									</span>
+									<div id="map"></div>
+								</div> <!-- .kakaoMap -->
+							</div> <!-- mapContent -->
+						</div> <!-- mapWrap -->
+						
+						<span style="margin-right: 35px;">
+							<b>장소</b>
+						</span>
+						<div style="display: inline-block;">
+							<button id="openMap">
+								${viewConcert.conAddress } ▶
+							</button>
+						</div>
+					</li>
+					
+					<!-- 공연 기간 -->
+					<li>
+						<span style="margin-right: 35px;">
+							<b>기간</b>
+						</span>
+						<div style="display: inline-block;">
+							<fmt:formatDate value="${viewConcert.conStartDay }" pattern="yyyy.MM.dd" /> ~ <fmt:formatDate value="${viewConcert.conEndDay }" pattern="yyyy.MM.dd" />
+						</div>
+					</li>
+					
+					<!-- 좌석 가격 -->
+					<li>
+						<ul>
+							<li style="margin-bottom: 10px;">
+								<!-- 공연 좌석별 가격 -->
+								<span style="margin-right: 35px;">
+									<b>가격</b>
+								</span>
+								<button id="openSeatWrap"><b>좌석 배치도 확인하기 ▶</b></button>
+								<div id="seatWrap">
+									<div id="seatContent">
+										<div id="mapAddress" style="margin-top: 5px; margin-left: 10px;">
+											<span style="font-size: 16px;"><b>좌석 배치도</b></span>
+											<button id="closeSeatWrap" style="float: right; margin-right: 8px; font-size: 18px;">X</button>
+										</div> <!-- .mapAddress -->
+										<hr style="margin-top: 5px; margin-bottom: 5px;">
+										<div id="seatMap">
+											<img src="/upload/${conSeatImg.conSeatImgStoredName }" style="width: 498px; height: 698px;">
+										</div>
+									</div> <!-- seatContent -->
+								</div> <!-- #seatWrap -->
+							</li>
+							
+							<li style="margin-bottom: 10px;">
+								<!-- 기본 좌석 금액 -->
+								<span style="margin-bottom: 10px; margin-left: 72px;">
+									<b>기본 좌석</b> <fmt:formatNumber type="number" maxFractionDigits="3" value="${basicSeatPrice }"/>원
+								</span>
+							</li>
+							
+							<li style="margin-bottom: 10px;">
+								<!-- VIP 좌석 금액 -->
+								<span style="margin-top: 10px; margin-left: 73px;">
+									<span style="margin-right: 6px;">
+										<b>VIP 좌석</b>
+									</span>
+									<span>
+										<fmt:formatNumber type="number" maxFractionDigits="3" value="${vipSeatPrice }"/>원
+									</span>
+								</span>
+							</li>
+						</ul>
+					</li>
+					
+					<!-- 공연 내용 -->
+					<li>
+						<span style="margin-bottom: 10px;">
+							<b>정보</b>
+							</span>
+						<div style="margin-left: 70px;">
+							${viewConcert.conContent }
+						</div>	
+					</li>
+			
+				</ul> <!-- #information -->	
+		</div> <!-- #conInfo -->
+		
+		<!-- 메뉴 테이블 -->
+		<div>
+			<div>
+				<table id="menuTable">
+				<tr>
+					<td>
+						<button id="btnInfo">상품정보</button>
+					</td>
+					<td>
+						<button id="btnReview">후기</button>
+					</td>
+					<td>
+						<button id="btnAnswer" onclick="location.href='/qna/list'">문의하기</button>
+					</td>
+				</tr>
+				</table>
+			</div>
+		
+		</div>
+		
+		<hr style="margin-top: 5px;">
+		<br>
+		
+		<c:import url="../layout/payterms.jsp" />
+		
+		<br><hr style="margin-bottom: 10px;"><br>
+		<!-- 리뷰 -->
+		<div class="reviewWrap">
+			<div>
+				<h1 style="margin-left: 20px; display: inline-block;">Review (${cntReview })</h1>
+				<c:if test="${not empty userNo and isTicketing and isReview}">
+					<button id="btnWrite" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer m-b-5">
+						<b>작성하기</b>
+					</button>
+				</c:if>
+			</div>
+			<!-- 리뷰 작성 폼 -->
+			<div id="popup" style="text-align: center;">
+				<div class="popup_content">
+					<h1 style="margin-bottom: 0;">리뷰 작성</h1>
+					<form action="/concert/reviewwrite" id="reviewForm" method="post">
+						<input type="hidden" id="conNo" name="conNo" value="${viewConcert.conNo }"/>
+						<!-- 별점 선택 -->
+						<fieldset>
+							<input type="radio" name="reviewStar" value="5" id="rate1"/><label for="rate1">★</label>
+							<input type="radio" name="reviewStar" value="4" id="rate2"/><label for="rate2">★</label>
+							<input type="radio" name="reviewStar" value="3" id="rate3"/><label for="rate3">★</label>
+							<input type="radio" name="reviewStar" value="2" id="rate4"/><label for="rate4">★</label>
+							<input type="radio" name="reviewStar" value="1" id="rate5" checked="checked"/><label for="rate5">★</label>
+						</fieldset>
+						<textarea id="reviewContent" name="reviewContent" placeholder="내용을 입력하세요"></textarea><br><br>
+						<button type="button" id="btnCancel" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn2 p-lr-15 trans-04 pointer m-b-5">취소</button>
+						<button type="button" id="btnSubmit" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer m-b-5">등록</button>
+					</form>
+				</div> <!-- .popup_content -->
+				
+				<div class="popup_layer"></div>
+			</div> <!-- #popup -->
+			
+			<br>
+			<c:if test="${empty reviewList }">
+				<div style="margin: 50px; margin-top:10px;">
+					<span>등록된 리뷰가 없습니다</span>
+				</div>
+			</c:if>
+			
+			<c:if test="${not empty reviewList }">
+				<c:forEach items="${reviewList }" var="i">
+					<div class="review">
+						<div class="reviewTop" style="margin-top: 5px;">
+							<span style="font-size: 12px; margin-left: 10px; margin-top: 10px;">${i.userNick }</span>
+						
+							<c:choose>
+								<c:when test="${i.conReviewStar eq 5 }">
+									<span style="font-size: 12px; color: rgb(255,201,14);">
+										★★★★★
+									</span>
+								</c:when>
+								
+								<c:when test="${i.conReviewStar eq 4 }">
+									<span style="font-size: 12px; color: rgb(255,201,14);">
+										★★★★☆
+									</span>
+								</c:when>
+								
+								<c:when test="${i.conReviewStar eq 3 }">
+									<span style="font-size: 12px; color: rgb(255,201,14);">
+										★★★☆☆
+									</span>
+								</c:when>
+								
+								<c:when test="${i.conReviewStar eq 2 }">
+									<span style="font-size: 12px; color: rgb(255,201,14);">
+										★★☆☆☆
+									</span>
+								</c:when>
+								
+								<c:when test="${i.conReviewStar eq 1 }">
+									<span style="font-size: 12px; color: rgb(255,201,14);">
+										★☆☆☆☆
+									</span>
+								</c:when>
+							</c:choose>
+							
+							<span style="font-size: 10px; color: #ccc; margin-left: 10px;">
+								<fmt:formatDate value="${i.conReviewDate }" pattern="yyyy-MM-dd" />
+							</span>
+						</div>
 	
-	<c:when test="${i.conReviewStar eq 4 }">
-	<span style="font-size: 12px; color: rgb(255,201,14);">★★★★☆</span>
-	</c:when>
+						
+						
+						<span style="margin-left: 10px; font-size: 13px;">
+							${i.conReviewContent }
+						</span>
+						<br><br>
+			
+						<c:if test="${userNo eq i.userNo }">
+							<form id="reviewdelete" action="/concert/reviewdelete" method="get">
+							<input type="hidden" name="conReviewNo" value="${i.conReviewNo }" />
+							<input type="hidden" name="conNo" value="${viewConcert.conNo }" />
+							<button type="button" id="btnReviewDelete">삭제</button>
+							</form>
+						</c:if>
+					</div><br>
+				</c:forEach>
+			</c:if>
+		</div>
+		<br><br><br>
+		
+		<c:import url="conreviewpaging.jsp"></c:import>
+		
+		</div>
+	</div>
+
+	<!-- 사이드바(결제) -->
+	<div style="float: left;">
+		<div class="stickyWrap" style="width: 100%; height: 10px; position: sticky; top:90px; margin-left: 30px; margin-top: 107px;">
+			<div class="select" style="width: 330px;">
+				<form action="/pay" method="post" id="payForm">
+					<!-- 유저 번호 전송 -->
+					<input type="hidden" name="userNo" value="${userNo }" />
+							
+					<!-- 공연 게시글 번호 전송 -->
+					<input type="hidden" name="conNo" value="${viewConcert.conNo }" />
+							
+					<fieldset style="border: 2px solid #ccc; border-radius: 2px; height: 348px; width: 330px;">
+						<br>
+						<!-- 날짜 및 회차,좌석 선택 -->
+						<!-- 날짜선택 -->
+						<label style="margin-left: 25px; font-size: 16px;"><b>관람일</b></label>
+						<input style="margin-left: 25px;" type="date" id="calendar" name="date" max="<fmt:formatDate value='${viewConcert.conReserveEndDay }' pattern='yyyy-MM-dd' />" /><br>
+						<hr style="margin-top: 0px; margin-bottom: 25px;">
+						<!-- 회차 및 좌석 선택 -->
+						<span style="margin-left: 25px;"><b>회차</b></span>
+						<br>
+						<select id="round" name="round" style="margin-left: 25px; width:30%; padding: 0; margin-bottom: 10px; height:30px;" class="stext-111 cl8 plh3 p-lr-15 bor8">
+							<option value="0">선택없음</option>
+							<c:forEach items="${conRoundList}" var="i">
+								<option class="option" value="${i.conRound }"><fmt:formatDate value="${i.conRoundStartTime }" pattern="HH:mm" /></option>
+							</c:forEach>
+						</select>
+
+						<br>
+
+						<!-- 선택된 좌석 -->
+						<span style="margin-left: 25px;"><b>좌석</b></span>
+						<br>
+						<select id="seat" name="seat" class="stext-111 cl8 plh3 p-lr-15 bor8" style="margin-left: 25px; width:30%; padding: 0; margin-bottom: 5px; height: 30px;"></select>
+						<div id="selectSeat" style="margin-left: 25px; height: 10px;"></div>
 	
-	<c:when test="${i.conReviewStar eq 3 }">
-	<span style="font-size: 12px; color: rgb(255,201,14);">★★★☆☆</span>
-	</c:when>
-	
-	<c:when test="${i.conReviewStar eq 2 }">
-	<span style="font-size: 12px; color: rgb(255,201,14);">★★☆☆☆</span>
-	</c:when>
-	
-	<c:when test="${i.conReviewStar eq 1 }">
-	<span style="font-size: 12px; color: rgb(255,201,14);">★☆☆☆☆</span>
-	</c:when>
-</c:choose>
-<span style="font-size: 10px; color: #ccc; margin-left: 10px;">
-	<fmt:formatDate value="${i.conReviewDate }" pattern="yyyy-MM-dd" />
-</span><br>
-<span style="margin-left: 10px; font-size: 13px;">${i.conReviewContent }</span>
-<br><br>
-<c:if test="${userNo eq i.userNo }">
-<form id="reviewdelete" action="/concert/reviewdelete" method="get">
-<input type="hidden" name="conReviewNo" value="${i.conReviewNo }" />
-<input type="hidden" name="conNo" value="${viewConcert.conNo }" />
-<button type="button" id="btnReviewDelete">삭제</button>
-</form>
-</c:if>
-</div><br>
-</c:forEach>
-</c:if>
+						<hr style="margin-bottom: 3px;">
+						
+						<!-- 총 결제 금액 -->
+						<div style="height: 64.3px;">
+							<div style="display:inline-block;">		
+								<input type="hidden" id="valueOfprice" name="price" />
+								<span style="margin-left: 25px; font-style: italic;">
+									<b>총 결제 금액</b>
+								</span>
+							</div>
+							<div style="display:inline-block; margin-left: 40px; text-align: right; width: 150px; line-height: 2;">
+								<span id="totalprice" style="color: #ef3f43; font-size: 32px; font-style: italic;">
+								0
+								</span>
+							</div>
+						</div>
+					</fieldset>
+					
+					<!-- 예매 버튼 -->
+					<div>
+						<!-- 활성화된 공연만 예매가능 -->
+						<c:if test="${viewConcert.conActivate eq 1}">
+							<button id="btnPayment" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer m-b-5">
+								예매하기
+							</button>
+						</c:if>
+					</div>
+				</form>
+			</div> <!-- select -->
+		</div> <!-- .stickyWrap -->
+	</div>
 
-<c:import url="conreviewpaging.jsp"></c:import>
-
-<script type="text/javascript">
-	//예약 최소 날짜를 오늘로 설정함
-	document.getElementById('calendar').min = new Date().toISOString().substring(0, 10);;
-
-	//달력에 표시되는 기본 날짜는 오늘로 설정함
-	document.getElementById('calendar').value = new Date().toISOString().substring(0, 10);;
-</script>
-
-<script type="text/javascript">
-	document.getElementById("btnWrite").onclick = function() {
-	    document.getElementById("popup").style.display="block";
-	}
-	
-	document.getElementById("btnCancel").onclick = function() {
-	    document.getElementById("popup").style.display="none";
-	}
-</script>
-
+<%-- 카카오 지도 api --%>
 <script type="text/javascript">
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -565,12 +816,80 @@ geocoder.addressSearch(conLocation, function(result, status) {
 		// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		map.setCenter(coords);
 		
-	}
+	};
+    
+    $("#openMap").click(function() {
+    	map.relayout();
+    	
+    	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		map.setCenter(coords);
+    
+    });
+    
 		
 });
 </script>
 
-</div> <%--container --%>
+<%-- 달력 날짜 설정 --%>
+<script type="text/javascript">
+	//예약 최소 날짜를 오늘로 설정함
+	document.getElementById('calendar').min = new Date().toISOString().substring(0, 10);;
 
-</body>
-</html>
+	//달력에 표시되는 기본 날짜는 오늘로 설정함
+	document.getElementById('calendar').value = new Date().toISOString().substring(0, 10);;
+</script>
+
+<script type="text/javascript">
+	document.getElementById("btnReview").onclick = function() {
+		document.querySelector('.reviewWrap').scrollIntoView(true);
+	}
+
+</script>
+
+<script type="text/javascript">
+	document.getElementById("btnInfo").onclick = function() {
+		document.querySelector('#menuTable').scrollIntoView(true);
+	}
+
+</script>
+
+<!-- 리뷰 작성 모달 -->
+<script type="text/javascript">
+	document.getElementById("btnWrite").onclick = function() {
+	    document.getElementById("popup").style.display="block";
+	}
+	
+	document.getElementById("btnCancel").onclick = function() {
+	    document.getElementById("popup").style.display="none";
+	}
+</script>
+
+<!-- 공연 좌석 배치도 모달 -->
+<script type="text/javascript">
+	document.getElementById("openSeatWrap").onclick = function() {
+	    document.getElementById("seatWrap").style.display="block";
+	}
+	
+	document.getElementById("closeSeatWrap").onclick = function() {
+	    document.getElementById("seatWrap").style.display="none";
+	}
+</script>
+
+<!-- 공연장 위치 지도 모달 -->
+<script type="text/javascript">
+	document.getElementById("openMap").onclick = function() {
+	    document.getElementById("mapWrap").style.display="block";
+	}
+	
+	document.getElementById("closeMap").onclick = function() {
+	    document.getElementById("mapWrap").style.display="none";
+	}
+</script>
+
+<br><br><br><br><br>
+
+</div> <!-- "container-fluid" -->
+<hr>
+
+<!-- 푸터 -->
+<c:import url="/WEB-INF/views/layout/footer.jsp" />

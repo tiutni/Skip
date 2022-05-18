@@ -39,17 +39,19 @@ private static final Logger logger = LoggerFactory.getLogger(ConcertController.c
 			) {
 		logger.info("/exhibition/list [GET]");
 		
-		//curPage값과 search값을 받아 Paging객체 생성
+		// curPage값과 search값을 받아 Paging객체 생성
 		Paging paging = exhibitionService.getExhibitionPaging(curPage, search);
 		
+		// 페이징 객체에 검색어 추가
 		paging.setSearch(search);
 		
+		// 페이징 객체에 정렬 추가
 		paging.setSort(sort);
 		
-		//전시회 게시글 리스트 출력(최신순, 예매순)
+		// Paging객체를 이용한 전시회 게시글 목록 전체 조회(최신순, 예매순)
 		List<Exhibition> exList = exhibitionService.getExhibitionList(paging);
 		
-		//전시회 게시글 top3 리스트 출력
+		// 전시회 게시글 중 예매순(인기순) 상위 3개 공연 조회
 		List<Exhibition> topList = exhibitionService.getTopExhibitionList();
 		
 		model.addAttribute("exList", exList);
@@ -76,40 +78,41 @@ private static final Logger logger = LoggerFactory.getLogger(ConcertController.c
 		
 		logger.info("exNo : {}", exNo);
 		
-		//exNo로 게시글 상세내역 조회
+		// exNo로 게시글 상세내역 조회
 		Exhibition viewExhibition = exhibitionService.getExhibition(exNo);
 		
 		logger.info("Exhibition : " + viewExhibition);
 		
-		//Paging 객체 생성
+		// Paging 객체 생성
 		Paging paging = exhibitionService.getExhibitionReviewPaging(curPage, exNo);
 		
-		//Paging 객체에 exNo 삽입
+		// Paging 객체에 exNo 삽입
 		paging.setExNo(exNo);
 
 		logger.info("paging : {}", paging);
 		
-		//Paging 객체로 해당 전시회 게시글 전체 리뷰 내역 조회
+		// Paging 객체로 해당 전시회 게시글 전체 리뷰 목록 조회
 		List<ExReview> reviewList = exhibitionService.reviewList(paging);
 		
-		//해당 게시글 전체 댓글 수 조회
+		// 해당 게시글 전체 댓글 수 조회
 		int cntUser = exhibitionService.getAllUser(exNo);
 		
-		//해당 게시글 별점 전체 조회
+		// 해당 게시글 별점 전체 조회
 		List<ExReview> allstar = exhibitionService.getAllStar(exNo);
 		
 		double addAllStar = 0;
 		
+		//조회된 전체 별점 더해주기
 		for(int i=0; i<allstar.size(); i++) {
 			addAllStar += allstar.get(i).getExReviewStar();
 		}
 		
 		double exStar = 0;
 		
-		if(addAllStar == 0 && cntUser == 0) {
+		if(addAllStar == 0 && cntUser == 0) { // 리뷰가 0개일때 처리
 			exStar = 0;
 			
-		} else {	
+		} else { // 리뷰가 1개이상 존재할때 별점 계산
 			exStar = addAllStar / cntUser;
 
 		}
@@ -125,9 +128,10 @@ private static final Logger logger = LoggerFactory.getLogger(ConcertController.c
 		
 		}
 		
-		//위시리스트 목록 조회
+		// 해당 유저의 위시리스트 목록 조회
 		boolean isWish = exhibitionService.isWish(wish);
 		
+		// 전시회 번호와 유저 번호를 넣어줄 HashMap객체 생성
 		HashMap<Object, String> map = new HashMap<Object, String>();
 		
 		if( session.getAttribute("userNo") != null ) {
@@ -138,10 +142,10 @@ private static final Logger logger = LoggerFactory.getLogger(ConcertController.c
 		
 		logger.info("map : {}", map);
 		
-		//전시회 예매 조회
+		// 전시회 예매 조회
 		boolean isTicketing = exhibitionService.isTicketing(map);
 		
-		//리뷰 작성 조회
+		// 리뷰 작성 조회
 		boolean isReview = exhibitionService.isReview(map);
 		
 		model.addAttribute("isReview", isReview);		
@@ -170,6 +174,7 @@ private static final Logger logger = LoggerFactory.getLogger(ConcertController.c
 			) {
 		logger.info("/concert/reviewwrite [POST]");
 
+		// 전시회 리뷰 객체에 받아온 정보 넣어주기
 		exReview.setExNo(exNo);
 		exReview.setExReviewContent(reviewContent);
 
@@ -177,7 +182,7 @@ private static final Logger logger = LoggerFactory.getLogger(ConcertController.c
 		
 		exReview.setExReviewStar(reviewStar);
 		
-		//exReview의 값들을 넘겨서 댓글 테이블에 삽입
+		// 입력받은 정보를 DB에 삽입
 		exhibitionService.insertReview(exReview);
 		
 		return "redirect:/exhibition/view?exNo="+exNo;
@@ -191,7 +196,7 @@ private static final Logger logger = LoggerFactory.getLogger(ConcertController.c
 		logger.info("/exhibition/reviewdelete [GET]");
 		logger.info("exReview : {}", exReviewNo);
 		
-		//exReview 번호를 받아서 리뷰 삭제
+		// 리뷰 번호로 리뷰 삭제
 		exhibitionService.delete(exReviewNo);
 		
 		return "redirect:/exhibition/view?exNo="+exNo;
@@ -207,6 +212,7 @@ private static final Logger logger = LoggerFactory.getLogger(ConcertController.c
 			) {
 		logger.info("/concert/wish [GET]");
 		
+		// wish 객체에 view에서 받아온 정보 삽입
 		wish.setExNo(exNo);
 		
 		if( session.getAttribute("userNo") != null ) {

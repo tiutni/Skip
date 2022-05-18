@@ -40,5 +40,7 @@ public interface ExhibitionDao {
 
 	public void deleteExReviewByExReviewNo(int exReviewNo);
 
+	public List<Exhibition> selectTop6ExList();
+
 
 }

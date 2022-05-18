@@ -1,10 +1,65 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ page session="false"%>
 
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	// 위시리스트 갯수
+	$.ajax({
+		type : "GET",
+		url : "/wish/count",
+		dataType : "JSON",
+		contentType : "application/json; charset=utf8",
+		data : {},
+		success : function(data){
+// 			alert("wishCount ajax success"); // ajax 테스트
+			
+			if(data != null){ // 위시리스트 있으면 갯수 표시
+				console.log(wishCount);
+				document.getElementById("wishCount").innerHTML="<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart' data-notify=' " + data + "'><i class='zmdi zmdi-favorite-outline'></i></div>";
+			} else { // 위시리스트 없으면 0 표시
+				console.log( wishCount );
+				document.getElementById("wishCount").innerHTML="<div class='icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart' data-notify=' " + 0 + "'><i class='zmdi zmdi-favorite-outline'></i></div>";
+			}
+		},
+		error: function (){
+			console.log("wishCount ajax error"); 
+		}
+	});
+	
+	//--------------------------------------------------------------------------
+	
+	// 위시리스트 목록
+	$("#wishCount").click(function(){
+		
+		$.ajax({
+			type : "GET",
+			url : "/wish/list",
+			dataType : "html",
+			success : function(data){
+	 			console.log("wishList ajax success"); // ajax 테스트
+				
+				$("#wishList").html(data);
+			},
+			error: function (){
+				console.log("wishList ajax error"); 
+			}
+			
+		});
+		
+	})
+	
+});
+
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -115,13 +170,13 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-							<i class="zmdi zmdi-shopping-cart"></i>
-						</div>
+					<!-- 위시리스트 버튼 -->
+					<div id="wishCount" class="js-show-cart">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="-">
+ 							<i class="zmdi zmdi-favorite-outline""></i>
+						</div> 
+					</div>
 
-						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-							<i class="zmdi zmdi-favorite-outline"></i>
-						</a>
 					</div>
 				</nav>
 			</div>	
@@ -145,14 +200,14 @@
 		</div>
 	</header>
 
-	<!-- Cart -->
+	<!-- 위시리스트 목록 -->
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					Your Cart
+					WISH LIST
 				</span>
 
 				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -162,70 +217,17 @@
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="../../resources/images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="../../resources/images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="../../resources/images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
+					
+					<!-- ajax로 채워질 위시리스트 목록 -->
+					<div id="wishList">
+						<!-- 비로그인상태 -->
+						<c:if test="${not login }">
+						<strong>로그인이 필요합니다</strong><br>
+						</c:if>
+					</div>
+				
 				</ul>
 				
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.jsp" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart.jsp" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

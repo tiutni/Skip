@@ -39,7 +39,7 @@ $(document).ready(function() {
 		<div class="exhibitionTop3List" style="width: 33%; height: 610px; padding: 15px; padding-bottom: 35px; display: inline-block;">
 			<div class="block2">
 				<!-- 전시회 사진 -->
-				<div class="block2-pic hov-img0">
+				<div class="block2-pic hov-img0" style="border: 1px solid #ccc;">
 					<a href="/exhibition/view?exNo=${i.exNo }">
 						<img src="/upload/${i.exImgStoredName }" style="width: 347px; height:482px;">
 					</a>
@@ -122,9 +122,9 @@ $(document).ready(function() {
 			<div class="exhibitionList" style="width: 24.7%; height: 500px; padding: 15px; padding-bottom: 35px; display: inline-block;">
 				<div class="block2">
 					<!-- 전시회 이미지 -->
-					<div class="block2-pic hov-img0">
+					<div class="block2-pic hov-img0" style="border: 1px solid #ccc;">
 						<a href="/exhibition/view?exNo=${i.exNo }"  class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-							<img src="/upload/${i.exImgStoredName }" style="width: 251px; height: 350px;">
+							<img src="/upload/${i.exImgStoredName }" style="width: 249px; height: 350px;">
 						</a>
 					</div> <!-- "block2-pic hov-img0" -->
 				</div> <!-- "block2" -->

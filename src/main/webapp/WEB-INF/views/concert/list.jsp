@@ -21,9 +21,6 @@ $(document).ready(function() {
 </script>
 
 <meta charset="UTF-8">
-<title>SKIP</title>
-</head>
-<body>
 
 <br><br><br><br>
 <div class="container-fluid" style="width: 1170px;">
@@ -39,7 +36,7 @@ $(document).ready(function() {
 		<div class="concertTop3List" style="width: 33%; height: 610px; padding: 15px; padding-bottom: 35px; display: inline-block;">
 			<div class="block2">
 				<!-- 공연 사진 -->
-				<div class="block2-pic hov-img0">
+				<div class="block2-pic hov-img0" style="border: 1px solid #ccc;">
 					<a href="/concert/view?conNo=${i.conNo }">
 						<img src="/upload/${i.conImgStoredName }" style="width: 347px; height:482px;">
 					</a>
@@ -95,12 +92,12 @@ $(document).ready(function() {
 	</div>
 	
 	<!-- 최신순/인기순 정렬 버튼 -->
-	<div class="flex-w flex-sb-m p-b-52">
+	<div class="flex-w flex-sb-m p-b-50">
 		<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 			<!-- 최신순 검색 버튼 폼 -->
 			<form action="/concert/list" method="get">
 				<input type="hidden" name="sort" value="recent"/>
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">최신순</button>
+				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">최신순</button>
 			</form>
 			
 			<!-- 인기순 검색 버튼 폼 -->
@@ -122,11 +119,11 @@ $(document).ready(function() {
 			<div class="concertList" style="width: 24.7%; height: 500px; padding: 15px; padding-bottom: 35px; display: inline-block;">
 				<div class="block2">
 					<!-- 공연 이미지 -->
-					<div class="block2-pic hov-img0">
+					<div class="block2-pic hov-img0C" style="border: 1px solid #ccc;">
 						<a href="/concert/view?conNo=${i.conNo }" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-							<img src="/upload/${i.conImgStoredName }" style="width: 251px; height:350px;">
+							<img src="/upload/${i.conImgStoredName }" style="width: 249px; height:350px;">
 						</a>
-					</div> <!-- "block2-pic hov-img0 -->
+					</div> <!-- "block2-pic hov-img0" -->
 				</div> <!-- "block2" -->
 				
 				<div class="block2-txt flex-w flex-t p-t-14">
@@ -143,8 +140,9 @@ $(document).ready(function() {
 		<c:import url="conpaging.jsp" />
 	
 	</div>
-<br><br><br><br>
+<br><br><br><br><br>
 </div> <!-- "container-fluid" -->
 
+<!-- 푸터 -->
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
 

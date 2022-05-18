@@ -122,6 +122,23 @@
 	</select>
 	
 	
+	<select id="selectTop6ConList" resultType="com.skip.www.dto.Concert">
+		SELECT * FROM (
+		    SELECT rownum rnum, CON.* FROM (
+				SELECT
+					con_no, admin_id, con_regdate, con_title
+					, con_address, con_content, con_startday, con_endday
+					, con_reserveStartday, con_reserveEndday, con_activate
+					, (SELECT con_img_storedname FROM con_img WHERE con_no = c.con_no) con_img_storedname
+				FROM concert c
+				WHERE con_activate = 1
+				ORDER BY con_no DESC
+			) CON
+		) CONCERT
+		WHERE rnum BETWEEN 1 AND 6
+	</select>
+	
+	
 	<select id="selectConcertByConNo" resultType="com.skip.www.dto.Concert" parameterType="int">
 		SELECT
 			con_no, admin_id, con_regdate, con_title
@@ -276,6 +293,21 @@
 			) P
 		) PRICE
 		WHERE rnum = 1
+	</select>
+	
+	<select id="selectUnreservedSeatListByConNoDateConRound" parameterType="hashmap" resultType="com.skip.www.dto.Seat">
+		SELECT s.seat_no, s.seat_price
+		FROM con_order_ticket cot, seat s, con_round cr
+		WHERE cot.seat_seq = s.seat_seq
+		AND s.con_round_no = cr.con_round_no
+		AND cr.con_no = #{conNo}
+		AND cr.con_round = #{conRound}
+		AND cot.con_order_date = to_date(#{date}, 'yy/mm/dd')
+	</select>
+	
+	<select id="selectConSeatimgByConNo" parameterType="int" resultType="com.skip.www.dto.ConSeatImg">
+		SELECT * FROM con_seatimg
+		WHERE con_no = #{conNo}
 	</select>
 	
 </mapper>

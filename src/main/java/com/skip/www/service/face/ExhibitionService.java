@@ -38,4 +38,6 @@ public interface ExhibitionService {
 
 	public void delete(int exReviewNo);
 
+	public List<Exhibition> getTop6ExhibitionList();
+
 }

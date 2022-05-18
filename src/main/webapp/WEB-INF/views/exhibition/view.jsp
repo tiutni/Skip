@@ -21,6 +21,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	// 리뷰 삭제 버튼
 	$("#btnReviewDelete").click(function() {
 		if(confirm("리뷰를 삭제하시겠습니까?") == true) {
 			$("#reviewdelete").submit();
@@ -32,6 +33,7 @@ $(document).ready(function() {
 
 	});
 	
+	// 결제 버튼
 	$("#btnPayment").click(function() {
 
 		var isUserNo = "${userNo}";
@@ -48,10 +50,13 @@ $(document).ready(function() {
 	
 	});
 	
+	// 리뷰 작성 버튼
 	$("#btnSubmit").click(function() {
 		$("#reviewForm").submit();
+		
 	});
 	
+	// 위시리스트 목록에 있는지 구분
 	if(${isWish}) {
 		$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 25px; height: 25px;">');
 		
@@ -60,6 +65,7 @@ $(document).ready(function() {
 		
 	}
 	
+	// 위시리스트 버튼 클릭시 발생 하는 이벤트 ajax
 	$("#btnWish").click(function() {
 		
 		var isUserNo = "${userNo}";
@@ -93,6 +99,7 @@ $(document).ready(function() {
 					document.location.reload();
 					
 				}
+				
 			}
 			, error: function(err) {
 					console.log("실패")
@@ -106,6 +113,7 @@ $(document).ready(function() {
 	
 });
 
+// 티켓 매수 및 결제 가격 계산 함수
 function count_ticket(type) {
 	const resultElement = document.getElementById("ticket");
 	
@@ -142,12 +150,6 @@ function count_ticket(type) {
 </script>
 
 <style type="text/css">
-.container {
-	width: 1100px;
-	height: 830px;
-	margin: 0 auto;
-}
-
 .review {
 	width: 1000px;
 	height: 90px;
@@ -286,11 +288,11 @@ function count_ticket(type) {
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${viewExhibition.exTitle }</title>
 </head>
 <body>
 
-<div class="container">
+<div class="container-fluid" style="width: 1100px;">
 <br><br>
 <div style="font-size: 25px; margin-left: 80px; display: inline-block;"><b>${viewExhibition.exTitle }</b></div>
 <button type="button" id="btnWish"></button>
@@ -363,9 +365,9 @@ function count_ticket(type) {
 <br>
 <h1 style="margin-left: 50px;">리뷰 Review (${cntReview })</h1>
 <span style="margin-left: 50px; font-size: 25px;"><b>평점</b></span><span style="margin-left: 5px; font-size: 23px;">${exStar }</span>
-<%-- <c:if test="${not empty userNo and isTicketing and isReview}"> --%>
+<c:if test="${not empty userNo and isTicketing and isReview}">
 <button id="btnWrite" style="margin-left: 10px;"><b>작성하기</b></button>
-<%-- </c:if> --%>
+</c:if>
 <br>
 
 <div id="popup" style="text-align: center;">

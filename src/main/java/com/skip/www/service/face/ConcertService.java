@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.skip.www.dto.ConReview;
 import com.skip.www.dto.ConRound;
+import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
-import com.skip.www.dto.Exhibition;
 import com.skip.www.dto.Seat;
 import com.skip.www.dto.Wish;
 import com.skip.www.util.Paging;
@@ -35,7 +35,7 @@ public interface ConcertService {
 
 	public String getUserNick(int userno);
 
-	public List<Exhibition> getTopConcertList();
+	public List<Concert> getTop3ConcertList();
 
 	public boolean isTicketing(HashMap<Object, String> map);
 
@@ -50,5 +50,11 @@ public interface ConcertService {
 	public int getVIPSeatPrice(int conNo);
 
 	public int getBasicSeatPrice(int conNo);
+
+	public List<Seat> getUnreservedSeatList(HashMap<Object, String> map);
+
+	public ConSeatImg getConSeatImg(int conNo);
+
+	public List<Concert> getTop6ConcertList();
 
 }

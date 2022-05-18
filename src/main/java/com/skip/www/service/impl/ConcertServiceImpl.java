@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import com.skip.www.dao.face.ConcertDao;
 import com.skip.www.dto.ConReview;
 import com.skip.www.dto.ConRound;
+import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
-import com.skip.www.dto.Exhibition;
 import com.skip.www.dto.Seat;
 import com.skip.www.dto.Wish;
 import com.skip.www.service.face.ConcertService;
@@ -140,7 +140,7 @@ public class ConcertServiceImpl implements ConcertService {
 	}
 
 	@Override
-	public List<Exhibition> getTopConcertList() {
+	public List<Concert> getTop3ConcertList() {
 		return concertDao.selectConcertTopList();
 	}
 
@@ -203,6 +203,20 @@ public class ConcertServiceImpl implements ConcertService {
 		return concertDao.selectBasicSeatPriceByConNo(conNo);
 	}
 
+	@Override
+	public List<Seat> getUnreservedSeatList(HashMap<Object, String> map) {
+		return concertDao.selectUnreservedSeatListByConNoDateConRound(map);
+	}
+
+	@Override
+	public ConSeatImg getConSeatImg(int conNo) {
+		return concertDao.selectConSeatimgByConNo(conNo);
+	}
+
+	@Override
+	public List<Concert> getTop6ConcertList() {
+		return concertDao.selectTop6ConList();
+	}
 
 
 }
