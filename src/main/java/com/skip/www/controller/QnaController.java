@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.skip.www.dao.face.QnaDao;
 import com.skip.www.dto.QnA;
 import com.skip.www.dto.QnAFile;
 import com.skip.www.dto.QnAMent;
 import com.skip.www.service.face.QnaService;
 import com.skip.www.util.Paging;
+
 
 @Controller
 public class QnaController {
@@ -44,10 +46,10 @@ public class QnaController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
 		}
-	
+
 				@RequestMapping(value="admin/qna/list") // 관리자가 볼 수 있는 리스트입니다
 				public void admlist(Paging paramData, Model model) {
-					logger.info("admin//qna/list");
+					logger.info("admin/qna/list");
 					
 					//페이징 계산
 					Paging paging = qnaService.getPaging( paramData );
@@ -56,11 +58,15 @@ public class QnaController {
 					//문의글 목록 조회
 					List<QnA> list = qnaService.list(paging);
 					for(QnA q : list) {
+						if(q.getQnaMentContent() == "" || q.getQnaMentContent() == null) {
+							q.setQnaMentContent("관리자의 답변을 기다리는 중입니다.");
+						}
 						logger.info("{}", q);
 					}
 					
 					model.addAttribute("paging", paging);
 					model.addAttribute("list", list);
+					
 				}
 		
 	@RequestMapping(value="qna/view")
@@ -74,6 +80,7 @@ public class QnaController {
 		
 		//문의글 조회
 		viewQna = qnaService.view(viewQna);
+		
 		logger.info("조회된 문의글 {}", viewQna);
 		
 		//모델값 전달
@@ -82,6 +89,12 @@ public class QnaController {
 		//첨부파일 정보 모델 값 전달
 		QnAFile qnaFile = qnaService.getAttachFile(viewQna);
 		model.addAttribute("qnaFile", qnaFile);
+		
+		//문의 답변 조회
+		QnAMent QnAMent = new QnAMent();
+		List<QnAMent> QnAMentList = qnaService.getQnAMentList(viewQna);
+		model.addAttribute("QnAMentList", QnAMentList);
+
 		
 		return "qna/view";
 	}
@@ -104,6 +117,12 @@ public class QnaController {
 					//첨부파일 정보 모델 값 전달
 					QnAFile qnaFile = qnaService.getAttachFile(viewQna);
 					model.addAttribute("qnaFile", qnaFile);
+					
+					//문의 답변 조회
+					QnAMent QnAMent = new QnAMent();
+					List<QnAMent> QnAMentList = qnaService.getQnAMentList(viewQna);
+					model.addAttribute("QnAMentList", QnAMentList);
+
 					
 					return "admin/qna/view";
 				}
@@ -181,6 +200,7 @@ public class QnaController {
 		return "redirect:/admin/qna/list";
 	}
 	
+	//문의 답변
 	@GetMapping("admin/qna/write")
 	public void admwrite() {
 		
@@ -191,12 +211,10 @@ public class QnaController {
 		logger.info("/admin/qna/write [POST]");
 		logger.info("{}", qnament);
 		
-		qnament.setQnaNo( (int) session.getAttribute("qnaNo") ); 
-		qnament.setAdminId( (String) session.getAttribute("adminId") );
-		 		 	
 		qnaService.write(qnament);
 		
 		return "redirect:/admin/qna/list";
 		
 	}
+	
 }

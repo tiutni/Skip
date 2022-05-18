@@ -20,7 +20,15 @@ $(document).ready(function() {
 	})
 	
 	$("#btnDelete").click(function() {
-		location.href = "/faq/delete?faqNo=${viewFaq.faqNo}"
+		if(confirm("FAQ 게시글을 삭제하시겠습니까?") == true){
+		
+			location.href = "/faq/delete?faqNo=${viewFaq.faqNo}"
+			
+			}else{
+        	
+			return;
+			
+    	}
 	})
 	
 })

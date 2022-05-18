@@ -83,6 +83,7 @@ a {
 							<textarea rows="10" style="width: 100%;" id="faqContent" name="faqContent"></textarea>
 						</div>
 						
+						<br>
 						
 							<div class="text-center">
 							

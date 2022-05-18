@@ -9,13 +9,19 @@ public class QnA {
 	private String qnaTitle;
 	private String qnaContent;
 	private Date qnaDate;
+	private String qnaMentContent;
 	
 	@Override
 	public String toString() {
 		return "QnA [qnaNo=" + qnaNo + ", userNo=" + userNo + ", qnaTitle=" + qnaTitle + ", qnaContent=" + qnaContent
 				+ ", qnaDate=" + qnaDate + "]";
 	}
-	
+	public String getQnaMentContent() {
+		return qnaMentContent;
+	}
+	public void setQnaMentContent(String qnaMentContent) {
+		this.qnaMentContent = qnaMentContent;
+	}
 	public int getQnaNo() {
 		return qnaNo;
 	}

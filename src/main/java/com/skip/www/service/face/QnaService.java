@@ -2,6 +2,8 @@ package com.skip.www.service.face;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.QnA;
@@ -90,6 +92,10 @@ public interface QnaService {
 	//관리자
 	public void admdelete(QnA qna);
 	
+	//문의 답변하기
 	public void write(QnAMent qnament);
+
+	//상세보기에서 답변 확인하기
+	public List<QnAMent> getQnAMentList(QnA viewQna);
 
 }

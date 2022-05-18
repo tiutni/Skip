@@ -86,7 +86,11 @@ public interface QnaDao {
 	 * @param qna - 삭제할 문의글의 글번호
 	 */
 	public void delete(QnA qna);
-
+	
+	//-------문의답변--------
 	public void insertQnAMent(QnAMent qnament);
+	
+	//-------문의답변보기--------
+	public List<QnAMent> selectQnAMent(QnA qnA);
 
 }

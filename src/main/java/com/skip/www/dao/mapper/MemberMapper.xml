@@ -18,7 +18,9 @@
 				SELECT
 					user_no, 
 					user_id, 
-					user_nick
+					user_nick,
+					con_user_level_no,
+					ex_user_level_no
 				FROM user_tb
 				WHERE user_id LIKE '%' || #{search} || '%'
 				ORDER BY user_no DESC

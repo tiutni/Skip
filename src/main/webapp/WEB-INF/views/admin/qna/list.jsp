@@ -10,9 +10,6 @@
 
 $(document).ready(function(){
 	
-	if(qnaMent.getqnaMentContent() == null || "".equals(qnaMent.getqnaMentContent())){
-		qnaMent.setqnaMentContent("관리자의 답변을 기다리는 중입니다");
-	}
 })
 
 </script>
@@ -63,8 +60,9 @@ table, th {
 												<td><fmt:formatDate value="${qna.qnaDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
 												<td><a href="/admin/qna/view?qnaNo=${qna.qnaNo }">${qna.qnaTitle }</td>
 												<td>${qna.qnaContent }</td>
-												<td>${qnaMent.qnaMentContent }</td>
-												
+<%-- 												<td><c:forEach items="${QnAMentList }" var="qnament">${qnament.qnaMentContent }</c:forEach></td>
+ --%>											
+ 												<td>${qna.qnaMentContent }</td>
 											</tr>
 										</c:forEach>
 									</tbody>

@@ -68,12 +68,12 @@ a {
 
 						<form action="/admin/qna/write" method="post" enctype="multipart/form-data">
 						
-						<input type="text" name="qnaNo" value="${param.qnaNo }"> <!-- input type="hidden"으로 수정할 것 -->
+						<input type="hidden" name="qnaNo" value="${param.qnaNo }">
 						
 						
 						<div class="form-group">
 							<label for="write">작성자</label>
-							<input type="text" id="write" value="${id }" class="form-control" readonly="readonly">
+							<input type="text" id="adminId" name="adminId" value="${id }" class="form-control" readonly="readonly">
 						</div>
 						
 						<div class="form-group">
@@ -82,7 +82,7 @@ a {
 						</div>
 						
 						<div class="text-center">
-							
+							<br>
 							<button class="btn btn-primary" id="btnWrite">작성</button>
 							<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 								

@@ -86,7 +86,7 @@ a {
 	<textarea rows="10" style="width: 100%;" id="faqContent" name="faqContent">"${updateFaq.faqContent }"</textarea>
 </div>
 
-			
+		<br>	
 				<div class="text-center">
 				
 					<button class="btn btn-primary" id="btnUpdate">수정</button>

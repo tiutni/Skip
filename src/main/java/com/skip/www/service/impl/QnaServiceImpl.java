@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,7 @@ import com.skip.www.dto.QnAFile;
 import com.skip.www.dto.QnAMent;
 import com.skip.www.service.face.QnaService;
 import com.skip.www.util.Paging;
+
 
 @Service
 public class QnaServiceImpl implements QnaService {
@@ -163,6 +166,7 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
+	@Transactional 
 	public void delete(QnA qna) {
 		qnaDao.deleteFile(qna);
 		qnaDao.delete(qna);
@@ -173,10 +177,16 @@ public class QnaServiceImpl implements QnaService {
 	public void admdelete(QnA qna) {
 		qnaDao.delete(qna);
 	}
-
+	
+	//-------문의답변--------
 	@Override
 	public void write(QnAMent qnament) {
 		qnaDao.insertQnAMent(qnament);
 	}
-
+	
+	//-------문의답변보기--------
+	@Override
+	public List getQnAMentList(QnA QnA) {
+		return qnaDao.selectQnAMent(QnA);
+	}
 }

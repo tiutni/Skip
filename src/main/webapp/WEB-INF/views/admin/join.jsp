@@ -16,7 +16,6 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
        
-
 <script>
 setInterval (function() {
 	var pwd1 = $("#adminPw").val();
@@ -31,7 +30,7 @@ setInterval (function() {
 	          }
 	    }
 	}, 300);
-	
+
 </script>
 
         
