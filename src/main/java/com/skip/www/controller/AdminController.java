@@ -251,7 +251,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/concert/list")
 	public void listConcert(Paging paramData, Model model) {
-		logger.info("/admin/concert/list");
+		logger.info("/admin/exhibiton/list");
 		
 		//페이징 계산
 		Paging paging = adminService.getPagingConcert( paramData );
@@ -262,7 +262,7 @@ public class AdminController {
 		for(Concert b : list) {
 			logger.info("{}", b);
 		}
-		
+
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
 	}
@@ -287,10 +287,10 @@ public class AdminController {
 		//첨부파일 정보 모델값 전달
 		ConImg conImg = adminService.getAttachConImg(viewConcert);
 		model.addAttribute("conImg", conImg);
-		
-		return "/admin/concert/view";
+
+		return "admin/concert/view";
 	}
-	
+
 	@GetMapping("/admin/concert/write")
 	public void writeConcert() { }
 	
@@ -321,6 +321,7 @@ public class AdminController {
 		concert = adminService.viewConcert(concert);
 		model.addAttribute("updateConcert", concert);
 		
+		
 		//첨부파일 정보 모델값 전달
 		ConImg conImg = adminService.getAttachConImg(concert);
 		model.addAttribute("conImg", conImg);
@@ -334,7 +335,7 @@ public class AdminController {
 		
 		adminService.updateConcert(concert, file); //게시글+첨부파일 수정
 		
-		return "redirect:/admin/concert/view?conNo=" + concert.getConNo();
+		return "redirect:/admin/concert/list";
 	}
 	
 	@RequestMapping("/admin/concert/delete")
@@ -343,7 +344,7 @@ public class AdminController {
 		
 		return "redirect:/admin/concert/list";
 	}
-	
+
 	@RequestMapping("/admin/concert/activate")
 	public String activateConcert(HttpServletRequest request, Concert concert) {
 		adminService.activateConcert(concert);
@@ -359,7 +360,7 @@ public class AdminController {
 		String referer = request.getHeader("Referer");
 		return "redirect:"+ referer;
 	}
-	
+
 	@RequestMapping("/admin/concert/download")
 	public String downloadConImg(ConImg conImg, Model model) {
 		

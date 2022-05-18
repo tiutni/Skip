@@ -36,7 +36,7 @@ $(document).ready(function() {
 	})
 
 	
-	if( ${empty exImg} ) {
+	if( ${empty conImg} ) {
 		$("#newFile").show();
 	} else {
 		$("#originFile").show();
@@ -101,7 +101,7 @@ table, th, td {
 				<br>
 				<div class="form-group">
 					<label for="conTitle">제목</label>
-					<input type="text" id="conTitle" name="conTitle" class="form-control">
+					<input type="text" id="conTitle" name="conTitle" class="form-control" value="${updateConcert.conTitle }">
 				</div>
 				<br>
 				<div class="form-group">
@@ -122,46 +122,37 @@ table, th, td {
 				<br>
 				<div class="form-group">
 					<label for="content">본문</label>
-					<textarea rows="10" style="width: 100%;" id="content" name="conContent"></textarea>
+					<textarea rows="10" style="width: 100%;" id="content" name="conContent">${updateConcert.conContent }</textarea>
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="conAddress">위치</label>
-					<input type="text" id="conAddress" name="conAddress" class="form-control" value="서울 종로구 세종대로 175">
+					<input type="text" id="conAddress" name="conAddress" class="form-control" value="${updateConcert.conAddress }">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="conStartDayString">공연 시작일</label>
-					<input type="date" id="conStartDayString" name="conStartDayString" class="form-control" value="2022-05-16">
+					<input type="date" id="conStartDayString" name="conStartDayString" class="form-control" value="<fmt:formatDate value='${updateConcert.conStartDay }' pattern='yyyy-MM-dd'/>">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="conEndDayString">공연 종료일</label>
-					<input type="date" id="conEndDayString" name="conEndDayString" class="form-control" value="2022-05-31">
+					<input type="date" id="conEndDayString" name="conEndDayString" class="form-control" value="<fmt:formatDate value='${updateConcert.conEndDay }' pattern='yyyy-MM-dd'/>">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="conReserveStartdayVIPString">VIP예약시작일</label>
+					<input type="date" id="conReserveStartdayVIPString" name="conReserveStartdayVIPString" class="form-control" value="<fmt:formatDate value='${updateConcert.conReserveStartdayVIP }' pattern='yyyy-MM-dd'/>">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="conReserveStartDayString">예약시작일</label>
-					<input type="date" id="conReserveStartDayString" name="conReserveStartDayString" class="form-control" value="2022-05-16">
+					<input type="date" id="conReserveStartDayString" name="conReserveStartDayString" class="form-control" value="<fmt:formatDate value='${updateConcert.conReserveStartDay }' pattern='yyyy-MM-dd'/>">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="conReserveEndDayString">예약종료일</label>
-					<input type="date" id="conReserveEndDayString" name="conReserveEndDayString" class="form-control" value="2022-05-31">
-				</div>
-				<br>
-				<div class="form-group">
-					<label for="conEnterStartTime">입장시작시간</label>
-					<input type="time" id="conEnterStartTime" name="conEnterStartTime" class="form-control" value="10:00:00">
-				</div>
-				<div class="form-group">
-					<label for="conEnterEndTime">입장종료시간</label>
-					<input type="time" id="conEnterEndTime" name="conEnterEndTime" class="form-control" value="18:00:00">
-				</div>
-				<br>
-				<div class="form-group">
-					<label for="conPrice">티켓당 금액</label>
-					<input type="number" id="conPrice" name="conPrice" class="form-control" value="10000">
+					<input type="date" id="conReserveEndDayString" name="conReserveEndDayString" class="form-control" value="<fmt:formatDate value='${updateConcert.conReserveEndDay }' pattern='yyyy-MM-dd'/>">
 				</div>
 				<br>
 				

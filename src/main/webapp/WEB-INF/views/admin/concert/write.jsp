@@ -48,84 +48,78 @@ table, th, td {
 <div id="layoutSidenav_content">
 	<main>
 
-	<!-- Exhibition -->
+	<!-- Concert -->
 		<div class="container-fluid px-4">
-			<h1 class="mt-4">전시 관리</h1>
+			<h1 class="mt-4">공연 관리</h1>
 			
 			<ol class="breadcrumb mb-4">
-			    <li class="breadcrumb-item active">Exhibition Management</li>
+			    <li class="breadcrumb-item active">Concert Management</li>
 			</ol>
 
 			<div class="card mb-4">
 			    <div class="card-header">
-			        <i class="fas fa-table me-1"></i>전시 글쓰기
+			        <i class="fas fa-table me-1"></i>공연 글쓰기
 			    </div>
 		
 				<!-- 목록 -->
 				<div class="card-body">
 		
-					<form action="/admin/exhibition/write" method="post" enctype="multipart/form-data">
+					<form action="/admin/concert/write" method="post" enctype="multipart/form-data">
 					<div class="form-group">
-						<label for="exAdminId">작성자</label>
-						<input type="text" id="exAdminId" name="adminId" value="${id}" class="form-control" readonly="readonly">
+						<label for="conAdminId">작성자</label>
+						<input type="text" id="conAdminId" name="adminId" value="${id}" class="form-control" readonly="readonly">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exTitle">제목</label>
-						<input type="text" id="exTitle" name="exTitle" class="form-control">
+						<label for="conTitle">제목</label>
+						<input type="text" id="conTitle" name="conTitle" class="form-control">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="file">첨부파일</label>
+						<label for="file">공연이미지</label>
 						<input type="file" id="file" name="file">
 					</div>
 					<br>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label for="file">배치도</label> -->
+<!-- 						<input type="file" id="file" name="file"> -->
+<!-- 					</div> -->
+<!-- 					<br> -->
 					<div class="form-group">
 						<label for="content">본문</label>
-						<textarea rows="10" style="width: 100%;" id="content" name="exContent"></textarea>
+						<textarea rows="10" style="width: 100%;" id="content" name="conContent"></textarea>
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exAddress">위치</label>
-						<input type="text" id="exAddress" name="exAddress" class="form-control" value="서울 종로구 세종대로 175">
+						<label for="conAddress">위치</label>
+						<input type="text" id="conAddress" name="conAddress" class="form-control" value="서울 종로구 세종대로 175">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exStartDayString">전시 시작일</label>
-						<input type="date" id="exStartDayString" name="exStartDayString" class="form-control" value="2022-05-16">
+						<label for="conStartDayString">공연 시작일</label>
+						<input type="date" id="conStartDayString" name="conStartDayString" class="form-control" value="2022-05-16">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exEndDayString">전시 종료일</label>
-						<input type="date" id="exEndDayString" name="exEndDayString" class="form-control" value="2022-05-31">
+						<label for="conEndDayString">공연 종료일</label>
+						<input type="date" id="conEndDayString" name="conEndDayString" class="form-control" value="2022-05-31">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exReserveStartDayString">예약시작일</label>
-						<input type="date" id="exReserveStartDayString" name="exReserveStartDayString" class="form-control" value="2022-05-16">
+						<label for="conReserveStartdayVIPString">VIP예약시작일</label>
+						<input type="date" id="conReserveStartdayVIPString" name="conReserveStartdayVIPString" class="form-control" value="2022-05-16">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exReserveEndDayString">예약종료일</label>
-						<input type="date" id="exReserveEndDayString" name="exReserveEndDayString" class="form-control" value="2022-05-31">
+						<label for="conReserveStartDayString">예약시작일</label>
+						<input type="date" id="conReserveStartDayString" name="conReserveStartDayString" class="form-control" value="2022-05-20">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="exEnterStartTimeString">입장시작시간</label>
-						<input type="time" id="exEnterStartTimeString" name="exEnterStartTimeString" class="form-control" value="10:00:00">
-					</div>
-					
-					<div class="form-group">
-						<label for="exEnterEndTimeString">입장종료시간</label>
-						<input type="time" id="exEnterEndTimeString" name="exEnterEndTimeString" class="form-control" value="18:00:00">
+						<label for="conReserveEndDayString">예약종료일</label>
+						<input type="date" id="conReserveEndDayString" name="conReserveEndDayString" class="form-control" value="2022-05-31">
 					</div>
 					<br>
-					<div class="form-group">
-						<label for="exPrice">티켓당 금액</label>
-						<input type="number" id="exPrice" name="exPrice" class="form-control" value="10000">
-					</div>
-					<br>
-					
 					<div class="text-center">
 						<button class="btn btn-primary" id="btnWrite">작성</button>
 						<input type="reset" id="cancel" class="btn btn-danger" value="취소">

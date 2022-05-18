@@ -306,7 +306,7 @@
 			, #{conContent}
 			, to_date(#{conStartDayString}, 'YYYY-MM-DD')
 			, to_date(#{conEndDayString}, 'YYYY-MM-DD')
-			, to_date(#{conReserveStartdayVIP}, 'YYYY-MM-DD')
+			, to_date(#{conReserveStartdayVIPString}, 'YYYY-MM-DD')
 			, to_date(#{conReserveStartDayString}, 'YYYY-MM-DD')
 			, to_date(#{conReserveEndDayString}, 'YYYY-MM-DD')
 			, #{adminId}
@@ -315,8 +315,16 @@
 	
 	<update id="updateConcert" parameterType="com.skip.www.dto.Concert">
 		UPDATE Concert
-		SET con_title = #{conTitle}
+		SET con_no = #{conNo}
+			, con_title = #{conTitle}
+			, con_address = #{conAddress}
 			, con_content = #{conContent}
+			, con_startDay = to_date(#{conStartDayString}, 'YYYY-MM-DD')
+			, con_endDay = to_date(#{conEndDayString}, 'YYYY-MM-DD')
+			, con_reserveStartdayVIP = to_date(#{conReserveStartdayVIPString}, 'YYYY-MM-DD')
+			, con_reserveStartDay = to_date(#{conReserveStartDayString}, 'YYYY-MM-DD')
+			, con_reserveEndDay = to_date(#{conReserveEndDayString}, 'YYYY-MM-DD')
+			, admin_id = #{adminId}
 		WHERE con_no = #{conNo}
 	</update>
 

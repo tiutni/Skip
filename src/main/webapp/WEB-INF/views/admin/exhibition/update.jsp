@@ -93,7 +93,7 @@ table, th, td {
 			<div class="card-body">
 	
 				<form action="/admin/exhibition/update" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="exNo" value="${exhibition.exNo }">
+				<input type="hidden" name="exNo" value="${param.exNo }">
 				<div class="form-group">
 					<label for="exAdminId">작성자</label>
 					<input type="text" id="exAdminId" name="adminId" value="${id}" class="form-control" readonly="readonly">
@@ -101,7 +101,7 @@ table, th, td {
 				<br>
 				<div class="form-group">
 					<label for="exTitle">제목</label>
-					<input type="text" id="exTitle" name="exTitle" class="form-control">
+					<input type="text" id="exTitle" name="exTitle" class="form-control" value="${updateExhibition.exTitle }">
 				</div>
 				<br>
 				<div class="form-group">
@@ -122,46 +122,46 @@ table, th, td {
 				<br>
 				<div class="form-group">
 					<label for="content">본문</label>
-					<textarea rows="10" style="width: 100%;" id="content" name="exContent"></textarea>
+					<textarea rows="10" style="width: 100%;" id="content" name="exContent">${updateExhibition.exContent }</textarea>
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="exAddress">위치</label>
-					<input type="text" id="exAddress" name="exAddress" class="form-control" value="서울 종로구 세종대로 175">
+					<input type="text" id="exAddress" name="exAddress" class="form-control" value="${updateExhibition.exAddress }">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="exStartDayString">전시 시작일</label>
-					<input type="date" id="exStartDayString" name="exStartDayString" class="form-control" value="2022-05-16">
+					<input type="date" id="exStartDayString" name="exStartDayString" class="form-control" value="<fmt:formatDate value='${updateExhibition.exStartDay }' pattern='yyyy-MM-dd'/>">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="exEndDayString">전시 종료일</label>
-					<input type="date" id="exEndDayString" name="exEndDayString" class="form-control" value="2022-05-31">
+					<input type="date" id="exEndDayString" name="exEndDayString" class="form-control" value="<fmt:formatDate value='${updateExhibition.exEndDay }' pattern='yyyy-MM-dd'/>">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="exReserveStartDayString">예약시작일</label>
-					<input type="date" id="exReserveStartDayString" name="exReserveStartDayString" class="form-control" value="2022-05-16">
+					<input type="date" id="exReserveStartDayString" name="exReserveStartDayString" class="form-control" value="<fmt:formatDate value='${updateExhibition.exReserveStartDay }' pattern='yyyy-MM-dd'/>">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="exReserveEndDayString">예약종료일</label>
-					<input type="date" id="exReserveEndDayString" name="exReserveEndDayString" class="form-control" value="2022-05-31">
+					<input type="date" id="exReserveEndDayString" name="exReserveEndDayString" class="form-control" value="<fmt:formatDate value='${updateExhibition.exReserveEndDay }' pattern='yyyy-MM-dd'/>">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="exEnterStartTimeString">입장시작시간</label>
-					<input type="time" id="exEnterStartTimeString" name="exEnterStartTimeString" class="form-control" value="10:00:00">
+					<input type="time" id="exEnterStartTimeString" name="exEnterStartTimeString" class="form-control" value="<fmt:formatDate value='${updateExhibition.exEnterStartTime }' pattern='hh:mm'/>">
 				</div>
 				<div class="form-group">
 					<label for="exEnterEndTimeString">입장종료시간</label>
-					<input type="time" id="exEnterEndTimeString" name="exEnterEndTimeString" class="form-control" value="18:00:00">
+					<input type="time" id="exEnterEndTimeString" name="exEnterEndTimeString" class="form-control" value="<fmt:formatDate value='${updateExhibition.exEnterEndTime }' pattern='hh:mm'/>">
 				</div>
 				<br>
 				<div class="form-group">
 					<label for="exPrice">티켓당 금액</label>
-					<input type="number" id="exPrice" name="exPrice" class="form-control" value="10000">
+					<input type="number" id="exPrice" name="exPrice" class="form-control" value="${updateExhibition.exPrice }">
 				</div>
 				<br>
 				
@@ -189,3 +189,4 @@ table, th, td {
 </div><!-- layoutSidenav_content -->
 
 <c:import url="/WEB-INF/views/admlayout/footer.jsp" />
+																																																																	

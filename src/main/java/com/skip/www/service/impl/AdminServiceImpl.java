@@ -78,8 +78,7 @@ public class AdminServiceImpl implements AdminService {
 			return false;
 
 			}
-
-	//전시--------------------------------------------------------------
+	
 	
 	//전시--------------------------------------------------------------
 	
@@ -260,7 +259,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return adminDao.selectConcertList(paging);
 	}
-
+	
 	@Override
 	public Paging getPagingConcert(Paging paramData) {
 		
@@ -273,7 +272,7 @@ public class AdminServiceImpl implements AdminService {
 
 		return paging;
 	}
-	
+
 	@Override
 	public Concert viewConcert(Concert viewConcert) {
 		
@@ -424,4 +423,5 @@ public class AdminServiceImpl implements AdminService {
 		adminDao.unactivateConcert(concert);
 	}
 
+	
 }
