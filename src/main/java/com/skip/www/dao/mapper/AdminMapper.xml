@@ -333,6 +333,18 @@
 		WHERE con_no = #{conNo}
 	</delete>
 
+	<update id="activateConcert" parameterType="com.skip.www.dto.Concert">
+		UPDATE Concert
+		SET con_activate = 1
+		WHERE con_no = #{conNo}
+	</update>
+	
+	<update id="unactivateConcert" parameterType="com.skip.www.dto.Concert">
+		UPDATE Concert
+		SET con_activate = 0
+		WHERE con_no = #{conNo}
+	</update>
+
 
 	<select id="selectConImgByConNo" resultType="com.skip.www.dto.ConImg" parameterType="com.skip.www.dto.Concert">
 		SELECT
@@ -353,7 +365,7 @@
 		FROM con_img
 		WHERE con_img_no = #{conImgNo}
 	</select>
-	
+
 	<insert id="insertConImg" parameterType="com.skip.www.dto.ConImg">
 		INSERT INTO con_img ( 
 			con_img_no
@@ -373,18 +385,46 @@
 		DELETE con_img
 		WHERE con_no = #{conNo}
 	</delete>
+		
 	
-	<update id="activateConcert" parameterType="com.skip.www.dto.Concert">
-		UPDATE Concert
-		SET con_activate = 1
+	<select id="selectConSeatImgByConNo" resultType="com.skip.www.dto.ConSeatImg" parameterType="com.skip.www.dto.Concert">
+		SELECT
+			con_seatimg_no
+			, con_seatimg_originName
+			, con_seatimg_storedName
+			, con_no
+		FROM con_seatimg
 		WHERE con_no = #{conNo}
-	</update>
+	</select>
 	
-	<update id="unactivateConcert" parameterType="com.skip.www.dto.Concert">
-		UPDATE Concert
-		SET con_activate = 0
+	<select id="selectConSeatImgByConSeatImgNo" resultType="com.skip.www.dto.ConSeatImg" parameterType="com.skip.www.dto.ConSeatImg">
+		SELECT
+			con_seatimg_no
+			, con_seatimg_originName
+			, con_seatimg_storedName
+			, con_no
+		FROM con_seatimg
+		WHERE con_seatimg_no = #{conSeatImgNo}
+	</select>
+	
+	<insert id="insertConSeatImg" parameterType="com.skip.www.dto.ConSeatImg">
+		INSERT INTO con_seatimg ( 
+			con_seatimg_no
+			, con_seatimg_originName
+			, con_seatimg_storedName
+			, con_no
+		)
+		VALUES ( 
+			con_seatimg_no_seq.nextval
+			, #{conSeatImgOriginName}
+			, #{conSeatImgStoredName}
+			, #{conNo} 
+		)
+	</insert>
+	
+	<delete id="deleteConSeatImg" parameterType="com.skip.www.dto.Concert">
+		DELETE con_seatimg
 		WHERE con_no = #{conNo}
-	</update>
-
+	</delete>
 
 </mapper>

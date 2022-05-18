@@ -37,14 +37,26 @@ $(document).ready(function() {
 
 	
 	if( ${empty conImg} ) {
-		$("#newFile").show();
+		$("#newFileConImg").show();
 	} else {
-		$("#originFile").show();
+		$("#originFileConImg").show();
 	}
 	
-	$("#deleteFile").click(function() {
-		$("#originFile").toggleClass("through");
-		$("#newFile").toggle();
+	$("#deleteFileConImg").click(function() {
+		$("#originFileConImg").toggleClass("through");
+		$("#newFileConImg").toggle();
+	})
+	
+	
+	if( ${empty conSeatImg} ) {
+		$("#newFileConSeatImg").show();
+	} else {
+		$("#originFileConSeatImg").show();
+	}
+	
+	$("#deleteFileConSeatImg").click(function() {
+		$("#originFileConSeatImg").toggleClass("through");
+		$("#newFileConSeatImg").toggle();
 	})
 })
 </script>
@@ -62,13 +74,13 @@ table, th, td {
 	text-decoration: line-through;
 }
 
-#deleteFile {
+#deleteFileConImg, #deleteFileConSeatImg {
 	font-size: 1.5em;
 	font-weight: bold;
 	color: red;
 }
 
-#newFile, #originFile {
+#newFileConImg, #originFileConImg, #newFileConSeatImg, #originFileConSeatImg {
 	display: none;
 }
 </style>
@@ -106,15 +118,31 @@ table, th, td {
 				<br>
 				<div class="form-group">
 					<div id="fileBox">
-						<div id="originFile">
-							<a href="/admin/concert/download?conImgNo=${conImg.conImgNo }">${conImg.conImgOriginName }</a>
-							<span id="deleteFile">X</span>
+						<div id="originFileConImg">
+							<a href="/admin/concert/con_img/download?conImgNo=${conImg.conImgNo }">${conImg.conImgOriginName }</a>
+							<span id="deleteFileConImg">X</span>
 						</div>
 				
-						<div id="newFile">
+						<div id="newFileConImg">
 							<hr>
-							<label for="file">새로운 첨부파일</label>
-							<input type="file" id="file" name="file">
+							<label for="fileConImg">새로운 첨부파일</label>
+							<input type="file" id="fileConImg" name="fileConImg">
+							<small>** 새로운 파일로 첨부하면 기존 파일은 삭제됩니다</small>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="form-group">
+					<div id="fileBox">
+						<div id="originFileConSeatImg">
+							<a href="/admin/concert/con_seatimg/download?conSeatImgNo=${conSeatImg.conSeatImgNo }">${conSeatImg.conSeatImgOriginName }</a>
+							<span id="deleteFileConSeatImg">X</span>
+						</div>
+				
+						<div id="newFileConSeatImg">
+							<hr>
+							<label for="fileConSeatImg">새로운 첨부파일</label>
+							<input type="file" id="fileConSeatImg" name="fileConSeatImg">
 							<small>** 새로운 파일로 첨부하면 기존 파일은 삭제됩니다</small>
 						</div>
 					</div>

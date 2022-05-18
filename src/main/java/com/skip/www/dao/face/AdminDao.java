@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ConImg;
+import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
@@ -186,6 +187,10 @@ public interface AdminDao {
 	 */
 	public void deleteConcert(Concert concert);
 	
+	public void activateConcert(Concert concert);
+
+	public void unactivateConcert(Concert concert);
+	
 	
 	/**
 	 * 게시글 번호를 이용하여 첨부파일 정보를 조회한다
@@ -216,9 +221,38 @@ public interface AdminDao {
 	 * @param concert - 첨부파일을 삭제할 게시글 번호 객체
 	 */
 	public void deleteConImg(Concert concert);
+	
+	
+	/**
+	 * 게시글 번호를 이용하여 첨부파일 정보를 조회한다
+	 * 
+	 * @param viewConcert - 조회할 게시글 번호
+	 * @return 조회된 첨부파일 정보
+	 */
+	public ConSeatImg selectConSeatImgByConNo(Concert viewConcert);
 
-	public void activateConcert(Concert concert);
+	/**
+	 * 파일 번호를 이용하여 첨부파일 정보를 조회한다
+	 * 
+	 * @param conSeatImg - 조회할 첨부파일 번호
+	 * @return 조회된 첨부파일 정보
+	 */
+	public ConSeatImg selectConSeatImgByConSeatImgNo(ConSeatImg conSeatImg);
+	
+	/**
+	 * 첨부파일 정보를 삽입한다
+	 * 
+	 * @param conSeatImg - 삽입할 첨부파일 정보
+	 */
+	public void insertConSeatImg(ConSeatImg conSeatImg);
+	
+	/**
+	 * 게시글을 참조하고 있는 모든 첨부파일을 삭제한다
+	 * 
+	 * @param concert - 첨부파일을 삭제할 게시글 번호 객체
+	 */
+	public void deleteConSeatImg(Concert concert);
 
-	public void unactivateConcert(Concert concert);
+
 	
 }
