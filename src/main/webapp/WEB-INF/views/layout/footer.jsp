@@ -322,7 +322,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 
 <!--===============================================================================================-->	
-	<script src="../../resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!-- 	<script src="../../resources/vendor/jquery/jquery-3.2.1.min.js"></script> -->
 <!--===============================================================================================-->
 	<script src="../../resources/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -373,7 +373,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 
 		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').jsp();
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
 
@@ -383,7 +383,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 
 		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').jsp();
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
@@ -396,7 +396,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		/*---------------------------------------------*/
 
 		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').jsp();
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to cart !", "success");
 			});

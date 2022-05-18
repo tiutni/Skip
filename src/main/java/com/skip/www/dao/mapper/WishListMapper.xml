@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.skip.www.dao.face.WishListDao">
+
+	<resultMap type="com.skip.www.dto.Wish" id="Wish">
+		<id column="WISH_NO" property="wishNo"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="SHOW_TYPE" property="showType"/>
+		<result column="CON_NO" property="conNo"/>
+		<result column="EX_NO" property="exNo"/>
+		<result column="CON_TITLE" property="conTitle"/>
+		<result column="CON_ADDRESS" property="conAddress"/>
+		<result column="CON_IMG_STOREDNAME" property="conImgStoredName"/>
+		<result column="EX_TITLE" property="exTitle"/>
+		<result column="EX_ADDRESS" property="exAddress"/>
+		<result column="EX_IMG_STOREDNAME" property="exImgStoredName"/>
+	</resultMap>
+	
+	<select id="selectList" parameterType="com.skip.www.dto.User" resultMap="Wish">
+		SELECT 
+	        WISH_NO
+	        , USER_NO
+	        , SHOW_TYPE
+	        , W.CON_NO
+	        ,W.EX_NO
+	        , C.CON_TITLE
+	        , C.CON_ADDRESS
+	        , CIMG.CON_IMG_STOREDNAME
+	        , E.EX_TITLE
+	        , E.EX_ADDRESS
+	        , EIMG.EX_IMG_STOREDNAME
+		FROM WISH  W, CONCERT C, EXHIBITION E, CON_IMG CIMG, EX_IMG EIMG
+		WHERE 
+	        W.CON_NO = C.CON_NO(+)
+	        AND W.EX_NO = E.EX_NO(+)
+	        AND  C.CON_NO = CIMG.CON_NO(+)
+	        AND E.EX_NO = EIMG.EX_NO(+)
+	        AND W.USER_NO = #{userNo }
+	</select>
+
+
+	<select id="selectCntAll" parameterType="com.skip.www.dto.User" resultType="int">
+		SELECT COUNT(*) FROM WISH
+		WHERE USER_NO = #{userNo }
+	</select>
+	
+	
+</mapper>
