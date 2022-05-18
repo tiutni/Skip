@@ -13,7 +13,7 @@
 		<c:choose>
 		<c:when test="${wish.showType == 1 }">
 				<li class="header-cart-item flex-w flex-t m-b-12">
-					<div class="header-cart-item-img">
+					<div class="header-cart-item-img" >
 						<img src="/upload/${wish.conImgStoredName }" alt="IMG">
 					</div>
 	
@@ -31,9 +31,11 @@
 	
 		<c:when test="${wish.showType == 2 }">
 				<li class="header-cart-item flex-w flex-t m-b-12">
-					<div class="header-cart-item-img">
-						<img src="/upload/${wish.exImgStoredName }" alt="IMG">
-					</div>
+					<button  onclick="deleteWish/${wish.wishNo}">
+						<div class="header-cart-item-img">
+							<img src="/upload/${wish.exImgStoredName }" alt="IMG">
+						</div>
+					</button>
 	
 					<div class="header-cart-item-txt p-t-8">
 						<a href="/exhibition/view?exNo=${wish.exNo }" class="header-cart-item-name m-b-18 hov-cl1 trans-04">

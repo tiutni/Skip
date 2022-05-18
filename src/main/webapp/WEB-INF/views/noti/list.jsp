@@ -19,21 +19,6 @@ $(document).ready(function() {
 	$("#btnSearch").click(function() {
 		location.href="/noti/list?search="+$("#search").val();
 	});
-	
-	//위시리스트 갯수
-	$.ajax({
-		
-		type : "GET",
-		url : "/wish/count",
-		dataType : "JSON",
-		error : function(){
-			alert('위시리스트 개수 조회 실패!');
-		},
-		success : function(data){
-			alert('위시리스트 개수 조회 성공!' + data);
-		}
-		
-	});
 
 });
 </script>

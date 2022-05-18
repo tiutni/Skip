@@ -39,7 +39,7 @@ $(document).ready(function() {
 	
 	// 위시리스트 목록
 	$("#wishCount").click(function(){
-		
+
 		$.ajax({
 			type : "GET",
 			url : "/wish/list",
@@ -52,12 +52,19 @@ $(document).ready(function() {
 			error: function (){
 				console.log("wishList ajax error"); 
 			}
-			
 		});
-		
 	})
 	
 });
+
+
+function deleteWish(wishNo){
+    if(confirm("위시리스트에서 삭제하시겠습니까?") == true){
+        location.href="/wish/delete?wishNo="+ wishNo;
+    }else{
+        return;
+    }
+}   
 
 </script>
 

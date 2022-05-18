@@ -27,6 +27,7 @@ public class NotiController {
 	
 	@Autowired NotiService notiService;
 
+	// 사용자페이지 공지사항 목록 조회
 	@RequestMapping(value="noti/list")
 	public void list(Paging paramData, Model model) {
 		logger.info("/noti/list");
@@ -45,6 +46,7 @@ public class NotiController {
 		model.addAttribute("list", list);
 	}
 	
+	// 관리자페이지 공지사항 목록 조회
 	@RequestMapping(value="admin/noti/list")
 	public void adminList(Paging paramData, Model model) {
 		logger.info("admin/noti/list");
@@ -64,6 +66,7 @@ public class NotiController {
 	}
 	
 	
+	// 사용자페이지 공지사항 상세보기
 	@RequestMapping("noti/view")
 	public String view(Noti viewNoti, Model model, HttpSession session) {
 		logger.info("/noti/view - {}", viewNoti);
@@ -88,6 +91,7 @@ public class NotiController {
 		return "noti/view";
 	}
 	
+	// 관리자페이지 공지사항 상세보기
 	@RequestMapping("admin/noti/view")
 	public String adminView(Noti viewNoti, Model model, HttpSession session) {
 		logger.info("admin/noti/view - {}", viewNoti);
@@ -112,9 +116,11 @@ public class NotiController {
 		return "admin/noti/view";
 	}
 	
+	// 관리자페이지 공지사항 작성[GET]
 	@GetMapping("admin/noti/write")
 	public void write() { }
 	
+	// 관리자페이지 공지사항 작성[POST]
 	@PostMapping("admin/noti/write")
 	public String writeProcess(Noti noti, @RequestParam("notiFile") MultipartFile file, HttpSession session) {
 		logger.info("admin/noti/write [POST]");
@@ -130,6 +136,7 @@ public class NotiController {
 		return "redirect:/admin/noti/list"; //공지사항 목록
 	}
 	
+	// 공지사항 첨부파일 다운로드
 	@RequestMapping("noti/download")
 	public String download(NotiFile notiFile, Model model) {
 		
@@ -139,6 +146,7 @@ public class NotiController {
 		return "notiFileDown";
 	}
 	
+	// 관리자페이지 공지사항 수정[GET]
 	@GetMapping("admin/noti/update")
 	public String update(Noti noti, Model model) {
 		logger.info("admin/noti/update - {}", noti);		
@@ -159,6 +167,7 @@ public class NotiController {
 		return "admin/noti/update";
 	}
 	
+	// 관리자페이지 공지사항 수정[POST]
 	@PostMapping("admin/noti/update")
 	public String updateProcess(Noti noti, @RequestParam("notiFile") MultipartFile file) {
 		logger.info("/admin/noti/update [POST] - {}", noti);
@@ -169,6 +178,7 @@ public class NotiController {
 		return "redirect:/admin/noti/view?notiNo=" + noti.getNotiNo();
 	}
 	
+	// 관리자페이지 공지사항 삭제
 	@RequestMapping("admin/noti/delete")
 	public String delete(Noti noti) {
 		notiService.delete(noti);

@@ -23,4 +23,10 @@ public interface WishListDao {
 	 */
 	public int selectCntAll(User userNo);
 
+	/**
+	 * 위시리스트에서 위시 삭제
+	 * 
+	 * @param wishNo - 삭제할 위시 번호
+	 */
+	public void delete(Wish wishNo);
 }
