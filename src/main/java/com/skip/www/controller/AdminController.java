@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ConImg;
+import com.skip.www.dto.ConRound;
 import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
@@ -279,10 +280,14 @@ public class AdminController {
 		//첨부파일1 정보 모델값 전달
 		ConImg conImg = adminService.getAttachConImg(concert);
 		model.addAttribute("conImg", conImg);
-		
+
 		//첨부파일2 정보 모델값 전달
 		ConSeatImg conSeatImg = adminService.getAttachConSeatImg(concert);
 		model.addAttribute("conSeatImg", conSeatImg);
+
+		//공연 회차 정보 모델값 전달
+		ConRound conRound = adminService.getConRound(concert);
+		model.addAttribute("conRound", conRound);
 		
 		return "/admin/concert/update";
 	}

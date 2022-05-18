@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.skip.www.dao.face.AdminDao;
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ConImg;
+import com.skip.www.dto.ConRound;
 import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
@@ -493,4 +494,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectConSeatImgByConSeatImgNo(conSeatImg);
 	}
 
+
+	@Override
+	public ConRound getConRound(Concert viewConcert) {
+		return adminDao.selectConRoundByConNo(viewConcert);
+	}
+	
 }

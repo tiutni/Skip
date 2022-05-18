@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ConImg;
+import com.skip.www.dto.ConRound;
 import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
@@ -199,6 +200,7 @@ public interface AdminService {
 
 	public void unactivateConcert(Concert concert);
 
+	
 	/**
 	 * 게시글 번호를 이용하여 업로드된 파일 정보를 조회한다
 	 * 
@@ -230,5 +232,14 @@ public interface AdminService {
 	 * @return 첨부파일의 정보
 	 */
 	public ConSeatImg getConSeatImg(ConSeatImg conSeatImg);
+
+	
+	/**
+	 * 게시글 번호를 이용하여 공연회차정보를 조회한다
+	 * 
+	 * @param concert - 조회할 파일 번호를 가진 객체
+	 * @return 공연회차정보
+	 */
+	public ConRound getConRound(Concert viewConcert);
 
 }

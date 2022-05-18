@@ -184,6 +184,24 @@ table, th, td {
 				</div>
 				<br>
 				
+				<c:set var="round" value=1 />
+				
+				<div class="form-group">
+					<label for="conRound">공연${round }회차</label>
+					<input type="number" id="conRound" name="conRound" class="form-control" value="${conRound.conRound }">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="conRoundStartTime">공연 시작 시간</label>
+					<input type="date" id="conRoundStartTime" name="conRoundStartTime" class="form-control" value="<fmt:formatDate value='${conRound.conRoundStartTime }' pattern='hh:mm'/>">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="conRoundEndTime">공연 종료 시간</label>
+					<input type="date" id="conRoundEndTime" name="conRoundEndTime" class="form-control" value="<fmt:formatDate value='${conRound.conRoundEndTime }' pattern='hh:mm'/>">
+				</div>
+				<br>
+				
 				<div class="text-center">
 					<button class="btn btn-primary" id="btnUpdate">수정</button>
 					<input type="reset" id="cancel" class="btn btn-danger" value="취소">

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skip.www.dto.Admin;
 import com.skip.www.dto.ConImg;
+import com.skip.www.dto.ConRound;
 import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
@@ -253,6 +254,14 @@ public interface AdminDao {
 	 */
 	public void deleteConSeatImg(Concert concert);
 
+	
+	/**
+	 * 게시글 번호를 이용하여 공연회차 정보를 조회한다
+	 * 
+	 * @param viewConcert - 조회할 게시글 번호
+	 * @return 조회된 공연회차 정보
+	 */
+	public ConRound selectConRoundByConNo(Concert viewConcert);
 
 	
 }
