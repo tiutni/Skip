@@ -150,11 +150,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 	<!-- 실시간채팅 버튼 -->
-	<div class="qnaBtn hidden-md hidden-sm hidden-xs">
-  		<a href="http://localhost:8088/chat.do">
-    		<img src="../../resources/images/icons/qnaBtn.png" width="76px" height="76px">
- 		</a>
-	</div>
+<!-- 	<div class="qnaBtn hidden-md hidden-sm hidden-xs"> -->
+<!--   		<a href="http://localhost:8088/chat.do"> -->
+<!--     		<img src="../../resources/images/icons/qnaBtn.png" width="76px" height="76px"> -->
+<!--  		</a> -->
+<!-- 	</div> -->
 
 
 
