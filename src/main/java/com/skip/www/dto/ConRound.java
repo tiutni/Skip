@@ -5,15 +5,20 @@ import java.util.Date;
 public class ConRound {
 
 	private int conRoundNo;
-	private int conNo;
 	private int conRound;
 	private Date conRoundStartTime;
 	private Date conRoundEndTime;
+	private int conNo;
 	
+	private Date conRoundStartTimeString;
+	private Date conRoundEndTimeString;
+
 	@Override
 	public String toString() {
-		return "ConRound [conRoundNo=" + conRoundNo + ", conNo=" + conNo + ", conRound=" + conRound
-				+ ", conRoundStartTime=" + conRoundStartTime + ", conRoundEndTime=" + conRoundEndTime + "]";
+		return "ConRound [conRoundNo=" + conRoundNo + ", conRound=" + conRound + ", conRoundStartTime="
+				+ conRoundStartTime + ", conRoundEndTime=" + conRoundEndTime + ", conNo=" + conNo
+				+ ", conRoundStartTimeString=" + conRoundStartTimeString + ", conRoundEndTimeString="
+				+ conRoundEndTimeString + "]";
 	}
 
 	public int getConRoundNo() {
@@ -55,7 +60,21 @@ public class ConRound {
 	public void setConRoundEndTime(Date conRoundEndTime) {
 		this.conRoundEndTime = conRoundEndTime;
 	}
-	
-	
+
+	public Date getConRoundStartTimeString() {
+		return conRoundStartTimeString;
+	}
+
+	public void setConRoundStartTimeString(Date conRoundStartTimeString) {
+		this.conRoundStartTimeString = conRoundStartTimeString;
+	}
+
+	public Date getConRoundEndTimeString() {
+		return conRoundEndTimeString;
+	}
+
+	public void setConRoundEndTimeString(Date conRoundEndTimeString) {
+		this.conRoundEndTimeString = conRoundEndTimeString;
+	}
 	
 }

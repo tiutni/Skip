@@ -495,4 +495,58 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	
+	//공연 회차--------------------------------------------------------------
+	
+	@Override
+	public List<ConRound> listConRound(Paging paging) {
+		
+		return adminDao.selectConRoundList(paging);
+	}
+	
+	@Override
+	public Paging getPagingConRound(Paging paramData) {
+		
+		//총 게시글 수 조회
+		int totalCount = adminDao.selectConRoundCntAll(paramData);
+		
+		//페이징 계산
+		Paging paging = new Paging(totalCount, paramData.getCurPage());
+		paging.setSearch(paramData.getSearch());
+		paging.setConNo(paramData.getConNo());
+
+		return paging;
+	}
+
+	@Override
+	public ConRound viewConRound(ConRound viewConRound) {
+		
+		//상세보기 조회 결과 리턴
+		return adminDao.selectConRound(viewConRound);
+	}
+	
+	@Override
+	public void updateConRound(ConRound conRound) {
+
+		adminDao.updateConRound(conRound);
+		
+	}
+
+	@Override
+	@Transactional
+	public void deleteConRound(ConRound conRound) {
+		
+		adminDao.deleteConRound(conRound);
+		
+	}
+
+	
+	@Override
+	@Transactional
+	public void writeConRound(ConRound conRound) {
+		
+		adminDao.insertConRound(conRound);
+	
+	}
+
+	
 }

@@ -63,6 +63,8 @@
 		<interceptor>
 			<mapping path="/admin/exhibition/*" />
 			<mapping path="/admin/concert/*" />
+			<mapping path="/admin/conRound/*" />
+			<mapping path="/admin/seat/*" />
 			<mapping path="/admin/member/*" />
 			<mapping path="/admin/noti/*" />  	
 			<mapping path="/admin/faq/*" />

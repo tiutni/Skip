@@ -37,6 +37,23 @@
 		<result column="con_activate" 				property="conActivate"/>
 		<result column="admin_id" 					property="adminId"/>
 	</resultMap>
+	
+	<resultMap type="com.skip.www.dto.ConRound" id="ConRound">
+		<id 	column="con_round_no" 			property="conRoundNo"/>
+		<result column="con_round" 				property="conRound"/>
+		<result column="con_round_starttime" 	property="conRoundStartTime"/>
+		<result column="con_round_endtime" 		property="conRoundEndTime"/>
+		<result column="con_no" 				property="conNo"/>
+	</resultMap>
+
+	<resultMap type="com.skip.www.dto.Seat" id="Seat">
+		<id 	column="seat_seq" 		property="seatSeq"/>
+		<result column="seat_level" 	property="seatLevel"/>
+		<result column="seat_price" 	property="seatPrice"/>
+		<result column="seat_no" 		property="seatNo"/>
+		<result column="con_round_no"	property="conRoundNo"/>
+	</resultMap>
+
 
 	<!-- 관리자 -->
 	<select id="selectCntAdmin" resultType="int" parameterType="com.skip.www.dto.Admin">
@@ -426,5 +443,79 @@
 		DELETE con_seatimg
 		WHERE con_no = #{conNo}
 	</delete>
+
+	
+	<!-- 공연 회차-->
+	<select id="selectConRoundList" resultMap="ConRound" parameterType="com.skip.www.util.Paging">
+		SELECT * FROM (
+			SELECT rownum rnum, B.* FROM (
+			
+				SELECT
+					con_round_no
+					, con_round
+					, con_round_starttime
+					, con_round_endtime
+					, con_no
+				FROM CON_ROUND
+				WHERE con_no = #{conNo} 
+				ORDER BY con_no DESC
+				
+			) B
+		) CON_ROUND
+		WHERE rnum BETWEEN #{startNo } AND #{endNo }
+	</select>
+	
+	<select id="selectConRoundCntAll" resultType="int" parameterType="com.skip.www.util.Paging">
+		SELECT count(*) FROM CON_ROUND
+		WHERE con_no = #{conNo} 
+	</select>
+	
+	<select id="selectConRound" resultMap="ConRound" parameterType="com.skip.www.dto.ConRound">
+		SELECT
+			con_round_no
+			, con_round
+			, con_round_starttime
+			, con_round_endtime
+			, con_no
+			FROM CON_ROUND
+		WHERE con_no = #{conNo}
+	</select>
+	
+	<insert id="insertConRound" parameterType="com.skip.www.dto.ConRound">
+		<selectKey order="BEFORE" resultType="int" keyProperty="conNo">
+			SELECT con_round_no_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO CON_ROUND ( 
+			con_round_no
+			, con_round
+			, con_round_starttime
+			, con_round_endtime
+			, con_no
+		)
+		VALUES ( 
+			#{conRoundNo}
+			, #{conRound}
+			, to_date(#{conRoundStartTimeString}, 'HH24:MI:SS')
+			, to_date(#{conRoundEndTimeString}, 'HH24:MI:SS')
+			, #{conNo}
+		)
+	</insert>
+	
+	<update id="updateConRound" parameterType="com.skip.www.dto.ConRound">
+		UPDATE CON_ROUND
+		SET con_round_no = #{conRoundNo}
+			, con_round = #{conRound}
+			, con_round_starttime = to_date(#{conRoundStartTimeString}, 'HH24:MI:SS')
+			, con_round_endtime = to_date(#{conRoundEndTimeString}, 'HH24:MI:SS')
+			, con_no = #{conNo}
+		WHERE con_round_no = #{conRoundNo}
+	</update>
+
+	<delete id="deleteConRound" parameterType="com.skip.www.dto.ConRound">
+		DELETE CON_ROUND
+		WHERE con_round_no = #{conRoundNo}
+	</delete>
+
 
 </mapper>

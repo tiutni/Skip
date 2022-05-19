@@ -252,6 +252,56 @@ public interface AdminDao {
 	 * 
 	 * @param concert - 첨부파일을 삭제할 게시글 번호 객체
 	 */
-	public void deleteConSeatImg(Concert concert);
+	public void deleteConSeatImg(Concert concert);	
+	
+	
+	//공연회차--------------------------------------------------------------
+	
+	/**
+	 * 페이징을 적용하여 게시글 목록 조회
+	 * 
+	 * 	paging.startNo, paging.endNo를 이용하여 rownum을 조회한다
+	 * 
+	 * @param paging - 페이징 정보 객체
+	 * @return 페이징이 적용된 게시글 목록
+	 */
+	public List<ConRound> selectConRoundList(Paging paging);
 
+	/**
+	 * 전체 게시글 수를 조회한다
+	 * 
+	 * @param paramData - search를 포함한 페이징 객체
+	 * @return 총 게시글 수
+	 */
+	public int selectConRoundCntAll(Paging paramData);
+
+	/**
+	 * 게시글 번호를 이용하여 게시글을 조회한다
+	 * 
+	 * @param viewConRound - 조회하려는 게시글 번호
+	 * @return 조회된 게시글 정보
+	 */
+	public ConRound selectConRound(ConRound viewConRound);
+
+	/**
+	 * 게시글 정보를 삽입한다
+	 * 
+	 * @param conRound - 삽입할 게시글 정보
+	 */
+	public void insertConRound(ConRound conRound);
+	
+	/**
+	 * 게시글 정보 수정
+	 * 
+	 * @param conRound - 수정할 내용을 가진 게시글 객체
+	 */
+	public void updateConRound(ConRound conRound);
+
+	/**
+	 * 게시글 정보 삭제
+	 * 
+	 * @param conRound - 삭제할 게시글의 글번호
+	 */
+	public void deleteConRound(ConRound conRound);
+	
 }

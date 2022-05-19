@@ -229,7 +229,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/concert/list")
 	public void listConcert(Paging paramData, Model model) {
-		logger.info("/admin/exhibiton/list");
+		logger.info("/admin/concert/list");
 		
 		//페이징 계산
 		Paging paging = adminService.getPagingConcert( paramData );
@@ -343,5 +343,69 @@ public class AdminController {
 	}
 	
 	
+	//공연 회차
 	
+	@RequestMapping(value="/admin/conRound/list")
+	public void listConRound(Paging paramData, Model model) {
+		logger.info("/admin/conRound/list");
+		
+		//페이징 계산
+		Paging paging = adminService.getPagingConRound( paramData );
+		logger.info("{}", paging);
+		
+		//게시글 목록 조회
+		List<ConRound> list = adminService.listConRound(paging);
+		for(ConRound b : list) {
+			logger.info("{}", b);
+		}
+
+		model.addAttribute("paging", paging);
+		model.addAttribute("list", list);
+	}
+
+	@GetMapping("/admin/conRound/write")
+	public void writeConRound() { }
+	
+	@PostMapping("/admin/conRound/write")
+	public String writeProcessConRound(ConRound conRound) {
+		logger.info("/admin/conRound/write [POST]");
+		logger.info("{}", conRound);
+		
+		adminService.writeConRound(conRound);
+		
+		return "redirect:/admin/conRound/list"; //게시글 목록
+	}
+	
+	@GetMapping("/admin/conRound/update")
+	public String updateConRound(ConRound conRound, Model model) {
+		logger.info("/admin/conRound/update - {}", conRound);		
+		
+		//잘못된 게시글 번호 처리
+		if( conRound.getConRoundNo() < 1 ) {
+			return "redirect:/admin/conRound/list";
+		}
+		
+		//수정할 게시글의 상세보기
+		conRound = adminService.viewConRound(conRound);
+		model.addAttribute("updateConRound", conRound);
+		
+		return "/admin/conRound/update";
+	}
+	
+	@PostMapping("/admin/conRound/update")
+	public String updateProcessConRound(ConRound conRound) {
+		logger.info("/admin/conRound/update [POST] - {}", conRound);
+		
+		adminService.updateConRound(conRound); //게시글+첨부파일 수정
+		
+		return "redirect:/admin/conRound/list";
+	}
+	
+	@RequestMapping("/admin/conRound/delete")
+	public String deleteConRound(ConRound conRound) {
+		adminService.deleteConRound(conRound);
+		
+		return "redirect:/admin/conRound/list";
+	}
+
 }
