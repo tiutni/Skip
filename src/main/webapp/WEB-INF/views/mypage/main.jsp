@@ -27,7 +27,7 @@ $(document).ready(function() {
 		
 
 
-	<h3>${userId }'s Concert Grade - ${cul.userLevel}</h3>
+	<h3>${userId}'s Concert Grade - ${cul.userLevel}</h3>
 	<h3>${userId }'s Exhibition Grade - ${eul.userLevel}</h3>
 	<hr>
 	
@@ -44,7 +44,6 @@ $(document).ready(function() {
 	<a href="/mypage/myexreviewlist"><button>My Exhibition Review</button></a><br>
 	<a href="/mypage/qnalist"><button>My QnA</button></a><br>
 	<a href="/userinfo/update"><button>My Information</button></a><br>
-	<a href="/user/logout"><button>LogOut</button></a><br>
 	<a href="/userinfo/delete"><button>Withdrawal</button></a><br>
 		</h6>
 	</div>

@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.skip.www.dto.ConUserLevel;
 import com.skip.www.dto.ExUserLevel;
@@ -31,7 +33,7 @@ public class MypageController {
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 
 	@Autowired MypageService mypageService;
-
+	User user = new User();
 
 
 	//회원의 공연,전시 등급 보여주기
@@ -82,7 +84,6 @@ public class MypageController {
 
 
 
-	//회원 정보 수정
 	@PostMapping(value="/userinfo/update")
 	public String updateUserInfo(User updateUser) {
 		logger.info("/userinfo/update[ POST]-{}",updateUser);
@@ -93,6 +94,42 @@ public class MypageController {
 		return "userinfo/update";
 	}
 
+
+	// 회원가입 닉네임 중복 체크 (AJAX)
+	@GetMapping("/userinfo/update/userNickCheck")
+	@ResponseBody
+	public int nickCheck(@RequestParam(value = "userNick") String userNick) {
+		user.setUserNick(userNick);
+
+		return mypageService.checkNick(user);
+	}
+
+	// 회원가입 이메일 중복 체크 (AJAX)
+	@GetMapping("/userinfo/update/userEmailCheck")
+	@ResponseBody
+	public int eamilCheck(@RequestParam(value = "userEmail") String userEmail) {
+		user.setUserEmail(userEmail);
+
+		return mypageService.checkEmail(user);
+	}
+
+	// 회원가입 주민등록번호 중복 체크 (AJAX)
+		@GetMapping("/userinfo/update/userRrnCheck")
+		@ResponseBody
+		public int rrnCheck(@RequestParam(value = "userRrn") String userRrn) {
+			user.setUserRrn(userRrn);
+			
+			return mypageService.checkRrn(user);
+		}
+		
+		// 회원가입 휴대폰 번호 중복 체크 (AJAX)
+		@GetMapping("/userinfo/update/userPhoneCheck")
+		@ResponseBody
+		public int phoneCheck(@RequestParam(value = "userPhone") String userPhone) {
+			user.setUserPhone(userPhone);
+			
+			return mypageService.checkPhone(user);
+		}
 	//회원 탈퇴
 	@GetMapping("/userinfo/delete")
 	public void delete(HttpSession session , User user) {
@@ -107,7 +144,6 @@ public class MypageController {
 		logger.info("/userinfo/delete[POST]-{}",user);
 
 
-		//비밀번호 검증
 
 		int userNo =(int)session.getAttribute("userNo");
 		logger.info("유저번호{}-",userNo);

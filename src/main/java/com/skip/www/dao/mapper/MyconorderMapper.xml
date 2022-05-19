@@ -15,9 +15,14 @@
 	</select>
 	
 	<select id="selectconList" parameterType="com.skip.www.util.Paging" resultType="com.skip.www.dto.ConOrderTicket">
-		SELECT C.con_order_ticket_no, C.order_no, C.seat_seq FROM con_order_ticket C, bill B
-			WHERE  C.order_no =B.order_no
-			AND B.user_no =#{userNo}
+		SELECT c.con_title, b.order_date, b.order_status, ci.con_img_storedname, b.order_no, cot.con_order_date, s.seat_no
+			FROM concert c, bill b, con_img ci, con_order_ticket cot, seat s, con_round cr
+			WHERE c.con_no = cr.con_no
+			AND c.con_no = ci.con_no
+			AND cr.con_round_no = s.con_round_no
+			AND b.order_no = cot.order_no
+			AND cot.seat_seq = s.seat_seq
+			AND b.user_no = #{userNo}
 	</select>
 
 	

@@ -58,6 +58,30 @@
 	</delete>
 	
 	
+	<select id="selectCntByNick" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_nick = #{userNick}
+	</select>
+	
+	<select id="selectCntByEmail" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_email = #{userEmail}
+	</select>
+
+	<select id="selectCntByRrn" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_rrn = #{userRrn}
+	</select>
+
+	<select id="selectCntByPhone" resultType="int" parameterType="com.skip.www.dto.User">
+	SELECT count(*)
+	  FROM user_tb
+	 WHERE user_phone = #{userPhone}
+	</select>
+	
 	<select id="selectList" parameterType="com.skip.www.util.Paging" resultType="com.skip.www.dto.QnA">
 		SELECT * FROM (
 			SELECT rownum rnum, Q.* FROM (

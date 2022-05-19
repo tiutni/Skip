@@ -44,17 +44,28 @@ table, th {
 <table class="table table-striped table-hover">
 <thead>
 	<tr>
-		<th style="width: 15%;">공연 티켓번호</th>
-		<th style="width: 15%;">주문 번호</th>
+		<th style="width: 15%;">공연제목</th>
+		<th style="width: 15%;">공연날짜</th>
+		<th style="width: 15%;">주문상태</th>
+		<th style="width: 15%;">공연이미지</th>
+		<th style="width: 15%;">주문번호</th>
+		<th style="width: 15%;">공연날짜</th>
 		<th style="width: 15%;">공연 좌석</th>
+		
+		
 	</tr>
 </thead>
 <tbody>
 <c:forEach items="${conlist }" var="conorder">
 	<tr>
-		<td>${conorder.conOrderTicketNo }</td>
+		<td>${conorder.conTitle }</td>
+		<td><fmt:formatDate value="${conorder.orderDate }" pattern="yyyy-MM-dd"/></td>		
+		<td>${conorder.orderStatus }</td>
+		<td><img src="/upload/${conorder.conImgStoredName }" style="width: 100px; height:150px;"></td>
 		<td>${conorder.orderNo }</td>
-		<td>${conorder.seatSeq }</td>
+		<td><fmt:formatDate value="${conorder.conOrderDate }" pattern="yyyy-MM-dd"/></td>		
+		<td>${conorder.seatNo}</td>
+		
 	</tr>
 </c:forEach>
 </tbody>
