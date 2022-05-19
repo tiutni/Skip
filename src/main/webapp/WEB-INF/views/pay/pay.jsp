@@ -48,7 +48,7 @@ function requestPay(){
 		        // 결제검증 코드
 		        // jQuery로 HTTP 요청
 		        jQuery.ajax({
-		            url: "/pay/success", // 가맹점 서버
+		            url: "/pay/complete", // 가맹점 서버
 		            method: "POST",
 		            headers: { "Content-Type": "application/json" },
 		            data: {
@@ -75,14 +75,14 @@ function requestPay(){
 		    } else { //결제 실패 시 로직
 		        alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
 		    }
-		});
+		})
 	
 	} else {
 	//전시 결제일 경우	
 	}
-
-// })
 }
+// })
+
 </script>
 
 </head>

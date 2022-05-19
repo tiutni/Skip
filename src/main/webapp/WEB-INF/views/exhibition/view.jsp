@@ -306,7 +306,7 @@ function count_ticket(type) {
 <div id="map" style="width: 330px; height: 300px; float: right; margin-right: 80px;"></div>
 
 <div class="select" style="width: 330px; height: 290px; float: right; margin-right: 80px; margin-top: 30px;">
-<form action="/pay" method="post" id="payForm">
+<form action="/pay/ex" method="post" id="payForm">
 <input type="hidden" name="userNo" value="${userNo }" />
 <input type="hidden" name="exNo" value="${viewExhibition.exNo }" />
 <fieldset style="border: 2px solid #ccc; border-radius: 10px;">

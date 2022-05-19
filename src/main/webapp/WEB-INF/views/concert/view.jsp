@@ -722,7 +722,7 @@ $(document).ready(function() {
 	<div style="float: left;">
 		<div class="stickyWrap" style="width: 100%; height: 10px; position: sticky; top:90px; margin-left: 30px; margin-top: 107px;">
 			<div class="select" style="width: 330px;">
-				<form action="/pay" method="post" id="payForm">
+				<form action="/pay/con" method="post" id="payForm">
 					<!-- 유저 번호 전송 -->
 					<input type="hidden" name="userNo" value="${userNo }" />
 							
