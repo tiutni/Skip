@@ -285,9 +285,9 @@ public class AdminController {
 		ConSeatImg conSeatImg = adminService.getAttachConSeatImg(concert);
 		model.addAttribute("conSeatImg", conSeatImg);
 
-		//공연 회차 정보 모델값 전달
-		ConRound conRound = adminService.getConRound(concert);
-		model.addAttribute("conRound", conRound);
+//		//공연 회차 정보 모델값 전달
+//		ConRound conRound = adminService.getConRound(concert);
+//		model.addAttribute("conRound", conRound);
 		
 		return "/admin/concert/update";
 	}
@@ -341,6 +341,7 @@ public class AdminController {
 		
 		return "downConSeatImg";
 	}
+	
 	
 	
 }

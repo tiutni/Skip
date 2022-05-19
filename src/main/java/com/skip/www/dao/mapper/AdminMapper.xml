@@ -427,17 +427,4 @@
 		WHERE con_no = #{conNo}
 	</delete>
 
-		
-	<select id="selectConRoundByConNo" resultType="com.skip.www.dto.ConRound" parameterType="com.skip.www.dto.Concert">
-		SELECT
-			con_round_no
-			, con_round
-			, con_round_starttime
-			, con_round_endtime
-			, con_no
-		FROM con_round
-		WHERE con_no = #{conNo}
-	</select>
-	
-
 </mapper>

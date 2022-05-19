@@ -233,13 +233,5 @@ public interface AdminService {
 	 */
 	public ConSeatImg getConSeatImg(ConSeatImg conSeatImg);
 
-	
-	/**
-	 * 게시글 번호를 이용하여 공연회차정보를 조회한다
-	 * 
-	 * @param concert - 조회할 파일 번호를 가진 객체
-	 * @return 공연회차정보
-	 */
-	public ConRound getConRound(Concert viewConcert);
 
 }

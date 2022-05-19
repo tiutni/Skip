@@ -120,13 +120,14 @@ table, th, td {
 						<input type="date" id="conReserveEndDayString" name="conReserveEndDayString" class="form-control" value="2022-05-31">
 					</div>
 					<br>
+					
 					<div class="text-center">
 						<button class="btn btn-primary" id="btnWrite">작성</button>
 						<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 					</div>
 					</form>
-					
-					<script type="text/javascript">
+
+				    <script type="text/javascript">
 					var oEditors = [];
 					nhn.husky.EZCreator.createInIFrame({
 						oAppRef: oEditors

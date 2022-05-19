@@ -494,10 +494,5 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectConSeatImgByConSeatImgNo(conSeatImg);
 	}
 
-
-	@Override
-	public ConRound getConRound(Concert viewConcert) {
-		return adminDao.selectConRoundByConNo(viewConcert);
-	}
 	
 }

@@ -33,6 +33,14 @@ function btnUpdate(conNo){
     }
 }
 
+function btnRound(conNo){
+    if(confirm("공연 회차 목록을 조회하시겠습니까?") == true){
+		location.href="/admin/conRound/list?conNo="+ conNo;
+    }else{
+        return;
+    }
+}
+
 function btnDelete(conNo){
     if(confirm("공연을 삭제하시겠습니까?") == true){
         location.href="/admin/concert/delete?conNo="+ conNo;
@@ -91,8 +99,9 @@ table, th, td {
 								<th style="width: 30%; text-align: center; vertical-align: middle;">제목</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">작성자</th>
 								<th style="width: 15%; text-align: center; vertical-align: middle;">작성일</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
+								<th style="width: 10%; text-align: center; vertical-align: middle;">회차</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">수정</th>
+								<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
@@ -105,6 +114,12 @@ table, th, td {
 								<td style="vertical-align: middle;">${concert.adminId }</td>
 								<td style="vertical-align: middle;"><fmt:formatDate value="${concert.conRegDate }" pattern="yy-MM-dd"/></td>
 								<td style="vertical-align: middle;">
+									<button onclick="btnRound(${concert.conNo})" id="btnRound" class="btn btn-primary">회차</button>
+								</td>
+								<td style="vertical-align: middle;">
+									<button onclick="btnUpdate(${concert.conNo})" id="btnUpdate" class="btn btn-primary">수정</button>
+								</td>
+								<td style="vertical-align: middle;">
 									<c:choose>
 										<c:when test="${ 1 == concert.conActivate }">
 											<button onclick="btnUnActivate(${concert.conNo})" id="btnUnActivate" class="btn btn-secondary">종료하기</button>
@@ -115,10 +130,7 @@ table, th, td {
 									</c:choose>
 								</td>
 								<td style="vertical-align: middle;">
-									<button onclick="btnUpdate(${concert.conNo})" id="btnUpdate" class="btn btn-secondary">수정</button>
-								</td>
-								<td style="vertical-align: middle;">
-									<button onclick="btnDelete(${concert.conNo})" id="btnDelete" class="btn btn-secondary">삭제</button>
+									<button onclick="btnDelete(${concert.conNo})" id="btnDelete" class="btn btn-primary">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
