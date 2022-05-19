@@ -241,6 +241,31 @@ public  class MypageServiceImpl implements MypageService {
 		
 	}
 
+	@Override
+	public int checkNick(User userNick) {
+		return mypageDao.selectCntByNick(userNick);
+	}
+
+	@Override
+	public int checkEmail(User userEmail) {
+		return mypageDao.selectCntByEmail(userEmail);
+
+	}
+
+	@Override
+	public int checkRrn(User userRrn) {
+		return mypageDao.selectCntByRrn(userRrn);
+
+	}
+
+	@Override
+	public int checkPhone(User userPhone) {
+		return mypageDao.selectCntByPhone(userPhone);
+
+	}
+
+
+
 
 
 }

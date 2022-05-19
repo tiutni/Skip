@@ -8,6 +8,7 @@ public class Wish {
 	private int conNo;
 	private int exNo;
 
+	//DTO에만 있는 변수들
 	private String conTitle;
 	private String conAddress;
 	private String conImgStoredName;

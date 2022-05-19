@@ -88,6 +88,15 @@ public interface MypageService {
 
 	public void delete(QnA qna);
 
+	//회원정보 수정 닉네임 중복 체크
+	public int checkNick(User userNick);
+
+	public int checkEmail(User userEmail);
+
+	public int checkRrn(User userRrn);
+
+	public int checkPhone(User userPhone);
+
 
 	
 

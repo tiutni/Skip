@@ -25,6 +25,7 @@ public class NotiServiceImpl implements NotiService {
 	@Autowired NotiDao notiDao;
 	@Autowired private ServletContext context;
 	
+	// 공지사항 목록 조회
 	@Override
 	public List<Noti> list(Paging paging) {
 		
@@ -32,6 +33,7 @@ public class NotiServiceImpl implements NotiService {
 		
 	}
 
+	// 공지사항 페이징
 	@Override
 	public Paging getPaging(Paging paramData) {
 		
@@ -45,6 +47,7 @@ public class NotiServiceImpl implements NotiService {
 		return paging;
 	}
 
+	// 공지사항 상세보기
 	@Override
 	public Noti view(Noti viewNoti) {
 		
@@ -53,6 +56,7 @@ public class NotiServiceImpl implements NotiService {
 	}
 
 
+	//공지사항 작성
 	@Override
 	@Transactional
 	public void write(Noti noti, MultipartFile file) {
@@ -102,6 +106,7 @@ public class NotiServiceImpl implements NotiService {
 		
 	}
 	
+	// 공지사항 번호로 첨부파일 조회
 	@Override
 	public NotiFile getAttachFile(Noti viewNoti) {
 		
@@ -109,6 +114,7 @@ public class NotiServiceImpl implements NotiService {
 		
 	}
 
+	// 첨부파일 번호로 첨부파일 조회
 	@Override
 	public NotiFile getFile(NotiFile notiFile) {
 		
@@ -116,7 +122,7 @@ public class NotiServiceImpl implements NotiService {
 		
 	}
 
-
+	// 공지사항 수정(글)
 	@Override
 	public void update(Noti noti) {
 		
@@ -127,6 +133,7 @@ public class NotiServiceImpl implements NotiService {
 	
 	}
 
+	// 공지사항 수정(글+파일)
 	@Override
 	@Transactional
 	public void update(Noti noti, MultipartFile file) {
@@ -180,6 +187,7 @@ public class NotiServiceImpl implements NotiService {
 		
 	}
 
+	// 공지사항 삭제
 	@Override
 	public void delete(Noti noti) {
 	

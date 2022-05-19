@@ -39,7 +39,7 @@ $(document).ready(function() {
 	
 	// 위시리스트 목록
 	$("#wishCount").click(function(){
-		
+
 		$.ajax({
 			type : "GET",
 			url : "/wish/list",
@@ -52,12 +52,19 @@ $(document).ready(function() {
 			error: function (){
 				console.log("wishList ajax error"); 
 			}
-			
 		});
-		
 	})
 	
 });
+
+
+function deleteWish(wishNo){
+    if(confirm("위시리스트에서 삭제하시겠습니까?") == true){
+        location.href="/wish/delete?wishNo="+ wishNo;
+    }else{
+        return;
+    }
+}   
 
 </script>
 
@@ -222,7 +229,7 @@ $(document).ready(function() {
 					<div id="wishList">
 						<!-- 비로그인상태 -->
 						<c:if test="${not login }">
-						<strong>로그인이 필요합니다</strong><br>
+							<strong>로그인이 필요합니다</strong><br>
 						</c:if>
 					</div>
 				

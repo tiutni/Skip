@@ -29,7 +29,11 @@ public class WishListController {
 		logger.info("/wish/list");
 		
 		User userNo = new User();
-		userNo.setUserNo((Integer)session.getAttribute("userNo"));
+		
+		if( session.getAttribute("userNo") != null ) {
+			userNo.setUserNo((Integer)session.getAttribute("userNo"));
+		}
+		
 		logger.info("/userno:{}", userNo);
 		
 		
@@ -47,8 +51,19 @@ public class WishListController {
 	@ResponseBody
 	public int countWish(HttpSession session) {
 		User userNo = new User();
-		userNo.setUserNo((Integer)session.getAttribute("userNo"));
+		
+		if( session.getAttribute("userNo") != null ) {
+			userNo.setUserNo((Integer)session.getAttribute("userNo"));
+		}
 		
 		return wishListService.countWish(userNo);
+	}
+	
+	// 위시리스트의 위시 삭제
+	@GetMapping("/wish/delete")
+	public String delete(Wish wishNo) {
+		wishListService.delete(wishNo);
+		
+		return "redirect:/";
 	}
 }

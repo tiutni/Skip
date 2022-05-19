@@ -15,6 +15,7 @@ public class WishListServiceImpl implements WishListService {
 
 	@Autowired WishListDao wishListDao;
 	
+	// 위시리스트 조회
 	@Override
 	public List<Wish> list(User userNo) {
 		
@@ -22,11 +23,19 @@ public class WishListServiceImpl implements WishListService {
 		
 	}
 
+	// 위시리스트의 위시 갯수 조회
 	@Override
 	public int countWish(User userNo) {
 		
 		return wishListDao.selectCntAll(userNo);
 		
+	}
+
+	// 위시 삭제
+	@Override
+	public void delete(Wish wishNo) {
+
+		wishListDao.delete(wishNo);
 	}
 
 

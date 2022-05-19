@@ -13,7 +13,7 @@
 		<c:choose>
 		<c:when test="${wish.showType == 1 }">
 				<li class="header-cart-item flex-w flex-t m-b-12">
-					<div class="header-cart-item-img">
+					<div onclick="deleteWish(${wish.wishNo})" class="header-cart-item-img" >
 						<img src="/upload/${wish.conImgStoredName }" alt="IMG">
 					</div>
 	
@@ -31,7 +31,7 @@
 	
 		<c:when test="${wish.showType == 2 }">
 				<li class="header-cart-item flex-w flex-t m-b-12">
-					<div class="header-cart-item-img">
+					<div onclick="deleteWish(${wish.wishNo})" class="header-cart-item-img">
 						<img src="/upload/${wish.exImgStoredName }" alt="IMG">
 					</div>
 	

@@ -85,6 +85,15 @@ public interface MypageDao {
 
 	public void delete(QnA qna);
 
+	//회원 정보수정 닉네임 중복
+	public int selectCntByNick(User userNick);
+
+	public int selectCntByEmail(User userEmail);
+
+	public int selectCntByRrn(User userRrn);
+
+	public int selectCntByPhone(User userPhone);
+
 
 
 }
