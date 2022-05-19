@@ -1,14 +1,33 @@
 package com.skip.www.service.face;
 
+import com.skip.www.dto.Concert;
+import com.skip.www.dto.Exhibition;
 import com.skip.www.dto.User;
 
 public interface PayService {
 	/**
-	 * 회원정보 불러오기
+	 * 주문한 회원정보 조회
 	 * 
-	 * @param userNo
-	 * @return userInfo
+	 * @param userNo - 주문자 회원번호
+	 * @return userInfo - 주문자 회원정보
 	 */
 	public User selectUserInfo(int userNo);
+
+	/**
+	 * 공연번호로 공연정보 조회
+	 * 
+	 * @param conNo - 조회할 공연번호
+	 * @return 조회된 공연 정보
+	 */
+	public Concert selectConTitle(int conNo);
+
+	/**
+	 * 전시번호로 전시정보 조회
+	 * 
+	 * @param exNo - 조회할 전시번호
+	 * @return 조회된 전시 정보
+	 */
+	public Exhibition selectExTitle(int exNo);
+
 
 }

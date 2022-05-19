@@ -1,18 +1,14 @@
 package com.skip.www.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.skip.www.dto.Pay;
+import com.skip.www.dto.Concert;
+import com.skip.www.dto.Exhibition;
 import com.skip.www.dto.User;
 import com.skip.www.service.face.PayService;
 
@@ -23,63 +19,61 @@ public class PayController {
 	
 	@Autowired PayService payService;
 	
-	@PostMapping("/concert/pay")
-	public void concertPay(
-		int userNo
-		, int conNo
-		, String count
-		, String price
-		, String date
-		, String round
-		, String selectedSeat
-		, Pay pay
+	// 주문자정보 및 선택한 주문정보 조회
+	@PostMapping("/pay")
+	public void selectedInfo(
+		int userNo				// 회원번호
+		, int conNo				// 공연번호
+		, int exNo				// 전시번호
+		, String date			// 관람일
+		, String round			// 회차
+		, String[] selectedSeat	// 선택된 좌석
+		, String count			// 전시 매수
+		, String price			// 총 결제금액
+//		, Pay pay
+		, Model model
 		) {
-		logger.info("Concert Pay");
-	
-		//미완성코드 값만 잘 받아오나 실험해본 코드입니다.
-		logger.info("userNo : {}", userNo);
-		logger.info("conNo : {}", conNo);
-		logger.info("count : {}", count);
-		logger.info("price : {}", price);
-		logger.info("date : {}", date);
-		logger.info("round : {}", round);
-		logger.info("selectedSeat : {}", selectedSeat);
 		
-	}
-	
-	@RequestMapping(value="/pay", method=RequestMethod.POST)
-	public void testPay(
-			int userNo
-			, int conNo
-			, String exNo
-			, String count
-			, String price
-			, String date
-			, String round
-			, String selectedSeat
-			, Pay pay
-			) {
-		
-		//미완성코드 값만 잘 받아오나 실험해본 코드입니다.
+		//테스트용 로그
+		logger.info("/pay - 주문정보 확인------------");
 		logger.info("userNo : {}", userNo);
 		logger.info("conNo : {}", conNo);
 		logger.info("exNo : {}", exNo);
-		logger.info("count : {}", count);
-		logger.info("price : {}", price);
 		logger.info("date : {}", date);
 		logger.info("round : {}", round);
-		logger.info("selectedSeat : {}", selectedSeat);
+		for(int i=0; i<selectedSeat.length; i++) {
+			logger.info("selectedSeat[{}] : {}", i, selectedSeat[i]);
+		}
+		logger.info("count : {}", count);
+		logger.info("price : {}", price);
+		logger.info("---------------------------------");
+		
+		// 회원번호로 회원정보 조회
+		User buyer = payService.selectUserInfo(userNo);
+		
+		// 공연번호로 공연 조회
+		Concert con = payService.selectConTitle(conNo);
+		
+		// 전시번호로 전시회 조회
+		Exhibition ex = payService.selectExTitle(exNo);
+		
+		model.addAttribute("userName", buyer.getUserName());
+		model.addAttribute("userEmail", buyer.getUserEmail());
+		model.addAttribute("userPhone", buyer.getUserPhone());
+		model.addAttribute("userAddr", buyer.getUserAddr());
+		model.addAttribute("conTitle", con.getConTitle());
+		model.addAttribute("exTitle", ex.getExTitle());
+		model.addAttribute("date", date);
+		model.addAttribute("round", round);
+		model.addAttribute("selectedSeat", selectedSeat);
+		model.addAttribute("count", count);
+		model.addAttribute("price", price);
 		
 	}
 	
-	@GetMapping("/pay/concert")
-	public void selectExDate(HttpSession session, Model model) {
-		int userNo = (Integer)session.getAttribute("userNo");
-
-		User userInfo = payService.selectUserInfo(userNo);
-		
-		model.addAttribute("user", userInfo);
-		
+	@PostMapping("/pay/success")
+	public void successPay() {
+	
 		
 	}
 	
