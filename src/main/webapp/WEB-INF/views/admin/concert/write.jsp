@@ -127,6 +127,62 @@ table, th, td {
 					</div>
 					</form>
 
+					<div id="roundDiv" class="form-group">
+					</div>
+					<br>
+					
+					<div class="text-center">
+						<a href="#this" id="addRound" class="btn btn-primary">회차 추가하기</a>
+						<button class="btn btn-primary" id="btnWrite">작성</button>
+						<input type="reset" id="cancel" class="btn btn-danger" value="취소">
+					</div>
+
+					<script type="text/javascript">
+				        var r_count = 0;
+				        
+				        $(document).ready(function(){
+				            
+				            $("#addRound").on("click",function(e){
+				            	++r_count;
+				                console.log("add : "+r_count)
+				            	
+				            	e.preventDefault();
+				                r_Add();
+				            })
+				            
+				        });
+
+				        function r_Delete(obj){
+				        	--r_count;
+				            console.log("del : "+r_count)
+// 				            console.log("obj : "+obj)
+				        	
+				            $('div').remove(obj);
+				        }
+				        
+				        function r_Add(){
+				            var str = 	
+				            	"<div class='roundDelete_"+(r_count)+"'>" + 
+									"<label for='conRound_"+(r_count)+"'>"+(r_count)+"회차 </label>" +
+									"<a href='#this' name='roundDelete_"+(r_count)+"' class='btn btn-primary'>삭제하기</a> " +
+									"<input type='number' id='conRound_"+(r_count)+"' name='conRound_"+(r_count)+"' class='form-control' value='"+(r_count)+"'>" +
+									"<br>" +
+									"<label for='conRoundStartTime_"+(r_count)+"'>시작 시간</label>" +
+									"<input type='time' id='conRoundStartTime_"+(r_count)+"' name='conRoundStartTime_"+(r_count)+"' class='form-control' >" +
+									"<br>" +
+									"<label for='conRoundEndTime_"+(r_count)+"'>종료 시간</label>" + 
+									"<input type='time' id='conRoundEndTime_"+(r_count)+"' name='conRoundEndTime_"+(r_count)+"' class='form-control' >" + 
+								"</div>";
+				            $("#roundDiv").append(str);
+				            
+   				            $("a[name='roundDelete_"+(r_count)+"']").on("click",function(e){
+				                e.preventDefault();
+				                r_Delete(".roundDelete_"+(r_count));
+				            })
+				        }
+				    </script>
+
+
 				    <script type="text/javascript">
 					var oEditors = [];
 					nhn.husky.EZCreator.createInIFrame({
