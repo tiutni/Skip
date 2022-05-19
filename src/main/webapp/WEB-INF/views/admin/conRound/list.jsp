@@ -38,11 +38,12 @@ $(document).ready(function() {
 	$("#btnWrite").click(function() {
 		location.href = "/admin/conRound/write"
 	});
-	
-	//검색 버튼 클릭
-	$("#btnSearch").click(function() {
-		location.href="/admin/conRound/list?search="+$("#search").val();
+
+	//공연 목록 보기 버튼 클릭
+	$("#btnConcertList").click(function() {
+		location.href = "/admin/concert/list"
 	});
+	
 });
 </script>
 
@@ -110,6 +111,7 @@ table, th, td {
 					
 					<!-- 글쓰기 버튼 -->
 					<div><button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button></div>
+					<div><button id="btnConcertList" class="btn btn-primary pull-right">공연 목록 보기</button></div>
 					
 					<!-- 페이징 -->
 					<div class="clearfix"></div>

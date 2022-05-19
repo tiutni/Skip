@@ -402,10 +402,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/conRound/delete")
-	public String deleteConRound(ConRound conRound) {
+	public String deleteConRound(HttpServletRequest request, ConRound conRound) {
 		adminService.deleteConRound(conRound);
 		
-		return "redirect:/admin/conRound/list";
+		String referer = request.getHeader("Referer");
+		return "redirect:"+ referer;
+//		return "redirect:/admin/conRound/list?conNo="+conRound.getConNo();
 	}
 
 }
