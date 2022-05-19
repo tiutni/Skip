@@ -21,7 +21,7 @@ public class PayController {
 	
 	// 주문자정보 및 선택한 주문정보 조회
 	@PostMapping("/pay")
-	public void selectedInfo(
+	public String selectedInfo(
 		int userNo				// 회원번호
 		, int conNo				// 공연번호
 		, int exNo				// 전시번호
@@ -69,6 +69,7 @@ public class PayController {
 		model.addAttribute("count", count);
 		model.addAttribute("price", price);
 		
+		return "/pay/info";
 	}
 	
 	@PostMapping("/pay/success")
