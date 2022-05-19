@@ -18,11 +18,7 @@ function btnUpdate(conRoundNo){
 }
 
 function btnSeat(conRoundNo){
-    if(confirm("공연 좌석 목록을 조회하시겠습니까?") == true){
-		location.href="/admin/seat/list?conRoundNo="+ conRoundNo;
-    }else{
-        return;
-    }
+	location.href="/admin/seat/list?conRoundNo="+ conRoundNo;
 }
 
 function btnDelete(conRoundNo){
@@ -33,11 +29,11 @@ function btnDelete(conRoundNo){
     }
 }
 
+function btnWrite(conNo){
+	location.href = "/admin/conRound/write?conNo="+ conNo;
+}
+
 $(document).ready(function() {
-	//글쓰기 버튼 클릭
-	$("#btnWrite").click(function() {
-		location.href = "/admin/conRound/write"
-	});
 
 	//공연 목록 보기 버튼 클릭
 	$("#btnConcertList").click(function() {
@@ -92,7 +88,7 @@ table, th, td {
 						<tbody>
 						<c:forEach items="${list }" var="conRound">
 							<tr>
-								<td style="vertical-align: middle;"><a href="/conRound/view?conRoundNo=${conRound.conRoundNo }">${conRound.conRound }</a></td>
+								<td style="vertical-align: middle;">${conRound.conRound }회차</td>
 								<td style="vertical-align: middle;"><fmt:formatDate value="${conRound.conRoundStartTime }" pattern="hh:mm"/></td>
 								<td style="vertical-align: middle;"><fmt:formatDate value="${conRound.conRoundEndTime }" pattern="hh:mm"/></td>
 								<td style="vertical-align: middle;">
@@ -110,8 +106,10 @@ table, th, td {
 					</table>
 					
 					<!-- 글쓰기 버튼 -->
-					<div><button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button></div>
-					<div><button id="btnConcertList" class="btn btn-primary pull-right">공연 목록 보기</button></div>
+					<div>
+						<button id="btnConcertList" class="btn btn-primary pull-right">공연 목록 보기</button>
+						<button onclick="btnWrite(${paging.conNo})" id="btnWrite" class="btn btn-primary pull-right">회차 추가</button>
+					</div>
 					
 					<!-- 페이징 -->
 					<div class="clearfix"></div>

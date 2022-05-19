@@ -364,7 +364,10 @@ public class AdminController {
 	}
 
 	@GetMapping("/admin/conRound/write")
-	public void writeConRound() { }
+	public void writeConRound(int conNo, Model model) {
+		logger.info("/admin/conRound/update - {}", conNo);		
+		model.addAttribute("conRoundConNo", conNo);
+	}
 	
 	@PostMapping("/admin/conRound/write")
 	public String writeProcessConRound(ConRound conRound) {
@@ -373,7 +376,7 @@ public class AdminController {
 		
 		adminService.writeConRound(conRound);
 		
-		return "redirect:/admin/conRound/list"; //게시글 목록
+		return "redirect:/admin/conRound/list?conNo="+conRound.getConNo();
 	}
 	
 	@GetMapping("/admin/conRound/update")
@@ -407,7 +410,6 @@ public class AdminController {
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:"+ referer;
-//		return "redirect:/admin/conRound/list?conNo="+conRound.getConNo();
 	}
 
 }

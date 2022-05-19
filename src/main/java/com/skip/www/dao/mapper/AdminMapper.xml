@@ -478,11 +478,11 @@
 			, con_round_endtime
 			, con_no
 			FROM CON_ROUND
-		WHERE con_no = #{conNo}
+		WHERE con_round_no = #{con_round_no}
 	</select>
 	
 	<insert id="insertConRound" parameterType="com.skip.www.dto.ConRound">
-		<selectKey order="BEFORE" resultType="int" keyProperty="conNo">
+		<selectKey order="BEFORE" resultType="int" keyProperty="conRoundNo">
 			SELECT con_round_no_seq.nextval FROM dual
 		</selectKey>
 		

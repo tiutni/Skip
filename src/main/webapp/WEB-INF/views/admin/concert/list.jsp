@@ -34,11 +34,7 @@ function btnUpdate(conNo){
 }
 
 function btnRound(conNo){
-    if(confirm("공연 회차 목록을 조회하시겠습니까?") == true){
-		location.href="/admin/conRound/list?conNo="+ conNo;
-    }else{
-        return;
-    }
+	location.href="/admin/conRound/list?conNo="+ conNo;
 }
 
 function btnDelete(conNo){

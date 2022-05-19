@@ -10,8 +10,8 @@ public class ConRound {
 	private Date conRoundEndTime;
 	private int conNo;
 	
-	private Date conRoundStartTimeString;
-	private Date conRoundEndTimeString;
+	private String conRoundStartTimeString;
+	private String conRoundEndTimeString;
 
 	@Override
 	public String toString() {
@@ -61,20 +61,21 @@ public class ConRound {
 		this.conRoundEndTime = conRoundEndTime;
 	}
 
-	public Date getConRoundStartTimeString() {
+	public String getConRoundStartTimeString() {
 		return conRoundStartTimeString;
 	}
 
-	public void setConRoundStartTimeString(Date conRoundStartTimeString) {
+	public void setConRoundStartTimeString(String conRoundStartTimeString) {
 		this.conRoundStartTimeString = conRoundStartTimeString;
 	}
 
-	public Date getConRoundEndTimeString() {
+	public String getConRoundEndTimeString() {
 		return conRoundEndTimeString;
 	}
 
-	public void setConRoundEndTimeString(Date conRoundEndTimeString) {
+	public void setConRoundEndTimeString(String conRoundEndTimeString) {
 		this.conRoundEndTimeString = conRoundEndTimeString;
 	}
+
 	
 }
