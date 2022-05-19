@@ -6,11 +6,6 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<!-- Bootstrap 3 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=69d98aed6f309cb0b085f3f1226178f2&libraries=services"></script>
 
 <script type="text/javascript">let conLocation = "${viewConcert.conAddress }"</script>
@@ -37,13 +32,21 @@ $(document).ready(function() {
 		
 		var isUserNo = "${userNo}";
 		
+		var isPrice = $("#valueOfprice").val();
+		
 		if( isUserNo == "" ) {
 			console.log("${userNo}");
 			alert("로그인 후 이용가능합니다.");
 			location.href='/user/login';
 			return false;
 			
-		}
+		};
+		
+		if ( isPrice == 0 ) {
+			alert("회차 및 좌석을 선택해주세요.")
+			return false;
+			
+		};
 
 		$("#payForm").submit();
 	
@@ -57,10 +60,10 @@ $(document).ready(function() {
 	
 	// 위시리스트 목록에 있는지 구분
 	if(${isWish}) {
-		$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 25px; height: 25px;">');
+		$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 20px; height: 20px;">');
 		
 	} else {
-		$("#btnWish").html('<img src="/resources/se2/img/unwish.png" style="width: 25px; height: 25px;">');
+		$("#btnWish").html('<img src="/resources/se2/img/unwish.png" style="width: 20px; height: 20px;">');
 		
 	}
 	
@@ -89,12 +92,12 @@ $(document).ready(function() {
 			, success: function(data) {
 				if(data) {
 					alert("위시리스트에서 삭제되었습니다");
-					$("#btnWish").html('<img src="/resources/se2/img/unwish.png" style="width: 25px; height: 25px;">');
+					$("#btnWish").html('<img src="/resources/se2/img/unwish.png" style="width: 20px; height: 20px;">');
 					document.location.reload();
 					
 				} else if(!data) {
 					alert("위시리스트에 추가되었습니다");
-					$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 25px; height: 25px;">');
+					$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 20px; height: 20px;">');
 					document.location.reload();
 					
 				}
@@ -234,18 +237,10 @@ $(document).ready(function() {
 	border-radius: 5px;
 }
 
-.btnCount {
-	width:20px;
-	height: 20px;
-	border: 0;
-	background: #ccc;
-	font-size: 16px;
-}
-
 #btnWish {
 	border: 0;
-	width: 35px;
-	hieght: 35px;
+	width: 25px;
+	hieght: 25px;
 	background: white;
 }
 
@@ -340,7 +335,8 @@ $(document).ready(function() {
  	font-size: 30px; 
  	width: 330px; 
  	height: 55px;
- 	margin-top: 10px;
+ 	margin-top: 15px;
+ 	border-radius: 2px;
 	
 }
 
@@ -427,13 +423,9 @@ $(document).ready(function() {
 }
 
 </style>
-<meta charset="UTF-8">
-<title>${viewConcert.conTitle }</title>
-</head>
-<body>
 
+<br><br>
 <div class="container-fluid" style="width: 1280px; display: flex;">
-	<br><br>
 	<div class="info" style="width: 71%; float:left;">
 
 		<!-- 공연 제목 -->
@@ -442,36 +434,36 @@ $(document).ready(function() {
 		</div> <!-- conTitle -->
 		
 		<!-- 별점 -->
-		<div class="starPoint" style="margin-bottom: 10px;">
+		<div class="starPoint" style="margin-top: 10px; margin-bottom: 5px;">
 			<c:choose>
 				<c:when test="${conStar <= 5.0 and conStar > 4.0 }">
-					<span style="font-size: 20px; color: rgb(255,201,14);">★★★★★</span>
+					<span style="font-size: 18px; color: rgb(255,201,14);">★★★★★</span>
 				</c:when>
 					
 				<c:when test="${conStar <= 4.0 and conStar > 3.0 }">
-					<span style="font-size: 20px; color: rgb(255,201,14);">★★★★☆</span>
+					<span style="font-size: 18px; color: rgb(255,201,14);">★★★★☆</span>
 				</c:when>
 					
 				<c:when test="${conStar <= 3.0 and conStar > 2.0 }">
-					<span style="font-size: 20px; color: rgb(255,201,14);">★★★☆☆</span>
+					<span style="font-size: 18px; color: rgb(255,201,14);">★★★☆☆</span>
 				</c:when>
 					
 				<c:when test="${conStar <= 2.0 and conStar > 1.0 }">
-					<span style="font-size: 20px; color: rgb(255,201,14);">★★☆☆☆</span>
+					<span style="font-size: 18px; color: rgb(255,201,14);">★★☆☆☆</span>
 				</c:when>
 					
 				<c:when test="${conStar <= 1.0 and conStar > 0.0 }">
-					<span style="font-size: 20px; color: rgb(255,201,14);">★☆☆☆☆</span>
+					<span style="font-size: 18px; color: rgb(255,201,14);">★☆☆☆☆</span>
 				</c:when>
 				
 				<c:when test="${conStar eq 0.0}">
-					<span style="font-size: 20px; color: rgb(255,201,14);">☆☆☆☆☆</span>
+					<span style="font-size: 18px; color: rgb(255,201,14);">☆☆☆☆☆</span>
 				</c:when>
 			</c:choose>
-			<span style="font-size: 1.4rem">${conStar }</span>
+			<span style="font-size: 13px;">${conStar }</span>
 			
 			<!-- 위시리스트 -->
-			<div class="wishList" style="margin-left: 145px; display: inline-block;">
+			<div class="wishList" style="margin-left: 157px; display: inline-block;">
 				<button type="button" id="btnWish"></button>
 			</div> <!-- wishList -->
 			
@@ -480,26 +472,25 @@ $(document).ready(function() {
 		<div class="conInfo">
 			<div style="height:500px;">
 				<!-- 공연 사진 -->
-				<div class="picture" style="width: 300; height: 400px; float: left; border:1px solid #eee;">
+				<div class="picture" style="width: 300px; height: 400px; float: left; border:1px solid #eee;">
 					<img src="/upload/${viewConcert.conImgStoredName }" style="width: 300px; height:400px;">
 				</div> <!-- picture -->
 				
 				
 				<!-- 공연 정보 -->
 				<ul class="information" style="display: inline-block;">
-					
 					<!-- 공연장 위치 -->
 					<li>
 						<!-- 카카오 지도 -->
 						<div id="mapWrap">
 							<div id="mapContent">
 								<div id="mapAddress" style="margin-top: 5px; margin-left: 10px;">
-									<span style="font-size: 16px;"><b>공연장 위치</b></span>
+									<span style="font-size: 18px;"><b>공연장 위치</b></span>
 									<button id="closeMap" style="float: right; margin-right: 8px; font-size: 18px;">X</button>
 								</div> <!-- .mapAddress -->
 								<hr style="margin-top: 5px; margin-bottom: 5px;">
 								<div class="kakaoMap">
-									<span style="margin-left: 10px;">
+									<span style="margin-left: 10px; font-size: 16px;">
 										주소 : ${viewConcert.conAddress}
 									</span>
 									<div id="map"></div>
@@ -507,10 +498,10 @@ $(document).ready(function() {
 							</div> <!-- mapContent -->
 						</div> <!-- mapWrap -->
 						
-						<span style="margin-right: 35px;">
+						<span style="margin-right: 35px; font-size: 16px;">
 							<b>장소</b>
 						</span>
-						<div style="display: inline-block;">
+						<div style="display: inline-block; font-size: 16px;">
 							<button id="openMap">
 								${viewConcert.conAddress } ▶
 							</button>
@@ -519,10 +510,10 @@ $(document).ready(function() {
 					
 					<!-- 공연 기간 -->
 					<li>
-						<span style="margin-right: 35px;">
+						<span style="margin-right: 35px; font-size: 16px;">
 							<b>기간</b>
 						</span>
-						<div style="display: inline-block;">
+						<div style="display: inline-block; font-size: 16px;">
 							<fmt:formatDate value="${viewConcert.conStartDay }" pattern="yyyy.MM.dd" /> ~ <fmt:formatDate value="${viewConcert.conEndDay }" pattern="yyyy.MM.dd" />
 						</div>
 					</li>
@@ -530,40 +521,45 @@ $(document).ready(function() {
 					<!-- 좌석 가격 -->
 					<li>
 						<ul>
-							<li style="margin-bottom: 10px;">
+							<li style="margin-bottom: 5px; font-size: 16px;">
 								<!-- 공연 좌석별 가격 -->
-								<span style="margin-right: 35px;">
+								<span style="margin-right: 35px; font-size: 16px;">
 									<b>가격</b>
 								</span>
-								<button id="openSeatWrap"><b>좌석 배치도 확인하기 ▶</b></button>
+								<button id="openSeatWrap" style="font-size: 16px;"><b>좌석 배치도 확인하기 ▶</b></button>
 								<div id="seatWrap">
 									<div id="seatContent">
 										<div id="mapAddress" style="margin-top: 5px; margin-left: 10px;">
-											<span style="font-size: 16px;"><b>좌석 배치도</b></span>
+											<span style="font-size: 18px;"><b>좌석 배치도</b></span>
 											<button id="closeSeatWrap" style="float: right; margin-right: 8px; font-size: 18px;">X</button>
 										</div> <!-- .mapAddress -->
 										<hr style="margin-top: 5px; margin-bottom: 5px;">
 										<div id="seatMap">
-											<img src="/upload/${conSeatImg.conSeatImgStoredName }" style="width: 498px; height: 698px;">
+											<img src="/upload/${conSeatImg.conSeatImgStoredName }" style="width: 100%; height: 94%;">
 										</div>
 									</div> <!-- seatContent -->
 								</div> <!-- #seatWrap -->
 							</li>
 							
-							<li style="margin-bottom: 10px;">
+							<li>
 								<!-- 기본 좌석 금액 -->
-								<span style="margin-bottom: 10px; margin-left: 72px;">
-									<b>기본 좌석</b> <fmt:formatNumber type="number" maxFractionDigits="3" value="${basicSeatPrice }"/>원
+								<span style="margin-left: 72px; font-size: 16px;">
+									<span style="margin-right: 6px;">
+										<b>기본 좌석</b>
+									</span>
+									<span style="font-size: 16px;">
+										<fmt:formatNumber type="number" maxFractionDigits="3" value="${basicSeatPrice }"/>원
+									</span>
 								</span>
 							</li>
 							
 							<li style="margin-bottom: 10px;">
 								<!-- VIP 좌석 금액 -->
-								<span style="margin-top: 10px; margin-left: 73px;">
+								<span style="margin-left: 73px; font-size: 16px;">
 									<span style="margin-right: 6px;">
 										<b>VIP 좌석</b>
 									</span>
-									<span>
+									<span style="font-size: 16px;">
 										<fmt:formatNumber type="number" maxFractionDigits="3" value="${vipSeatPrice }"/>원
 									</span>
 								</span>
@@ -573,10 +569,10 @@ $(document).ready(function() {
 					
 					<!-- 공연 내용 -->
 					<li>
-						<span style="margin-bottom: 10px;">
+						<span style="margin-bottom: 10px; font-size: 16px;">
 							<b>정보</b>
-							</span>
-						<div style="margin-left: 70px;">
+						</span>
+						<div style="margin-left: 70px; font-size: 16px;">
 							${viewConcert.conContent }
 						</div>	
 					</li>
@@ -692,8 +688,6 @@ $(document).ready(function() {
 								<fmt:formatDate value="${i.conReviewDate }" pattern="yyyy-MM-dd" />
 							</span>
 						</div>
-	
-						
 						
 						<span style="margin-left: 10px; font-size: 13px;">
 							${i.conReviewContent }
@@ -702,9 +696,9 @@ $(document).ready(function() {
 			
 						<c:if test="${userNo eq i.userNo }">
 							<form id="reviewdelete" action="/concert/reviewdelete" method="get">
-							<input type="hidden" name="conReviewNo" value="${i.conReviewNo }" />
-							<input type="hidden" name="conNo" value="${viewConcert.conNo }" />
-							<button type="button" id="btnReviewDelete">삭제</button>
+								<input type="hidden" name="conReviewNo" value="${i.conReviewNo }" />
+								<input type="hidden" name="conNo" value="${viewConcert.conNo }" />
+								<button type="button" id="btnReviewDelete">삭제</button>
 							</form>
 						</c:if>
 					</div><br>
@@ -712,15 +706,17 @@ $(document).ready(function() {
 			</c:if>
 		</div>
 		<br><br><br>
-		
-		<c:import url="conreviewpaging.jsp"></c:import>
+
+
+			<c:import url="conreviewpaging.jsp" />
+
 		
 		</div>
 	</div>
 
 	<!-- 사이드바(결제) -->
 	<div style="float: left;">
-		<div class="stickyWrap" style="width: 100%; height: 10px; position: sticky; top:90px; margin-left: 30px; margin-top: 107px;">
+		<div class="stickyWrap" style="width: 100%; height: 10px; position: sticky; top:90px; margin-left: 30px; margin-top: 85px;">
 			<div class="select" style="width: 330px;">
 				<form action="/pay/con" method="post" id="payForm">
 					<!-- 유저 번호 전송 -->
@@ -893,3 +889,5 @@ geocoder.addressSearch(conLocation, function(result, status) {
 
 <!-- 푸터 -->
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
+
+
