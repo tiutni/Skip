@@ -167,6 +167,7 @@ public class MypageController {
 
 
 
+
 		//페이징 계산
 		Paging paging = mypageService.getPaging( curPage, userNo );
 		logger.info("{}", paging);
@@ -174,10 +175,16 @@ public class MypageController {
 		paging.setUserNo(userNo);				
 
 		//게시글 목록 조회
-		List<QnA> list = mypageService.list(paging);
+				List<QnA> list = mypageService.list(paging);
+				for(QnA q : list) {
+					if(q.getQnaMentContent() == "" || q.getQnaMentContent() == null) {
+						q.setQnaMentContent("관리자의 답변을 기다리는 중입니다.");
+					}
+					logger.info("{}", q);
+				}
 
-		model.addAttribute("paging", paging);
-		model.addAttribute("list", list);
+				model.addAttribute("paging", paging);
+				model.addAttribute("list", list);
 
 	}
 

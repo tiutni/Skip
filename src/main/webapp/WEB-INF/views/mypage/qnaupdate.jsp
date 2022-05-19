@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:import url="/WEB-INF/views/layout/header.jsp" />
+
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <!-- 스마트 에디터 2 로드 -->
@@ -36,6 +38,13 @@ $(document).ready(function() {
 			$("#qnaNewFile").toggle();
 		})
 })
+
+$(document).ready(function() {
+	
+	$("#cancel").click(function() {
+		history.go(-1)
+	})
+})
 </script>
 
 
@@ -62,25 +71,24 @@ table, th {
 
 <div class="container">
 
-<h1>Meine Anfrage</h1>
-<hr>
+<br>
 
-<form action="/mypage/qnaupdate" method="post" enctype="multipart/form-data">
+<form action="/qna/update" method="post" enctype="multipart/form-data">
 <input type ="hidden" name="qnaNo" value="${param.qnaNo }">
 
 
 <div class="form-group">
 	<label for="write">작성자</label>
-	<input type="text" id="write" value="${userNo }" class="form-control" readonly="readonly"> <!-- userId를 가져온다 -->
+	<input type="text" id="write" value="${userId }" class="form-control" readonly="readonly">
 </div>
 
 <div class="form-group">
 	<label for="title">제목</label>
-	<input type="text" id="qnaTitle" name="qnaTitle" class="form-control" value="${updateQna.qnaTitle }">
+	<input type="text" id="qnaTitle" name="qnaTitle" class="form-control" value="${qnaupdate.qnaTitle }">
 </div>
 <div class="form-group">
 	<label for="qnaContent">본문</label>
-	<textarea rows="10" style="width: 100%;" id="qnaContent" name="qnaContent" >${updateQna.qnaContent }</textarea>
+	<textarea rows="10" style="width: 100%;" id="qnaContent" name="qnaContent" >${qnaupdate.qnaContent }</textarea>
 </div>
 
 <div class="form-group">
@@ -104,6 +112,7 @@ table, th {
 	<button class="btn btn-primary" id="btnUpdate">수정</button>
 	<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 </div>
+<br>
 
 </form>
 
@@ -120,4 +129,6 @@ nhn.husky.EZCreator.createInIFrame({
 
 
 </div><!-- .container end -->
+
+<c:import url="/WEB-INF/views/layout/footer.jsp" />
 

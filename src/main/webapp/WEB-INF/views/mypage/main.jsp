@@ -14,7 +14,6 @@ $(document).ready(function() {
 })
 </script>
 
-
 <!-- 마이페이지 -->
 <section class="bg0 p-t-23 p-b-140">
 	<div class="container">

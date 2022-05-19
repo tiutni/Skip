@@ -22,6 +22,7 @@ public class QnA {
 	public void setQnaMentContent(String qnaMentContent) {
 		this.qnaMentContent = qnaMentContent;
 	}
+	
 	public int getQnaNo() {
 		return qnaNo;
 	}

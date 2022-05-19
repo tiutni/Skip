@@ -82,22 +82,26 @@
 	 WHERE user_phone = #{userPhone}
 	</select>
 	
-	<select id="selectList" parameterType="com.skip.www.util.Paging" resultType="com.skip.www.dto.QnA">
+	<select id="selectList" parameterType="com.skip.www.util.Paging" resultMap="QnA">
 		SELECT * FROM (
 			SELECT rownum rnum, Q.* FROM (
 				SELECT
-					qna_no,
-					user_no,
-					qna_title,
-					qna_content,
-					qna_date
-				FROM qna
-				where user_no = #{userNo}
-				ORDER BY qna_no DESC
+					A.qna_no,
+					A.user_no,
+					A.qna_title,
+					A.qna_content,
+					A.qna_date,
+                    B.qna_ment_content
+				FROM qna A ,
+                qna_ment B
+				WHERE 1=1
+                and A.qna_no = B.qna_no (+)
+				and qna_title LIKE '%' || #{search} || '%' 
+				ORDER BY A.qna_no DESC
 			) Q
 		) QNA
 		WHERE rnum BETWEEN #{startNo } AND #{endNo }
-	</select>
+	</select> 
 
 	<select id="select" resultMap="QnA" parameterType="com.skip.www.dto.QnA">
 		SELECT
@@ -117,7 +121,7 @@
 			SELECT qna_no_seq.nextval FROM dual
 		</selectKey>
 		
-		INSERT INTO qna ( qna_no, qna_title, qna_content, user_no  )
+		INSERT INTO QNA ( qna_no, qna_title, qna_content, user_no  )
 		VALUES ( #{qnaNo}, #{qnaTitle}, #{qnaContent}, #{userNo})
 	</insert>
 
