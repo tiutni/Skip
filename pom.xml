@@ -20,23 +20,22 @@
          <id>oracle</id>
          <url>http://maven.jahia.org/maven2</url>
       </repository>
+      
+      <!-- IMPORT REST API관련 -->
+      <repository>
+    	 <id>jitpack.io</id>
+    	 <url>https://jitpack.io</url>
+ 	  </repository>
    </repositories>
    
    <dependencies>
       
-      <!-- 웹소켓(채팅) -->
-      <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-websocket</artifactId>
-            <version>${org.springframework-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.websocket</groupId>
-            <artifactId>javax.websocket-api</artifactId>
-            <version>1.1</version>
-            <scope>provided</scope>
-        </dependency>
-               
+      <!-- IMPORT REST API -->
+	  <dependency>
+		  <groupId>com.github.iamport</groupId>
+		  <artifactId>iamport-rest-client-java</artifactId>
+		  <version>0.2.14</version>
+	  </dependency>        
  
       <!-- Jackson Databind -->
       <dependency>

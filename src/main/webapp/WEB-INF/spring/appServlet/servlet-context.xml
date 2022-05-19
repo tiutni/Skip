@@ -12,7 +12,6 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
 			
 		">
 
@@ -79,15 +78,6 @@
 		</interceptor>
 	</interceptors>
 
-	<!-- 웹소켓 ChattingHandler 맵핑 -->
-	<websocket:handlers>
-		<websocket:mapping handler="chattingHandler" path="/chat" />
-		<websocket:sockjs />
-	</websocket:handlers>
-    
-	<beans:bean id="chattingHandler" class="com.skip.www.controller.ChattingHandler" />
-
-	
 	<context:component-scan base-package="com.skip.www.controller, com.skip.www.service" />
 	
 </beans:beans>

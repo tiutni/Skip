@@ -19,6 +19,8 @@ public class PayController {
 	
 	@Autowired PayService payService;
 	
+	
+	
 	// 주문자정보 및 선택한 주문정보 조회
 	@PostMapping("/pay")
 	public String selectedInfo(
@@ -74,7 +76,7 @@ public class PayController {
 	
 	@PostMapping("/pay/success")
 	public void successPay() {
-	
+		
 		
 	}
 	
