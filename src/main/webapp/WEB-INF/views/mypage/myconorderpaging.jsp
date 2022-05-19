@@ -14,7 +14,7 @@
 
 <%-- 첫 페이지로 이동 --%>
 <c:if test="${paging.curPage ne 1}">
-	<li><a href="<%=request.getContextPath() %>/mypage/myconorderlist?userNo=${paging.userNo}">처음</a></li>
+	<li><a href="<%=request.getContextPath() %>/mypage/myconorder?userNo=${paging.userNo}">처음</a></li>
 </c:if>
 	
 	
@@ -26,7 +26,7 @@
 
 	<c:otherwise>
 		<li>
-			<a href="/mypage/myconorderlist?userNo=${paging.userNo}&curPage=${paging.startPage - paging.pageCount }">
+			<a href="/mypage/myconorder?userNo=${paging.userNo}&curPage=${paging.startPage - paging.pageCount }">
 				&laquo;
 			</a>
 		</li>
@@ -36,7 +36,7 @@
 	<%-- 이전 페이지로 이동 --%>
 <c:if test="${paging.curPage > 1 }">
 	<li>
-		<a href="<%=request.getContextPath() %>/mypage/myconorderlist?userNo=${paging.userNo}&curPage=${paging.curPage - 1}">
+		<a href="<%=request.getContextPath() %>/mypage/myconorder?userNo=${paging.userNo}&curPage=${paging.curPage - 1}">
 			&lt; 
 		</a>
 	</li>
@@ -48,14 +48,14 @@
 	<c:choose>
 		<c:when test="${paging.curPage eq i}">
 			<li class="active">
-				<a href="<%=request.getContextPath() %>/mypage/myconorderlist?userNo=${paging.userNo}&curPage=${i }">
+				<a href="<%=request.getContextPath() %>/mypage/myconorder?userNo=${paging.userNo}&curPage=${i }">
 					${i }
 				</a>
 			</li>
 		</c:when>
 		<c:otherwise>
 			<li>
-				<a href="<%=request.getContextPath() %>/mypage/myconorderlist?userNo=${paging.userNo}&curPage=${i }">
+				<a href="<%=request.getContextPath() %>/mypage/myconorder?userNo=${paging.userNo}&curPage=${i }">
 					${i }
 				</a>
 			</li>
@@ -66,7 +66,7 @@
 <%-- 다음 페이지로 이동 --%>
 <c:if test="${paging.curPage < paging.totalPage }">
 	<li>
-		<a href="<%=request.getContextPath() %>/mypage/myconorderlist?userNo=${paging.userNo}&curPage=${paging.curPage + 1 }">
+		<a href="<%=request.getContextPath() %>/mypage/myconorder?userNo=${paging.userNo}&curPage=${paging.curPage + 1 }">
 			&gt; 
 		</a>
 	</li>
@@ -80,7 +80,7 @@
 	
 	<c:otherwise>
 		<li>
-			<a href="/mypage/myconorderlist?userNo=${paging.userNo}&curPage=${paging.startPage + paging.pageCount }">
+			<a href="/mypage/myconorder?userNo=${paging.userNo}&curPage=${paging.startPage + paging.pageCount }">
 				&raquo;
 			</a>
 		</li>
@@ -89,7 +89,7 @@
 	
 <%-- 마지막 페이지로 이동 --%>
 <c:if test="${paging.curPage ne paging.totalPage }">
-	<li><a href="<%=request.getContextPath() %>/mypage/myconorderlist?userNo=${paging.userNo}&curPage=${paging.totalPage }">
+	<li><a href="<%=request.getContextPath() %>/mypage/myconorder?userNo=${paging.userNo}&curPage=${paging.totalPage }">
 		끝
 	</a>
 	</li>

@@ -150,7 +150,7 @@ function deleteWish(wishNo){
 							</li>
 
 							<li>
-								<a href="/mypage/main">My Page</a>
+								<a href="/mypage/myconorder">My Page</a>
 							</li>
 
 							<li>
@@ -294,3 +294,4 @@ function deleteWish(wishNo){
 			</div>
 		</div>
 	</section> <!-- Slider End -->
+	

@@ -8,11 +8,15 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
+
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
-		location.href = "/mypage/myexorder"
+		location.href = "/mypage/myconorder"
 	})
 	
+	$(".cwa-tab > li").click(function() {
+		$(location).attr("href", $(this).find("a").attr("href"))
+	})
 	
 })
 
@@ -27,7 +31,70 @@ table, th {
 	text-align: center;
 }
 
+.cwa-tab {
+	width: 80%;
+	height: 50px;
+	margin: 50px auto;
+}
+.cwa-tab > li {
+    float: left;
+    display: table;
+    width: calc(100% / 7);
+    height: 66px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.cwa-tab > li > a {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 15px;
+    color: #8b8b8b;
+    line-height: 20px;
+    padding: 5px 8px;
+    
+}    
+.cwa-tab > li::before {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    border: 1px solid #e5e5e5;
+    content: "";
+}
+
+
+
+
+
 </style>
+
+<ul class="cwa-tab mgt50">
+	<li class="">
+	<a href="/mypage/myconorder"><button>My Concert Order</button></a><br>
+	</li>
+	<li class="">
+	<a href="/mypage/myexorder"><button>My Exhibition Order</button></a><br>
+	</li>
+	<li class="">
+	<a href="/mypage/myreviewlist"><button>My Concert Review</button></a><br>
+	</li>
+	<li class="">
+	<a href="/mypage/myexreviewlist"><button>My Exhibition Review</button></a><br>
+	</li>
+	<li class="">
+	<a href="/mypage/qnalist"><button>My QnA</button></a><br>
+	</li>
+	<li class="">
+	<a href="/userinfo/update"><button>My Information</button></a><br>
+	</li>
+	<li class="">
+	<a href="/userinfo/delete"><button>Withdrawal</button></a><br>
+	</li>
+</ul>
+
 
 
 <!-- 나의주문 -->
@@ -44,20 +111,26 @@ table, th {
 <table class="table table-striped table-hover">
 <thead>
 	<tr>
-		<th style="width: 15%;">전시회 티켓번호</th>
-		<th style="width: 15%;">주문 번호</th>
-		<th style="width: 15%;">전시회 번호</th>
+		<th style="width: 15%;">전시회제목</th>
+		<th style="width: 15%;">주문날짜</th>
+		<th style="width: 15%;">주문상태</th>
+		<th style="width: 15%;">전시회이미지</th>
+		<th style="width: 15%;">주문번호</th>
+		<th style="width: 15%;">전시회주문날짜</th>
 		<th style="width: 15%;">총매수</th>
 		
-	</tr>
+</tr>
 </thead>
 <tbody>
 <c:forEach items="${exlist }" var="exorder">
 	<tr>
-		<td>${exorder.exOrderTicketNo }</td>
+		<td><a href="/exhibition/view?exNo=${exorder.exNo }">${exorder.exTitle }</a></td>
+		<td><fmt:formatDate value="${exorder.orderDate }" pattern="yyyy-MM-dd"/></td>		
+		<td>${exorder.orderStatus }</td>
+		<td><img src="/upload/${exorder.exImgStoredname }" style="width: 100px; height:150px;"></td>
 		<td>${exorder.orderNo }</td>
-		<td>${exorder.exOrderCount }</td>
-		<td>${exorder.exNo }</td>
+		<td><fmt:formatDate value="${exorder.exOrderDate }" pattern="yyyy-MM-dd"/></td>		
+		<td>${exorder.exOrderCount}</td>
 		
 	</tr>
 </c:forEach>

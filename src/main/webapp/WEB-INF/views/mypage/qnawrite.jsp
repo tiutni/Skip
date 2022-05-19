@@ -46,7 +46,7 @@ $(document).ready(function() {
 	<div class="container">
 		<div class="p-b-10">
 			<h3 class="ltext-103 cl5">
-				Schreiben
+				QnA Write
 			</h3>
 			<br><br><br>
 		</div>

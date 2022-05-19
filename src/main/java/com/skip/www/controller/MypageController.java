@@ -167,6 +167,7 @@ public class MypageController {
 
 
 
+
 		//페이징 계산
 		Paging paging = mypageService.getPaging( curPage, userNo );
 		logger.info("{}", paging);

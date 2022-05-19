@@ -13,13 +13,14 @@ public class ConOrderTicket {
 	private String conImgStoredName;
 	private Date conOrderDate;
 	private String seatNo;
+	private int conNo;
 	
 	@Override
 	public String toString() {
 		return "ConOrderTicket [conOrderTicketNo=" + conOrderTicketNo + ", orderNo=" + orderNo + ", seatSeq=" + seatSeq
 				+ ", conTitle=" + conTitle + ", orderDate=" + orderDate + ", orderStatus=" + orderStatus
-				+ ", conImgStoredName=" + conImgStoredName + ", ConOrderDate=" + conOrderDate + ", seatNo=" + seatNo
-				+ "]";
+				+ ", conImgStoredName=" + conImgStoredName + ", conOrderDate=" + conOrderDate + ", seatNo=" + seatNo
+				+ ", conNo=" + conNo + "]";
 	}
 	public int getConOrderTicketNo() {
 		return conOrderTicketNo;
@@ -75,6 +76,14 @@ public class ConOrderTicket {
 	public void setSeatNo(String seatNo) {
 		this.seatNo = seatNo;
 	}
+	public int getConNo() {
+		return conNo;
+	}
+	public void setConNo(int conNo) {
+		this.conNo = conNo;
+	}
+	
+	
 	
 	
 	
