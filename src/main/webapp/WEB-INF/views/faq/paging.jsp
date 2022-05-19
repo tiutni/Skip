@@ -1,78 +1,138 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<c:if test="${not empty param.search }">
-	<c:set var="searchParam" value="&search=${param.search }" />
+<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
+
+<ul class="pagination" style="margin: 0 auto">
+
+<c:choose>
+
+<c:when test="${empty search and empty sort}">
+<%-- 이전 페이지로 이동 --%>
+<c:if test="${paging.curPage > 1 }">
+	<li>
+		<a href="<%=request.getContextPath() %>/faq/list?curPage=${paging.curPage - 1}" class="flex-c-m how-pagination1 trans-04 m-all-7">
+			&lt;
+		</a>
+	</li>
 </c:if>
-
-<div class="text-center">
-	<ul class="pagination pagination-sm">
 	
 
-
-	<%-- 첫 페이지로 이동 --%>
-	<c:if test="${paging.curPage ne 1 }">
-		<li><a href="/faq/list?curPage=1${searchParam }">&larr; 처음</a></li>	
-	</c:if>
-	
-	<%-- 이전 페이징 리스트로 이동 --%>
+<%-- 페이징 번호 리스트 --%>
+<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
 	<c:choose>
-	<c:when test="${paging.startPage ne 1 }">
-		<li><a href="/faq/list?curPage=${paging.startPage - paging.pageCount }${searchParam }">&laquo;</a></li>
-	</c:when>
-	<c:when test="${paging.startPage eq 1 }">
-		<li class="disabled"><a>&laquo;</a></li>
-	</c:when>
+		<c:when test="${paging.curPage eq i}">
+			<li class="active">
+				<a href="<%=request.getContextPath() %>/faq/list?curPage=${i }" class="flex-c-m how-pagination1 trans-04 m-all-7">
+					${i }
+				</a>
+			</li>
+		</c:when>
+		<c:otherwise>
+			<li>
+				<a href="<%=request.getContextPath() %>/faq/list?curPage=${i }" class="flex-c-m how-pagination1 trans-04 m-all-7">
+					${i }
+				</a>
+			</li>
+		</c:otherwise>
 	</c:choose>
+</c:forEach>
 	
-	<%-- 이전 페이지로 가기 --%>
-	<c:if test="${paging.curPage > 1 }">
-		<li><a href="/faq/list?curPage=${paging.curPage - 1 }${searchParam }">&lt;</a></li>
-	</c:if>
-	
-	
-	
-	
-	<%-- 페이징 리스트 --%>
-	<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="i">
-	<c:if test="${paging.curPage eq i }">
-		<li class="active"><a href="/faq/list?curPage=${i }${searchParam }">${i }</a></li>
-	</c:if>
-	<c:if test="${paging.curPage ne i }">
-		<li><a href="/faq/list?curPage=${i }${searchParam }">${i }</a></li>
-	</c:if>
-	</c:forEach>
+<%-- 다음 페이지로 이동 --%>
+<c:if test="${paging.curPage < paging.totalPage }">
+	<li>
+		<a href="<%=request.getContextPath() %>/faq/list?curPage=${paging.curPage + 1 }" class="flex-c-m how-pagination1 trans-04 m-all-7">
+			&gt;
+		</a>
+	</li>
+</c:if>
+</c:when>
+
+
+<c:when test="${not empty search}">
+<%-- 이전 페이지로 이동 --%>
+<c:if test="${paging.curPage > 1 }">
+	<li>
+		<a href="<%=request.getContextPath() %>/faq/list?search=${search }&curPage=${paging.curPage - 1}" class="flex-c-m how-pagination1 trans-04 m-all-7">
+			&lt; 
+		</a>
+	</li>
+</c:if>
 	
 
-	
-	
-	<%-- 다음 페이지로 가기 --%>
-	<c:if test="${paging.curPage < paging.totalPage }">
-		<li><a href="/faq/list?curPage=${paging.curPage + 1 }${searchParam }">&gt;</a></li>
-	</c:if>
-	
-	<%-- 다음 페이징 리스트로 이동 --%>
+<%-- 페이징 번호 리스트 --%>
+<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
 	<c:choose>
-	<c:when test="${paging.endPage ne paging.totalPage }">
-		<li><a href="/faq/list?curPage=${paging.startPage + paging.pageCount }${searchParam }">&raquo;</a></li>
-	</c:when>
-	<c:when test="${paging.endPage eq paging.totalPage }">
-		<li class="disabled"><a>&raquo;</a></li>
-	</c:when>
+		<c:when test="${paging.curPage eq i}">
+			<li class="active">
+				<a href="<%=request.getContextPath() %>/faq/list?search=${search }&curPage=${i }" class="flex-c-m how-pagination1 trans-04 m-all-7">
+					${i }
+				</a>
+			</li>
+		</c:when>
+		<c:otherwise>
+			<li>
+				<a href="<%=request.getContextPath() %>/faq/list?search=${search }&curPage=${i }" class="flex-c-m how-pagination1 trans-04 m-all-7">
+					${i }
+				</a>
+			</li>
+		</c:otherwise>
 	</c:choose>
-
-	<%-- 끝 페이지로 이동 --%>
-	<c:if test="${paging.curPage ne paging.totalPage }">
-		<li><a href="/faq/list?curPage=${paging.totalPage }${searchParam }">끝 &rarr;</a></li>	
-	</c:if>
+</c:forEach>
 	
-	</ul>
+<%-- 다음 페이지로 이동 --%>
+<c:if test="${paging.curPage < paging.totalPage }">
+	<li>
+		<a href="<%=request.getContextPath() %>/faq/list?search=${search }&curPage=${paging.curPage + 1 }" class="flex-c-m how-pagination1 trans-04 m-all-7">
+			&gt; 
+		</a>
+	</li>
+</c:if>
+</c:when>
+
+<c:when test="${empty search and not empty sort}">
+<%-- 이전 페이지로 이동 --%>
+<c:if test="${paging.curPage > 1 }">
+	<li>
+		<a href="<%=request.getContextPath() %>/faq/list?sort=${sort }&curPage=${paging.curPage - 1}" class="flex-c-m how-pagination1 trans-04 m-all-7">
+			&lt; 
+		</a>
+	</li>
+</c:if>
+	
+
+<%-- 페이징 번호 리스트 --%>
+<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
+	<c:choose>
+		<c:when test="${paging.curPage eq i}">
+			<li class="active">
+				<a href="<%=request.getContextPath() %>/faq/list?sort=${sort }&curPage=${i }" class="flex-c-m how-pagination1 trans-04 m-all-7">
+					${i }
+				</a>
+			</li>
+		</c:when>
+		<c:otherwise>
+			<li>
+				<a href="<%=request.getContextPath() %>/faq/list?sort=${sort }&curPage=${i }" class="flex-c-m how-pagination1 trans-04 m-all-7">
+					${i }
+				</a>
+			</li>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+	
+<%-- 다음 페이지로 이동 --%>
+<c:if test="${paging.curPage < paging.totalPage }">
+	<li>
+		<a href="<%=request.getContextPath() %>/faq/list?sort=${sort }&curPage=${paging.curPage + 1 }" class="flex-c-m how-pagination1 trans-04 m-all-7">
+			&gt; 
+		</a>
+	</li>
+</c:if>
+</c:when>
+</c:choose>
+</ul>
+
 </div>
-
