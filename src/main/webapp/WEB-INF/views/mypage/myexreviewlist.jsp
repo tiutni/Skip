@@ -65,10 +65,22 @@ table, th {
     content: "";
 }
 
+</style>
 
-
-
-
+<style type="text/css">
+.grid_cont {
+	font-size: large;
+	border: 2px solid #ccc;
+	border-color: #DCDCDC;
+	background-color: #F5F5F5;
+	margin: 30px;
+	border-radius: 10px;
+	display: grid;
+}
+.grid_cont {
+    display: flex;
+    justify-content: space-between;
+}
 </style>
 
 <ul class="cwa-tab mgt50">
@@ -104,23 +116,15 @@ table, th {
 				MY Exhibition review
 			</h3>
 		</div>
+<br><br><br>
 
-<style type="text/css">
-.grid_cont {
-	font-size: large;
-	border: 2px solid #ccc;
-	border-color: #FFF5EE;
-	background-color: #F5F5F5;
-	margin: 5px;
-	border-radius: 10px;
-	display: grid;
-}
-.grid_cont {
-    display: flex;
-    justify-content: space-between;
-}
-</style>
-
+<c:choose>
+<c:when test="${empty list }">
+<h1>아직 등록된 리뷰가 없습니다.<br>
+	첫 번째 리뷰를 남겨주세요.
+</h1>
+</c:when>
+<c:otherwise>
 <c:forEach items="${list }" var="exreview">
 <div class="grid_cont">
 	<div class="cont_row">
@@ -156,6 +160,9 @@ table, th {
 	</div>
 </div>
 </c:forEach>
+</c:otherwise>
+</c:choose>
+
 
 
 <c:import url="myexreviewpaging.jsp" />

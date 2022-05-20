@@ -111,7 +111,7 @@ public class MypageController {
 		return mypageService.checkNick(user);
 	}
 
-	// 회원가입 이메일 중복 체크 (AJAX)
+	// 회원정보 수정 이메일 중복 체크 (AJAX)
 	@GetMapping("/userinfo/update/userEmailCheck")
 	@ResponseBody
 	public int eamilCheck(@RequestParam(value = "userEmail") String userEmail) {
@@ -120,7 +120,7 @@ public class MypageController {
 		return mypageService.checkEmail(user);
 	}
 
-	// 회원가입 주민등록번호 중복 체크 (AJAX)
+	// 회원정보 수정 주민등록번호 중복 체크 (AJAX)
 		@GetMapping("/userinfo/update/userRrnCheck")
 		@ResponseBody
 		public int rrnCheck(@RequestParam(value = "userRrn") String userRrn) {
@@ -129,7 +129,7 @@ public class MypageController {
 			return mypageService.checkRrn(user);
 		}
 		
-		// 회원가입 휴대폰 번호 중복 체크 (AJAX)
+		// 회원정보 수정 휴대폰 번호 중복 체크 (AJAX)
 		@GetMapping("/userinfo/update/userPhoneCheck")
 		@ResponseBody
 		public int phoneCheck(@RequestParam(value = "userPhone") String userPhone) {

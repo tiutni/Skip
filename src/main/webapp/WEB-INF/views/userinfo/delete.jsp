@@ -17,6 +17,12 @@ $(document).ready(function() {
 		location.href = "/mypage/myconorder"
 	})
 	
+$(document).ready(function() {
+	
+	$("#cancel").click(function() {
+		history.go(-1)
+	})
+})		
 	$(".cwa-tab > li").click(function() {
 		$(location).attr("href", $(this).find("a").attr("href"))
 	})
@@ -68,7 +74,9 @@ table, th {
     content: "";
 }
 
-
+.input{
+	text-align:center
+}
 
 
 
@@ -106,26 +114,25 @@ table, th {
 				Delete Account
 			</h3>
 		</div>
-
+<br><br>
 		
 
 <form action="/userinfo/delete" method="post" class="form-horizontal">
 
-<div>
+<div class="text-center">
 	<label for="pw" class="col-sm-4 control-label"></label>
 	<div class="col-sm-5">
-		<input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요">
+		<input type="password" class="form-control" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요">
 	</div>
 </div>
 
 
 <div class="text-center">
-	<div class="col-sm-offset-5">
+	<div class="col-sm-offset-5" >
 		<button id="submit" class="btn btn-primary">회원 탈퇴</button>
 		<input type="reset" id="cancel" class="btn btn-danger" value="취소" />
 	</div>
 </div>
-
 
 </form>
 </div>

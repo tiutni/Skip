@@ -106,7 +106,7 @@ table, th {
 			</h3>
 		</div>
 
-	
+<br><br><br>	
 
 <table class="table table-striped table-hover">
 <thead>

@@ -23,8 +23,14 @@ function submitContents(elClickedObj) {
 }
 
 $(document).ready(function() {
+	$("#cancel").click(function() {
+		history.go(-1)
+	})
+
+// $(document).ready(function() {
 	
 	$("#btnWrite").click(function() {
+		
 		submitContents($("#btnWrite"))
 		
 		$("form").submit();
@@ -52,7 +58,16 @@ table, th {
 
 </style>
 
-<div class="container">
+
+<!-- 1:1문의 작성하기 -->
+<section class="bg0 p-t-23 p-b-140">
+	<div class="container">
+		<div class="p-b-10">
+			<h3 class="ltext-103 cl5">
+				QnA Write
+			</h3>
+			<br><br><br>
+		</div>
 
 <br>
 
@@ -68,7 +83,7 @@ table, th {
 	<input type="text" id="qnaTitle" name="qnaTitle" class="form-control">
 </div>
 <div class="form-group">
-	<label for="qnaContent">본문</label>
+	<label for="qnaContent">문의내용</label>
 	<textarea rows="10" style="width: 100%;" id="qnaContent" name="qnaContent"></textarea>
 </div>
 
@@ -94,6 +109,7 @@ table, th {
 		, sSkinURI: "/resources/se2/SmartEditor2Skin.html"
 		, fCreator: "createSEditor2"
 	})
+	
 	</script>
-
+</section>
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
