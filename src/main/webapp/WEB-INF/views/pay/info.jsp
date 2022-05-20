@@ -5,6 +5,13 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" type="text/javascript"></script>
+
+
 <script type="text/javascript">
 
 function requestPay(){
@@ -13,7 +20,7 @@ function requestPay(){
 	IMP.init('imp59933008'); // SKIP 가맹점 키 (아임포트 관리자 페이지 -> 내정보 -> 가맹점식별코드)
 
 
-	if(conTitle != null ){
+// 	if(conTitle != null ){
 	// 공연 결제일 경우
 	
 		IMP.request_pay({
@@ -54,48 +61,48 @@ function requestPay(){
 		    alert(msg);
 		});
 	
-	} else if ( exTitle != null ) {
-		//전시 결제일 경우	
+// 	} else if ( exTitle != null ) {
+// 		//전시 결제일 경우	
 	
-		IMP.request_pay({
+// 		IMP.request_pay({
 			
-		    pg : 'html5_inicis', 								// PG사 (이니시스(웹표준결제))
-		    pay_method : 'card',								// 결제방식
-		    merchant_uid : 'merchant_' + new Date().getTime(),	// 고유주문번호
-		    name : exTitle,									// 주문명
-		    amount : '${price }', 								// 결제금액
-		    buyer_email : '${userEmail }',						// 주문자 Email
-		    buyer_name : '${userName }',						// 주문자명
-		    buyer_tel : '${userPhone }',						// 주문자 연락처
-		    buyer_addr : '${userAddr }',						// 주문자 주소
+// 		    pg : 'html5_inicis', 								// PG사 (이니시스(웹표준결제))
+// 		    pay_method : 'card',								// 결제방식
+// 		    merchant_uid : 'merchant_' + new Date().getTime(),	// 고유주문번호
+// 		    name : exTitle,									// 주문명
+// 		    amount : '${price }', 								// 결제금액
+// 		    buyer_email : '${userEmail }',						// 주문자 Email
+// 		    buyer_name : '${userName }',						// 주문자명
+// 		    buyer_tel : '${userPhone }',						// 주문자 연락처
+// 		    buyer_addr : '${userAddr }',						// 주문자 주소
 		    
-		}, function(rsp) { // callback함수
-			console.log(rsp);
+// 		}, function(rsp) { // callback함수
+// 			console.log(rsp);
 			
-			var result = '';
-		    if ( rsp.success ) { // 결제 성공 시 로직
+// 			var result = '';
+// 		    if ( rsp.success ) { // 결제 성공 시 로직
 		    	
-		        var msg = '결제가 완료되었습니다.';
-		        msg += ' , 고유ID : ' + rsp.imp_uid;
-		        msg += ' , 상점 거래ID : ' + rsp.merchant_uid;
-		        msg += ' , 결제 금액 : ' + rsp.paid_amount;
-		        msg += ' , 카드 승인번호 : ' + rsp.apply_num;
-		        result = '0';
+// 		        var msg = '결제가 완료되었습니다.';
+// 		        msg += ' , 고유ID : ' + rsp.imp_uid;
+// 		        msg += ' , 상점 거래ID : ' + rsp.merchant_uid;
+// 		        msg += ' , 결제 금액 : ' + rsp.paid_amount;
+// 		        msg += ' , 카드 승인번호 : ' + rsp.apply_num;
+// 		        result = '0';
 		        
-		    } else { //결제 실패 시 로직
+// 		    } else { //결제 실패 시 로직
 		    	
-		        var msg = '결제에 실패하였습니다.';
-		        msg += '에러내용 : ' + rsp.error_msg;
-		        result = '1';
+// 		        var msg = '결제에 실패하였습니다.';
+// 		        msg += '에러내용 : ' + rsp.error_msg;
+// 		        result = '1';
 		        
-		    }
-		    if(result=='0'){
-		    	location.href = "/pay/complete";
-		    }
-		    alert(msg);
-		});
+// 		    }
+// 		    if(result=='0'){
+// 		    	location.href = "/pay/complete";
+// 		    }
+// 		    alert(msg);
+// 		});
 	
-	}
+// 	}
 }
 
 function showDetail(){
@@ -252,8 +259,8 @@ $(document).ready(function() {
 </div> 
 
 <div class="text-center">
-		<input id='target_btn' type='button' class="btn btn-primary" disabled='disabled' value='결제'/>
-		<button id="btnBack" onclick="requestPay()" class="btn btn-danger" >취소</button>
+		<button id='target_btn' class="btn btn-primary" disabled='disabled' onclick="requestPay()">결제</button>
+		<button id="btnBack" class="btn btn-danger" >취소</button>
 </div>
 <br>
 
