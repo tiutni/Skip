@@ -386,7 +386,7 @@ function count_ticket(type) {
 			<span style="font-size: 13px;">${exStar }</span>
 			
 			<!-- 위시리스트 -->
-			<div class="wishList" style="margin-left: 157px; display: inline-block;">
+			<div class="wishList" style="margin-left: 162px; display: inline-block;">
 				<button type="button" id="btnWish"></button>
 			</div> <!-- wishList -->		
 		</div> <!-- starPoint -->

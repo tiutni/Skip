@@ -111,12 +111,12 @@ table, th {
 <table class="table table-striped table-hover">
 <thead>
 	<tr>
+		<th style="width: 15%;">주문번호</th>
+		<th style="width: 15%;">공연이미지</th>
 		<th style="width: 15%;">공연제목</th>
 		<th style="width: 15%;">주문날짜</th>
 		<th style="width: 15%;">주문상태</th>
-		<th style="width: 15%;">공연이미지</th>
-		<th style="width: 15%;">주문번호</th>
-		<th style="width: 15%;">공연주문날짜</th>
+		<th style="width: 15%;">공연 예약날짜</th>
 		<th style="width: 15%;">공연 좌석</th>
 		
 		
@@ -125,11 +125,11 @@ table, th {
 <tbody>
 <c:forEach items="${conlist }" var="conorder">
 	<tr>
+		<td>${conorder.orderNo }</td>
+		<td><img src="/upload/${conorder.conImgStoredName }" style="width: 40px; height:60px;"></td>
 		<td><a href="/concert/view?conNo=${conorder.conNo }">${conorder.conTitle}</a></td>
 		<td><fmt:formatDate value="${conorder.orderDate }" pattern="yyyy-MM-dd"/></td>		
 		<td>${conorder.orderStatus }</td>
-		<td><img src="/upload/${conorder.conImgStoredName }" style="width: 100px; height:150px;"></td>
-		<td>${conorder.orderNo }</td>
 		<td><fmt:formatDate value="${conorder.conOrderDate }" pattern="yyyy-MM-dd"/></td>		
 		<td>${conorder.seatNo}</td>
 		

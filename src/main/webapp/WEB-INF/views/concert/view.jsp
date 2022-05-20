@@ -463,7 +463,7 @@ $(document).ready(function() {
 			<span style="font-size: 13px;">${conStar }</span>
 			
 			<!-- 위시리스트 -->
-			<div class="wishList" style="margin-left: 157px; display: inline-block;">
+			<div class="wishList" style="margin-left: 165px; display: inline-block;">
 				<button type="button" id="btnWish"></button>
 			</div> <!-- wishList -->
 			
@@ -707,9 +707,7 @@ $(document).ready(function() {
 		</div>
 		<br><br><br>
 
-
-			<c:import url="conreviewpaging.jsp" />
-
+		<c:import url="conreviewpaging.jsp" />
 		
 		</div>
 	</div>

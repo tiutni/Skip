@@ -21,17 +21,19 @@ public class MyexorderController {
 
 	@Autowired MyexorderService myexorderService;
 
-
-	
-
 	//전시회 주문 조회
 	@GetMapping(value="/mypage/myexorder")
-	public void conlist(HttpSession session, String curPage, Model model) {
+	public String conlist(HttpSession session, String curPage, Model model) {
 		logger.info("/mypage/myexorder");
 
-		int userNo=(Integer)session.getAttribute("userNo");
-		logger.info("/userno:{}",userNo);
+		if(session.getAttribute("userNo") == null) {
+			return "redirect:/user/login";
 
+		}
+
+		int userNo = Integer.parseInt(String.valueOf(session.getAttribute("userNo")));
+
+		logger.info("/userno:{}",userNo);
 
 		//페이징 계산 - curPage값과 userNo을 받아 페이징 객체 생성
 		//serviceimple return paging의 값이 paging으로 반환된다.
@@ -42,13 +44,13 @@ public class MyexorderController {
 
 		//전시회 주문 목록 조회
 		List<ExOrderTicket> exlist =myexorderService.exlist(paging);
-
 		
 		logger.info("리스트{}",exlist);
-
 		
 		model.addAttribute("paging", paging);
 		model.addAttribute("exlist", exlist);
+		
+		return "/mypage/myexorder";
 
 	}
 }

@@ -24,10 +24,16 @@ public class MyExreviewController {
 	@Autowired MyExreviewService myexreviewService;
 
 	@RequestMapping(value="/mypage/myexreviewlist")
-	public void list(HttpSession session, User user, String curPage, Model model) {
+	public String list(HttpSession session, User user, String curPage, Model model) {
 		logger.info("/mypage/myexreviewlist");
+		
+		if(session.getAttribute("userNo") == null) {
+			return "redirect:/user/login";
+			
+		}
 
-		int userNo=(Integer)session.getAttribute("userNo");
+		int userNo = Integer.parseInt(String.valueOf(session.getAttribute("userNo")));
+		
 		logger.info("/userno:{}",userNo);
 
 		//Paging 객체 생성
@@ -40,9 +46,10 @@ public class MyExreviewController {
 //		List<ConReview> reviewList = myreviewService.reviewList(paging);
 		List<HashMap<String, Object>> reviewList = myexreviewService.reviewList(paging);
 
-
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", reviewList);
+		
+		return "/mypage/myexreviewlist";
 
 	}
 }

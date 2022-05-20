@@ -111,15 +111,15 @@ table, th {
 
 <form action="/userinfo/delete" method="post" class="form-horizontal">
 
-<div class="text-center">
+<div>
 	<label for="pw" class="col-sm-4 control-label"></label>
 	<div class="col-sm-5">
-		<input type="password" class="text-center" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요">
+		<input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요">
 	</div>
 </div>
 
 
-<div class="text-center"">
+<div class="text-center">
 	<div class="col-sm-offset-5">
 		<button id="submit" class="btn btn-primary">회원 탈퇴</button>
 		<input type="reset" id="cancel" class="btn btn-danger" value="취소" />
@@ -129,13 +129,6 @@ table, th {
 
 </form>
 </div>
-
-	
-
-
-	
-
-	</div><!-- .container end -->
 
 </section>
 

@@ -23,10 +23,6 @@ import com.skip.www.dto.User;
 import com.skip.www.service.face.MypageService;
 import com.skip.www.util.Paging;
 
-
-
-
-
 @Controller
 public class MypageController {
 
@@ -38,18 +34,20 @@ public class MypageController {
 
 	//회원의 공연,전시 등급 보여주기
 	@GetMapping(value="/mypage/main")
-	public void mypage(HttpSession session, Model model) {
+	public String mypage(HttpSession session, Model model) {
 		logger.info("/mypage/main");
-
-		int userNo=(Integer)session.getAttribute("userNo");
+		
+		if(session.getAttribute("userNo") == null) {
+			return "redirect:/user/login";
+		
+		}
+		
+		int userNo = Integer.parseInt(String.valueOf(session.getAttribute("userNo")));
 		logger.info("/userno:{}",userNo);
-
-
-
+		
 		//공연등급 보기
 		ConUserLevel cul = mypageService.viewConLevel(userNo);
 		logger.info("/ConUserLevelNo:{}",cul);
-
 
 		//전시회 등급 보기
 		ExUserLevel eul =mypageService.viewExLevel(userNo);
@@ -61,7 +59,11 @@ public class MypageController {
 
 		model.addAttribute("cul", cul);
 		model.addAttribute("eul", eul);
+		
+		return "/mypage/main";
+		
 	}
+
 
 
 	//회원 정보 수정
@@ -69,17 +71,22 @@ public class MypageController {
 	public String update(User user, Model model,HttpSession session) {
 		logger.info("/userinfo/update-{}",user);
 
+		if(session.getAttribute("userNo") == null) {
+			return "redirect:/user/login";
+			
+		}
 
-		int userNo=(Integer)session.getAttribute("userNo");
-		logger.info("/userno:{}",userNo);
+		int userNo = Integer.parseInt(String.valueOf(session.getAttribute("userNo")));
+		
+		logger.info("/userno:{}",userNo);			
 
 		//회원정보 조회
-		user=mypageService.viewUserInfo(userNo);
+		user = mypageService.viewUserInfo(userNo);
 		logger.info("조회된 회원 정보{}", user);
 		model.addAttribute("updateUser", user);
 		logger.info("모델값{}",user);
 
-		return "userinfo/update";
+		return "/userinfo/update";
 	}
 
 
@@ -91,7 +98,7 @@ public class MypageController {
 		mypageService.updateUserinfo(updateUser);
 
 
-		return "userinfo/update";
+		return "/userinfo/update";
 	}
 
 
@@ -143,14 +150,15 @@ public class MypageController {
 	public String deleteUserInfo(HttpSession session, User user) {
 		logger.info("/userinfo/delete[POST]-{}",user);
 
-
-
-		int userNo =(int)session.getAttribute("userNo");
-		logger.info("유저번호{}-",userNo);
-
-		user.setUserNo(userNo);
+		if(session.getAttribute("userNo") != null) {
+			user.setUserNo(Integer.parseInt(String.valueOf(session.getAttribute("userNo"))));
+			
+		}
 
 		if( mypageService.deleteUserInfo(user) ) {
+			
+			session.invalidate();
+			
 			return "redirect:/user/logout";
 
 		}
@@ -160,13 +168,15 @@ public class MypageController {
 
 
 	@RequestMapping(value="/mypage/qnalist")
-	public void list(HttpSession session, User user, String curPage, Model model) {
+	public String list(HttpSession session, User user, String curPage, Model model) {
 		logger.info("/mypage/qnalist");
 
-		int userNo=(Integer)session.getAttribute("userNo");
-
-
-
+		if(session.getAttribute("userNo") == null) {
+			return "redirect:/user/login";
+			
+		}
+		
+		int userNo = Integer.parseInt(String.valueOf(session.getAttribute("userNo")));
 
 		//페이징 계산
 		Paging paging = mypageService.getPaging( curPage, userNo );
@@ -175,16 +185,18 @@ public class MypageController {
 		paging.setUserNo(userNo);				
 
 		//게시글 목록 조회
-				List<QnA> list = mypageService.list(paging);
-				for(QnA q : list) {
-					if(q.getQnaMentContent() == "" || q.getQnaMentContent() == null) {
-						q.setQnaMentContent("관리자의 답변을 기다리는 중입니다.");
-					}
-					logger.info("{}", q);
-				}
+		List<QnA> list = mypageService.list(paging);
+		for(QnA q : list) {
+			if(q.getQnaMentContent() == "" || q.getQnaMentContent() == null) {
+				q.setQnaMentContent("관리자의 답변을 기다리는 중입니다.");
+			}
+			logger.info("{}", q);
+		}
 
-				model.addAttribute("paging", paging);
-				model.addAttribute("list", list);
+		model.addAttribute("paging", paging);
+		model.addAttribute("list", list);
+		
+		return "/mypage/qnalist";
 
 	}
 
@@ -223,8 +235,13 @@ public class MypageController {
 		logger.info("{}", qna);
 		logger.info("{}", file);
 
-		qna.setUserNo( (Integer) session.getAttribute("userNo") );
-		logger.info("글쓰기 유저번호-{}", qna);
+		if(session.getAttribute("userNo") != null ) {
+			qna.setUserNo( Integer.parseInt(String.valueOf(session.getAttribute("userNo"))) );
+
+			logger.info("글쓰기 유저번호-{}", qna);
+			
+		}
+
 
 		mypageService.write(qna, file);
 
