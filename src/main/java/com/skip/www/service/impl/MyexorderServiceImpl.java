@@ -35,17 +35,14 @@ public class MyexorderServiceImpl implements MyexorderService{
 		//총 게시글 수 조회
 		int totalCount = myexorderDao.selectCntAll(userNo);
 		
-		
 		logger.info("Paging : {}", page);
 		logger.info("List : {}", listCount);
 
-		
 		//페이징 계산
 		Paging paging = new Paging(totalCount, page, listCount);
 
-		
-
 		return paging;
+		
 	}
 
 	@Override

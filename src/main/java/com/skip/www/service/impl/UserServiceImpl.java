@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import org.apache.commons.mail.HtmlEmail;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +18,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.skip.www.dao.face.UserDao;
-import com.skip.www.dto.ConUserLevel;
-import com.skip.www.dto.ExUserLevel;
 import com.skip.www.dto.User;
 import com.skip.www.service.face.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
 	
-	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-
 	@Autowired UserDao userDao;
 
 	// 로그인
@@ -177,30 +171,30 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 	
-	
+	// 회원 ID 중복 확인
 	public int checkId(User userId) {
 		return userDao.selectCntById(userId);
 	}
 	
+	// 회원 닉네임 중복 확인
 	public int checkNick(User userNick) {
 		return userDao.selectCntByNick(userNick);
 	}
 	
+	// 회원 이메일 중복 확인
 	public int checkEmail(User userEmail) {
 		return userDao.selectCntByEmail(userEmail);
 	}
 	
+	// 회원 주민등록번호 중복 확인
 	public int checkRrn(User userRrn) {
 		return userDao.selectCntByRrn(userRrn);
 	}
 	
+	// 회원 핸드폰 번호 중복 확인
 	public int checkPhone(User userPhone) {
 		return userDao.selectCntByPhone(userPhone);
 	}
-	
-	
-	
-	
 	
 	// 가입된 사용자인지 확인
 	public boolean idCheck(User user) {

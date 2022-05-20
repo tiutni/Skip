@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.skip.www.dto.ConUserLevel;
-import com.skip.www.dto.ExUserLevel;
 import com.skip.www.dto.User;
 import com.skip.www.service.face.UserService;
 
@@ -184,7 +182,6 @@ public class UserController {
 		return userService.checkPhone(user);
 	}
 	
-	
 	// 카카오 회원가입
 	@GetMapping("/user/kakaoJoin")
 	public void kakaoJoin() {
@@ -262,5 +259,6 @@ public class UserController {
 	// 비밀번호 찾기 결과
 	@GetMapping(value = "user/findPwResult")
 	public void findPwResult() {
+		logger.info("/user/findPwResult [GET]");
 	}
 }

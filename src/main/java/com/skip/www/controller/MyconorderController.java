@@ -21,18 +21,19 @@ public class MyconorderController {
 
 	@Autowired MyconorderService myorderService;
 
-
-	
-
 	//공연 주문 조회
 	@GetMapping(value="/mypage/myconorder")
-	public void conlist(HttpSession session, String curPage, Model model) {
+	public String conlist(HttpSession session, String curPage, Model model) {
 		logger.info("/mypage/myconorder");
-
-		int userNo=(Integer)session.getAttribute("userNo");
-
+		
+		if(session.getAttribute("userNo") == null) {
+			return "redirect:/user/login";
+		
+		}
+		
+		int userNo = Integer.parseInt(String.valueOf(session.getAttribute("userNo")));
+			
 		logger.info("/userno:{}",userNo);
-
 
 		//페이징 계산 curPage값과 userNo을 받아 페이징 객체 생성
 		Paging paging = myorderService.getPaging( curPage, userNo );
@@ -46,5 +47,7 @@ public class MyconorderController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("conlist", conlist);
 
+		return "/mypage/myconorder";
+		
 	}
 }

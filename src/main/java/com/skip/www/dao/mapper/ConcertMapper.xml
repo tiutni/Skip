@@ -118,7 +118,7 @@
 		        ORDER BY concnt DESC
 		    ) CON
 		) CONCERT
-		WHERE rnum BETWEEN 1 AND 3
+		WHERE rnum BETWEEN 1 AND 4
 	</select>
 	
 	
@@ -135,7 +135,7 @@
 				ORDER BY con_no DESC
 			) CON
 		) CONCERT
-		WHERE rnum BETWEEN 1 AND 6
+		WHERE rnum BETWEEN 1 AND 8
 	</select>
 	
 	

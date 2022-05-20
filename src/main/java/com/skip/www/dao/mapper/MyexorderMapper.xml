@@ -15,7 +15,7 @@
 	</select>
 	
 	<select id="selectexList" parameterType="com.skip.www.util.Paging" resultType="com.skip.www.dto.ExOrderTicket">
-		SELECT e.ex_title, b.order_date, b.order_status, ei.ex_img_storedname, b.order_no, eot.ex_order_date, eot.ex_order_count 
+		SELECT e.ex_title, e.ex_no, b.order_date, b.order_status, ei.ex_img_storedname, b.order_no, eot.ex_order_date, eot.ex_order_count 
 			FROM exhibition e, bill b, ex_img ei, ex_order_ticket eot
 			WHERE  e.ex_no = ei.ex_no
             AND e.ex_no = eot.ex_no

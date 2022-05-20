@@ -111,12 +111,12 @@ table, th {
 <table class="table table-striped table-hover">
 <thead>
 	<tr>
+		<th style="width: 15%;">주문번호</th>
+		<th style="width: 15%;">전시회이미지</th>
 		<th style="width: 15%;">전시회제목</th>
 		<th style="width: 15%;">주문날짜</th>
 		<th style="width: 15%;">주문상태</th>
-		<th style="width: 15%;">전시회이미지</th>
-		<th style="width: 15%;">주문번호</th>
-		<th style="width: 15%;">전시회주문날짜</th>
+		<th style="width: 15%;">전시회 예약날짜</th>
 		<th style="width: 15%;">총매수</th>
 		
 </tr>
@@ -124,11 +124,11 @@ table, th {
 <tbody>
 <c:forEach items="${exlist }" var="exorder">
 	<tr>
+		<td>${exorder.orderNo }</td>
+		<td><img src="/upload/${exorder.exImgStoredname }" style="width: 40px; height: 60px;"></td>
 		<td><a href="/exhibition/view?exNo=${exorder.exNo }">${exorder.exTitle }</a></td>
 		<td><fmt:formatDate value="${exorder.orderDate }" pattern="yyyy-MM-dd"/></td>		
 		<td>${exorder.orderStatus }</td>
-		<td><img src="/upload/${exorder.exImgStoredname }" style="width: 100px; height:150px;"></td>
-		<td>${exorder.orderNo }</td>
 		<td><fmt:formatDate value="${exorder.exOrderDate }" pattern="yyyy-MM-dd"/></td>		
 		<td>${exorder.exOrderCount}</td>
 		

@@ -115,7 +115,7 @@
 		        ORDER BY excnt DESC
 		    ) EX
 		) EXHIBITION
-		WHERE rnum BETWEEN 1 AND 3
+		WHERE rnum BETWEEN 1 AND 4
 	</select>
 	
 	<select id="selectTop6ExList" resultType="com.skip.www.dto.Exhibition">
@@ -132,7 +132,7 @@
 				ORDER BY ex_no DESC
 			) EX
 		) EXHIBITION
-		WHERE rnum BETWEEN 1 AND 6
+		WHERE rnum BETWEEN 1 AND 8
 	</select>
 	
 	<select id="selectExhibitionByExNo" resultType="com.skip.www.dto.Exhibition" parameterType="int">

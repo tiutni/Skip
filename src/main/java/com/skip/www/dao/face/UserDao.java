@@ -2,8 +2,6 @@ package com.skip.www.dao.face;
 
 import java.util.HashMap;
 
-import com.skip.www.dto.ConUserLevel;
-import com.skip.www.dto.ExUserLevel;
 import com.skip.www.dto.User;
 
 public interface UserDao {

@@ -60,7 +60,7 @@ table, th {
 
 <div class="form-group">
 	<label for="write">작성자</label>
-	<input type="text" id="write" value="${userId }" class="form-control" readonly="readonly"> <!-- userId를 가져온다 -->
+	<input type="text" id="write" value="${userNo }" class="form-control" readonly="readonly"> <!-- userId를 가져온다 -->
 </div>
 
 <div class="form-group">

@@ -57,7 +57,7 @@
 
 <insert id="insertInfo" parameterType="com.skip.www.dto.User">
 	INSERT INTO user_tb(user_no, user_id, user_pw, user_nick, user_email, user_name, user_rrn, user_addr, user_telecom, user_phone)
-	VALUES(user_seq.nextval, #{userId}, #{userPw}, #{userNick}, #{userEmail}, #{userName}, #{userRrn}, #{userAddr}, #{userTelecom}, #{userPhone})
+	VALUES(user_no_seq.nextval, #{userId}, #{userPw}, #{userNick}, #{userEmail}, #{userName}, #{userRrn}, #{userAddr}, #{userTelecom}, #{userPhone})
 </insert>
 
 <select id="selectCntByNamePhone" resultType="int" parameterType="com.skip.www.dto.User">
