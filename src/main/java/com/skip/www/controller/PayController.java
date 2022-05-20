@@ -63,7 +63,7 @@ public class PayController {
 		model.addAttribute("selectedSeat", selectedSeat);
 		model.addAttribute("price", price);
 		
-		return "/pay/info";
+		return "/pay/conInfo";
 	}
 	
 	// 주문자정보 및 선택한 주문정보 조회 - 전시
@@ -103,7 +103,7 @@ public class PayController {
 		model.addAttribute("count", count);
 		model.addAttribute("price", price);
 		
-		return "/pay/info";
+		return "/pay/exInfo";
 	}
 	
 	@PostMapping("/pay/complete")
