@@ -15,8 +15,11 @@ $(document).ready(function(){
 		location.href="/mypage/qnalist?search="+$("#search").val();
 	})
 
+	$("#btnWrite").click(function() {
+		location.href = "/mypage/qnawrite"
+	})	
 
-
+	
 	$(".cwa-tab > li").click(function() {
 		$(location).attr("href", $(this).find("a").attr("href"))
 	})
@@ -153,12 +156,9 @@ table, th {
 		</tbody>
 		</table>
 		
-		<span class="pull-right">total : ${paging.totalCount }</span>
+		<button id="btnWrite" class="btn btn-primary pull-right">문의하기</button>
+		<span class="pull-left">total : ${paging.totalCount }</span>
 		<div class="clearfix"></div>
-		
-		<div class="text-center">
-			<button id="btnWrite" class="btn btn-primary">문의하기</button>
-		</div>
 
 	</div>
 	

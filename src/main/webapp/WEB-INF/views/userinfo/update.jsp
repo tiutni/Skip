@@ -14,8 +14,14 @@
 
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
-		location.href = "/mypage/myconorder"
+		location.href = "/userinfo/update"
 	})
+$(document).ready(function() {
+	
+	$("#cancel").click(function() {
+		history.go(-1)
+	})
+})	
 	
 	$(".cwa-tab > li").click(function() {
 		$(location).attr("href", $(this).find("a").attr("href"))
@@ -106,11 +112,10 @@ table, th {
 
 <script type="text/javascript">
 $(document).ready(function() {
-	
+
 	//비밀번호 유효성 검사
 	var userPwValidation = false;
 	$("#userPw").blur(function checkPw() {
-		
 		var userPw = $("#userPw").val();
 		var regularExpression = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
@@ -132,28 +137,28 @@ $(document).ready(function() {
 
 
 
-//비밀번호 확인 유효성 검사
+	//비밀번호 확인 유효성 검사
 	var userPwDoubleValidation = false;
 	$("#userPwDouble").blur(function checkPwRe() {
 	
-	var userPw = $("#userPw").val();
-	var userPwDouble = $("#userPwDouble").val();
+		var userPw = $("#userPw").val();
+		var userPwDouble = $("#userPwDouble").val();
 	
-	if (userPw != userPwDouble) {
-		$("#userPwDoubleCheck").html("서로 다른 비밀번호입니다");
-		$("#userPwDoubleCheck").attr("class", "text-warning");
-		userPwDoubleValidation = false;
-	} else {
-		$("#userPwDoubleCheck").html("");
-		userPwDoubleValidation = true;
-	}
+		if (userPw != userPwDouble) {
+			$("#userPwDoubleCheck").html("서로 다른 비밀번호입니다");
+			$("#userPwDoubleCheck").attr("class", "text-warning");
+			userPwDoubleValidation = false;
+		} else {
+			$("#userPwDoubleCheck").html("");
+			userPwDoubleValidation = true;
+		}
 	
-	if(userPwDouble.length == 0) {
+		if(userPwDouble.length == 0) {
 		$("#userPwCheck").html("비밀번호 확인을 입력하세요");
 		$("#userPwCheck").attr("class", "text-warning");
 		userPwDoubleValidation =  false;
- 	}
-})
+ 		}
+	})
 
 
 	// 닉네임 유효성 검사 및 중복 검사
@@ -237,7 +242,28 @@ $(document).ready(function() {
 	     }
 	})
 
-	
+	// 이름 유효성 검사
+	var userNameValidation = false;
+	$("#userName").blur(function checkName() {
+		
+		var userName = $("#userName").val();
+		var regularExpression = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+		if (!regularExpression.test(userName)) {
+			$("#userNameCheck").html("한글로 입력하세요.");
+			$("#userNameCheck").attr("class", "text-warning");
+			userNameValidation = false;
+		} else {
+			$("#userNameCheck").html("");
+			userNameValidation = true;
+		}
+		
+		if($("#userName").val().length == 0) {
+			$("#userNameCheck").html("이름을 입력하세요.");
+			$("#userNameCheck").attr("class", "text-warning");
+			userNameValidation = false;
+     	}
+	})	
 	// 주민등록번호 유효성 검사 및 중복 검사
 	var userRrnValidation = false;
 	$("#userRrn").blur(function checkRrn() {
@@ -317,6 +343,52 @@ $(document).ready(function() {
 			userPhoneValidation = false;
 		}
 	});
+	
+	
+	// 주소1 유효성 검사
+	var userAddr1Validation = false;
+	$("#userAddr1").blur(function checkAddr1() {
+		
+		var userAddr1 = $("#userAddr1").val();
+		
+		if(userAddr1.length == 0) {
+			$("#userAddrCheck").html("주소1 입력을 확인을 입력하세요");
+			$("#userAddrCheck").attr("class", "text-warning");
+			userAddr1Validation =  false;
+     	}
+	})
+	
+	// 주소2 유효성 검사
+	var userAddr2Validation = false;
+	$("#userAddr2").blur(function checkAddr2() {
+		
+		var userAddr2 = $("#userAddr2").val();
+		
+		if(userAddr2.length == 0) {
+			$("#userAddrCheck").html("주소2 입력을 확인을 입력하세요");
+			$("#userAddrCheck").attr("class", "text-warning");
+			userAddr2Validation =  false;
+     	}
+	})
+	
+	// 카카오 주소 찾기
+	document.getElementById("userAddrSearch").addEventListener("click", function(){
+		new daum.Postcode({
+			oncomplete: function(data) {
+			document.getElementById("userAddr1").value = data.address;
+			}
+		}).open();
+	});
+	
+	// onsubmit 조건
+	$("#formBtn").click(function btnClick() {
+		if (userIdValidation && userPwValidation && userPwDoubleValidation && userNickValidation && userEmailValidation && userNameValidation && userRrnValidation && userPhoneValidation) {
+			$("#form").attr("onsubmit","return true");
+		} else {
+			$("#form").attr("onsubmit","return false");
+		}
+	})	
+})	
 </script>
 
 <style type="text/css">
@@ -364,10 +436,11 @@ td:nth-child(2) {
 	<div class="col-sm-5">
 		<input type="password" class="form-control" id="userPw" value="${updateUser.userPw }" name="userPw" >
 	</div>
+	<div class="check" id="userPwCheck"></div>
 </div>
 
 <div class="form-group">
-	<label for="userPwDouble">비밀번호 확인</label>
+	<label for="userPwDouble" class="col-sm-4 control-label">비밀번호 확인</label>
 	<div class="col-sm-5">
 		<input type="password" class="form-control" id="userPwDouble" name="userPwDouble" value="${updateUser.userPw }">
 	</div>
@@ -378,6 +451,8 @@ td:nth-child(2) {
 	<label for="userNick" class="col-sm-4 control-label">닉네임</label>
 	<div class="col-sm-5">
 		<input type="text" class="form-control" id="userNick" value="${updateUser.userNick }" name="userNick" >
+	<div class="check" id="userNickCheck"></div>
+	
 	</div>
 </div>
 
@@ -385,6 +460,8 @@ td:nth-child(2) {
 	<label for="userEmail" class="col-sm-4 control-label">이메일</label>
 	<div class="col-sm-5">
 		<input type="text" class="form-control" id="userEmail"  value="${updateUser.userEmail }" name="userEmail"  >
+		<div class="check" id="userEmailCheck"></div>
+	
 	</div>
 </div>
 
@@ -393,6 +470,8 @@ td:nth-child(2) {
 	<div class="col-sm-5">
 		<input type="text" class="form-control" id="userName" value="${updateUser.userName }" name="userName" >
 	</div>
+	<div class="check" id="userNameCheck"></div>
+	
 </div>
 
 <div class="form-group">
@@ -400,6 +479,8 @@ td:nth-child(2) {
 	<div class="col-sm-5">
 		<input type="text" class="form-control" id="userRrn"  value="${updateUser.userRrn }" name="userRrn" readonly="readonly" >
 	</div>
+	<div class="check" id="userRrnCheck"></div>
+	
 </div>
 
 <div class="form-group">
@@ -430,7 +511,7 @@ td:nth-child(2) {
 
 <div class="form-group">
 	<div class="col-sm-offset-5">
-		<button id="submit" class="btn btn-primary">회원정보 수정</button>
+		<button id="submit" class="btn btn-primary"  >회원정보 수정</button>
 		<input type="reset" id="cancel" class="btn btn-danger" value="취소" />
 	</div>
 </div>
