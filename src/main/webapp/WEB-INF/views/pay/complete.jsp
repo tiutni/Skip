@@ -35,12 +35,13 @@ div{
 									주문에 대한 상세정보는 <a href="/mypage/main">마이페이지</a>에서 확인하실 수 있습니다.
 									
 									<hr>
-									
-									주문 일자 : ${bill.orderDate}
+<%-- 									테스트 정보 : ${conNo } --%>
+									주문번호 : ${merchant_uid } 
+<%-- 									주문 일자 : ${bill.orderDate} --%>
 									
 									<br>
 									
-									주문 번호 : ${bill.orderNo}
+<%-- 									주문 번호 : ${bill.orderNo} --%>
                                    
                                 </p>
                             </div>

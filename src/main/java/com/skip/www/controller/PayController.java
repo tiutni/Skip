@@ -1,33 +1,14 @@
 package com.skip.www.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.siot.IamportRestClient.IamportClient;
-import com.siot.IamportRestClient.exception.IamportResponseException;
-import com.siot.IamportRestClient.response.IamportResponse;
-import com.siot.IamportRestClient.response.Payment;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.Exhibition;
 import com.skip.www.dto.User;
@@ -39,15 +20,6 @@ public class PayController {
 	private static final Logger logger = LoggerFactory.getLogger(PayController.class);
 	
 	@Autowired PayService payService;
-	
-	private IamportClient api;
-	
-	// 생성자 - IMPORT REST API 기본 설정
-	public PayController() {
-    	// REST API 키와 REST API secret 를 아래처럼 순서대로 입력한다.
-		this.api = new IamportClient("8367395191713875","fa7bd1b727d086ff1a5c93019047207f6115b0cb5323c53bb754f7a78ddf820e9591b6833ab607e3");
-	}
-	
 	
 	// 주문자정보 및 선택한 주문정보 조회 - 공연
 	@PostMapping("/pay/con")
@@ -79,10 +51,12 @@ public class PayController {
 		// 공연번호로 공연 조회
 		Concert con = payService.selectConTitle(conNo);
 		
+		model.addAttribute("userNo", userNo);
 		model.addAttribute("userName", buyer.getUserName());
 		model.addAttribute("userEmail", buyer.getUserEmail());
 		model.addAttribute("userPhone", buyer.getUserPhone());
 		model.addAttribute("userAddr", buyer.getUserAddr());
+		model.addAttribute("conNo", con.getConNo());
 		model.addAttribute("conTitle", con.getConTitle());
 		model.addAttribute("date", date);
 		model.addAttribute("round", round);
@@ -118,10 +92,12 @@ public class PayController {
 		// 전시번호로 전시회 조회
 		Exhibition ex = payService.selectExTitle(exNo);
 		
+		model.addAttribute("userNo", userNo);
 		model.addAttribute("userName", buyer.getUserName());
 		model.addAttribute("userEmail", buyer.getUserEmail());
 		model.addAttribute("userPhone", buyer.getUserPhone());
 		model.addAttribute("userAddr", buyer.getUserAddr());
+		model.addAttribute("exNo", ex.getExNo());
 		model.addAttribute("exTitle", ex.getExTitle());
 		model.addAttribute("date", date);
 		model.addAttribute("count", count);
@@ -130,25 +106,28 @@ public class PayController {
 		return "/pay/info";
 	}
 	
-	
-	// IMPORT 결제 검증
-	@ResponseBody
-	@RequestMapping(value="/verifyIamport/{imp_uid}")
-	public IamportResponse<Payment> paymentByImpUid(
-			Model model
-			, Locale locale
-			, HttpSession session
-			, @PathVariable(value= "imp_uid") String imp_uid) throws IamportResponseException, IOException
-	{	
-			return api.paymentByImpUid(imp_uid);
-	}
-	
 	@PostMapping("/pay/complete")
-	public void successPay() {
+	public void successPay(
+//			int conNo
+//			, Date date
+//			, int round
+			 String merchant_uid
+			, int paid_amount
+			, String apply_num
+			, Model model)
+	{
+//		model.addAttribute("userNo", userNo);
+//		model.addAttribute("conNo", conNo);
+//		model.addAttribute("conTitle", con.getConTitle());
+//		model.addAttribute("date", date);
+//		model.addAttribute("round", round);
+//		model.addAttribute("selectedSeat", selectedSeat);
+		model.addAttribute("merchant_uid", merchant_uid);
+		model.addAttribute("paid_amount", paid_amount);
+		model.addAttribute("apply_num", apply_num);
 		
 		
 	}
-	
 	
 
 }
