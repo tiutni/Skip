@@ -518,4 +518,77 @@
 	</delete>
 
 
+	<!-- 공연 좌석-->
+	<select id="selectSeatList" resultMap="Seat" parameterType="com.skip.www.util.Paging">
+		SELECT * FROM (
+			SELECT rownum rnum, B.* FROM (
+			
+				SELECT
+					seat_seq
+					, seat_level
+					, seat_price
+					, seat_no
+					, con_round_no
+				FROM SEAT
+				WHERE con_round_no = #{conRoundNo} 
+				ORDER BY seat_no DESC
+				
+			) B
+		) SEAT
+		WHERE rnum BETWEEN #{startNo } AND #{endNo }
+	</select>
+	
+	<select id="selectSeatCntAll" resultType="int" parameterType="com.skip.www.util.Paging">
+		SELECT count(*) FROM SEAT
+		WHERE con_round_no = #{conRoundNo} 
+	</select>
+	
+	<select id="selectSeat" resultMap="Seat" parameterType="com.skip.www.dto.Seat">
+		SELECT
+			seat_seq
+			, seat_level
+			, seat_price
+			, seat_no
+			, con_round_no
+			FROM SEAT
+		WHERE seat_seq = #{seatSeq}
+	</select>
+	
+	<insert id="insertSeat" parameterType="com.skip.www.dto.Seat">
+		<selectKey order="BEFORE" resultType="int" keyProperty="seatSeq">
+			SELECT seat_seq.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO SEAT ( 
+			seat_seq
+			, seat_level
+			, seat_price
+			, seat_no
+			, con_round_no
+		)
+		VALUES ( 
+			#{seatSeq}
+			, #{seatLevel}
+			, #{seatPrice}
+			, #{seatNo}
+			, #{conRoundNo}
+		)
+	</insert>
+	
+	<update id="updateSeat" parameterType="com.skip.www.dto.Seat">
+		UPDATE SEAT
+		SET seat_seq = #{seatSeq}
+			, seat_level = #{seatLevel}
+			, seat_level = #{seatPrice}
+			, seat_level = #{seatNo}
+			, con_round_no = #{conRoundNo}
+		WHERE seat_seq = #{seatSeq}
+	</update>
+
+	<delete id="deleteSeat" parameterType="com.skip.www.dto.Seat">
+		DELETE SEAT
+		WHERE seat_seq = #{seatSeq}
+	</delete>
+
+
 </mapper>

@@ -27,6 +27,8 @@ public class Paging {
 	
 	private int conNo;		//공연 게시글 번호	- 공연 전체 조회
 	
+	private int conRoundNo;	//공연 회차 번호	- 공연 전체 조회
+	
 	private int exNo;		//전시 게시글 번호	- 전시회 전체 조회
 	
 	
@@ -106,7 +108,7 @@ public class Paging {
 		return "Paging [curPage=" + curPage + ", totalCount=" + totalCount + ", listCount=" + listCount + ", totalPage="
 				+ totalPage + ", pageCount=" + pageCount + ", startPage=" + startPage + ", endPage=" + endPage
 				+ ", startNo=" + startNo + ", endNo=" + endNo + ", search=" + search + ", userNo=" + userNo + ", sort="
-				+ sort + ", conNo=" + conNo + ", exNo=" + exNo + "]";
+				+ sort + ", conNo=" + conNo + ", conRoundNo=" + conRoundNo + ", exNo=" + exNo + "]";
 	}
 
 	public int getCurPage() {
@@ -213,6 +215,14 @@ public class Paging {
 		this.conNo = conNo;
 	}
 
+	public int getConRoundNo() {
+		return conRoundNo;
+	}
+
+	public void setConRoundNo(int conRoundNo) {
+		this.conRoundNo = conRoundNo;
+	}
+
 	public int getExNo() {
 		return exNo;
 	}
@@ -220,5 +230,5 @@ public class Paging {
 	public void setExNo(int exNo) {
 		this.exNo = exNo;
 	}
-	
+
 }

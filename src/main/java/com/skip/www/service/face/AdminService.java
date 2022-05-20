@@ -11,6 +11,7 @@ import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
+import com.skip.www.dto.Seat;
 import com.skip.www.util.Paging;
 
 public interface AdminService {
@@ -288,5 +289,60 @@ public interface AdminService {
 	 * @param conRound - 삭제할 게시글의 글번호
 	 */
 	public void deleteConRound(ConRound conRound);
+	
+	
+	//공연 좌석--------------------------------------------------------------
+
+	/**
+	 * 페이징이 적용된 게시글 목록 조회
+	 * 
+	 * @param paging - 페이징 정보 객체
+	 * @return 페이징이 적용된 게시글 목록
+	 */
+	public List<Seat> listSeat(Paging paging);
+
+	/**
+	 * 게시글 목록을 위한 페이징 객체를 생성한다
+	 * 
+	 * 	파라미터 객체의 curPage(현재 페이지)
+	 * 	DB에서 조회한 totalCount(총 게시글 수)
+	 * 
+	 * 	두 가지 데이터를 활용하여 페이징객체를 생성하여 반환한다
+	 * 
+	 * @param paramData - curPage를 저장하고있는 객체
+	 * @return 계산이 완료된 Paging객체
+	 */
+	public Paging getPagingSeat(Paging paramData);
+	
+	/**
+	 * 게시글 상세보기
+	 * 
+	 * @param viewSeat - 상세 조회할 게시글 번호 객체
+	 * @return 조회된 상세 게시글 객체
+	 */
+	public Seat viewSeat(Seat viewSeat);
+	
+	/**
+	 * 게시글 정보, 첨부파일을 함께 처리한다
+	 * 
+	 * @param seat - 게시글 정보 DTO
+	 * @param fileConImg - 첨부파일 정보 DTO
+	 * @param fileConSeatImg - 첨부파일 정보 DTO
+	 */
+	public void writeSeat(Seat seat);
+
+	/**
+	 * 게시글 수정 처리
+	 * 
+	 * @param seat - 게시글 정보 객체
+	 */
+	public void updateSeat(Seat seat);
+
+	/**
+	 * 게시글 + 첨부파일 삭제 처리
+	 * 
+	 * @param seat - 삭제할 게시글의 글번호
+	 */
+	public void deleteSeat(Seat seat);
 
 }

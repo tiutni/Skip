@@ -23,6 +23,7 @@ import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
+import com.skip.www.dto.Seat;
 import com.skip.www.service.face.AdminService;
 import com.skip.www.util.Paging;
 
@@ -125,7 +126,7 @@ public class AdminController {
 	public void error() {}
 
 	
-	//전시
+	//전시------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(value="/admin/exhibition/list")
 	public void listExhibition(Paging paramData, Model model) {
@@ -225,7 +226,7 @@ public class AdminController {
 	}
 	
 	
-	//공연
+	//공연------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(value="/admin/concert/list")
 	public void listConcert(Paging paramData, Model model) {
@@ -343,7 +344,7 @@ public class AdminController {
 	}
 	
 	
-	//공연 회차
+	//공연 회차------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(value="/admin/conRound/list")
 	public void listConRound(Paging paramData, Model model) {
@@ -407,6 +408,76 @@ public class AdminController {
 	@RequestMapping("/admin/conRound/delete")
 	public String deleteConRound(HttpServletRequest request, ConRound conRound) {
 		adminService.deleteConRound(conRound);
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:"+ referer;
+	}
+	
+	
+	//공연 좌석------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping(value="/admin/seat/list")
+	public void listSeat(Paging paramData, Model model) {
+		logger.info("/admin/seat/list");
+		
+		//페이징 계산
+		Paging paging = adminService.getPagingSeat( paramData );
+		logger.info("{}", paging);
+		
+		//게시글 목록 조회
+		List<Seat> list = adminService.listSeat(paging);
+		for(Seat b : list) {
+			logger.info("{}", b);
+		}
+
+		model.addAttribute("paging", paging);
+		model.addAttribute("list", list);
+	}
+
+	@GetMapping("/admin/seat/write")
+	public void writeSeat(int conNo, Model model) {
+		logger.info("/admin/seat/update - {}", conNo);		
+		model.addAttribute("seatConNo", conNo);
+	}
+	
+	@PostMapping("/admin/seat/write")
+	public String writeProcessSeat(Seat seat) {
+		logger.info("/admin/seat/write [POST]");
+		logger.info("{}", seat);
+		
+		adminService.writeSeat(seat);
+		
+		return "redirect:/admin/seat/list?conRoundNo="+seat.getConRoundNo();
+	}
+	
+	@GetMapping("/admin/seat/update")
+	public String updateSeat(Seat seat, Model model) {
+		logger.info("/admin/seat/update - {}", seat);		
+		
+		//잘못된 게시글 번호 처리
+		if( seat.getSeatSeq() < 1 ) {
+			return "redirect:/admin/seat/list";
+		}
+		
+		//수정할 게시글의 상세보기
+		seat = adminService.viewSeat(seat);
+		model.addAttribute("updateSeat", seat);
+		
+		return "/admin/seat/update";
+	}
+	
+	@PostMapping("/admin/seat/update")
+	public String updateProcessSeat(Seat seat) {
+		logger.info("/admin/seat/update [POST] - {}", seat);
+		
+		adminService.updateSeat(seat); //게시글+첨부파일 수정
+		
+		return "redirect:/admin/seat/list?conRoundNo="+seat.getConRoundNo();
+	}
+	
+	@RequestMapping("/admin/seat/delete")
+	public String deleteSeat(HttpServletRequest request, Seat seat) {
+		adminService.deleteSeat(seat);
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:"+ referer;

@@ -9,56 +9,34 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
-function btnUnActivate(conNo){
-    if(confirm("공연을 종료하시겠습니까?") == true){
-        location.href="/admin/concert/unactivate?conNo="+ conNo;
-    }else{
-        return;
-    }
-}  
-
-function btnActivate(conNo){
-    if(confirm("공연을 재개하시겠습니까?") == true){
-        location.href="/admin/concert/activate?conNo="+ conNo;
-    }else{
-        return;
-    }
+function btnUpdate(seatSeq){
+	location.href="/admin/seat/update?seatSeq="+ seatSeq;
 }
 
-function btnUpdate(conNo){
-    if(confirm("공연을 수정하시겠습니까?") == true){
-        location.href="/admin/concert/update?conNo="+ conNo;
-    }else{
-        return;
-    }
-}
-
-function btnRound(conNo){
-    if(confirm("공연 회차 목록을 조회하시겠습니까?") == true){
-		location.href="/admin/conRound/list?conNo="+ conNo;
-    }else{
-        return;
-    }
-}
-
-function btnDelete(conNo){
+function btnDelete(seatSeq){
     if(confirm("공연을 삭제하시겠습니까?") == true){
-        location.href="/admin/concert/delete?conNo="+ conNo;
+        location.href="/admin/seat/delete?seatSeq="+ seatSeq;
     }else{
         return;
     }
+}
+
+function btnWrite(conRoundNo){
+	location.href = "/admin/seat/write?conRoundNo="+ conRoundNo;
 }
 
 $(document).ready(function() {
-	//글쓰기 버튼 클릭
-	$("#btnWrite").click(function() {
-		location.href = "/admin/concert/write"
+
+	//공연 목록 보기 버튼 클릭
+	$("#btnConcertList").click(function() {
+		location.href = "/admin/concert/list"
+	});
+
+	//공연 회차 목록 보기 버튼 클릭
+	$("#btnConRoundList").click(function() {
+		location.href = "/admin/conRound/list?conNo="+ conNo;
 	});
 	
-	//검색 버튼 클릭
-	$("#btnSearch").click(function() {
-		location.href="/admin/concert/list?search="+$("#search").val();
-	});
 });
 </script>
 
@@ -76,17 +54,17 @@ table, th, td {
 <div id="layoutSidenav_content">
 	<main>
 
-		<!-- concert -->
+		<!-- seat -->
 		<div class="container-fluid px-4">
-			<h1 class="mt-4">공연 관리</h1>
+			<h1 class="mt-4">공연 좌석 관리</h1>
 			
 			<ol class="breadcrumb mb-4">
-			    <li class="breadcrumb-item active">concert Management</li>
+			    <li class="breadcrumb-item active">seat Management</li>
 			</ol>
 
 			<div class="card mb-4">
 			    <div class="card-header">
-			        <i class="fas fa-table me-1"></i>공연 목록
+			        <i class="fas fa-table me-1"></i>공연 좌석 목록
 			    </div>
 		
 				<!-- 목록 -->
@@ -96,41 +74,24 @@ table, th, td {
 						<thead>
 							<tr>
 								<th style="width: 5%; text-align: center; vertical-align: middle;">번호</th>
-								<th style="width: 30%; text-align: center; vertical-align: middle;">제목</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">작성자</th>
-								<th style="width: 15%; text-align: center; vertical-align: middle;">작성일</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">회차</th>
+								<th style="width: 30%; text-align: center; vertical-align: middle;">등급</th>
+								<th style="width: 10%; text-align: center; vertical-align: middle;">금액</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">수정</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
 						
 						<tbody>
-						<c:forEach items="${list }" var="concert">
+						<c:forEach items="${list }" var="seat">
 							<tr>
-								<td style="vertical-align: middle;">${concert.conNo }</td>
-								<td style="vertical-align: middle; text-align: left;"><a href="/concert/view?conNo=${concert.conNo }">${concert.conTitle }</a></td>
-								<td style="vertical-align: middle;">${concert.adminId }</td>
-								<td style="vertical-align: middle;"><fmt:formatDate value="${concert.conRegDate }" pattern="yy-MM-dd"/></td>
+								<td style="vertical-align: middle;">${seat.seatNo }</td>
+								<td style="vertical-align: middle;">${seat.seatLevel }</td>
+								<td style="vertical-align: middle;">${seat.seatPrice }원</td>
 								<td style="vertical-align: middle;">
-									<button onclick="btnRound(${concert.conNo})" id="btnRound" class="btn btn-primary">회차</button>
+									<button onclick="btnUpdate(${seat.seatSeq})" id="btnUpdate" class="btn btn-primary">수정</button>
 								</td>
 								<td style="vertical-align: middle;">
-									<button onclick="btnUpdate(${concert.conNo})" id="btnUpdate" class="btn btn-primary">수정</button>
-								</td>
-								<td style="vertical-align: middle;">
-									<c:choose>
-										<c:when test="${ 1 == concert.conActivate }">
-											<button onclick="btnUnActivate(${concert.conNo})" id="btnUnActivate" class="btn btn-secondary">종료하기</button>
-										</c:when>
-										<c:otherwise>
-											<button onclick="btnActivate(${concert.conNo})" id="btnActivate" class="btn btn-primary">재개하기</button>
-										</c:otherwise>
-									</c:choose>
-								</td>
-								<td style="vertical-align: middle;">
-									<button onclick="btnDelete(${concert.conNo})" id="btnDelete" class="btn btn-primary">삭제</button>
+									<button onclick="btnDelete(${seat.seatSeq})" id="btnDelete" class="btn btn-primary">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -138,7 +99,11 @@ table, th, td {
 					</table>
 					
 					<!-- 글쓰기 버튼 -->
-					<div><button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button></div>
+					<div>
+						<button id="btnConcertList" class="btn btn-primary pull-right">공연목록</button>
+						<button id="btnConRoundList" class="btn btn-primary pull-right">회차목록</button>
+						<button onclick="btnWrite(${paging.conRoundNo})" id="btnWrite" class="btn btn-primary pull-right">좌석 추가</button>
+					</div>
 					
 					<!-- 페이징 -->
 					<div class="clearfix"></div>
@@ -146,7 +111,7 @@ table, th, td {
 				</div>
 				
 				
-				<c:import url="/WEB-INF/views/admin/concert/paging.jsp" />
+				<c:import url="/WEB-INF/views/admin/seat/paging.jsp" />
 	
 			</div>
 		</div>

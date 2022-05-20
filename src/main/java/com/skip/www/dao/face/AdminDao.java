@@ -9,6 +9,7 @@ import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
+import com.skip.www.dto.Seat;
 import com.skip.www.util.Paging;
 
 public interface AdminDao {
@@ -303,5 +304,55 @@ public interface AdminDao {
 	 * @param conRound - 삭제할 게시글의 글번호
 	 */
 	public void deleteConRound(ConRound conRound);
+	
+	
+	//공연좌석--------------------------------------------------------------
+	
+	/**
+	 * 페이징을 적용하여 게시글 목록 조회
+	 * 
+	 * 	paging.startNo, paging.endNo를 이용하여 rownum을 조회한다
+	 * 
+	 * @param paging - 페이징 정보 객체
+	 * @return 페이징이 적용된 게시글 목록
+	 */
+	public List<Seat> selectSeatList(Paging paging);
+
+	/**
+	 * 전체 게시글 수를 조회한다
+	 * 
+	 * @param paramData - search를 포함한 페이징 객체
+	 * @return 총 게시글 수
+	 */
+	public int selectSeatCntAll(Paging paramData);
+
+	/**
+	 * 게시글 번호를 이용하여 게시글을 조회한다
+	 * 
+	 * @param viewSeat - 조회하려는 게시글 번호
+	 * @return 조회된 게시글 정보
+	 */
+	public Seat selectSeat(Seat viewSeat);
+
+	/**
+	 * 게시글 정보를 삽입한다
+	 * 
+	 * @param seat - 삽입할 게시글 정보
+	 */
+	public void insertSeat(Seat seat);
+	
+	/**
+	 * 게시글 정보 수정
+	 * 
+	 * @param seat - 수정할 내용을 가진 게시글 객체
+	 */
+	public void updateSeat(Seat seat);
+
+	/**
+	 * 게시글 정보 삭제
+	 * 
+	 * @param seat - 삭제할 게시글의 글번호
+	 */
+	public void deleteSeat(Seat seat);
 	
 }

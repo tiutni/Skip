@@ -20,6 +20,7 @@ import com.skip.www.dto.ConSeatImg;
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.ExImg;
 import com.skip.www.dto.Exhibition;
+import com.skip.www.dto.Seat;
 import com.skip.www.service.face.AdminService;
 import com.skip.www.util.Paging;
 
@@ -539,12 +540,65 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
-	
 	@Override
 	@Transactional
 	public void writeConRound(ConRound conRound) {
 		
 		adminDao.insertConRound(conRound);
+	
+	}
+
+
+	
+	//공연 좌석--------------------------------------------------------------
+	
+	@Override
+	public List<Seat> listSeat(Paging paging) {
+		
+		return adminDao.selectSeatList(paging);
+	}
+	
+	@Override
+	public Paging getPagingSeat(Paging paramData) {
+		
+		//총 게시글 수 조회
+		int totalCount = adminDao.selectSeatCntAll(paramData);
+		
+		//페이징 계산
+		Paging paging = new Paging(totalCount, paramData.getCurPage());
+		paging.setSearch(paramData.getSearch());
+		paging.setConNo(paramData.getConNo());
+
+		return paging;
+	}
+
+	@Override
+	public Seat viewSeat(Seat viewSeat) {
+		
+		//상세보기 조회 결과 리턴
+		return adminDao.selectSeat(viewSeat);
+	}
+	
+	@Override
+	public void updateSeat(Seat seat) {
+
+		adminDao.updateSeat(seat);
+		
+	}
+
+	@Override
+	@Transactional
+	public void deleteSeat(Seat seat) {
+		
+		adminDao.deleteSeat(seat);
+		
+	}
+
+	@Override
+	@Transactional
+	public void writeSeat(Seat seat) {
+		
+		adminDao.insertSeat(seat);
 	
 	}
 
