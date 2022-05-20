@@ -65,7 +65,7 @@ td:not(.info) {
 		
 		<br><br><br>
 		<div class="text-center">
-			<button id="btnList" class="btn btn-primary">목록</button>
+			<button id="btnList" class="flex-c-m stext-101 cl0 bg3 hov-btn3 p-lr-15 trans-04 pointer m-b-5">목록</button>
 		</div>
 		
 

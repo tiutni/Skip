@@ -14,36 +14,52 @@
 
 <script type="text/javascript">
 
+// var conTitle = '${conTitle}';
+// var exTitle = '${exTitle}';
+// var userNo = '${userNo}';
+// var conNo = '${conNo}';
+// var exNo = '${exNo}';
+// var date = '${date}';
+// var round = '${round}';
+// for(int i=0; i<selectedSeat)
+// var selectedSeat = '${selectedSeat}';
+
 function requestPay(){
+	
+	console.log("requestPay() 시작!!!!!!!!!!!!!!!!")
+// 	console.log('conTitle')
 	
 	var IMP = window.IMP;
 	IMP.init('imp59933008'); // SKIP 가맹점 키 (아임포트 관리자 페이지 -> 내정보 -> 가맹점식별코드)
 
 
-	IMP.request_pay({
+
+// 	if('${conTitle}'){
+	//공연 결제일 경우
+	
+		IMP.request_pay({
 			
- 		    pg : 'html5_inicis', 								// PG사 (이니시스(웹표준결제))
- 		    pay_method : 'card',								// 결제방식
- 		    merchant_uid : 'merchant_' + new Date().getTime(),	// 고유주문번호
- 		    name : '${exTitle}'+'${date}',									// 주문명
- 		    amount : '${price }', 								// 결제금액
- 		    buyer_email : '${userEmail }',						// 주문자 Email
- 		    buyer_name : '${userName }',						// 주문자명
- 		    buyer_tel : '${userPhone }',						// 주문자 연락처
- 		    buyer_addr : '${userAddr }',						// 주문자 주소
+		    pg : 'html5_inicis', 								// PG사 (이니시스(웹표준결제))
+		    pay_method : 'card',								// 결제방식
+		    merchant_uid : 'merchant_' + new Date().getTime(),	// 고유주문번호
+		    name : '${conTitle}'+'${date}',									// 주문명
+		    amount : '${price }', 								// 결제금액
+		    buyer_email : '${userEmail }',						// 주문자 Email
+		    buyer_name : '${userName }',						// 주문자명
+		    buyer_tel : '${userPhone }',						// 주문자 연락처
+		    buyer_addr : '${userAddr }',						// 주문자 주소
 		    
 		}, function(rsp) { // callback함수
 			console.log(rsp);
 			
- 			var result = '';
- 		    if ( rsp.success ) { // 결제 성공 시 로직
-		    	
- 		        var msg = '결제가 완료되었습니다.';
- 		        msg += ' , 고유ID : ' + rsp.imp_uid;
- 		        msg += ' , 상점 거래ID : ' + rsp.merchant_uid;
- 		        msg += ' , 결제 금액 : ' + rsp.paid_amount;
- 		        msg += ' , 카드 승인번호 : ' + rsp.apply_num;
- 		        result = '0';
+			var result = '';
+		    if ( rsp.success ) { // 결제 성공 시 로직
+		        var msg = '결제가 완료되었습니다.';
+		        msg += ' , 고유ID : ' + rsp.imp_uid;
+		        msg += ' , 상점 거래ID : ' + rsp.merchant_uid;
+		        msg += ' , 결제 금액 : ' + rsp.paid_amount;
+		        msg += ' , 카드 승인번호 : ' + rsp.apply_num;
+		        result = '0';
 		        
 		    } else { //결제 실패 시 로직
 		        var msg = '결제에 실패하였습니다.';
@@ -52,11 +68,112 @@ function requestPay(){
 		        
 		    }
 		    if(result=='0'){
-		    	location.href = "/pay/complete";
+// 		    	location.href = "/pay/complete";
+
+				jQuery.ajax({
+		            url: "/pay/complete" , // 가맹점 서버
+		            method: "POST",
+// 		            headers: { "Content-Type": "application/json" },
+		            data: {
+		                imp_uid: rsp.imp_uid,				// 고유ID
+		                merchant_uid: rsp.merchant_uid,		// 상점 거래ID
+		                paid_amount: rsp.paid_amount,		// 결제 금액
+		                apply_num: rsp.apply_num,			// 카드 승인번호
+		                
+// 		                conNo: conNo,
+// 		                date: date,
+// 		                round: round,
+// 		                selectedSeat: selectedSeat
+		                //기타 필요한 데이터가 있으면 추가 전달
+		            }
+	            }.done(function (data) { // 응답 처리
+	                // 가맹점 서버 결제 API 성공시 로직
+					console.log(data);
+	            
+					// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+		        	if(rsp.paid_amount == data.response.amount){
+			        	alert("결제 및 결제검증완료");
+			        	location.href = "/pay/complete";
+		        	} else {
+		        		alert("결제 실패");
+		        	}
+	            })
+				
+				);
 		    }
 		    alert(msg);
 		});
 	
+// 	} else if ( exTitle != null ) {
+// 		//전시 결제일 경우	
+	
+		IMP.request_pay({
+			
+		    pg : 'html5_inicis', 								// PG사 (이니시스(웹표준결제))
+		    pay_method : 'card',								// 결제방식
+		    merchant_uid : 'merchant_' + new Date().getTime(),	// 고유주문번호
+		    name : '${exTitle}'+'${date}',									// 주문명
+		    amount : '${price }', 								// 결제금액
+		    buyer_email : '${userEmail }',						// 주문자 Email
+		    buyer_name : '${userName }',						// 주문자명
+		    buyer_tel : '${userPhone }',						// 주문자 연락처
+		    buyer_addr : '${userAddr }',						// 주문자 주소
+		    
+		}, function(rsp) { // callback함수
+			console.log(rsp);
+			
+			var result = '';
+		    if ( rsp.success ) { // 결제 성공 시 로직
+		        var msg = '결제가 완료되었습니다.';
+		        msg += ' , 고유ID : ' + rsp.imp_uid;
+		        msg += ' , 상점 거래ID : ' + rsp.merchant_uid;
+		        msg += ' , 결제 금액 : ' + rsp.paid_amount;
+		        msg += ' , 카드 승인번호 : ' + rsp.apply_num;
+		        result = '0';
+		        
+		    } else { //결제 실패 시 로직
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		        result = '1';
+		        
+		    }
+		    if(result=='0'){
+// 		    	location.href = "/pay/complete";
+
+				jQuery.ajax({
+		            url: "/pay/complete" , // 가맹점 서버
+		            method: "POST",
+// 		            headers: { "Content-Type": "application/json" },
+		            data: {
+		                imp_uid: rsp.imp_uid,				// 고유ID
+		                merchant_uid: rsp.merchant_uid,		// 상점 거래ID
+		                paid_amount: rsp.paid_amount,		// 결제 금액
+		                apply_num: rsp.apply_num,			// 카드 승인번호
+		                
+// 		                conNo: conNo,
+// 		                date: date,
+// 		                round: round,
+// 		                selectedSeat: selectedSeat
+		                //기타 필요한 데이터가 있으면 추가 전달
+		            }
+	            }.done(function (data) { // 응답 처리
+	                // 가맹점 서버 결제 API 성공시 로직
+					console.log(data);
+	            
+					// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+		        	if(rsp.paid_amount == data.response.amount){
+			        	alert("결제 및 결제검증완료");
+			        	location.href = "/pay/complete";
+		        	} else {
+		        		alert("결제 실패");
+		        	}
+	            })
+				
+				);
+		    }
+		    alert(msg);
+		});	
+// 	}
 }
 
 function showDetail(){
@@ -181,6 +298,30 @@ function btnActive()  {
 				</div>
 			</div>
 			
+			
+		<c:if test="${not empty conTitle }">
+			<div class="card mb-4">
+				<div class="card-body">
+					<p class="mb-0">
+					
+						공연 정보
+				<br><br>공연 명 : ${conTitle }
+					<br>관람일 : ${date }
+					<br>회차 : ${round }
+					
+					<c:forEach items="${selectedSeat}" var="i">
+					<br>좌석번호 : ${i}
+					</c:forEach>
+					
+					<br>총 결제 금액 : ${price }
+					
+					</p>
+				</div>
+			</div>
+		</c:if>
+		
+		
+		<c:if test="${not empty exTitle }">
 			<div class="card mb-4">
 				<div class="card-body">
 					<p class="mb-0">
@@ -194,7 +335,8 @@ function btnActive()  {
 					</p>
 				</div>
 			</div>
-
+		</c:if>
+		
 		</div>
 	</main>            
 </div> 

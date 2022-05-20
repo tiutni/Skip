@@ -1,12 +1,11 @@
 package com.skip.www.controller;
 
-import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.skip.www.dto.Concert;
@@ -106,27 +105,9 @@ public class PayController {
 		return "/pay/exInfo";
 	}
 	
-	@PostMapping("/pay/complete")
-	public void successPay(
-//			int conNo
-//			, Date date
-//			, int round
-			 String merchant_uid
-			, int paid_amount
-			, String apply_num
-			, Model model)
-	{
-//		model.addAttribute("userNo", userNo);
-//		model.addAttribute("conNo", conNo);
-//		model.addAttribute("conTitle", con.getConTitle());
-//		model.addAttribute("date", date);
-//		model.addAttribute("round", round);
-//		model.addAttribute("selectedSeat", selectedSeat);
-		model.addAttribute("merchant_uid", merchant_uid);
-		model.addAttribute("paid_amount", paid_amount);
-		model.addAttribute("apply_num", apply_num);
-		
-		
+	@GetMapping("/pay/complete")
+	public void successPay() {
+		logger.info("---결제 성공---");
 	}
 	
 
