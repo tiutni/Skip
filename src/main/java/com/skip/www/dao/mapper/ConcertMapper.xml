@@ -227,8 +227,8 @@
 			WHERE b.order_no = cot.order_no
 			AND cot.seat_seq = s.seat_seq
 			AND s.con_round_no = cr.con_round_no
-			AND con_no = #{conNo}
-			AND user_no = #{userNo}
+			AND cr.con_no = #{conNo}
+			AND b.user_no = #{userNo}
 		)
 	</select>
 	
