@@ -6,21 +6,6 @@
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
 <script type="text/javascript">
-$(document).ready(function() {
-
-	$('#checkAll').click(function () {    
-		   $(':checkbox.checkbox').prop('checked', this.checked);
-	});
-	
-});
-
-$(document).ready(function() {
-	
-	$('#checkAll').click(function () {  
-			$("#btnShow").show();
-		   
-	});
-});
 
 function showDetail(){
     document.querySelector("#desc").style.display = "block";
@@ -31,7 +16,6 @@ function hideDetail(){
     document.querySelector("#desc").style.display = "none";
     document.querySelector("#open").style.display = "block";
 }
-
 function showDetail1(){
     document.querySelector("#desc1").style.display = "block";
     document.querySelector("#open1").style.display = "none";
@@ -41,14 +25,28 @@ function hideDetail1(){
     document.querySelector("#desc1").style.display = "none";
     document.querySelector("#open1").style.display = "block";
 }
+function showDetail2(){
+    document.querySelector("#desc2").style.display = "block";
+    document.querySelector("#open2").style.display = "none";
+}
+
+function hideDetail2(){
+    document.querySelector("#desc2").style.display = "none";
+    document.querySelector("#open2").style.display = "block";
+}
+
 
 $(document).ready(function() {
-	$("#btnGo").click(function() {
-		location.href = "/" /* 결제 주소창 */
-	})
 	
 	$("#btnBack").click(function() {
 		history.go(-1) });
+})
+
+$(document).ready(function() {
+	function btnActive()  {
+	  const target = document.getElementById('target_btn');
+	  target.disabled = false;
+	}
 })
 </script>
 
@@ -61,59 +59,110 @@ $(document).ready(function() {
 <div id="layoutSidenav_content">
 	<main>
 		<div class="container-fluid px-4">
-		<h1 class="mt-4">약관 동의</h1><br>
+		<h1 class="mt-4">Agreement</h1><br>
 			<div class="card mb-4">
 				<div class="card-body">
 					<p class="mb-0">
-						<input type="checkbox" id="checkAll"><label for="checkAll" > <br>이용약관, 개인정보 수집 및 이용, 프로모션 정보 수신(선택)에 모두 동의합니다.</label>
-					</p>
-				</div>
-			</div>
-			<div class="card mb-4">
-				<div class="card-body">
-					<p class="mb-0">
-						<input type="checkbox" class="checkbox"><label for="checkbox" > <br>[필수] 만 14세 이상 </label>
-					</p>
-				</div>
-			</div>
-			<div class="card mb-4">
-				<div class="card-body">
-					<p class="mb-0">
-						<input type="checkbox" class="checkbox"><label for="checkbox"> <br>[필수] 이용약관 동의보기 </label>
+						<input type="checkbox" id="check" onclick='btnActive()'><label for="check" > <br>주문자 동의<br>회원 본인은 구매 조건, 주문 내용 확인 및 결제에 동의합니다</label><br>
 						<div id="item">
-				        	<button class="over" id="open" onclick="showDetail()">상세 설명 보기</button>
+				        	<button class="over" id="open" onclick="showDetail()">개인정보 수집 및 이용 동의</button>
 				        	<div class="detail" id="desc">
-				            		본 이용약관은 SKIP에서 제공하는 모든 서비스(이하 "서비스")를 이용함에 있어 회사와 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
-									PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.
-				            <button id="close" onclick="hideDetail()">상세 설명 닫기</button>    
+				            		개인정보 수집 및 이용 동의
+									<br>1. 수집목적
+									판매자와 구매자의 거래의 원활한 진행, 본인의사의 확인, 고객 상담 및 불만처리, 상품과 경품 배송을 위한 배송지 확인 등
+									<br>2. 수집 항목
+									구매자 정보: 성명, 전화번호, ID, 휴대전화 번호, 메일주소, 상품 구매정보
+									수령자 정보: 성명, 전화번호, 휴대전화 번호, 배송지 주소
+									<br>3. 보유기간
+									개인정보 수집 및 이용목적 달성 시 및 관련 법령에 따른 기간까지 보관
+									<br>4. 동의 거부시 불이익
+									본 개인정보 수집 및 이용 등에 동의하지 않을 권리가 있습니다. 다만, 필수항목에 동의를 하지 않을경우 거래가 제한될 수 있습니다.
+				            <br><button id="close" onclick="hideDetail()">상세 설명 닫기</button>    
 				        </div>
+				        	<br>
+				        	<button class="over" id="open1" onclick="showDetail1()">개인정보 제 3자 제공 동의</button>
+				        	<div class="detail" id="desc1">
+				            		개인정보 제 3자 제공 동의
+									SKIP의 회원계정으로 상품 및 서비스를 구매하고자 할 경우, SKIP은 거래 당사자간 원활한 의사소통 및 배송, 상담 등 거래이행을 위하여 필요한 최소한의 개인정보만을 판매자 및 배송업체에 아래와 같이 공유하고 있습니다.
+									1. SKIP은 귀하께서 판매자로부터 상품 및 서비스를 구매하고자 할 경우, 개인정보보호법 제 17조 (개인정보의 제공)에 따라 아래와 같은 사항은 안내하고 동의를 받아 귀하의 개인정보를 판매자에게 공유합니다.
+									2. 공유하는 개인정보 항목 - 구매자 정보: 성명, 전화번호, ID, 휴대전화 번호, 메일주소, 상품 구매정보 - 수령자 정보: 성명, 전화번호, 휴대전화 번호, 배송지 주소
+									3. 개인정보를 공유받는 자의 이용 목적 : 판매자와 구매자의 거래의 원활한 진행, 본인의사의 확인, 고객 상담 및 불만처리, 상품과 경품 배송을 위한 배송지 확인 등
+									4. 개인정보를 공유받는 자의 개인정보 보유 및 이용 기간 : 상품 구매/배송/반품 등 서비스 처리 완료 후 180일간 보관 후 파기
+									5. 동의 거부 시 불이익 : 본 개인정보 공유에 동의하지 않으시는 경우, 동의를 거부할 수 있으며, 이 경우 거래가 제한됩니다.
+				            <br><button id="close" onclick="hideDetail1()">상세 설명 닫기</button>    
 						</div>
-					</p>
-				</div>
-			</div>
-			<div class="card mb-4">
-				<div class="card-body">
-					<p class="mb-0">
-						<input type="checkbox" class="checkbox"><label for="checkbox"> <br>[필수] 개인정보 처리방침 동의 </label>
-						<div id="item">
-				        <button class="over" id="open1" onclick="showDetail1()">상세 설명 보기</button>
-				        <div class="detail" id="desc1">
-						           	SKIP은 개인정보를 수집∙이용하고 있습니다. 
-						            개인정보가 필요한 시점에 최소한의 정보만을 수집하며, 고지한 범위 내에서만 사용합니다. 
-						            또한 사전 동의 없이 고지한 범위를 초과하여 이용하거나 외부에 공개하지 않습니다.
-				            <button id="close" onclick="hideDetail1()">상세 설명 닫기</button>   
-				        </div>
+							<br>
+				        	<button class="over" id="open2" onclick="showDetail2()">전자결제대행 이용 동의 </button>
+				        	<div class="detail" id="desc2">
+				            		이 약관은 전자지급결제대행서비스 및 결제대금예치서비스를 제공하는 토스페이먼츠 주식회사(이하 '회사'라 합니다)와 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써 전자금융거래의 안정성과 신뢰성을 확보함에 그 목적이 있습니다.
+				            <br><button id="close" onclick="hideDetail2()">상세 설명 닫기</button>    
 						</div>
-					</p>
 				</div>
 			</div>
 		</div>
+
+
+
+			<div class="card mb-4">
+				<div class="card-body">
+					<p class="mb-0">
+					
+						주문자 정보
+				<br><br>이름 : ${userName }
+					<br>이메일 : ${userEmail }
+					<br>연락처 : ${userPhone }
+					<br>주소 : ${userAddr }
+				        	
+					</p>
+				</div>
+			</div>
+			
+			
+		<c:if test="${not empty conTitle }">
+			<div class="card mb-4">
+				<div class="card-body">
+					<p class="mb-0">
+					
+						공연 정보
+				<br><br>공연 명 : ${conTitle }
+					<br>관람일 : ${date }
+					<br>회차 : ${round }
+					
+					<c:forEach items="${selectedSeat}" var="i">
+					<br>좌석번호 : ${i}
+					</c:forEach>
+					
+					<br>총 결제 금액 : ${price }
+					
+					</p>
+				</div>
+			</div>
+		</c:if>
+		
+		
+		<c:if test="${not empty exTitle }">
+			<div class="card mb-4">
+				<div class="card-body">
+					<p class="mb-0">
+					
+						전시 정보
+				<br><br>전시회 명 : ${exTitle}
+					<br>관람일 : ${date}
+					<br>매수 : ${count}
+					<br>총 결제 금액 : ${price}
+				        	
+					</p>
+				</div>
+			</div>
+		</c:if>
+		
+		</div>
 	</main>            
-</div>            
+</div> 
 
 <div class="text-center">
-		<button id="btnGo" class="btn btn-primary">결제</button>
-		<button id="btnBack" class="btn btn-danger">취소</button>
+		<input id='target_btn' type='button' class="btn btn-primary" disabled='disabled' onclick="requestPay()" value='결제'/>
+		<button id="btnBack" class="btn btn-danger" >취소</button>
 </div>
 <br>
 
