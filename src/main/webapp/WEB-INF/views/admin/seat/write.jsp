@@ -37,42 +37,41 @@ table, th, td {
 <div id="layoutSidenav_content">
 	<main>
 
-		<!-- ConRound -->
+		<!-- Seat -->
 		<div class="container-fluid px-4">
-			<h1 class="mt-4">공연 회차 관리</h1>
+			<h1 class="mt-4">공연 좌석 관리</h1>
 			
 			<ol class="breadcrumb mb-4">
-			    <li class="breadcrumb-item active">ConRound Management</li>
+			    <li class="breadcrumb-item active">Seat Management</li>
 			</ol>
 
 			<div class="card mb-4">
 			    <div class="card-header">
-			        <i class="fas fa-table me-1"></i>공연 회차 생성
+			        <i class="fas fa-table me-1"></i>공연 좌석 생성
 			    </div>
 		
 				<!-- 목록 -->
 				<div class="card-body">
 		
-					<form action="/admin/conRound/write" method="post" enctype="multipart/form-data">
+					<form action="/admin/seat/write" method="post" enctype="multipart/form-data">
+					<input type="hidden" id="conRoundNo" name="conRoundNo" class="form-control" value="${seatConRoundNo}" readonly="readonly">
+					<br>
 					<div class="form-group">
-						<label for="conNo">공연 번호</label>
-						<input type="text" id="conNo" name="conNo" value="${conRoundConNo}" class="form-control" readonly="readonly">
+						<label for="seatLevel">등급</label>
+						<input type="text" id="seatLevel" name="seatLevel" class="form-control">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="conRound">회차</label>
-						<input type="text" id="conRound" name="conRound" class="form-control">
+						<label for="seatPrice">금액</label>
+						<input type="number" id="seatPrice" name="seatPrice" class="form-control">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="conRoundStartTimeString">시작 시간</label>
-						<input type="time" id="conRoundStartTimeString" name="conRoundStartTimeString" class="form-control" value="10:00:00">
+						<label for="seatNo">번호</label>
+						<input type="text" id="seatNo" name="seatNo" class="form-control">
 					</div>
-					
-					<div class="form-group">
-						<label for="conRoundEndTimeString">종료 시간</label>
-						<input type="time" id="conRoundEndTimeString" name="conRoundEndTimeString" class="form-control" value="18:00:00">
-					</div>
+					<br>
+	
 					<br>
 					<div class="text-center">
 						<button class="btn btn-primary" id="btnWrite">작성</button>

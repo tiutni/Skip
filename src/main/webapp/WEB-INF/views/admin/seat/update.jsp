@@ -38,41 +38,39 @@ table, th, td {
 
 <div id="layoutSidenav_content">
 	<main>
-		<!-- ConRound -->
+		<!-- Seat -->
 		<div class="container-fluid px-4">
-			<h1 class="mt-4">공연 회차 관리</h1>
+			<h1 class="mt-4">공연 좌석 관리</h1>
 			
 			<ol class="breadcrumb mb-4">
-			    <li class="breadcrumb-item active">ConRound Management</li>
+			    <li class="breadcrumb-item active">Seat Management</li>
 			</ol>
 
 			<div class="card mb-4">
 			    <div class="card-header">
-			        <i class="fas fa-table me-1"></i>공연 회차 수정
+			        <i class="fas fa-table me-1"></i>공연 좌석 생성
 			    </div>
-			    
+		
 				<!-- 목록 -->
 				<div class="card-body">
-					<form action="/admin/conRound/update" method="post" enctype="multipart/form-data">
-					<input type="hidden" id="conRoundNo" name="conRoundNo" class="form-control" value="${updateConRound.conRoundNo}" readonly="readonly">
+		
+					<form action="/admin/seat/update" method="post" enctype="multipart/form-data">
+					<input type="hidden" id="conRoundNo" name="conRoundNo" class="form-control" value="${updateSeat.conRoundNo}" readonly="readonly">
+					<input type="hidden" id="seatSeq" name="seatSeq" class="form-control" value="${updateSeat.seatSeq}" readonly="readonly">
+					<br>
 					<div class="form-group">
-						<label for="conNo">공연 번호</label>
-						<input type="text" id="conNo" name="conNo" class="form-control" value="${updateConRound.conNo}" readonly="readonly">
+						<label for="seatLevel">등급</label>
+						<input type="text" id="seatLevel" name="seatLevel" class="form-control" value="${updateSeat.seatLevel}">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="conRound">회차</label>
-						<input type="text" id="conRound" name="conRound" class="form-control" value="${updateConRound.conRound}">
+						<label for="seatPrice">금액</label>
+						<input type="number" id="seatPrice" name="seatPrice" class="form-control" value="${updateSeat.seatPrice}">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="conRoundStartTimeString">시작 시간</label>
-						<input type="time" id="conRoundStartTimeString" name="conRoundStartTimeString" class="form-control" value="<fmt:formatDate value='${updateConRound.conRoundStartTime }' pattern='hh:mm'/>">
-					</div>
-					<br>
-					<div class="form-group">
-						<label for="conRoundEndTimeString">종료 시간</label>
-						<input type="time" id="conRoundEndTimeString" name="conRoundEndTimeString" class="form-control" value="<fmt:formatDate value='${updateConRound.conRoundEndTime }' pattern='hh:mm'/>">
+						<label for="seatNo">번호</label>
+						<input type="text" id="seatNo" name="seatNo" class="form-control" value="${updateSeat.seatNo}">
 					</div>
 					<br>
 					<div class="text-center">

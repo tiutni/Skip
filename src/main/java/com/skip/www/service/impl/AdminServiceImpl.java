@@ -567,7 +567,7 @@ public class AdminServiceImpl implements AdminService {
 		//페이징 계산
 		Paging paging = new Paging(totalCount, paramData.getCurPage());
 		paging.setSearch(paramData.getSearch());
-		paging.setConNo(paramData.getConNo());
+		paging.setConRoundNo(paramData.getConRoundNo());
 
 		return paging;
 	}

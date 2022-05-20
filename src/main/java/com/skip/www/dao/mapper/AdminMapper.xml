@@ -579,8 +579,8 @@
 		UPDATE SEAT
 		SET seat_seq = #{seatSeq}
 			, seat_level = #{seatLevel}
-			, seat_level = #{seatPrice}
-			, seat_level = #{seatNo}
+			, seat_price = #{seatPrice}
+			, seat_no = #{seatNo}
 			, con_round_no = #{conRoundNo}
 		WHERE seat_seq = #{seatSeq}
 	</update>

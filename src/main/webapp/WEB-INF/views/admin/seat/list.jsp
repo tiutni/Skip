@@ -25,16 +25,12 @@ function btnWrite(conRoundNo){
 	location.href = "/admin/seat/write?conRoundNo="+ conRoundNo;
 }
 
+
 $(document).ready(function() {
 
 	//공연 목록 보기 버튼 클릭
 	$("#btnConcertList").click(function() {
 		location.href = "/admin/concert/list"
-	});
-
-	//공연 회차 목록 보기 버튼 클릭
-	$("#btnConRoundList").click(function() {
-		location.href = "/admin/conRound/list?conNo="+ conNo;
 	});
 	
 });
@@ -101,7 +97,6 @@ table, th, td {
 					<!-- 글쓰기 버튼 -->
 					<div>
 						<button id="btnConcertList" class="btn btn-primary pull-right">공연목록</button>
-						<button id="btnConRoundList" class="btn btn-primary pull-right">회차목록</button>
 						<button onclick="btnWrite(${paging.conRoundNo})" id="btnWrite" class="btn btn-primary pull-right">좌석 추가</button>
 					</div>
 					

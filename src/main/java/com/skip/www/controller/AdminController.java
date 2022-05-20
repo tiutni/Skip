@@ -386,7 +386,7 @@ public class AdminController {
 		
 		//잘못된 게시글 번호 처리
 		if( conRound.getConRoundNo() < 1 ) {
-			return "redirect:/admin/conRound/list";
+			return "redirect:/admin/concert/list";
 		}
 		
 		//수정할 게시글의 상세보기
@@ -435,9 +435,9 @@ public class AdminController {
 	}
 
 	@GetMapping("/admin/seat/write")
-	public void writeSeat(int conNo, Model model) {
-		logger.info("/admin/seat/update - {}", conNo);		
-		model.addAttribute("seatConNo", conNo);
+	public void writeSeat(int conRoundNo, Model model) {
+		logger.info("/admin/seat/write - {}", conRoundNo);		
+		model.addAttribute("seatConRoundNo", conRoundNo);
 	}
 	
 	@PostMapping("/admin/seat/write")
@@ -456,7 +456,7 @@ public class AdminController {
 		
 		//잘못된 게시글 번호 처리
 		if( seat.getSeatSeq() < 1 ) {
-			return "redirect:/admin/seat/list";
+			return "redirect:/admin/concert/list";
 		}
 		
 		//수정할 게시글의 상세보기
