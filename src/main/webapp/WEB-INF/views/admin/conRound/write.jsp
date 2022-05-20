@@ -37,7 +37,7 @@ table, th, td {
 <div id="layoutSidenav_content">
 	<main>
 
-	<!-- Concert -->
+		<!-- ConRound -->
 		<div class="container-fluid px-4">
 			<h1 class="mt-4">공연 회차 관리</h1>
 			
@@ -47,7 +47,7 @@ table, th, td {
 
 			<div class="card mb-4">
 			    <div class="card-header">
-			        <i class="fas fa-table me-1"></i>공연 글쓰기
+			        <i class="fas fa-table me-1"></i>공연 회차 생성
 			    </div>
 		
 				<!-- 목록 -->

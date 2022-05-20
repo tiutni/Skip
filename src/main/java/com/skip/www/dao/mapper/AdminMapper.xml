@@ -478,7 +478,7 @@
 			, con_round_endtime
 			, con_no
 			FROM CON_ROUND
-		WHERE con_round_no = #{con_round_no}
+		WHERE con_round_no = #{conRoundNo}
 	</select>
 	
 	<insert id="insertConRound" parameterType="com.skip.www.dto.ConRound">

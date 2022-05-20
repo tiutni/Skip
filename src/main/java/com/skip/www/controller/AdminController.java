@@ -401,7 +401,7 @@ public class AdminController {
 		
 		adminService.updateConRound(conRound); //게시글+첨부파일 수정
 		
-		return "redirect:/admin/conRound/list";
+		return "redirect:/admin/conRound/list?conNo="+conRound.getConNo();
 	}
 	
 	@RequestMapping("/admin/conRound/delete")
