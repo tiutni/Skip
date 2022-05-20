@@ -3343,4 +3343,56 @@ input.num-product::-webkit-inner-spin-button {
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 	}
 
+/*////////////////////////////////////////////////////////////////*/
+/* [ KAKAO ] */
+.kakao {
+	background-color: #FEE500;
+	color: rgba(0, 0, 0, 0.85);
+}
+
+/* [ ADDR BTN ] */
+.addr-btn {
+	width: 112px;
+	height: 42px;
+}
+
+/* [ 아이디 찾기, 비밀번호 찾기 ] */
+.flex-r a:hover {
+	color: #6c7ae0;
+}
+
+/* [ 통신사 ] */
+.telecom {
+	color: #999;
+	margin-right: 5px;
+	width: 20%;
+	min-width: 65px;
+	height: 42px;
+}
+
+/* [ 통신사:focus ] */
+.telecom:focus {
+	outline: none;
+}
+
+/* [ 유효성 검사 & 중복 검사 ] */
+.check,
+.text-success,
+.text-warning {
+	margin-top: 2px;
+	height: 12px;
+}
+
+.text-warning {
+	color: red !important;
+}
+
+/* [ 회원가입 overflow scroll hidden 처리 ] */
+form {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+form::-webkit-scrollbar {
+    display: none;
 }

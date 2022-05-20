@@ -5,8 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<%@ page session="false"%>
-
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript">
@@ -119,17 +117,27 @@ function deleteWish(wishNo){
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="/user/join" class="flex-c-m trans-04 p-lr-25">
-							JOIN
-						</a>
+						<c:if test="${empty userId}">
+							<a href="/user/join" class="flex-c-m trans-04 p-lr-25">
+								JOIN
+							</a>
+							
+							<a href="/user/login" class="flex-c-m trans-04 p-lr-25">
+								LOGIN
+							</a>
+						</c:if>
 						
-						<a href="/user/login" class="flex-c-m trans-04 p-lr-25">
-							LOGIN
-						</a>
+						<c:if test="${userId ne null && empty accessToken}">
+							<a href="/user/logout" class="flex-c-m trans-04 p-lr-25">
+								LOGOUT
+							</a>
+						</c:if>
 
-						<a href="/user/logout" class="flex-c-m trans-04 p-lr-25">
-							LOGOUT
-						</a>
+						<c:if test="${userId ne null && accessToken ne null}">
+							<a href="https://kauth.kakao.com/oauth/logout?client_id=20a036a9e9a4a55d7de23fa420405573&logout_redirect_uri=http://localhost:8088/user/kakaoLogout" class="flex-c-m trans-04 p-lr-25">
+								KAKAO LOGOUT
+							</a>
+						</c:if>
 					</div>
 				</div>
 			</div> 

@@ -3,10 +3,11 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:import url="/WEB-INF/views/layout/loginHeader.jsp" />
+
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 <script type="text/javascript">
 $(document).ready(function() {
 	
@@ -15,10 +16,10 @@ $(document).ready(function() {
 	$("#userId").blur(function checkId() {
 		
 		var userId = $("#userId").val();
-		var regularExpression = /^[a-zA-Z0-9]{5,12}$/;
+		var regularExpression = /^(?=.*[A-Za-z])[a-zA-Z0-9]{5,12}$/;
 		
 		if (!regularExpression.test(userId)) {
-			$("#userIdCheck").html("최소 5자 이상 최대 12자 이하로 하나 이상의 문자(영문) 또는 숫자를 포함해 입력하세요.");
+			$("#userIdCheck").html("최소 5자 이상 최대 12자 이하로 영문을 포함해 입력하세요.");
 			$("#userIdCheck").attr("class", "text-warning");
 			userIdValidation = false;
 		} else {
@@ -44,7 +45,7 @@ $(document).ready(function() {
 		}
 		
 		if($("#userId").val().length == 0) {
-			$("#userIdCheck").html("아이디를 입력하세요");
+			$("#userIdCheck").html("아이디를 입력하세요.");
 			$("#userIdCheck").attr("class", "text-warning");
 			userIdValidation = false;
 		}
@@ -58,7 +59,7 @@ $(document).ready(function() {
 		var regularExpression = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 		if (!regularExpression.test(userPw)) {
-			$("#userPwCheck").html("최소 8자 이상으로 하나 이상의 문자(영문), 숫자, 특수 문자를 포함해 입력하세요.");
+			$("#userPwCheck").html("최소 8자 이상으로 문자, 숫자, 특수 문자를 포함해 입력하세요.");
 			$("#userPwCheck").attr("class", "text-warning");
 			userPwValidation = false;
 		} else {
@@ -67,7 +68,7 @@ $(document).ready(function() {
 		}
 		
 		if($("#userPw").val().length == 0) {
-			$("#userPwCheck").html("비밀번호를 입력하세요");
+			$("#userPwCheck").html("비밀번호를 입력하세요.");
 			$("#userPwCheck").attr("class", "text-warning");
 			userPwValidation = false;
      	}
@@ -90,8 +91,8 @@ $(document).ready(function() {
 		}
 		
 		if(userPwDouble.length == 0) {
-			$("#userPwCheck").html("비밀번호 확인을 입력하세요");
-			$("#userPwCheck").attr("class", "text-warning");
+			$("#userPwDoubleCheck").html("비밀번호 확인을 입력하세요.");
+			$("#userPwDoubleCheck").attr("class", "text-warning");
 			userPwDoubleValidation =  false;
      	}
 	})
@@ -104,7 +105,7 @@ $(document).ready(function() {
 		var regularExpression = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/;
 		
 		if (!regularExpression.test(userNick)) {
-			$("#userNickCheck").html("하나 이상의 문자(한글, 영문) 또는 숫자를 포함해 입력하세요.");
+			$("#userNickCheck").html("문자 또는 숫자로 입력하세요.");
 			$("#userNickCheck").attr("class", "text-warning");
 			userNickValidation = false;
 		} else {
@@ -130,7 +131,7 @@ $(document).ready(function() {
 		}
 		
 		if($("#userNick").val().length == 0) {
-			$("#userNickCheck").html("닉네임을 입력하세요");
+			$("#userNickCheck").html("닉네임을 입력하세요.");
 			$("#userNickCheck").attr("class", "text-warning");
 			userNickValidation = false;
      	}
@@ -170,7 +171,7 @@ $(document).ready(function() {
 		}
 		
 		if($("#userEmail").val().length == 0) {
-			$("#userEmailCheck").html("이메일을 입력하세요");
+			$("#userEmailCheck").html("이메일을 입력하세요.");
 			$("#userEmailCheck").attr("class", "text-warning");
 			userEmailValidation = false;
 	     }
@@ -184,7 +185,7 @@ $(document).ready(function() {
 		var regularExpression = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
 		if (!regularExpression.test(userName)) {
-			$("#userNameCheck").html("하나 이상의 문자(한글)를 포함해 입력하세요.");
+			$("#userNameCheck").html("한글로 입력하세요.");
 			$("#userNameCheck").attr("class", "text-warning");
 			userNameValidation = false;
 		} else {
@@ -193,7 +194,7 @@ $(document).ready(function() {
 		}
 		
 		if($("#userName").val().length == 0) {
-			$("#userNameCheck").html("이름을 입력하세요");
+			$("#userNameCheck").html("이름을 입력하세요.");
 			$("#userNameCheck").attr("class", "text-warning");
 			userNameValidation = false;
      	}
@@ -233,7 +234,7 @@ $(document).ready(function() {
 		}
 		
 		if($("#userRrn").val().length == 0) {
-			$("#userRrnCheck").html("주민등록번호를 입력하세요");
+			$("#userRrnCheck").html("주민등록번호를 입력하세요.");
 			$("#userRrnCheck").attr("class", "text-warning");
 			userRrnValidation = false;
   		}
@@ -273,7 +274,7 @@ $(document).ready(function() {
 		}
 		
 		if($("#userPhone").val().length == 0) {
-			$("#userPhoneCheck").html("핸드폰 번호를 입력하세요");
+			$("#userPhoneCheck").html("핸드폰 번호를 입력하세요.");
 			$("#userPhoneCheck").attr("class", "text-warning");
 			userPhoneValidation = false;
 		}
@@ -286,7 +287,7 @@ $(document).ready(function() {
 		var userAddr1 = $("#userAddr1").val();
 		
 		if(userAddr1.length == 0) {
-			$("#userAddrCheck").html("주소1 입력을 확인을 입력하세요");
+			$("#userAddrCheck").html("주소1 입력을 확인을 입력하세요.");
 			$("#userAddrCheck").attr("class", "text-warning");
 			userAddr1Validation =  false;
      	}
@@ -299,7 +300,7 @@ $(document).ready(function() {
 		var userAddr2 = $("#userAddr2").val();
 		
 		if(userAddr2.length == 0) {
-			$("#userAddrCheck").html("주소2 입력을 확인을 입력하세요");
+			$("#userAddrCheck").html("주소2 입력을 확인을 입력하세요.");
 			$("#userAddrCheck").attr("class", "text-warning");
 			userAddr2Validation =  false;
      	}
@@ -322,109 +323,117 @@ $(document).ready(function() {
 			$("#form").attr("onsubmit","return false");
 		}
 	})
-	
-	// 취소
-	$("#cancel").click(function() {
-		history.go(-1)
-	})
 })
 </script>
 
-<div class="container">
-
-<h1>회원 가입</h1>
-<hr>
-
-<div>
-<form action="/user/join" method="post" id="form" onsubmit="false">
-
-<div>
-	<label for="userId">아이디</label>
-	<div>
-		<input type="text" id="userId" name="userId" placeholder="아이디 입력">
+<!-- Slider -->
+<section class="section-slide">
+	<div class="wrap-slick1">
+		<div class="slick1">
+			<div class="item-slick1" style="background-image: url(../../resources/images/banner_02.png);">
+				<div class="container h-full">
+					<div class="flex-col-m flex-c-m h-full p-t-100 p-b-30 respon5">
+						<div class="layer-slick1">
+							<h2 class="ltext-201 cl13 p-t-19 p-b-43 respon1">
+								Join
+							</h2>
+						</div>
+							
+						<form action="/user/join" method="post" class="size-202" id="form" onsubmit="return false" style="overflow: scroll">
+						
+							<div class="m-b-12 clear">
+								<label class="stext-110 cl0 m-b-2" for="userId">아이디</label>
+								<div class="bor8 bg0">
+									<input type="text" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userId" name="userId" placeholder="아이디 입력">
+								</div>
+								<div class="check" id="userIdCheck"></div>
+							</div>
+							
+							<div class="m-b-12 clear">
+								<label class="stext-110 cl0 m-b-2" for="userPw">비밀번호</label>
+								<div class="bor8 bg0">
+									<input type="password" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userPw" name="userPw" placeholder="비밀번호 입력">
+								</div>
+								<div class="check" id="userPwCheck"></div>
+							</div>
+							
+							<div class="m-b-12 clear">
+								<label class="stext-110 cl0 m-b-2" for="userPwDouble">비밀번호 확인</label>
+								<div class="bor8 bg0">
+									<input type="password" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userPwDouble" name="userPwDouble" placeholder="비밀번호 확인">
+								</div>
+								<div class="check" id="userPwDoubleCheck"></div>
+							</div>
+							
+							<div class="m-b-12 clear">
+								<label class="stext-110 cl0 m-b-2" for="userNick">닉네임</label>
+								<div class="bor8 bg0">
+									<input type="text" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userNick" name="userNick" placeholder="닉네임 입력">
+								</div>
+								<div class="check" id="userNickCheck"></div>
+							</div>
+							
+							<div class="m-b-12 clear">
+								<label class="stext-110 cl0 m-b-2" for="userEmail">이메일</label>
+								<div class="bor8 bg0">
+									<input type="text" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userEmail" name="userEmail" placeholder="이메일 입력">
+								</div>
+								<div class="check" id="userEmailCheck"></div>
+							</div>
+							
+							<div class="m-b-12 clear">
+								<label class="stext-110 cl0 m-b-2" for="userName">이름</label>
+								<div class="bor8 bg0">
+									<input type="text" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userName" name="userName" placeholder="이름 입력">
+								</div>
+								<div class="check" id="userNameCheck"></div>
+							</div>
+							
+							<div class="m-b-12 clear">
+								<label class="stext-110 cl0 m-b-2" for="userRrn">주민등록번호</label>
+								<div class="bor8 bg0">
+									<input type="text" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userRrn" name="userRrn" placeholder="주민등록번호 입력">
+								</div>
+								<div class="check" id="userRrnCheck"></div>
+							</div>
+							
+							<div class="m-b-12 clear">
+								<label class="stext-110 cl0 m-b-2" for="userPhone">휴대폰 번호</label>
+								<div class="flex-w w-full" style="flex-flow: nowrap;">
+									<select class="stext-111 cl8 plh3 p-lr-15 bor8 telecom" id="userTelecom" name="userTelecom">
+										<option value="SKT" selected>SKT</option>
+										<option value="KT">KT</option>
+										<option value="LG">LG</option>
+									</select>
+									<div class="bor8 bg0" style="width: 100%;">
+										<input type="text" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userPhone" name="userPhone" placeholder="휴대폰 번호 입력">
+									</div>
+								</div>
+								<div class="check" id="userPhoneCheck"></div>
+							</div>
+							
+							<div class="clear">
+								<label class="stext-110 cl0 m-b-2" for="userAddr">주소</label>
+								<div class="flex-w w-full m-b-5" style="flex-flow: nowrap">
+									<div class="bor8 bg0" style="width: 100%; margin-right: 5px">
+										<input type="text" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userAddr1" name="userAddr" placeholder="주소 입력" readonly="readonly">
+									</div>
+									<button type="button" class="flex-c-m stext-101 cl0 addr-btn bg1 hov-btn1 p-lr-15 trans-04 pointer" id="userAddrSearch" name="userAddrSearch" style="border-radius: 2px;">검색</button>
+								</div>
+								<div class="bor8 bg0">	
+									<input type="text" class="stext-111 cl8 plh3 size-111 p-lr-15" id="userAddr2" name="userAddr" placeholder="상세 주소 입력">
+								</div>
+								<div class="check" id="userAddrCheck"></div>
+							</div>
+						
+							<div class="p-t-19 p-b-43">	
+								<button class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer" id="formBtn" style="border-radius: 2px">회원 가입</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="check" id="userIdCheck"></div>
-</div>
-
-<div>
-	<label for="userPw">비밀번호</label>
-	<div>
-		<input type="password" id="userPw" name="userPw" placeholder="비밀번호 입력">
-	</div>
-	<div class="check" id="userPwCheck"></div>
-</div>
-
-<div>
-	<label for="userPwDouble">비밀번호 확인</label>
-	<div>
-		<input type="password" id="userPwDouble" name="userPwDouble" placeholder="비밀번호 확인">
-	</div>
-	<div class="check" id="userPwDoubleCheck"></div>
-</div>
-
-<div>
-	<label for="userNick">닉네임</label>
-	<div>
-		<input type="text" id="userNick" name="userNick" placeholder="닉네임 입력">
-	</div>
-	<div class="check" id="userNickCheck"></div>
-</div>
-<div>
-	<label for="userEmail">이메일</label>
-	<div>
-		<input type="text" id="userEmail" name="userEmail" placeholder="이메일 입력">
-	</div>
-	<div class="check" id="userEmailCheck"></div>
-</div>
-<div>
-	<label for="userName">이름</label>
-	<div>
-		<input type="text" id="userName" name="userName" placeholder="이름 입력">
-	</div>
-	<div class="check" id="userNameCheck"></div>
-</div>
-<div>
-	<label for="userRrn">주민등록번호</label>
-	<div>
-		<input type="text" id="userRrn" name="userRrn" placeholder="주민등록번호 입력">
-	</div>
-	<div class="check" id="userRrnCheck"></div>
-</div>
-<div>
-	<label for="userPhone">휴대폰 번호</label>
-	<div>
-		<select id="userTelecom" name="userTelecom">
-			<option value="SKT" selected>SKT</option>
-			<option value="KT">KT</option>
-			<option value="LG">LG</option>
-		</select>
-		<input type="text" id="userPhone" name="userPhone" placeholder="휴대폰 번호 입력">
-	</div>
-	<div class="check" id="userPhoneCheck"></div>
-</div>
-<div>
-	<label for="userAddr">주소</label>
-	<div>
-		<input type="text" id="userAddr1" name="userAddr" readonly="readonly">
-		<button type="button" id="userAddrSearch" name="userAddrSearch">검색</button>
-		<br>
-		<input type="text" id="userAddr2" name="userAddr" placeholder="상세 주소 입력">
-	</div>
-	<div class="check" id="userAddrCheck"></div>
-</div>
-
-
-<br>
-
-
-<div>
-	<div class="col-sm-offset-5">
-		<button class="btn btn-primary" id="formBtn">회원 가입</button>
-		<input type="reset" id="cancel" class="btn btn-danger" value="취소" />
-	</div>
-</div>
-
-</form>
-</div>
-
-</div><!-- .container end -->
+</section> <!-- Slider End -->
+<c:import url="/WEB-INF/views/layout/loginFooter.jsp" />

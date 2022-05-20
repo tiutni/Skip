@@ -3712,3 +3712,57 @@ iframe {border: none;}
 .pointer-none {
 	pointer-events: none;
 }
+
+/*////////////////////////////////////////////////////////////////*/
+/* [ Kakao ] */
+.kakao {
+	background-color: #FEE500;
+	color: rgba(0, 0, 0, 0.85);
+}
+
+/* [ Addr Btn ] */
+.addr-btn {
+	width: 112px;
+	height: 42px;
+}
+
+/* [ Find Id/Pw ] */
+.flex-r a:hover {
+	color: #6c7ae0;
+}
+
+/* [ Telecom ] */
+.telecom {
+	color: #999;
+	margin-right: 5px;
+	width: 20%;
+	min-width: 65px;
+	height: 42px;
+}
+
+/* [ Telecom:focus ] */
+.telecom:focus {
+	outline: none;
+}
+
+/* [ Validation/DoubleCheck ] */
+.check,
+.text-success,
+.text-warning {
+	margin-top: 2px;
+	height: 12px;
+}
+
+.text-warning {
+	color: red !important;
+}
+
+/* [ 회원가입 overflow scroll hidden 처리 ] */
+form {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+form::-webkit-scrollbar {
+    display: none;
+}

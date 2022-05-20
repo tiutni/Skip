@@ -1,25 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-<c:if test="${userId ne null}">
-<h1>${userId}</h1>
-</c:if>
+<c:import url="/WEB-INF/views/layout/loginHeader.jsp" />
 
-<c:if test="${empty userId}">
-<h1>존재하지 않는 아이디입니다</h1>
-</c:if>
-
-<hr>
-<a href="/user/login">로그인</a>
-<a href="/">메인으로</a>
-</body>
-</html>
+<!-- Slider -->
+<section class="section-slide">
+	<div class="wrap-slick1">
+		<div class="slick1">
+			<div class="item-slick1" style="background-image: url(../../resources/images/banner_02.png);">
+				<div class="container h-full">
+					<div class="flex-col-m flex-c-m h-full p-t-100 p-b-30 respon5">
+						
+						<div class="layer-slick1">
+							<h2 class="ltext-201 cl13 p-t-19 p-b-43 respon1 bor12">
+								Skip Id
+							</h2>
+						</div>
+						
+						<c:if test="${userId ne null}">
+							<div class="layer-slick1">
+								<h2 class="ltext-201 cl13 p-t-19 p-b-43 respon1" style="font-size: 36px; text-transform: none;">
+									${userId}
+								</h2>
+							</div>
+						</c:if>
+						
+						<c:if test="${empty userId}">
+							<div class="layer-slick1">
+								<h2 class="ltext-201 cl13 p-t-19 p-b-43 respon1" style="font-size: 36px; text-transform: none;">
+									Account does not exist.
+								</h2>
+							</div>
+						</c:if>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section> <!-- Slider End -->
+<c:import url="/WEB-INF/views/layout/loginFooter.jsp" />
