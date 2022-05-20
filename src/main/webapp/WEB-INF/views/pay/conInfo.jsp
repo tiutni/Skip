@@ -104,48 +104,6 @@ function requestPay(){
 		    alert(msg);
 		});
 	
-// 	} else if ( exTitle != null ) {
-// 		//전시 결제일 경우	
-	
-// 		IMP.request_pay({
-			
-// 		    pg : 'html5_inicis', 								// PG사 (이니시스(웹표준결제))
-// 		    pay_method : 'card',								// 결제방식
-// 		    merchant_uid : 'merchant_' + new Date().getTime(),	// 고유주문번호
-// 		    name : exTitle,									// 주문명
-// 		    amount : '${price }', 								// 결제금액
-// 		    buyer_email : '${userEmail }',						// 주문자 Email
-// 		    buyer_name : '${userName }',						// 주문자명
-// 		    buyer_tel : '${userPhone }',						// 주문자 연락처
-// 		    buyer_addr : '${userAddr }',						// 주문자 주소
-		    
-// 		}, function(rsp) { // callback함수
-// 			console.log(rsp);
-			
-// 			var result = '';
-// 		    if ( rsp.success ) { // 결제 성공 시 로직
-		    	
-// 		        var msg = '결제가 완료되었습니다.';
-// 		        msg += ' , 고유ID : ' + rsp.imp_uid;
-// 		        msg += ' , 상점 거래ID : ' + rsp.merchant_uid;
-// 		        msg += ' , 결제 금액 : ' + rsp.paid_amount;
-// 		        msg += ' , 카드 승인번호 : ' + rsp.apply_num;
-// 		        result = '0';
-		        
-// 		    } else { //결제 실패 시 로직
-		    	
-// 		        var msg = '결제에 실패하였습니다.';
-// 		        msg += '에러내용 : ' + rsp.error_msg;
-// 		        result = '1';
-		        
-// 		    }
-// 		    if(result=='0'){
-// 		    	location.href = "/pay/complete";
-// 		    }
-// 		    alert(msg);
-// 		});
-	
-// 	}
 }
 
 function showDetail(){
@@ -270,8 +228,6 @@ function btnActive()  {
 				</div>
 			</div>
 			
-			
-		<c:if test="${not empty conTitle }">
 			<div class="card mb-4">
 				<div class="card-body">
 					<p class="mb-0">
@@ -290,25 +246,7 @@ function btnActive()  {
 					</p>
 				</div>
 			</div>
-		</c:if>
-		
-		
-		<c:if test="${not empty exTitle }">
-			<div class="card mb-4">
-				<div class="card-body">
-					<p class="mb-0">
-					
-						전시 정보
-				<br><br>전시회 명 : ${exTitle}
-					<br>관람일 : ${date}
-					<br>매수 : ${count}
-					<br>총 결제 금액 : ${price}
-				        	
-					</p>
-				</div>
-			</div>
-		</c:if>
-		
+
 		</div>
 	</main>            
 </div> 
@@ -320,6 +258,3 @@ function btnActive()  {
 <br>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
-
-
-
