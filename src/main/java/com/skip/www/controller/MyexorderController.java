@@ -24,7 +24,7 @@ public class MyexorderController {
 
 	
 
-	//공연 주문 조회
+	//전시회 주문 조회
 	@GetMapping(value="/mypage/myexorder")
 	public void conlist(HttpSession session, String curPage, Model model) {
 		logger.info("/mypage/myexorder");
@@ -40,9 +40,10 @@ public class MyexorderController {
 
 		paging.setUserNo(userNo);	
 
-		//공연 주문 목록 조회
+		//전시회 주문 목록 조회
 		List<ExOrderTicket> exlist =myexorderService.exlist(paging);
 
+		
 		logger.info("리스트{}",exlist);
 
 		

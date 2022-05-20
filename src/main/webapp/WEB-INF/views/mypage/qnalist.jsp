@@ -12,17 +12,11 @@
 $(document).ready(function(){
 	
 	$("#btnSearch").click(function() {
-		location.href="/qna/list?search="+$("#search").val();
+		location.href="/mypage/qnalist?search="+$("#search").val();
 	})
-})
 
-$(document).ready(function(){
 
-	$("#btnWrite").click(function() {
-		location.href="/mypage/qnawrite"
-	})
-})
-	
+
 	$(".cwa-tab > li").click(function() {
 		$(location).attr("href", $(this).find("a").attr("href"))
 	})
