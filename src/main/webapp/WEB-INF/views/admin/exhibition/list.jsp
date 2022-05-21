@@ -110,7 +110,7 @@ table, th, td {
 											<button onclick="btnUnActivate(${exhibition.exNo})" id="btnUnActivate" class="btn btn-secondary">종료하기</button>
 										</c:when>
 										<c:otherwise>
-											<button onclick="btnActivate(${exhibition.exNo})" id="btnActivate" class="btn btn-primary">재개하기</button>
+											<button onclick="btnActivate(${exhibition.exNo})" id="btnActivate" class="btn btn-primary">개시하기</button>
 										</c:otherwise>
 									</c:choose>
 								</td>
@@ -126,7 +126,7 @@ table, th, td {
 					</table>
 					
 					<!-- 글쓰기 버튼 -->
-					<div><button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button></div>
+					<div><button id="btnWrite" class="btn btn-primary pull-right">전시 생성</button></div>
 					
 					<!-- 페이징 -->
 					<div class="clearfix"></div>
