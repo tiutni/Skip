@@ -163,17 +163,80 @@ function btnActive()  {
 			</div>
 		</div>
 
+	<!-- 사이드바(결제) -->
+	<div style="float: left;">
+		<div class="stickyWrap" style="width: 100%; height: 10px; position: sticky; top:90px; margin-left: 30px; margin-top: 85px;">
+			<div class="select" style="width: 330px;">
+				<form action="/pay/con" method="post" id="payForm">
+					<!-- 유저 번호 전송 -->
+					<input type="hidden" name="userNo" value="${userNo }" />
+							
+					<!-- 공연 게시글 번호 전송 -->
+					<input type="hidden" name="conNo" value="${viewConcert.conNo }" />
+							
+					<fieldset style="border: 2px solid #ccc; border-radius: 2px; height: 348px; width: 330px;">
+						<br>
+						공연 명 : ${conTitle }
+						<!-- 날짜 및 회차,좌석 선택 -->
+						<!-- 날짜선택 -->
+						<label style="margin-left: 25px; font-size: 16px;"><b>관람일</b></label>
+						<input style="margin-left: 25px;" type="date" id="calendar" name="date" max="<fmt:formatDate value='${date }' pattern='yyyy-MM-dd' />" /><br>
+						<hr style="margin-top: 0px; margin-bottom: 25px;">
+						<!-- 회차 및 좌석 선택 -->
+						<span style="margin-left: 25px;"><b>회차</b></span>
+						<br>
+						<select id="round" name="round" style="margin-left: 25px; width:30%; padding: 0; margin-bottom: 10px; height:30px;" class="stext-111 cl8 plh3 p-lr-15 bor8">
+							${round }
+							
+						</select>
 
+						<br>
+
+						<!-- 선택된 좌석 -->
+						<span style="margin-left: 25px;"><b>좌석</b></span>
+						<c:forEach items="${selectedSeat}" var="i">
+							<br>좌석번호 : ${i}
+						</c:forEach>
+						<div id="selectSeat" style="margin-left: 25px; height: 10px;"></div>
+	
+						<hr style="margin-bottom: 3px;">
+						
+						<!-- 총 결제 금액 -->
+						<div style="height: 64.3px;">
+							<div style="display:inline-block;">		
+								<input type="hidden" id="valueOfprice" name="price" />
+								<span style="margin-left: 25px; font-style: italic;">
+									<b>총 결제 금액</b>
+								</span>
+							</div>
+							<div style="display:inline-block; margin-left: 40px; text-align: right; width: 150px; line-height: 2;">
+								<span id="totalprice" style="color: #ef3f43; font-size: 32px; font-style: italic;">
+								${price }
+								</span>
+							</div>
+						</div>
+					</fieldset>
+					
+					<!-- 예매 버튼 -->
+					<div>
+						<!-- 약관 동의 체크해야 활성화됨 -->
+						<button id="target_btn"  disabled="disabled" onclick="requestPay()" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer m-b-5">
+							결제하기
+						</button>
+					</div>
+				</form>
+			</div> <!-- select -->
+		</div> <!-- .stickyWrap -->
 
 			<div class="card mb-4">
 				<div class="card-body">
 					<p class="mb-0">
 					
 						주문자 정보
-				<br><br>이름 : ${userName }
+				<br><br>이름   : ${userName }
 					<br>이메일 : ${userEmail }
 					<br>연락처 : ${userPhone }
-					<br>주소 : ${userAddr }
+					<br>주소   : ${userAddr }
 				        	
 					</p>
 				</div>
@@ -191,8 +254,6 @@ function btnActive()  {
 					<c:forEach items="${selectedSeat}" var="i">
 					<br>좌석번호 : ${i}
 					</c:forEach>
-					
-					<br>총 결제 금액 : ${price }
 					
 					</p>
 				</div>

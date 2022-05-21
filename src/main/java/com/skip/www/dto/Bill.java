@@ -8,11 +8,11 @@ public class Bill {
 	private int user_no;
 	private Date orderDate;
 	private String orderStatus;
-	private String receiptType;
+
 	@Override
 	public String toString() {
 		return "Bill [orderNo=" + orderNo + ", user_no=" + user_no + ", orderDate=" + orderDate + ", orderStatus="
-				+ orderStatus + ", receiptType=" + receiptType + "]";
+				+ orderStatus + "]";
 	}
 	public int getOrderNo() {
 		return orderNo;
@@ -38,12 +38,5 @@ public class Bill {
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	public String getReceiptType() {
-		return receiptType;
-	}
-	public void setReceiptType(String receiptType) {
-		this.receiptType = receiptType;
-	}
-	
 	
 }

@@ -1,21 +1,19 @@
 package com.skip.www.dto;
 
-import java.util.Date;
-
 public class Pay {
 
 	private int payNo;
 	private int orderNo;
-	private int payMethodNo;
-	private Date payDate;
-	private int payMoney;
-	private int couponNo;
+	private int paidAmount;
+	private String merchantUid;
+	private String applyNum;
 	
 	@Override
 	public String toString() {
-		return "Pay [payNo=" + payNo + ", orderNo=" + orderNo + ", payMethodNo=" + payMethodNo + ", payDate=" + payDate
-				+ ", payMoney=" + payMoney + ", couponNo=" + couponNo + "]";
+		return "Pay [payNo=" + payNo + ", orderNo=" + orderNo + ", paidAmount=" + paidAmount + ", merchantUid="
+				+ merchantUid + ", applyNum=" + applyNum + "]";
 	}
+	
 	public int getPayNo() {
 		return payNo;
 	}
@@ -28,29 +26,23 @@ public class Pay {
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
-	public int getPayMethodNo() {
-		return payMethodNo;
+	public int getPaidAmount() {
+		return paidAmount;
 	}
-	public void setPayMethodNo(int payMethodNo) {
-		this.payMethodNo = payMethodNo;
+	public void setPaidAmount(int paidAmount) {
+		this.paidAmount = paidAmount;
 	}
-	public Date getPayDate() {
-		return payDate;
+	public String getMerchantUid() {
+		return merchantUid;
 	}
-	public void setPayDate(Date payDate) {
-		this.payDate = payDate;
+	public void setMerchantUid(String merchantUid) {
+		this.merchantUid = merchantUid;
 	}
-	public int getPayMoney() {
-		return payMoney;
+	public String getApplyNum() {
+		return applyNum;
 	}
-	public void setPayMoney(int payMoney) {
-		this.payMoney = payMoney;
-	}
-	public int getCouponNo() {
-		return couponNo;
-	}
-	public void setCouponNo(int couponNo) {
-		this.couponNo = couponNo;
+	public void setApplyNum(String applyNum) {
+		this.applyNum = applyNum;
 	}
 	
 }

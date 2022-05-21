@@ -52,7 +52,7 @@ public class NotiServiceImpl implements NotiService {
 	public Noti view(Noti viewNoti) {
 		
 		//상세보기 조회 결과 리턴
-		return notiDao.select(viewNoti);
+		return notiDao.selectNoti(viewNoti);
 	}
 
 

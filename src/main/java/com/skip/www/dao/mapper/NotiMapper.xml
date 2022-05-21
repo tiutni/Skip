@@ -30,7 +30,7 @@
 		WHERE noti_title LIKE '%' || #{search} || '%' 
 	</select>
 
-	<select id="select" resultType="com.skip.www.dto.Noti" parameterType="com.skip.www.dto.Noti">
+	<select id="selectNoti" resultType="com.skip.www.dto.Noti" parameterType="com.skip.www.dto.Noti">
 		SELECT * FROM noti
 		WHERE noti_no = #{notiNo}
 	</select>

@@ -32,7 +32,7 @@ public interface NotiDao {
 	 * @param viewNoti - 조회하려는 공지사항 게시글 번호
 	 * @return 조회된 공지사항 게시글 정보
 	 */
-	public Noti select(Noti viewNoti);
+	public Noti selectNoti(Noti viewNoti);
 	
 	/**
 	 * 공지사항 게시글 정보를 삽입한다

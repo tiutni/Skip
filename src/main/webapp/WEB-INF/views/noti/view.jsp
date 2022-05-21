@@ -24,6 +24,11 @@ td.info {
 td:not(.info) {
 	width: 40%;
 }
+
+#btnList{
+	margin: auto;
+}
+
 </style>
 
 
@@ -64,11 +69,8 @@ td:not(.info) {
 		<a href="/noti/download?notiFileNo=${notiFile.notiFileNo }">${notiFile.notiFileOriginName }</a>
 		
 		<br><br><br>
-		<div class="text-center">
-			<button id="btnList" class="flex-c-m stext-101 cl0 bg3 hov-btn3 p-lr-15 trans-04 pointer m-b-5">목록</button>
-		</div>
+		<button id="btnList" class="flex-c-m trans-04 pointer stext-110 m-lr-15-xl p-tb-5 p-lr-15 cl0 bg3 hov-btn3 m-b-15">목록</button>
 		
-
 
 	</div> <!-- .container end -->
 
