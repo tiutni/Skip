@@ -16,7 +16,7 @@ import com.skip.www.service.face.ConcertService;
 import com.skip.www.service.face.ExhibitionService;
 
 @Controller
-public class Main {
+public class MainController {
 
 	@Autowired
 	private ConcertService concertService;
@@ -24,7 +24,7 @@ public class Main {
 	@Autowired
 	private ExhibitionService exhibitionService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(Main.class);
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String concerts(Model model) {
