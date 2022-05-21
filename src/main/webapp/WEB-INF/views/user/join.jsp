@@ -287,8 +287,6 @@ $(document).ready(function() {
 		var userAddr1 = $("#userAddr1").val();
 		
 		if(userAddr1.length == 0) {
-			$("#userAddrCheck").html("주소1 입력을 확인을 입력하세요.");
-			$("#userAddrCheck").attr("class", "text-warning");
 			userAddr1Validation =  false;
      	}
 	})
@@ -300,7 +298,7 @@ $(document).ready(function() {
 		var userAddr2 = $("#userAddr2").val();
 		
 		if(userAddr2.length == 0) {
-			$("#userAddrCheck").html("주소2 입력을 확인을 입력하세요.");
+			$("#userAddrCheck").html("주소 입력을 확인을 입력하세요.");
 			$("#userAddrCheck").attr("class", "text-warning");
 			userAddr2Validation =  false;
      	}

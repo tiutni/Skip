@@ -127,7 +127,7 @@ public class UserController {
 			logger.info("회원가입 성공");
 			session.invalidate();
 			
-			return "redirect:/";			
+			return "redirect:/user/joinResult";			
 		} else {
 			logger.info("회원가입 실패");
 			session.invalidate();
@@ -200,13 +200,19 @@ public class UserController {
 			logger.info("회원가입 성공");
 			session.invalidate();
 			
-			return "redirect:/";			
+			return "redirect:/user/joinResult";			
 		} else {
 			logger.info("회원가입 실패");
 			session.invalidate();
 			
 			return "redirect:/user/kakaoJoin";
 		}
+	}
+	
+	// 회원가입 결과
+	@GetMapping(value = "user/joinResult")
+	public void joinResult() {
+		logger.info("회원 가입 완료 [GET]");
 	}
 	
 	// 아이디 찾기
