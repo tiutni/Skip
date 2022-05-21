@@ -54,7 +54,7 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<c:if test="${empty userId}">
+						<c:if test="${empty userNo || empty userId}">
 							<a href="/user/join" class="flex-c-m trans-04 p-lr-25">
 								JOIN
 							</a>
@@ -64,13 +64,13 @@
 							</a>
 						</c:if>
 						
-						<c:if test="${userId ne null && empty accessToken}">
+						<c:if test="${userNo ne null && userId ne null && empty accessToken}">
 							<a href="/user/logout" class="flex-c-m trans-04 p-lr-25">
 								LOGOUT
 							</a>
 						</c:if>
 
-						<c:if test="${userId ne null && accessToken ne null}">
+						<c:if test="${userNo ne null && userId ne null && accessToken ne null}">
 							<a href="https://kauth.kakao.com/oauth/logout?client_id=20a036a9e9a4a55d7de23fa420405573&logout_redirect_uri=http://localhost:8088/user/kakaoLogout" class="flex-c-m trans-04 p-lr-25">
 								KAKAO LOGOUT
 							</a>

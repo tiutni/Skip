@@ -117,7 +117,7 @@ public class UserController {
 	
 	// 회원가입 Process
 	@PostMapping("/user/join")
-	public String join(User user, HttpSession session) {
+	public String joinProcess(User user, HttpSession session) {
 		logger.info("user/join [POST]");
 		
 		// 회원가입 결과
