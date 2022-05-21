@@ -113,7 +113,7 @@ table, th, td {
 				
 						<div id="newFile">
 							<hr>
-							<label for="file">새로운 첨부파일</label>
+							<label for="file">새로운 전시 이미지</label>
 							<input type="file" id="file" name="file">
 							<small>** 새로운 파일로 첨부하면 기존 파일은 삭제됩니다</small>
 						</div>
@@ -121,12 +121,12 @@ table, th, td {
 				</div>
 				<br>
 				<div class="form-group">
-					<label for="content">본문</label>
+					<label for="content">전시 내용</label>
 					<textarea rows="10" style="width: 100%;" id="content" name="exContent">${updateExhibition.exContent }</textarea>
 				</div>
 				<br>
 				<div class="form-group">
-					<label for="exAddress">위치</label>
+					<label for="exAddress">전시 위치</label>
 					<input type="text" id="exAddress" name="exAddress" class="form-control" value="${updateExhibition.exAddress }">
 				</div>
 				<br>
@@ -166,7 +166,7 @@ table, th, td {
 				<br>
 				
 				<div class="text-center">
-					<button class="btn btn-primary" id="btnUpdate">수정</button>
+					<button class="btn btn-primary" id="btnUpdate">수정 완료</button>
 					<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 				</div>
 				</form>

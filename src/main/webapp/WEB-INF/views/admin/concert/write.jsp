@@ -86,12 +86,12 @@ table, th, td {
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="content">본문</label>
+						<label for="content">공연 내용</label>
 						<textarea rows="10" style="width: 100%;" id="content" name="conContent"></textarea>
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="conAddress">위치</label>
+						<label for="conAddress">공연 위치</label>
 						<input type="text" id="conAddress" name="conAddress" class="form-control" value="서울 종로구 세종대로 175">
 					</div>
 					<br>
@@ -122,7 +122,7 @@ table, th, td {
 					<br>
 					
 					<div class="text-center">
-						<button class="btn btn-primary" id="btnWrite">작성</button>
+						<button class="btn btn-primary" id="btnWrite">작성 완료</button>
 						<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 					</div>
 					</form>

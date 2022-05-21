@@ -125,7 +125,7 @@ table, th, td {
 				
 						<div id="newFileConImg">
 							<hr>
-							<label for="fileConImg">새로운 첨부파일</label>
+							<label for="fileConImg">새로운 공연이미지</label>
 							<input type="file" id="fileConImg" name="fileConImg">
 							<small>** 새로운 파일로 첨부하면 기존 파일은 삭제됩니다</small>
 						</div>
@@ -141,7 +141,7 @@ table, th, td {
 				
 						<div id="newFileConSeatImg">
 							<hr>
-							<label for="fileConSeatImg">새로운 첨부파일</label>
+							<label for="fileConSeatImg">새로운 좌석배치도</label>
 							<input type="file" id="fileConSeatImg" name="fileConSeatImg">
 							<small>** 새로운 파일로 첨부하면 기존 파일은 삭제됩니다</small>
 						</div>
@@ -149,12 +149,12 @@ table, th, td {
 				</div>
 				<br>
 				<div class="form-group">
-					<label for="content">본문</label>
+					<label for="content">공연 내용</label>
 					<textarea rows="10" style="width: 100%;" id="content" name="conContent">${updateConcert.conContent }</textarea>
 				</div>
 				<br>
 				<div class="form-group">
-					<label for="conAddress">위치</label>
+					<label for="conAddress">공연 장소</label>
 					<input type="text" id="conAddress" name="conAddress" class="form-control" value="${updateConcert.conAddress }">
 				</div>
 				<br>

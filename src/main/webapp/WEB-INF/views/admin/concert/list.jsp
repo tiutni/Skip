@@ -18,7 +18,7 @@ function btnUnActivate(conNo){
 }  
 
 function btnActivate(conNo){
-    if(confirm("공연을 재개하시겠습니까?") == true){
+    if(confirm("공연을 개시하시겠습니까?") == true){
         location.href="/admin/concert/activate?conNo="+ conNo;
     }else{
         return;
@@ -121,7 +121,7 @@ table, th, td {
 											<button onclick="btnUnActivate(${concert.conNo})" id="btnUnActivate" class="btn btn-secondary">종료하기</button>
 										</c:when>
 										<c:otherwise>
-											<button onclick="btnActivate(${concert.conNo})" id="btnActivate" class="btn btn-primary">재개하기</button>
+											<button onclick="btnActivate(${concert.conNo})" id="btnActivate" class="btn btn-primary">개시하기</button>
 										</c:otherwise>
 									</c:choose>
 								</td>
@@ -134,7 +134,7 @@ table, th, td {
 					</table>
 					
 					<!-- 글쓰기 버튼 -->
-					<div><button id="btnWrite" class="btn btn-primary pull-right">글쓰기</button></div>
+					<div><button id="btnWrite" class="btn btn-primary pull-right">공연 생성</button></div>
 					
 					<!-- 페이징 -->
 					<div class="clearfix"></div>

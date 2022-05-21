@@ -18,7 +18,7 @@ function btnUnActivate(exNo){
 }  
 
 function btnActivate(exNo){
-    if(confirm("전시를 재개하시겠습니까?") == true){
+    if(confirm("전시를 개시하시겠습니까?") == true){
         location.href="/admin/exhibition/activate?exNo="+ exNo;
     }else{
         return;
