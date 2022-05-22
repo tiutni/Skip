@@ -74,12 +74,18 @@ table, th {
     content: "";
 }
 
-.input{
-	text-align:center
+
+
+#out{
+	
+	text-align: center;
+	padding: 20px;
+	margin:15px;
 }
 
-
-
+#in {
+	display:inline-block;
+}
 </style>
 
 <ul class="cwa-tab mgt50">
@@ -119,13 +125,16 @@ table, th {
 
 <form action="/userinfo/delete" method="post" class="form-horizontal">
 
-<div class="text-center">
+<div class="out ">
+	<div class="in ">
 	<label for="pw" class="col-sm-4 control-label"></label>
 	<div class="col-sm-5">
 		<input type="password" class="form-control" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요">
 	</div>
 </div>
+</div>
 
+<br><br>
 
 <div class="text-center">
 	<div class="col-sm-offset-5" >

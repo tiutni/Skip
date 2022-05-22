@@ -162,7 +162,7 @@ function deleteWish(wishNo){
 							</li>
 
 							<li>
-								<a href="#">Booking</a>
+								<a href="/mypage/myconorder">Booking</a>
 							</li>
 
 							<li>

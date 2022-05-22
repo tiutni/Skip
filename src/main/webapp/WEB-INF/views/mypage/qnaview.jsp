@@ -49,7 +49,16 @@ table, th {
 
 </style>
 
-<div class="container">
+
+<!-- 나의문의 상세보기 -->
+<section class="bg0 p-t-23 p-b-140">
+	<div class="container">
+		<div class="p-b-10">
+			<h3 class="ltext-103 cl5">
+				My Qna
+			</h3>
+			<br><br><br>
+		</div>
 
 <br>
 
