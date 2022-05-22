@@ -24,18 +24,6 @@ $(document).ready(function() {
 })
 </script>
 
-
-<style type="text/css">
-table {
-	table-layout: fixed;
-}
-
-table, th, td {
-	text-align: center;
-	vertical-align: middle;
-}
-</style>
-
 <div id="layoutSidenav_content">
 	<main>
 		<!-- Seat -->

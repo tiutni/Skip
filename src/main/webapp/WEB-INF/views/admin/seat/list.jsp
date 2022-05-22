@@ -44,7 +44,11 @@ table {
 table, th, td {
 	text-align: center;
 	vertical-align: middle;
+	font-size: 1.5em;
 }
+
+
+
 </style>
 
 <div id="layoutSidenav_content">
@@ -69,18 +73,18 @@ table, th, td {
 					<table id="datatablesSimple">
 						<thead>
 							<tr>
-								<th style="width: 5%; text-align: center; vertical-align: middle;">번호</th>
-								<th style="width: 30%; text-align: center; vertical-align: middle;">등급</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">금액</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">수정</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">삭제</th>
+								<th width="20%" style="text-align: center; vertical-align: middle;">번호</th>
+								<th width="20%" style="text-align: center; vertical-align: middle;">등급</th>
+								<th width="20%" style="text-align: center; vertical-align: middle;">금액</th>
+								<th width="20%" style="text-align: center; vertical-align: middle;">수정</th>
+								<th width="20%" style="text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
 						
 						<tbody>
 						<c:forEach items="${list }" var="seat">
 							<tr>
-								<td style="vertical-align: middle;">${seat.seatNo }</td>
+								<td>${seat.seatNo }</td>
 								<td style="vertical-align: middle;">${seat.seatLevel }</td>
 								<td style="vertical-align: middle;">${seat.seatPrice }원</td>
 								<td style="vertical-align: middle;">

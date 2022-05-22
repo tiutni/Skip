@@ -51,6 +51,7 @@ table {
 table, th, td {
 	text-align: center;
 	vertical-align: middle;
+	font-size: 1.5em;
 }
 </style>
 
@@ -76,12 +77,12 @@ table, th, td {
 					<table id="datatablesSimple">
 						<thead>
 							<tr>
-								<th style="width: 5%; text-align: center; vertical-align: middle;">회차</th>
-								<th style="width: 30%; text-align: center; vertical-align: middle;">시작 시간</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">종료 시간</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">좌석</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">수정</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">삭제</th>
+								<th width="15" style="text-align: center; vertical-align: middle;">회차</th>
+								<th width="20" style="text-align: center; vertical-align: middle;">시작 시간</th>
+								<th width="20" style="text-align: center; vertical-align: middle;">종료 시간</th>
+								<th width="15" style="text-align: center; vertical-align: middle;">좌석</th>
+								<th width="15" style="text-align: center; vertical-align: middle;">수정</th>
+								<th width="15" style="text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
 						

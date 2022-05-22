@@ -50,18 +50,6 @@ $(document).ready(function() {
 </script>
 
 <style type="text/css">
-table {
-	table-layout: fixed;
-}
-
-table, th, td {
-	text-align: center;
-	vertical-align: middle;
-}
-.through {
-	text-decoration: line-through;
-}
-
 #deleteFile {
 	font-size: 1.5em;
 	font-weight: bold;

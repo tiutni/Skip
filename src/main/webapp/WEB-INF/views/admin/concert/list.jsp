@@ -66,6 +66,8 @@ table {
 table, th, td {
 	text-align: center;
 	vertical-align: middle;
+	font-size: 1.5em;
+	
 }
 </style>
 
@@ -91,14 +93,14 @@ table, th, td {
 					<table id="datatablesSimple">
 						<thead>
 							<tr>
-								<th style="width: 5%; text-align: center; vertical-align: middle;">번호</th>
-								<th style="width: 30%; text-align: center; vertical-align: middle;">제목</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">작성자</th>
-								<th style="width: 15%; text-align: center; vertical-align: middle;">작성일</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">회차</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">수정</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">삭제</th>
+								<th width="10%" style="text-align: center; vertical-align: middle;">번호</th>
+								<th width="40%" style="text-align: center; vertical-align: middle;">제목</th>
+								<th width="10%" style="text-align: center; vertical-align: middle;">작성자</th>
+								<th width="10%" style="text-align: center; vertical-align: middle;">작성일</th>
+								<th width="10%" style="text-align: center; vertical-align: middle;">회차</th>
+								<th width="10%" style="text-align: center; vertical-align: middle;">수정</th>
+								<th width="10%" style="text-align: center; vertical-align: middle;">종료여부</th>
+								<th width="10%" style="text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
 						
