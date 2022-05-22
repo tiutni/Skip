@@ -91,8 +91,8 @@ table, th, td {
 								<th style="width: 30%; text-align: center; vertical-align: middle;">제목</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">작성자</th>
 								<th style="width: 15%; text-align: center; vertical-align: middle;">작성일</th>
-								<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">수정</th>
+								<th style="width: 10%; text-align: center; vertical-align: middle;">종료여부</th>
 								<th style="width: 10%; text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
@@ -105,6 +105,9 @@ table, th, td {
 								<td style="vertical-align: middle;">${exhibition.adminId }</td>
 								<td style="vertical-align: middle;"><fmt:formatDate value="${exhibition.exRegDate }" pattern="yy-MM-dd"/></td>
 								<td style="vertical-align: middle;">
+									<button onclick="btnUpdate(${exhibition.exNo})" id="btnUpdate" class="btn btn-primary">수정</button>
+								</td>
+								<td style="vertical-align: middle;">
 									<c:choose>
 										<c:when test="${ 1 == exhibition.exActivate }">
 											<button onclick="btnUnActivate(${exhibition.exNo})" id="btnUnActivate" class="btn btn-secondary">종료하기</button>
@@ -115,10 +118,7 @@ table, th, td {
 									</c:choose>
 								</td>
 								<td style="vertical-align: middle;">
-									<button onclick="btnUpdate(${exhibition.exNo})" id="btnUpdate" class="btn btn-secondary">수정</button>
-								</td>
-								<td style="vertical-align: middle;">
-									<button onclick="btnDelete(${exhibition.exNo})" id="btnDelete" class="btn btn-secondary">삭제</button>
+									<button onclick="btnDelete(${exhibition.exNo})" id="btnDelete" class="btn btn-primary">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
