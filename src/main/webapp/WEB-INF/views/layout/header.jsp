@@ -181,9 +181,6 @@ function deleteWish(wishNo){
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-							<i class="zmdi zmdi-search"></i>
-						</div>
 
 					<!-- 위시리스트 버튼 -->
 					<div id="wishCount" class="js-show-cart">
