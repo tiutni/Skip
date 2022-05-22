@@ -96,8 +96,8 @@ table, th, td {
 					
 					<!-- 글쓰기 버튼 -->
 					<div>
-						<button id="btnConcertList" class="btn btn-primary pull-right">공연목록</button>
-						<button onclick="btnWrite(${paging.conRoundNo})" id="btnWrite" class="btn btn-primary pull-right">좌석 추가</button>
+						<button id="btnConcertList" class="btn btn-primary pull-right">공연 목록</button>
+						<button onclick="btnWrite(${paging.conRoundNo})" id="btnWrite" class="btn btn-primary pull-right">좌석 생성</button>
 					</div>
 					
 					<!-- 페이징 -->
