@@ -76,7 +76,7 @@ table, th, td {
 					</div>
 					<br>
 					<div class="text-center">
-						<button class="btn btn-primary" id="btnUpdate">수정</button>
+						<button class="btn btn-primary" id="btnUpdate">수정 완료</button>
 						<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 					</div>
 					</form>

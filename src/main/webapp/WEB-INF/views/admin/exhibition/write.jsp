@@ -58,7 +58,7 @@ table, th, td {
 
 			<div class="card mb-4">
 			    <div class="card-header">
-			        <i class="fas fa-table me-1"></i>전시 글쓰기
+			        <i class="fas fa-table me-1"></i>전시 생성
 			    </div>
 		
 				<!-- 목록 -->
@@ -127,7 +127,7 @@ table, th, td {
 					<br>
 					
 					<div class="text-center">
-						<button class="btn btn-primary" id="btnWrite">작성 완료</button>
+						<button class="btn btn-primary" id="btnWrite">생성 완료</button>
 						<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 					</div>
 					</form>

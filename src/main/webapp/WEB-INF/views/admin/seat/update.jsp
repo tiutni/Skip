@@ -48,7 +48,7 @@ table, th, td {
 
 			<div class="card mb-4">
 			    <div class="card-header">
-			        <i class="fas fa-table me-1"></i>공연 좌석 생성
+			        <i class="fas fa-table me-1"></i>공연 좌석 수정
 			    </div>
 		
 				<!-- 목록 -->

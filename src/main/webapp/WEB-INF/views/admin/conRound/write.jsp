@@ -75,7 +75,7 @@ table, th, td {
 					</div>
 					<br>
 					<div class="text-center">
-						<button class="btn btn-primary" id="btnWrite">작성</button>
+						<button class="btn btn-primary" id="btnWrite">생성 완료</button>
 						<input type="reset" id="cancel" class="btn btn-danger" value="취소">
 					</div>
 					</form>
