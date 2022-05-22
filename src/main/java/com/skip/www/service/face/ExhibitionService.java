@@ -16,19 +16,19 @@ public interface ExhibitionService {
 
 	public Exhibition getExhibition(int exNo);
 
+	public Paging getExhibitionReviewPaging(String curPage, int exNo);
+
 	public List<ExReview> reviewList(Paging paging);
-
-	public int getAllUser(int exNo);
-
-	public List<ExReview> getAllStar(int exNo);
-
-	public boolean isWish(Wish wish);
 
 	public void insertReview(ExReview exReview);
 
 	public boolean getWish(Wish wish);
 
-	public Paging getExhibitionReviewPaging(String curPage, int exNo);
+	public boolean isWish(Wish wish);
+
+	public List<ExReview> getAllStar(int exNo);
+
+	public int getAllUser(int exNo);
 
 	public List<Exhibition> getTopExhibitionList();
 

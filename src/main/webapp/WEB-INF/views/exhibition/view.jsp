@@ -60,10 +60,10 @@ $(document).ready(function() {
 	
 	// 위시리스트 목록에 있는지 구분
 	if(${isWish}) {
-		$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 20px; height: 20px;">');
+		$("#btnWish").html('<img src="/resources/se2/img/wish.jpg" style="width: 25px; height: 25px;">');
 		
 	} else {
-		$("#btnWish").html('<img src="/resources/se2/img/unwish.png" style="width: 20px; height: 20px;">');
+		$("#btnWish").html('<img src="/resources/se2/img/unwish.jpg" style="width: 25px; height: 25px;">');
 		
 	}
 	
@@ -92,12 +92,12 @@ $(document).ready(function() {
 			, success: function(data) {
 				if(data) {
 					alert("위시리스트에서 삭제되었습니다");
-					$("#btnWish").html('<img src="/resources/se2/img/unwish.png" style="width: 20px; height: 20px;">');
+					$("#btnWish").html('<img src="/resources/se2/img/unwish.jpg" style="width: 25px; height: 25px;">');
 					document.location.reload();
 					
 				} else if(!data) {
 					alert("위시리스트에 추가되었습니다");
-					$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 20px; height: 20px;">');
+					$("#btnWish").html('<img src="/resources/se2/img/wish.jpg" style="width: 25px; height: 25px;">');
 					document.location.reload();
 					
 				}
@@ -212,8 +212,8 @@ function count_ticket(type) {
 
 #popup .popup_content {
 	width: 450px;
-	height: 390px;
-	background: #ccc;
+	height: 395px;
+	background: white;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	position: absolute;
@@ -296,7 +296,7 @@ function count_ticket(type) {
 
 #reviewContent {
 	width: 400px;
-	height: 175px;
+	height: 195px;
 	resize: none;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -324,7 +324,6 @@ function count_ticket(type) {
 	margin-left: 5px;
 	font-size: 15px;
 	display: inline-block;
-}
 }
 
 #btnWrite {
@@ -505,18 +504,18 @@ function count_ticket(type) {
 			<!-- 리뷰 작성 폼 -->
 			<div id="popup" style="text-align: center;">
 				<div class="popup_content">
-					<h1 style="margin-bottom: 0;">리뷰 작성</h1>
+					<h1 style="margin-bottom: 0; margin-top: 10px;">리뷰 작성</h1>
 					<form action="/exhibition/reviewwrite" id="reviewForm" method="post">
-						<input type="hidden" id="conNo" name="conNo" value="${viewExhibition.exNo }"/>
+						<input type="hidden" id="exNo" name="exNo" value="${viewExhibition.exNo }"/>
 						<!-- 별점 선택 -->
-						<fieldset>
+						<fieldset style="display: flex; flex-direction: row; margin-right: 110px;">
 							<input type="radio" name="reviewStar" value="5" id="rate1"/><label for="rate1">★</label>
 							<input type="radio" name="reviewStar" value="4" id="rate2"/><label for="rate2">★</label>
 							<input type="radio" name="reviewStar" value="3" id="rate3"/><label for="rate3">★</label>
 							<input type="radio" name="reviewStar" value="2" id="rate4"/><label for="rate4">★</label>
 							<input type="radio" name="reviewStar" value="1" id="rate5" checked="checked"/><label for="rate5">★</label>
 						</fieldset>
-						<textarea id="reviewContent" name="reviewContent" placeholder="내용을 입력하세요"></textarea><br><br>
+						<textarea id="reviewContent" name="reviewContent" placeholder="내용을 입력하세요"></textarea><br>
 						<button type="button" id="btnCancel" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn2 p-lr-15 trans-04 pointer m-b-5">취소</button>
 						<button type="button" id="btnSubmit" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer m-b-5">등록</button>
 					</form>

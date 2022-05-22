@@ -42,7 +42,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/exhibitions", method=RequestMethod.GET)
-	public void main(Model model) {
+	public void exhibitions(Model model) {
 		logger.info("/exhibitions [GET]");
 		
 		// 전시회 게시글 중 최신순 상위 6개 공연 조회

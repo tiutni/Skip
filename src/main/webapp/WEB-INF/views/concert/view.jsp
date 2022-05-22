@@ -60,10 +60,10 @@ $(document).ready(function() {
 	
 	// 위시리스트 목록에 있는지 구분
 	if(${isWish}) {
-		$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 20px; height: 20px;">');
+		$("#btnWish").html('<img src="/resources/se2/img/wish.jpg" style="width: 25px; height: 25px;">');
 		
 	} else {
-		$("#btnWish").html('<img src="/resources/se2/img/unwish.png" style="width: 20px; height: 20px;">');
+		$("#btnWish").html('<img src="/resources/se2/img/unwish.jpg" style="width: 25px; height: 25px;">');
 		
 	}
 	
@@ -92,12 +92,12 @@ $(document).ready(function() {
 			, success: function(data) {
 				if(data) {
 					alert("위시리스트에서 삭제되었습니다");
-					$("#btnWish").html('<img src="/resources/se2/img/unwish.png" style="width: 20px; height: 20px;">');
+					$("#btnWish").html('<img src="/resources/se2/img/unwish.jpg" style="width: 25px; height: 25px;">');
 					document.location.reload();
 					
 				} else if(!data) {
 					alert("위시리스트에 추가되었습니다");
-					$("#btnWish").html('<img src="/resources/se2/img/wish.png" style="width: 20px; height: 20px;">');
+					$("#btnWish").html('<img src="/resources/se2/img/wish.jpg" style="width: 25px; height: 25px;">');
 					document.location.reload();
 					
 				}
@@ -289,7 +289,7 @@ $(document).ready(function() {
 
 #popup .popup_content {
 	width: 450px;
-	height: 390px;
+	height: 395px;
 	background: white;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -374,7 +374,7 @@ $(document).ready(function() {
 
 #reviewContent {
 	width: 400px;
-	height: 175px;
+	height: 195px;
 	resize: none;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -405,10 +405,10 @@ $(document).ready(function() {
 }
 
 #btnWrite {
- 	font-size: 12px;
- 	width: 80px;
- 	height: 25px;
- 	display: inline-block;
+	font-size: 12px;
+	width: 80px;
+	height: 25px;
+	display: inline-block;
  	position: relative;
  	left: 611px;
 }
@@ -619,18 +619,18 @@ $(document).ready(function() {
 			<!-- 리뷰 작성 폼 -->
 			<div id="popup" style="text-align: center;">
 				<div class="popup_content">
-					<h1 style="margin-bottom: 0;">리뷰 작성</h1>
+					<h1 style="margin-bottom: 0; margin-top: 10px;">리뷰 작성</h1>
 					<form action="/concert/reviewwrite" id="reviewForm" method="post">
 						<input type="hidden" id="conNo" name="conNo" value="${viewConcert.conNo }"/>
 						<!-- 별점 선택 -->
-						<fieldset>
-							<input type="radio" name="reviewStar" value="5" id="rate1"/><label for="rate1">★</label>
-							<input type="radio" name="reviewStar" value="4" id="rate2"/><label for="rate2">★</label>
-							<input type="radio" name="reviewStar" value="3" id="rate3"/><label for="rate3">★</label>
-							<input type="radio" name="reviewStar" value="2" id="rate4"/><label for="rate4">★</label>
-							<input type="radio" name="reviewStar" value="1" id="rate5" checked="checked"/><label for="rate5">★</label>
+						<fieldset style="display: flex; flex-direction: row; margin-right: 110px;">
+								<input type="radio" name="reviewStar" value="5" id="rate1"/><label for="rate1">★</label>
+								<input type="radio" name="reviewStar" value="4" id="rate2"/><label for="rate2">★</label>
+								<input type="radio" name="reviewStar" value="3" id="rate3"/><label for="rate3">★</label>
+								<input type="radio" name="reviewStar" value="2" id="rate4"/><label for="rate4">★</label>
+								<input type="radio" name="reviewStar" value="1" id="rate5" checked="checked"/><label for="rate5">★</label>
 						</fieldset>
-						<textarea id="reviewContent" name="reviewContent" placeholder="내용을 입력하세요"></textarea><br><br>
+						<textarea id="reviewContent" name="reviewContent" placeholder="내용을 입력하세요"></textarea><br>
 						<button type="button" id="btnCancel" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn2 p-lr-15 trans-04 pointer m-b-5">취소</button>
 						<button type="button" id="btnSubmit" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer m-b-5">등록</button>
 					</form>

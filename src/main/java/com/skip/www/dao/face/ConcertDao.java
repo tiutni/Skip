@@ -35,8 +35,6 @@ public interface ConcertDao {
 
 	public int cntAllUser(int conNo);
 
-	public String selectUserNickByUserNo(int userno);
-
 	public List<Concert> selectConcertTopList();
 
 	public int selectCntReviewByConNoUserNo(HashMap<Object, String> map);

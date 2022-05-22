@@ -20,17 +20,17 @@ public interface ExhibitionDao {
 
 	public List<ExReview> selectExReviewListByExNo(Paging paging);
 
-	public int cntAllUser(int exNo);
-
-	public List<ExReview> selectAllStar(int exNo);
+	public void insertExReview(ExReview exReview);
 
 	public int selectWishByExNoUserNo(Wish wish);
-
-	public void insertExReview(ExReview exReview);
 
 	public void deleteWishByExNoUserNo(Wish wish);
 
 	public void insertWish(Wish wish);
+
+	public List<ExReview> selectAllStar(int exNo);
+
+	public int cntAllUser(int exNo);
 
 	public List<Exhibition> selectExhibitionTopList();
 

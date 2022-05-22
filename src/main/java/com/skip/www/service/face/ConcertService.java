@@ -33,8 +33,6 @@ public interface ConcertService {
 
 	public int getAllUser(int conNo);
 
-	public String getUserNick(int userno);
-
 	public List<Concert> getTop3ConcertList();
 
 	public boolean isTicketing(HashMap<Object, String> map);

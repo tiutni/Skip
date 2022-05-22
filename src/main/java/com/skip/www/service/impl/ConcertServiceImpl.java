@@ -135,11 +135,6 @@ public class ConcertServiceImpl implements ConcertService {
 	}
 
 	@Override
-	public String getUserNick(int userno) {
-		return concertDao.selectUserNickByUserNo(userno);
-	}
-
-	@Override
 	public List<Concert> getTop3ConcertList() {
 		return concertDao.selectConcertTopList();
 	}
