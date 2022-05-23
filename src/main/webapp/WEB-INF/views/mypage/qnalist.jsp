@@ -155,7 +155,7 @@ table, th {
 		</c:forEach>
 		</tbody>
 		</table>
-		
+		 <br>
 		<button id="btnWrite" class="btn btn-primary pull-right">문의하기</button>
 		<span class="pull-left">total : ${paging.totalCount }</span>
 		<div class="clearfix"></div>

@@ -96,6 +96,7 @@
                 qna_ment B
 				WHERE 1=1
                 and A.qna_no = B.qna_no (+)
+                and A.user_no = #{userNo}
 				and qna_title LIKE '%' || #{search} || '%' 
 				ORDER BY A.qna_no DESC
 			) Q

@@ -176,8 +176,8 @@ public class MypageController {
 			
 		}
 		
-		int userNo = Integer.parseInt(String.valueOf(session.getAttribute("userNo")));
-
+		int userNo=(Integer)session.getAttribute("userNo");
+		
 		//페이징 계산
 		Paging paging = mypageService.getPaging( curPage, userNo );
 		logger.info("{}", paging);
