@@ -151,8 +151,11 @@ public class PayController {
 		String seatSeq = null;
 		
 		String conRoundNo = null;
-
 		
+		if(applynum == null) {
+			applynum = "1111111";
+		}
+	
 		if( conNo != null && round != null ) {
 			
 			String orderNo = payService.getOrderNo();
