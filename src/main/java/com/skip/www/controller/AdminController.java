@@ -311,6 +311,8 @@ public class AdminController {
 
 	@RequestMapping("/admin/concert/activate")
 	public String activateConcert(HttpServletRequest request, Concert concert) {
+		
+		
 		adminService.activateConcert(concert);
 		
 		String referer = request.getHeader("Referer");

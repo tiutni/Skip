@@ -71,6 +71,9 @@ $(document).ready(function() {
 #newFileConImg, #originFileConImg, #newFileConSeatImg, #originFileConSeatImg {
 	display: none;
 }
+.through {
+	text-decoration: line-through;
+}
 </style>
 
 <div id="layoutSidenav_content">

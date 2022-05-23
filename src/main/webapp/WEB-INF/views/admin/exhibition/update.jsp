@@ -59,6 +59,9 @@ $(document).ready(function() {
 #newFile, #originFile {
 	display: none;
 }
+.through {
+	text-decoration: line-through;
+}
 </style>
 
 <div id="layoutSidenav_content">

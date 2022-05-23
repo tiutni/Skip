@@ -6,12 +6,9 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-
 <script type="text/javascript">
-
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
 		location.href = "/mypage/myconorder"
@@ -28,7 +25,6 @@ $(document).ready(function() {
 	})
 	
 })
-
 </script>
 
 <style type="text/css">
@@ -73,12 +69,7 @@ table, th {
     border: 1px solid #e5e5e5;
     content: "";
 }
-
-
-
-
 </style>
-
 
 <style type="text/css">
 table {
@@ -98,9 +89,6 @@ form {
 	margin: 0 auto;
 }
 </style>
-
-
-
 
 <ul class="cwa-tab mgt50">
 	<li class="">
@@ -132,36 +120,29 @@ form {
 		<div class="p-b-10">
 			<h3 class="ltext-103 cl5">
 				Delete Account
+				<br><br>
 			</h3>
 		</div>
-<br><br>
+	</div>
 		
 
 <form action="/userinfo/delete" method="post" class="form-horizontal">
-
-
-<div class="text-center">
+	<div class="text-center">
+		<div>
+			<label for="userPw" >비밀번호 확인</label><br>
+			<input class="form-control" type="password"  id="userPw" name="userPw" placeholder="비밀번호를 입력하세요"><br>
+		</div>
+	</div>
 	
-<div>
-	<label for="userPw" >비밀번호</label><br>
-	<input  type="password"  id="userPw" name="userPw" placeholder="비밀번호를 입력하세요"><br>
+	<br><br>
+	
+	<div class="text-center">
+		<div class="col-sm-offset-5" >
+			<button id="submit" class="btn btn-primary">회원 탈퇴</button>
+			<input type="reset" id="cancel" class="btn btn-danger" value="취소" />
+		</div>
 	</div>
-</div>
-
-
-<br><br>
-
-<div class="text-center">
-	<div class="col-sm-offset-5" >
-		<button id="submit" class="btn btn-primary">회원 탈퇴</button>
-		<input type="reset" id="cancel" class="btn btn-danger" value="취소" />
-	</div>
-</div>
-
 </form>
-</div>
-
 </section>
-
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

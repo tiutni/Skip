@@ -5,13 +5,11 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script type="text/javascript">
-
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
 		location.href = "/userinfo/update"
@@ -28,7 +26,6 @@ $(document).ready(function() {
 	})
 	
 })
-
 </script>
 
 <style type="text/css">
@@ -73,11 +70,6 @@ table, th {
     border: 1px solid #e5e5e5;
     content: "";
 }
-
-
-
-
-
 </style>
 
 <ul class="cwa-tab mgt50">
@@ -104,12 +96,6 @@ table, th {
 	</li>
 </ul>
 
-
-
-
-
-
-
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -135,8 +121,7 @@ $(document).ready(function() {
      	}
 	})
 
-
-
+	
 	//비밀번호 확인 유효성 검사
 	var userPwDoubleValidation = false;
 	$("#userPwDouble").blur(function checkPwRe() {
@@ -412,123 +397,117 @@ form {
 }
 </style>
 
-
-<!-- 회원 정보 수정 -->
-<section class="bg0 p-t-23 p-b-140">
-	<div class="container">
-		<div class="p-b-10">
-			<h3 class="ltext-103 cl5">
-				My Information Update
-			</h3>
-		</div>
-         <br><br><br>
-		
-			
-
-
-
 <div class="container">
-<form action="/userinfo/update" method="post" class="form-horizontal">
-<input type="hidden" name="userNo" value="${updateUser.userNo }">
+	<!-- 회원 정보 수정 -->
+	<section class="bg0 p-t-23 p-b-140">
+		<div class="container">
+			<div class="p-b-10">
+				<h3 class="ltext-103 cl5">
+					My Information Update
+				</h3>
+			</div>
+	         <br><br><br>
 
-<div class="form-group">
-	<label for="userId" class="control-label">아이디</label>
-	<div class="">
-		<input type="text" class="form-control" id="userId" value="${updateUser.userId }" name="userId" readonly="readonly">
-	</div>
-</div>
+		<form action="/userinfo/update" method="post" class="form-horizontal">
+		<input type="hidden" name="userNo" value="${updateUser.userNo }">
+		
+		<div class="form-group">
+			<label for="userId" class="control-label">아이디</label>
+			<div class="">
+				<input type="text" class="form-control" id="userId" value="${updateUser.userId }" name="userId" readonly="readonly">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="userPw" class="control-label">비밀번호</label>
+			<div class="">
+				<input type="password" class="form-control" id="userPw" value="${updateUser.userPw }" name="userPw" >
+			</div>
+			<div class="check" id="userPwCheck"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="userPwDouble" class="control-label">비밀번호 확인</label>
+			<div class="">
+				<input type="password" class="form-control" id="userPwDouble" name="userPwDouble" value="${updateUser.userPw }">
+			</div>
+			<div class="check" id="userPwDoubleCheck"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="userNick" class="control-label">닉네임</label>
+			<div class="">
+				<input type="text" class="form-control" id="userNick" value="${updateUser.userNick }" name="userNick" >
+			<div class="check" id="userNickCheck"></div>
+			
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="userEmail" class="control-label">이메일</label>
+			<div class="">
+				<input type="text" class="form-control" id="userEmail"  value="${updateUser.userEmail }" name="userEmail"  >
+				<div class="check" id="userEmailCheck"></div>
+			
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="userName" class="control-label">이름</label>
+			<div class="">
+				<input type="text" class="form-control" id="userName" value="${updateUser.userName }" name="userName" >
+			</div>
+			<div class="check" id="userNameCheck"></div>
+			
+		</div>
+		
+		<div class="form-group">
+			<label for="userRrn" class="control-label">주민등록번호</label>
+			<div class="">
+				<input type="text" class="form-control" id="userRrn"  value="${updateUser.userRrn }" name="userRrn" readonly="readonly" >
+			</div>
+			<div class="check" id="userRrnCheck"></div>
+			
+		</div>
+		
+		<div class="form-group">
+			<label for="userPhone" class="control-label">휴대폰 번호</label>
+			<div class="">
+				<select id="userTelecom" name="userTelecom">
+					<option value="SKT" selected>SKT</option>
+					<option value="KT">KT</option>
+					<option value="LG">LG</option>
+				</select>
+				<input type="text" class="form-control" id="userPhone" value="${updateUser.userPhone}" name="userPhone" >
+			</div>
+			<div class="check" id="userPhoneCheck"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="userAddr" class="control-label">주소</label>
+			<div class="">
+				<input type="text" class="form-control" id="userAddr1" name="userAddr" value="${updateUser.userAddr }" >
+				<button type="button" id="userAddrSearch" name="userAddrSearch">검색</button>
+				<br>
+				<input type="text" class="form-control" id="userAddr2" name="userAddr"  >
+			</div>
+			<div class="check" id="userAddrCheck"></div>
+		</div>
+		
+		<br><br>
+		
+		<div class="form-group">
+			<div class="col-sm-offset-5">
+				<button id="formBtn" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer"  style="border-radius: 2px">회원정보 수정</button><br>
+				<input type="reset" id="cancel" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer"  style="border-radius: 2px" value="취소" />
+			</div>
+		</div>
+		
+		</form>
+		</div>
 
-<div class="form-group">
-	<label for="userPw" class="control-label">비밀번호</label>
-	<div class="">
-		<input type="password" class="form-control" id="userPw" value="${updateUser.userPw }" name="userPw" >
-	</div>
-	<div class="check" id="userPwCheck"></div>
-</div>
-
-<div class="form-group">
-	<label for="userPwDouble" class="control-label">비밀번호 확인</label>
-	<div class="">
-		<input type="password" class="form-control" id="userPwDouble" name="userPwDouble" value="${updateUser.userPw }">
-	</div>
-	<div class="check" id="userPwDoubleCheck"></div>
-</div>
-
-<div class="form-group">
-	<label for="userNick" class="control-label">닉네임</label>
-	<div class="">
-		<input type="text" class="form-control" id="userNick" value="${updateUser.userNick }" name="userNick" >
-	<div class="check" id="userNickCheck"></div>
-	
-	</div>
-</div>
-
-<div class="form-group">
-	<label for="userEmail" class="control-label">이메일</label>
-	<div class="">
-		<input type="text" class="form-control" id="userEmail"  value="${updateUser.userEmail }" name="userEmail"  >
-		<div class="check" id="userEmailCheck"></div>
-	
-	</div>
-</div>
-
-<div class="form-group">
-	<label for="userName" class="control-label">이름</label>
-	<div class="">
-		<input type="text" class="form-control" id="userName" value="${updateUser.userName }" name="userName" >
-	</div>
-	<div class="check" id="userNameCheck"></div>
-	
-</div>
-
-<div class="form-group">
-	<label for="userRrn" class="control-label">주민등록번호</label>
-	<div class="">
-		<input type="text" class="form-control" id="userRrn"  value="${updateUser.userRrn }" name="userRrn" readonly="readonly" >
-	</div>
-	<div class="check" id="userRrnCheck"></div>
-	
-</div>
-
-<div class="form-group">
-	<label for="userPhone" class="control-label">휴대폰 번호</label>
-	<div class="">
-		<select id="userTelecom" name="userTelecom">
-			<option value="SKT" selected>SKT</option>
-			<option value="KT">KT</option>
-			<option value="LG">LG</option>
-		</select>
-		<input type="text" class="form-control" id="userPhone" value="${updateUser.userPhone}" name="userPhone" >
-	</div>
-	<div class="check" id="userPhoneCheck"></div>
-</div>
-
-<div class="form-group">
-	<label for="userAddr" class="control-label">주소</label>
-	<div class="">
-		<input type="text" class="form-control" id="userAddr1" name="userAddr" value="${updateUser.userAddr }" >
-		<button type="button" id="userAddrSearch" name="userAddrSearch">검색</button>
-		<br>
-		<input type="text" class="form-control" id="userAddr2" name="userAddr"  >
-	</div>
-	<div class="check" id="userAddrCheck"></div>
-</div>
-
-<br><br>
-
-<div class="form-group">
-	<div class="col-sm-offset-5">
-		<button id="formBtn" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer"  style="border-radius: 2px">회원정보 수정</button><br>
-		<input type="reset" id="cancel" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer"  style="border-radius: 2px" value="취소" />
-	</div>
-</div>
-
-</form>
-</div>
-
+	</section>
 </div><!-- .container end -->
-
-</section>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
 
