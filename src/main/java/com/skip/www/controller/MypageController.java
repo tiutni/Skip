@@ -98,7 +98,7 @@ public class MypageController {
 		mypageService.updateUserinfo(updateUser);
 
 
-		return "/userinfo/update";
+		return "/mypage/myconorder";
 	}
 
 

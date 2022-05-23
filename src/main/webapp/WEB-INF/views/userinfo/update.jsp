@@ -381,7 +381,9 @@ $(document).ready(function() {
 	});
 	
 	// onsubmit 조건
-	$("#formBtn").click(function btnClick() {
+	$("#formBtn").submit(function btnClick() {
+		console.log(userNickValidation)
+		return false;
 		if (userIdValidation && userPwValidation && userPwDoubleValidation && userNickValidation && userEmailValidation && userNameValidation && userRrnValidation && userPhoneValidation) {
 			$("#form").attr("onsubmit","return true");
 		} else {
@@ -402,6 +404,11 @@ table, th {
 
 td:nth-child(2) {
 	text-align: left;
+}
+
+form {
+	width: 500px;
+	margin: 0 auto;
 }
 </style>
 
@@ -425,31 +432,31 @@ td:nth-child(2) {
 <input type="hidden" name="userNo" value="${updateUser.userNo }">
 
 <div class="form-group">
-	<label for="userId" class="col-sm-4 control-label">아이디</label>
-	<div class="col-sm-5">
+	<label for="userId" class="control-label">아이디</label>
+	<div class="">
 		<input type="text" class="form-control" id="userId" value="${updateUser.userId }" name="userId" readonly="readonly">
 	</div>
 </div>
 
 <div class="form-group">
-	<label for="userPw" class="col-sm-4 control-label">비밀번호</label>
-	<div class="col-sm-5">
+	<label for="userPw" class="control-label">비밀번호</label>
+	<div class="">
 		<input type="password" class="form-control" id="userPw" value="${updateUser.userPw }" name="userPw" >
 	</div>
 	<div class="check" id="userPwCheck"></div>
 </div>
 
 <div class="form-group">
-	<label for="userPwDouble" class="col-sm-4 control-label">비밀번호 확인</label>
-	<div class="col-sm-5">
+	<label for="userPwDouble" class="control-label">비밀번호 확인</label>
+	<div class="">
 		<input type="password" class="form-control" id="userPwDouble" name="userPwDouble" value="${updateUser.userPw }">
 	</div>
 	<div class="check" id="userPwDoubleCheck"></div>
 </div>
 
 <div class="form-group">
-	<label for="userNick" class="col-sm-4 control-label">닉네임</label>
-	<div class="col-sm-5">
+	<label for="userNick" class="control-label">닉네임</label>
+	<div class="">
 		<input type="text" class="form-control" id="userNick" value="${updateUser.userNick }" name="userNick" >
 	<div class="check" id="userNickCheck"></div>
 	
@@ -457,8 +464,8 @@ td:nth-child(2) {
 </div>
 
 <div class="form-group">
-	<label for="userEmail" class="col-sm-4 control-label">이메일</label>
-	<div class="col-sm-5">
+	<label for="userEmail" class="control-label">이메일</label>
+	<div class="">
 		<input type="text" class="form-control" id="userEmail"  value="${updateUser.userEmail }" name="userEmail"  >
 		<div class="check" id="userEmailCheck"></div>
 	
@@ -466,8 +473,8 @@ td:nth-child(2) {
 </div>
 
 <div class="form-group">
-	<label for="userName" class="col-sm-4 control-label">이름</label>
-	<div class="col-sm-5">
+	<label for="userName" class="control-label">이름</label>
+	<div class="">
 		<input type="text" class="form-control" id="userName" value="${updateUser.userName }" name="userName" >
 	</div>
 	<div class="check" id="userNameCheck"></div>
@@ -475,8 +482,8 @@ td:nth-child(2) {
 </div>
 
 <div class="form-group">
-	<label for="userRrn" class="col-sm-4 control-label">주민등록번호</label>
-	<div class="col-sm-5">
+	<label for="userRrn" class="control-label">주민등록번호</label>
+	<div class="">
 		<input type="text" class="form-control" id="userRrn"  value="${updateUser.userRrn }" name="userRrn" readonly="readonly" >
 	</div>
 	<div class="check" id="userRrnCheck"></div>
@@ -484,8 +491,8 @@ td:nth-child(2) {
 </div>
 
 <div class="form-group">
-	<label for="userPhone" class="col-sm-4 control-label">휴대폰 번호</label>
-	<div class="col-sm-5">
+	<label for="userPhone" class="control-label">휴대폰 번호</label>
+	<div class="">
 		<select id="userTelecom" name="userTelecom">
 			<option value="SKT" selected>SKT</option>
 			<option value="KT">KT</option>
@@ -497,8 +504,8 @@ td:nth-child(2) {
 </div>
 
 <div class="form-group">
-	<label for="userAddr" class="col-sm-4 control-label">주소</label>
-	<div class="col-sm-5">
+	<label for="userAddr" class="control-label">주소</label>
+	<div class="">
 		<input type="text" class="form-control" id="userAddr1" name="userAddr" value="${updateUser.userAddr }" >
 		<button type="button" id="userAddrSearch" name="userAddrSearch">검색</button>
 		<br>
@@ -511,8 +518,8 @@ td:nth-child(2) {
 
 <div class="form-group">
 	<div class="col-sm-offset-5">
-		<button id="submit" class="btn btn-primary"  >회원정보 수정</button>
-		<input type="reset" id="cancel" class="btn btn-danger" value="취소" />
+		<button id="formBtn" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer"  style="border-radius: 2px">회원정보 수정</button><br>
+		<input type="reset" id="cancel" class="flex-c-m stext-101 cl0 size-116 bg3 hov-btn3 p-lr-15 trans-04 pointer"  style="border-radius: 2px" value="취소" />
 	</div>
 </div>
 

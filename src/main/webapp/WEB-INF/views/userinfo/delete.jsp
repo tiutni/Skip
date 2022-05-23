@@ -76,17 +76,31 @@ table, th {
 
 
 
-#out{
-	
-	text-align: center;
-	padding: 20px;
-	margin:15px;
+
+</style>
+
+
+<style type="text/css">
+table {
+	table-layout: fixed;
 }
 
-#in {
-	display:inline-block;
+table, th {
+	text-align: center;
+}
+
+td:nth-child(2) {
+	text-align: left;
+}
+
+form {
+	width: 500px;
+	margin: 0 auto;
 }
 </style>
+
+
+
 
 <ul class="cwa-tab mgt50">
 	<li class="">
@@ -125,14 +139,15 @@ table, th {
 
 <form action="/userinfo/delete" method="post" class="form-horizontal">
 
-<div class="out ">
-	<div class="in ">
-	<label for="pw" class="col-sm-4 control-label"></label>
-	<div class="col-sm-5">
-		<input type="password" class="form-control" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요">
+
+<div class="text-center">
+	
+<div>
+	<label for="userPw" >비밀번호</label><br>
+	<input  type="password"  id="userPw" name="userPw" placeholder="비밀번호를 입력하세요"><br>
 	</div>
 </div>
-</div>
+
 
 <br><br>
 
