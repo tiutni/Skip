@@ -11,6 +11,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	$('#seatLevel').val('${updateSeat.seatLevel}').prop("selected",true);
+	
 	$("#btnUpdate").click(function() {
 		submitContents($("#btnUpdate"))
 		
@@ -47,10 +49,11 @@ $(document).ready(function() {
 					<input type="hidden" id="seatSeq" name="seatSeq" class="form-control" value="${updateSeat.seatSeq}" readonly="readonly">
 					<br>
 					<div class="form-group">
-						<label for="seatLevel">등급 (기존 선택 : ${updateSeat.seatLevel})</label>
+						<label for="seatLevel">등급</label>
+<%-- 						<label for="seatLevel">등급 (기존 선택 : ${updateSeat.seatLevel})</label> --%>
 <%-- 							<input type="text" id="seatLevel" name="seatLevel" class="form-control" value="${updateSeat.seatLevel}"> --%>
-							<select id="seatLevel" name="seatLevel" class="form-control">
-								<option selected="selected" value="기본">기본</option>
+							<select id="seatLevel" name="seatLevel" class="form-control" required="required">
+								<option value="기본">기본</option>
 								<option value="VIP">VIP</option>
 							</select>
 					</div>
