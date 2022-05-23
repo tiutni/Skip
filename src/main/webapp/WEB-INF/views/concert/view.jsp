@@ -592,7 +592,7 @@ $(document).ready(function() {
 						<button id="btnReview">후기</button>
 					</td>
 					<td>
-						<button id="btnAnswer" onclick="location.href='/qna/list'">문의하기</button>
+						<button id="btnAnswer" onclick="location.href='/mypage/qnalist'">문의하기</button>
 					</td>
 				</tr>
 				</table>
