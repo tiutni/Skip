@@ -12,13 +12,13 @@
 
 					<ul>
 						<li class="p-b-10">
-							<a href="#tickets" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="/" class="stext-107 cl7 hov-cl1 trans-04">
 								Concert
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#tickets" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="/exhibitions" class="stext-107 cl7 hov-cl1 trans-04">
 								Exhibition
 							</a>
 						</li>
@@ -39,7 +39,7 @@
 						</li>
 
 						<li class="p-b-10">
-							<a href="/qna/list" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="/mypage/qnalist" class="stext-107 cl7 hov-cl1 trans-04">
 								QnA
 							</a>
 						</li>
