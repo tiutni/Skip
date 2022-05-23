@@ -174,7 +174,7 @@ function deleteWish(wishNo){
 							</li>
 
 							<li>
-								<a href="/mypage/qnalist">QnA</a>
+								<a href="/qna/list">QnA</a>
 							</li>
 
 							<li>
