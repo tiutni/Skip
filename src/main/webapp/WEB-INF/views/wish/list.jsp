@@ -3,8 +3,14 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<!-- 비로그인상태 -->
+<c:if test="${empty userNo }">
+   <strong>로그인이 필요합니다</strong><br>
+</c:if>
+
 <!-- 로그인상태 -->
-<c:if test="${login }">
+<c:if test="${not empty userNo}">
 
 	<!-- 위시리스트가 있는 경우 -->
 	<c:if test="${wishList.size() != 0 }">
