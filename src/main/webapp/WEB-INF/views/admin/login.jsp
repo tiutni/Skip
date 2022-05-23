@@ -14,6 +14,9 @@
         <title>SKIP Admin Login</title>
         <link href="../../resources/admbootstrap/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        
+        <!-- 파비콘 --><link rel="shortcut icon" href="/resources/images/favicon.ico">
+        
     </head>
 
 <script type="text/javascript">

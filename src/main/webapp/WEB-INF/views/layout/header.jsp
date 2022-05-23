@@ -102,6 +102,10 @@ function deleteWish(wishNo){
 	<link rel="stylesheet" type="text/css" href="../../resources/css/util.css">
 	<link rel="stylesheet" type="text/css" href="../../resources/css/main.css">
 <!--===============================================================================================-->
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="/resources/images/favicon.ico">
+
 </head>
 <body class="animsition">
 	

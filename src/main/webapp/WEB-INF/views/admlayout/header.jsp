@@ -33,6 +33,8 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"> <!-- 아이콘 추가 --> <!-- https://icons.getbootstrap.com -->
         
+        <!-- 파비콘 -->	<link rel="shortcut icon" href="/resources/images/favicon.ico">
+        
     </head>
     
     <body class="sb-nav-fixed">

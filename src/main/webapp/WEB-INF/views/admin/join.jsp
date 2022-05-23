@@ -33,6 +33,8 @@ setInterval (function() {
 
 </script>
 
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="/resources/images/favicon.ico">
         
 </head>
     
