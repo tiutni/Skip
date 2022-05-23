@@ -138,6 +138,8 @@ public class PayController {
 		logger.info("date : {}", date);
 		logger.info("round : {}", round);
 		logger.info("price : {}", price);
+		logger.info("uid : {}", uid);
+		logger.info("applynum : {}", applynum);
 		logger.info("---------------------------------");
 		
 		HashMap<Object, String> map = new HashMap<>();
@@ -151,8 +153,11 @@ public class PayController {
 		String seatSeq = null;
 		
 		String conRoundNo = null;
-
 		
+		if(applynum == null || applynum == "") {
+			applynum = "11111111";
+		}
+	
 		if( conNo != null && round != null ) {
 			
 			String orderNo = payService.getOrderNo();
