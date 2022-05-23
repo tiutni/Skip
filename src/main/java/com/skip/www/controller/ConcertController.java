@@ -283,23 +283,20 @@ public class ConcertController {
 		
 		logger.info("seatList : {}", getAllSeatList);
 		
+		logger.info("getUnreservedSeatList : {}", getUnreservedSeatList);
+
 		for(int i=0; i < getAllSeatList.size(); i++) {
 			logger.info("getSeatList.get(i).seat_no : {}", getAllSeatList.get(i).getSeatNo());
-			
-			// 예약좌석 List size가 0일 경우 모든 좌석 반환
-			if(getUnreservedSeatList.size() == 0 ) {
-				ReservableSeats.add(getAllSeatList.get(i));
-				
-			} else {
-				// 예약 좌석 List가 있을 경우 해당 좌석 제외 후 반환
-				for(int j=0; j < getUnreservedSeatList.size(); j++) {
-					if(!getAllSeatList.get(i).getSeatNo().equals(getUnreservedSeatList.get(j).getSeatNo())) {
-						ReservableSeats.add(getAllSeatList.get(i));
 
-					}
-	
+			ReservableSeats.add(getAllSeatList.get(i));
+
+			// 예약 좌석 List가 있을 경우 해당 좌석 제외 후 반환
+			for(int j=0; j < getUnreservedSeatList.size(); j++) {
+				if(getAllSeatList.get(i).getSeatNo().equals(getUnreservedSeatList.get(j).getSeatNo())) {
+				
+					ReservableSeats.remove(getAllSeatList.get(i));
 				}
-			
+
 			}
 		
 		}

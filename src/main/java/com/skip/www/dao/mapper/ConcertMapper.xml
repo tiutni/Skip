@@ -294,7 +294,7 @@
 		FROM con_order_ticket cot, seat s, con_round cr
 		WHERE cot.seat_seq = s.seat_seq
 		AND s.con_round_no = cr.con_round_no
-		AND cr.con_no = #{conNo}
+		AND cot.con_no = #{conNo}
 		AND cr.con_round = #{conRound}
 		AND cot.con_order_date = to_date(#{date}, 'yy/mm/dd')
 	</select>

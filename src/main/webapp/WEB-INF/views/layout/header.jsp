@@ -170,7 +170,7 @@ function deleteWish(wishNo){
 							</li>
 
 							<li>
-								<a href="/qna/list">QnA</a>
+								<a href="/mypage/qnalist">QnA</a>
 							</li>
 
 							<li>
@@ -185,7 +185,7 @@ function deleteWish(wishNo){
 					<!-- 위시리스트 버튼 -->
 					<div id="wishCount" class="js-show-cart">
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="-">
- 							<i class="zmdi zmdi-favorite-outline""></i>
+ 							<i class="zmdi zmdi-favorite-outline"></i>
 						</div> 
 					</div>
 
@@ -232,10 +232,7 @@ function deleteWish(wishNo){
 					
 					<!-- ajax로 채워질 위시리스트 목록 -->
 					<div id="wishList">
-						<!-- 비로그인상태 -->
-						<c:if test="${not login }">
-							<strong>로그인이 필요합니다</strong><br>
-						</c:if>
+						
 					</div>
 				
 				</ul>
