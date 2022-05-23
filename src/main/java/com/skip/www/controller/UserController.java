@@ -3,6 +3,7 @@ package com.skip.www.controller;
 import java.util.HashMap;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -29,8 +30,12 @@ public class UserController {
 	
 	// 로그인
 	@GetMapping("/user/login")
-	public void login() {
+	public void login(HttpServletRequest request) {
 		logger.info("/user/login [GET]");
+		
+		String referer = request.getHeader("Referer");
+		request.getSession().setAttribute("redirectURI", referer);
+		logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    session save : " + request.getSession().getAttribute("redirectURI"));
 	}
 	
 	// 로그인 Process
@@ -46,6 +51,14 @@ public class UserController {
 			session.setAttribute("login", loginResult);
 			session.setAttribute("userNo", userService.getUserNo(String.valueOf(user.getUserId())));
 			session.setAttribute("userId", user.getUserId());
+			
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ session load referer : " + session.getAttribute("redirectURI"));
+			String ss = (String) session.getAttribute("redirectURI");
+			if( ss != null) {
+				if( !ss.contains("/login") ) {
+					return "redirect:"+session.getAttribute("redirectURI");
+				}
+			}
 			
 			return "redirect:/";
 		} else {

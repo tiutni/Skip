@@ -38,8 +38,14 @@ public class AdminController {
 	@Autowired private AdminService adminService;
 
 	@GetMapping("/admin/login")
-	public void login() {
+	public void login(HttpServletRequest request) {
 		logger.info("/admin/login [GET]");
+		
+		String referer = request.getHeader("Referer");
+		request.getSession().setAttribute("redirectURI", referer);
+		logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    session save referer: " + request.getSession().getAttribute("redirectURI"));
+////		logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    session : " + session.getAttribute("redirectURI"));
+		//인터셉터가 아니라 필터였으면 처음웹켜서 바로 url로 가도 referer에 담기지 않았을까...
 	}
 
 	@PostMapping("/admin/login")
@@ -54,7 +60,18 @@ public class AdminController {
 
 			session.setAttribute("login", loginResult);
 			session.setAttribute("id", admin.getAdminId());
-
+			
+			logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ session load referer : " + session.getAttribute("redirectURI"));
+			String ss = (String) session.getAttribute("redirectURI");
+			if( ss != null) {
+				if( !ss.contains("/login") && ss.contains("/admin") ) {
+					return "redirect:"+session.getAttribute("redirectURI");
+				}
+//				if( ss.contains("/admin/concert") || ss.contains("/admin/exhibition") ) {
+//					return "redirect:"+session.getAttribute("redirectURI");
+//				}
+			}
+			
 			return "redirect:/admin/member/list";
 
 		} else {
