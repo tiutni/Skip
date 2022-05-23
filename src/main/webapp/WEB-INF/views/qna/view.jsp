@@ -58,7 +58,7 @@ table, th {
 	<td class="info">글번호</td><td>${viewQna.qnaNo }</td>
 </tr>
 <tr>	
-	<td class="info">유저번호</td><td>${viewQna.qnaNo }</td>
+	<td class="info">회원번호</td><td>${viewQna.qnaNo }</td>
 </tr>
 <tr>
 	<td class="info">문의날짜</td><td><fmt:formatDate value="${viewQna.qnaDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>

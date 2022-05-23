@@ -64,7 +64,7 @@ $(document).ready(function(){
 									<td class="info">글 번호</td><td>${viewQna.qnaNo }</td>
 								<tr>
 								<tr>
-									<td class="info">유저 번호</td><td>${viewQna.userNo }</td>
+									<td class="info">회원 번호</td><td>${viewQna.userNo }</td>
 								</tr>
 								<tr>
 									<td class="info">문의 날짜</td><td><fmt:formatDate value="${viewQna.qnaDate }" pattern="yy-MM-dd HH:mm:ss"/></td>

@@ -64,6 +64,11 @@ table, th {
 </div>
 
 <div class="form-group">
+	<label for="write">회원 번호</label>
+	<input type="text" id="write" value="${userNo }" class="form-control" readonly="readonly">
+</div>
+
+<div class="form-group">
 	<label for="title">제목</label>
 	<input type="text" id="qnaTitle" name="qnaTitle" class="form-control">
 </div>
