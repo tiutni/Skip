@@ -10,7 +10,7 @@
 $(document).ready(function() {
 	
 	$("#btnHome").click(function() {
-		location.href = "/";
+		location.href = "/mypage/myconorder";
 	});
 })
 </script>
@@ -40,12 +40,12 @@ div{
         <br><br>         	
            주문/결제가 정상적으로 완료되었습니다. 
 		<br><br>
-		주문에 대한 상세정보는 <b>메일</b>에서 확인하실 수 있습니다.
+		주문에 대한 상세정보는 <b>마이페이지 > 주문내역</b>에서 확인하실 수 있습니다.
 		<br><br><br><br><br><br>
    	</div>
    
-	<button id="btnHome" class="flex-c-m trans-04 pointer stext-110 m-lr-15-xl p-tb-5 p-lr-15 cl0 bg3 hov-btn3 m-b-15"" >
-		메인페이지로 
+	<button id="btnHome" class="flex-c-m trans-04 pointer stext-110 m-lr-15-xl p-tb-5 p-lr-15 cl0 bg3 hov-btn3 m-b-15" >
+		주문내역으로
 	</button>
 	<br><br><br><br><br><br>
     	

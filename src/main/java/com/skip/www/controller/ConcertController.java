@@ -290,7 +290,7 @@ public class ConcertController {
 
 			ReservableSeats.add(getAllSeatList.get(i));
 
-			// 예약 좌석 List가 있을 경우 해당 좌석 제외 후 반환
+			// 예약 좌석과 동일한 좌석이 있을 경우 해당 좌석 제외 후 반환
 			for(int j=0; j < getUnreservedSeatList.size(); j++) {
 				if(getAllSeatList.get(i).getSeatNo().equals(getUnreservedSeatList.get(j).getSeatNo())) {
 				
