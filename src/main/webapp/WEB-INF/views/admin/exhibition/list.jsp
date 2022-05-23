@@ -94,7 +94,7 @@ table, th, td {
 								<th width="10%" style="text-align: center; vertical-align: middle;">작성자</th>
 								<th width="10%" style="text-align: center; vertical-align: middle;">작성일</th>
 								<th width="10%" style="text-align: center; vertical-align: middle;">수정</th>
-								<th width="10%" style="text-align: center; vertical-align: middle;">종료여부</th>
+								<th width="10%" style="text-align: center; vertical-align: middle;">상태</th>
 								<th width="10%" style="text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
@@ -112,10 +112,10 @@ table, th, td {
 								<td style="vertical-align: middle;">
 									<c:choose>
 										<c:when test="${ 1 == exhibition.exActivate }">
-											<button onclick="btnUnActivate(${exhibition.exNo})" id="btnUnActivate" class="btn btn-secondary">종료하기</button>
+											<button onclick="btnUnActivate(${exhibition.exNo})" id="btnUnActivate" class="btn btn-primary">개시</button>
 										</c:when>
 										<c:otherwise>
-											<button onclick="btnActivate(${exhibition.exNo})" id="btnActivate" class="btn btn-primary">개시하기</button>
+											<button onclick="btnActivate(${exhibition.exNo})" id="btnActivate" class="btn btn-secondary">종료</button>
 										</c:otherwise>
 									</c:choose>
 								</td>

@@ -47,7 +47,11 @@ $(document).ready(function() {
 					<br>
 					<div class="form-group">
 						<label for="seatLevel">등급</label>
-						<input type="text" id="seatLevel" name="seatLevel" class="form-control">
+<!-- 						<input type="text" id="seatLevel" name="seatLevel" class="form-control"> -->
+							<select id="seatLevel" name="seatLevel" class="form-control">
+								<option selected="selected" value="기본">기본</option>
+								<option value="VIP">VIP</option>
+							</select>
 					</div>
 					<br>
 					<div class="form-group">

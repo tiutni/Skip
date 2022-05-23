@@ -99,7 +99,7 @@ table, th, td {
 								<th width="10%" style="text-align: center; vertical-align: middle;">작성일</th>
 								<th width="10%" style="text-align: center; vertical-align: middle;">회차</th>
 								<th width="10%" style="text-align: center; vertical-align: middle;">수정</th>
-								<th width="10%" style="text-align: center; vertical-align: middle;">종료여부</th>
+								<th width="10%" style="text-align: center; vertical-align: middle;">상태</th>
 								<th width="10%" style="text-align: center; vertical-align: middle;">삭제</th>
 							</tr>
 						</thead>
@@ -108,7 +108,19 @@ table, th, td {
 						<c:forEach items="${list }" var="concert">
 							<tr>
 								<td style="vertical-align: middle;">${concert.conNo }</td>
-								<td style="vertical-align: middle; text-align: left;"><a href="/concert/view?conNo=${concert.conNo }">${concert.conTitle }</a></td>
+								
+								<td style="vertical-align: middle; text-align: left;">
+									<c:choose>
+										<c:when test="${ 1 == concert.conActivate }">
+											<a href="/concert/view?conNo=${concert.conNo }">
+												${concert.conTitle }
+											</a>
+										</c:when>
+										<c:otherwise>
+											${concert.conTitle }
+										</c:otherwise>
+									</c:choose>
+								</td>
 								<td style="vertical-align: middle;">${concert.adminId }</td>
 								<td style="vertical-align: middle;"><fmt:formatDate value="${concert.conRegDate }" pattern="yy-MM-dd"/></td>
 								<td style="vertical-align: middle;">
@@ -120,10 +132,10 @@ table, th, td {
 								<td style="vertical-align: middle;">
 									<c:choose>
 										<c:when test="${ 1 == concert.conActivate }">
-											<button onclick="btnUnActivate(${concert.conNo})" id="btnUnActivate" class="btn btn-secondary">종료하기</button>
+											<button onclick="btnUnActivate(${concert.conNo})" id="btnUnActivate" class="btn btn-primary">개시</button>
 										</c:when>
 										<c:otherwise>
-											<button onclick="btnActivate(${concert.conNo})" id="btnActivate" class="btn btn-primary">개시하기</button>
+											<button onclick="btnActivate(${concert.conNo})" id="btnActivate" class="btn btn-secondary">종료</button>
 										</c:otherwise>
 									</c:choose>
 								</td>
