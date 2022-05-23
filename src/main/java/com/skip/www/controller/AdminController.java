@@ -1,8 +1,11 @@
 package com.skip.www.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -255,18 +258,20 @@ public class AdminController {
 		logger.info("{}", concert);
 		logger.info("{}", fileConImg);
 		logger.info("{}", fileConSeatImg);
+		logger.info("{}", session);
 		
 		concert.setAdminId( (String) session.getAttribute("id") );
 		logger.info("{}", concert);
 		
 		adminService.writeConcert(concert, fileConImg, fileConSeatImg);
 		
+//		return "forward:/admin/conRound/write?conNo="+concert.getConNo();
 		return "redirect:/admin/concert/list"; //게시글 목록
 	}
 	
 	@GetMapping("/admin/concert/update")
 	public String updateConcert(Concert concert, Model model) {
-		logger.info("/admin/concert/update - {}", concert);		
+		logger.info("/admin/concert/update [GET] - {}", concert);		
 		
 		//잘못된 게시글 번호 처리
 		if( concert.getConNo() < 1 ) {
@@ -304,20 +309,123 @@ public class AdminController {
 	
 	@RequestMapping("/admin/concert/delete")
 	public String deleteConcert(Concert concert) {
+		logger.info("/admin/concert/delete - {}", concert);
+		
 		adminService.deleteConcert(concert);
 		
 		return "redirect:/admin/concert/list";
 	}
 
 	@RequestMapping("/admin/concert/activate")
-	public String activateConcert(HttpServletRequest request, Concert concert) {
+	public String activateConcert(HttpServletRequest request, HttpServletResponse response, Concert concert, Model model) { //활성화 버튼 클릭시 동작하는 컨트롤러 메소드
+		logger.info("/admin/concert/activate - {}", concert);
+
+		//공연 회차와 좌석(기본, VIP 둘다)이 존재하지 않을때에 대한 예외처리
+		//1. DB가서 해당 공연에 대한 회차가 없는 경우 -> 해당 공연의 회차 생성페이지로 이동-----------------------------------------------------------------------------
+		List<ConRound> listRound  = adminService.getConRoundList(concert);
+		logger.info("listRound - {}", listRound);
+		
+		if( listRound.size() == 0 ) {
+			logger.info("회차가 없는 경우@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('해당 공연에 회차가 존재하지 않습니다!\\n회차 생성 페이지로 이동합니다.'); location.href='/admin/conRound/write?conNo="+concert.getConNo()+"';</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "/admin/conRound/write";
+		}
+
+//		//알림용 jsp를 두는 방식, 근데 알 수 없는 이유로 jsp로 안넘어가서 폐기
+//		if( list.size() == 0 ) {
+//			logger.info("회차가 없는 경우@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//			model.addAttribute("msg", "회차정보가 없습니다. 회차 생성 페이지로 이동합니다.");
+//			model.addAttribute("url", "/admin/conRound/write?conNo="+concert.getConNo());
+//			return "/admin/concert/alertRound";
+//		}
+		
+		//2. DB가서 해당 회차에 대한 좌석이 없는 경우 -> 해당 공연의 좌석 생성페이지로 이동-----------------------------------------------------------------------------
+		List<Seat> listSeat = adminService.getSeatList(concert);
+		logger.info("listSeat - {}", listSeat);
+		
+		if( listSeat.size() == 0 ) {
+			logger.info("아예 좌석이 없는 경우@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('해당 공연에 회차만 존재하고 좌석이 존재하지 않습니다!\\n좌석을 먼저 생성해주세요.'); location.href='/admin/concert/list';</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "/admin/concert/list";
+		}
+		
+		//2-1. DB가서 해당 회차에 대한 기본 좌석이 없는 경우------------------------------------------------------------------------------------------------------------
+		List<Seat> listNormalSeat = adminService.getNormalSeatList(concert);
+		logger.info("listNormalSeat - {}", listNormalSeat);
+		
+		if( listNormalSeat.size() == 0 ) {
+			logger.info("기본좌석이 없는 경우@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('해당 공연에 기본좌석이 존재하지 않습니다!\\n최소 1개의 기본좌석을 먼저 생성해주세요.'); location.href='/admin/concert/list';</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "/admin/concert/list";
+		}
 		
 		
+		//2-2. DB가서 해당 회차에 대한 VIP 좌석이 없는 경우-------------------------------------------------------------------------------------------------------------
+		List<Seat> listVIPSeat = adminService.getVIPSeatList(concert);
+		logger.info("listVIPSeat - {}", listVIPSeat);
+		
+		if( listVIPSeat.size() == 0 ) {
+			logger.info("VIP좌석이 없는 경우@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('해당 공연에 VIP좌석이 존재하지 않습니다!\\n최소 1개의 VIP좌석을 먼저 생성해주세요.'); location.href='/admin/concert/list';</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return "/admin/concert/list";
+		}
+		
+		
+		//정상일때------------------------------------------------------------------------------------------------------------------------------------------------------
 		adminService.activateConcert(concert);
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:"+ referer;
 	}
+	
+//	@RequestMapping("/admin/concert/alertRound")
+//	public String alertRound(Concert concert, Model model) {
+//		
+//		model.addAttribute("msg", "회차정보가 없습니다. 회차 생성 페이지로 이동합니다.");
+//		model.addAttribute("url", "/admin/conRound/write?conNo="+concert.getConNo());
+//		
+//		return "/admin/concert/alertRound";
+//	}
 	
 	@RequestMapping("/admin/concert/unactivate")
 	public String unactivateConcert(HttpServletRequest request, Concert concert) {
@@ -349,7 +457,7 @@ public class AdminController {
 	//공연 회차------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(value="/admin/conRound/list")
-	public void listConRound(Paging paramData, Model model) {
+	public void listConRound(Paging paramData, Model model, Concert concert) {
 		logger.info("/admin/conRound/list");
 		
 		//페이징 계산
@@ -361,15 +469,19 @@ public class AdminController {
 		for(ConRound b : list) {
 			logger.info("{}", b);
 		}
-
+		
+		//콘서트로부터 전달받은 concert 객체(conNo만 담겼을것) 확인
+		logger.info("{}", concert);
+		
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
+		model.addAttribute("concert", concert);
 	}
 
 	@GetMapping("/admin/conRound/write")
-	public void writeConRound(int conNo, Model model) {
-		logger.info("/admin/conRound/update - {}", conNo);		
-		model.addAttribute("conRoundConNo", conNo);
+	public void writeConRound(Concert concert, Model model) {
+		logger.info("/admin/conRound/write [GET] - {}", concert);
+		model.addAttribute("concert", concert);
 	}
 	
 	@PostMapping("/admin/conRound/write")

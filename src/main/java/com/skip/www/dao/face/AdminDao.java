@@ -276,6 +276,8 @@ public interface AdminDao {
 	 */
 	public int selectConRoundCntAll(Paging paramData);
 
+	public List<ConRound> selectConRoundListByConNo(Concert concert);
+	
 	/**
 	 * 게시글 번호를 이용하여 게시글을 조회한다
 	 * 
@@ -325,6 +327,12 @@ public interface AdminDao {
 	 * @return 총 게시글 수
 	 */
 	public int selectSeatCntAll(Paging paramData);
+
+	public List<Seat> selectSeatListByConNo(Concert concert);
+
+	public List<Seat> selectNormalSeatListByConNo(Concert concert);
+
+	public List<Seat> selectVIPSeatListByConNo(Concert concert);
 
 	/**
 	 * 게시글 번호를 이용하여 게시글을 조회한다

@@ -45,7 +45,7 @@ $(document).ready(function() {
 					<form action="/admin/conRound/write" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="conNo">공연 번호</label>
-						<input type="text" id="conNo" name="conNo" value="${conRoundConNo}" class="form-control" readonly="readonly">
+						<input type="text" id="conNo" name="conNo" value="${concert.conNo}" class="form-control" readonly="readonly">
 					</div>
 					<br>
 					<div class="form-group">

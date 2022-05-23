@@ -258,6 +258,8 @@ public interface AdminService {
 	 * @return 계산이 완료된 Paging객체
 	 */
 	public Paging getPagingConRound(Paging paramData);
+
+	public List<ConRound> getConRoundList(Concert concert);
 	
 	/**
 	 * 게시글 상세보기
@@ -313,6 +315,12 @@ public interface AdminService {
 	 * @return 계산이 완료된 Paging객체
 	 */
 	public Paging getPagingSeat(Paging paramData);
+
+	public List<Seat> getSeatList(Concert concert);
+
+	public List<Seat> getNormalSeatList(Concert concert);
+
+	public List<Seat> getVIPSeatList(Concert concert);
 	
 	/**
 	 * 게시글 상세보기

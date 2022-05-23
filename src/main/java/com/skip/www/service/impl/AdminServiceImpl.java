@@ -524,6 +524,34 @@ public class AdminServiceImpl implements AdminService {
 		//상세보기 조회 결과 리턴
 		return adminDao.selectConRound(viewConRound);
 	}
+
+	@Override
+	public List<ConRound> getConRoundList(Concert concert) {
+		
+		//상세보기 조회 결과 리턴
+		return adminDao.selectConRoundListByConNo(concert);
+	}
+
+	@Override
+	public List<Seat> getSeatList(Concert concert) {
+		
+		//상세보기 조회 결과 리턴
+		return adminDao.selectSeatListByConNo(concert);
+	}
+
+	@Override
+	public List<Seat> getNormalSeatList(Concert concert) {
+		
+		//상세보기 조회 결과 리턴
+		return adminDao.selectNormalSeatListByConNo(concert);
+	}
+
+	@Override
+	public List<Seat> getVIPSeatList(Concert concert) {
+		
+		//상세보기 조회 결과 리턴
+		return adminDao.selectVIPSeatListByConNo(concert);
+	}
 	
 	@Override
 	public void updateConRound(ConRound conRound) {

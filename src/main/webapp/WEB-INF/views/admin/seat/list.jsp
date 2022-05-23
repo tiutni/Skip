@@ -84,7 +84,7 @@ table, th, td {
 						<tbody>
 						<c:forEach items="${list }" var="seat">
 							<tr>
-								<td>${seat.seatNo }</td>
+								<td style="vertical-align: middle;">${seat.seatNo }</td>
 								<td style="vertical-align: middle;">${seat.seatLevel }</td>
 								<td style="vertical-align: middle;">${seat.seatPrice }원</td>
 								<td style="vertical-align: middle;">

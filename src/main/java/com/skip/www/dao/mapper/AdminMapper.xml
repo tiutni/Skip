@@ -470,6 +470,17 @@
 		WHERE con_no = #{conNo} 
 	</select>
 	
+	<select id="selectConRoundListByConNo" resultMap="ConRound" parameterType="com.skip.www.dto.Concert">
+		SELECT
+			con_round_no
+			, con_round
+			, con_round_starttime
+			, con_round_endtime
+			, con_no
+			FROM CON_ROUND
+		WHERE con_no = #{conNo}
+	</select>
+	
 	<select id="selectConRound" resultMap="ConRound" parameterType="com.skip.www.dto.ConRound">
 		SELECT
 			con_round_no
@@ -541,6 +552,53 @@
 	<select id="selectSeatCntAll" resultType="int" parameterType="com.skip.www.util.Paging">
 		SELECT count(*) FROM SEAT
 		WHERE con_round_no = #{conRoundNo} 
+	</select>
+	
+	<select id="selectSeatListByConNo" resultMap="Seat" parameterType="com.skip.www.dto.Concert">
+		SELECT
+		    seat_seq
+		    , seat_level
+		    , seat_price
+		    , seat_no
+		    , s.con_round_no
+		FROM seat s
+		INNER JOIN con_round r
+		ON s.con_round_no = r.con_round_no
+		INNER JOIN concert c
+		ON r.con_no = c.con_no
+		WHERE c.con_no = #{conNo} 
+	</select>
+	
+	<select id="selectNormalSeatListByConNo" resultMap="Seat" parameterType="com.skip.www.dto.Concert">
+		SELECT
+		    seat_seq
+		    , seat_level
+		    , seat_price
+		    , seat_no
+		    , s.con_round_no
+		FROM seat s
+		INNER JOIN con_round r
+		ON s.con_round_no = r.con_round_no
+		INNER JOIN concert c
+		ON r.con_no = c.con_no
+		WHERE c.con_no = #{conNo} 
+		AND seat_level = '기본'
+	</select>
+	
+	<select id="selectVIPSeatListByConNo" resultMap="Seat" parameterType="com.skip.www.dto.Concert">
+		SELECT
+		    seat_seq
+		    , seat_level
+		    , seat_price
+		    , seat_no
+		    , s.con_round_no
+		FROM seat s
+		INNER JOIN con_round r
+		ON s.con_round_no = r.con_round_no
+		INNER JOIN concert c
+		ON r.con_no = c.con_no
+		WHERE c.con_no = #{conNo} 
+		AND seat_level = 'VIP' 
 	</select>
 	
 	<select id="selectSeat" resultMap="Seat" parameterType="com.skip.www.dto.Seat">

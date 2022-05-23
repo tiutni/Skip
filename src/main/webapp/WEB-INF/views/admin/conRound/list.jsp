@@ -109,7 +109,7 @@ table, th, td {
 					<!-- 글쓰기 버튼 -->
 					<div>
 						<button id="btnConcertList" class="btn btn-primary pull-right">공연 목록</button>
-						<button onclick="btnWrite(${paging.conNo})" id="btnWrite" class="btn btn-primary pull-right">회차 생성</button>
+						<button onclick="btnWrite(${concert.conNo})" id="btnWrite" class="btn btn-primary pull-right">회차 생성</button>
 					</div>
 					
 					<!-- 페이징 -->
