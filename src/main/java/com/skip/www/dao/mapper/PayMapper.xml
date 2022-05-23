@@ -6,4 +6,48 @@
     
 <mapper namespace="com.skip.www.dao.face.PayDao">
 
+	<select id="selectConRoundNoByConNoConRound" parameterType="hashmap" resultType="string">
+		SELECT con_round_no FROM con_round
+		WHERE con_no = #{conNo}
+		AND con_round = #{round}
+	</select>
+
+
+	<select id="selectConNoConRoundNo" parameterType="hashmap" resultType="string">
+		SELECT seat_seq FROM seat s, con_round cr
+		WHERE s.con_round_no = cr.con_round_no
+		AND cr.con_no = #{conNo}
+		AND cr.con_round_no = #{conRoundNo}
+		AND s.seat_no = #{seatNo}
+	</select>
+
+
+	<select id="selectOrderNoSeq" resultType="string">
+		SELECT order_no_seq.nextval FROM dual
+	</select>
+
+
+	<insert id="insertOrder" parameterType="hashmap">
+		INSERT INTO bill ( order_no, user_no )
+		VALUES ( #{orderNo}, #{userNo} )
+	</insert>
+	
+	
+	<insert id="insertConOrderTicket" parameterType="hashmap">
+		INSERT INTO con_order_ticket ( con_order_ticket_no, con_round_no, con_no, order_no, seat_seq, con_order_date )
+			VALUES ( con_order_ticket_no_seq.nextval, #{conRoundNo}, #{conNo}, #{orderNo}, #{seatSeq}, #{date} )
+	</insert>
+
+
+	<insert id="insertExOrderTicket" parameterType="hashmap">
+		INSERT INTO ex_order_ticket ( ex_order_ticket_no, ex_order_count, order_no, ex_no, ex_order_date )
+		VALUES ( ex_order_ticket_no_seq.nextval, #{count}, #{orderNo}, #{exNo}, #{date} )
+	</insert>
+
+
+	<insert id="insertPay" parameterType="hashmap">
+		INSERT INTO pay ( pay_no, paid_amount, merchant_uid, apply_num, order_no )
+		VALUES ( pay_no_seq.nextval, #{price}, #{uid}, #{applynum}, #{orderNo} )
+	</insert>
+
 </mapper>

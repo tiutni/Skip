@@ -1,5 +1,8 @@
 package com.skip.www.service.face;
 
+import java.util.HashMap;
+import java.util.List;
+
 import com.skip.www.dto.Concert;
 import com.skip.www.dto.Exhibition;
 import com.skip.www.dto.User;
@@ -28,6 +31,21 @@ public interface PayService {
 	 * @return 조회된 전시 정보
 	 */
 	public Exhibition selectExTitle(int exNo);
+
+	public void insertBill(HashMap<Object, String> map);
+
+	public String getOrderNo();
+
+	public String getConRoundNo(HashMap<Object, String> con);
+
+	public String getSeatSeq(HashMap<Object, String> con);
+
+	public void insertConOrderTicket(HashMap<Object, String> con);
+
+	public void insertExOrderTicket(HashMap<Object, String> ex);
+
+	public void insertPay(HashMap<Object, String> pay);
+
 
 
 }

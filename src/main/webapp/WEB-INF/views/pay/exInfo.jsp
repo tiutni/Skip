@@ -38,8 +38,24 @@ function requestPay(){
  			var result = '';
  		    if ( rsp.success ) { // 결제 성공 시 로직
 		    	
+ 		    	$.ajax({
+		    		url: "/pay/complete"
+		    		, method: "get"
+		    		, headers : {"Content-Type" : "application/json"}
+		    		, data : {
+		    		 	userNo : '${userNo}',
+		    		   	exNo : '${exNo}',
+		    		   	date : '${date}',
+		    		   	count : '${count}',
+		    		   	price : '${price}',
+		    		   	uid : rsp.imp_uid,
+		    		   	applynum : rsp.apply_num
+  		   	
+		    		}
+		    	});
+ 		    	
  		        var msg = '결제가 완료되었습니다.';
- 		        msg += ' , 고유ID : ' + rsp.imp_uid;
+//  		        msg += ' , 고유ID : ' + rsp.imp_uid;
 //  		        msg += ' , 상점 거래ID : ' + rsp.merchant_uid;
 //  		        msg += ' , 결제 금액 : ' + rsp.paid_amount;
 //  		        msg += ' , 카드 승인번호 : ' + rsp.apply_num;
@@ -52,7 +68,8 @@ function requestPay(){
 		        
 		    }
 		    if(result=='0'){
-		    	location.href = "/pay/complete";
+		    	location.href = "/pay/success";
+		    	
 		    }
 		    alert(msg);
 		});
@@ -220,7 +237,7 @@ function btnActive()  {
 		</div> 
 			
 			<br><br><br>
-			<button id="btnBack" class="flex-c-m trans-04 pointer stext-110 m-lr-15-xl p-tb-5 p-lr-15 cl0 bg3 hov-btn3 m-b-15"" >
+			<button id="btnBack" class="flex-c-m trans-04 pointer stext-110 m-lr-15-xl p-tb-5 p-lr-15 cl0 bg3 hov-btn3 m-b-15">
 				취소
 			</button>
 			<br><br><br><br><br><br>
@@ -236,20 +253,20 @@ function btnActive()  {
 				<input type="hidden" name="userNo" value="${userNo }" />
 						
 				<!-- 공연 게시글 번호 전송 -->
-				<input type="hidden" name="conNo" value="${conNo }" />
+				<input type="hidden" name="exNo" value="${exNo }" />
 							
-				<fieldset style="border: 2px solid #ccc; border-radius: 2px; height: 300px; width: 330px;"><br>
-					<div style="margin-left: 25px; font-size: 16px;">
+				<fieldset style="border: 2px solid #ccc; border-radius: 2px; height: 335px; width: 330px;"><br>
+					<div style="margin-left: 25px; font-size: 16px; margin-right: 25px;">
 					
 						<!-- 예매 정보 -->
 						<div><b>전시회명</b></div>
-						<div name="exTitle">${exTitle }</div><br>
+						<div>${exTitle }</div><br>
 						
 						<div><b>관람일</b></div>
-						<div name="date" >${date}</div><br>
+						<div>${date}</div><br>
 						
 						<div><b>매수</b></div>
-						<div id="count" name="count">${count } 매</div>
+						<div id="count">${count } 매</div>
 						
 					<hr style="margin-bottom: 2px;">
 					
@@ -257,15 +274,14 @@ function btnActive()  {
 					
 					<!-- 총 결제 금액 -->
 					<div style="height: 64.3px;">
-						<div style="display:inline-block;">		
-							<input type="hidden" id="valueOfprice" name="price" />
+						<div style="display:inline-block;">	
 							<span style="margin-left: 25px; font-style: italic;">
 								<b>총 결제 금액</b>
 							</span>
 						</div>
 						<div style="display:inline-block; margin-left: 40px; text-align: right; width: 150px; line-height: 2;">
 							<span id="totalprice" style="color: #ef3f43; font-size: 32px; font-style: italic;">
-							${price }
+								${price }
 							</span>
 						</div>
 					</div>

@@ -1,5 +1,8 @@
 package com.skip.www.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +46,44 @@ public class PayServiceImpl implements PayService {
 	public Exhibition selectExTitle(int exNo) {
 		
 		return exhibitionDao.selectExhibitionByExNo(exNo);
+	}
+
+	@Override
+	public void insertBill(HashMap<Object, String> map) {		
+		payDao.insertOrder(map);
+		
+	}
+
+	@Override
+	public String getConRoundNo(HashMap<Object, String> con) {
+		return payDao.selectConRoundNoByConNoConRound(con);
+	}
+
+	@Override
+	public String getSeatSeq(HashMap<Object, String> con) {
+		return payDao.selectConNoConRoundNo(con);
+	}
+
+	@Override
+	public void insertConOrderTicket(HashMap<Object, String> con) {
+		payDao.insertConOrderTicket(con);
+	}
+
+	@Override
+	public String getOrderNo() {
+		return payDao.selectOrderNoSeq();
+	}
+
+	@Override
+	public void insertExOrderTicket(HashMap<Object, String> ex) {
+		payDao.insertExOrderTicket(ex);
+		
+	}
+
+	@Override
+	public void insertPay(HashMap<Object, String> pay) {
+		payDao.insertPay(pay);
+		
 	}
 	
 }

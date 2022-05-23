@@ -11,103 +11,6 @@
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js" type="text/javascript"></script>
 
-
-<script type="text/javascript">
-
-function requestPay(){
-	
-	var IMP = window.IMP;
-	IMP.init('imp59933008'); // SKIP 가맹점 키 (아임포트 관리자 페이지 -> 내정보 -> 가맹점식별코드)
-
-	IMP.request_pay({
-			
-		    pg : 'html5_inicis', 								// PG사 (이니시스(웹표준결제))
-		    pay_method : 'card',								// 결제방식
-		    merchant_uid : 'merchant_' + new Date().getTime(),	// 고유주문번호
-		    name : '${conTitle}'+'${date}',						// 주문명
-		    amount : '${price }', 								// 결제금액
-		    buyer_email : '${userEmail }',						// 주문자 Email
-		    buyer_name : '${userName }',						// 주문자명
-		    buyer_tel : '${userPhone }',						// 주문자 연락처
-		    buyer_addr : '${userAddr }',						// 주문자 주소
-		    
-		}, function(rsp) { // callback함수
-			console.log(rsp);
-			
-			var result = '';
-		    if ( rsp.success ) { // 결제 성공 시 로직
-		        var msg = '결제가 완료되었습니다.';
-// 		        msg += ' , 고유ID : ' + rsp.imp_uid;
-// 		        msg += ' , 상점 거래ID : ' + rsp.merchant_uid;
-// 		        msg += ' , 결제 금액 : ' + rsp.paid_amount;
-// 		        msg += ' , 카드 승인번호 : ' + rsp.apply_num;
-		        result = '0';
-		        
-		    } else { //결제 실패 시 로직
-		        var msg = '결제에 실패하였습니다.';
-// 		        msg += '에러내용 : ' + rsp.error_msg;
-		        result = '1';
-		        
-		    }
-		    if(result=='0'){
-		    	location.href = "/pay/complete";
-		    }
-		    alert(msg);
-		});
-	
-}
-
-function showDetail(){
-    document.querySelector("#desc").style.display = "block";
-    document.querySelector("#open").style.display = "none";
-}
-
-function hideDetail(){
-    document.querySelector("#desc").style.display = "none";
-    document.querySelector("#open").style.display = "block";
-}
-function showDetail1(){
-    document.querySelector("#desc1").style.display = "block";
-    document.querySelector("#open1").style.display = "none";
-}
-
-function hideDetail1(){
-    document.querySelector("#desc1").style.display = "none";
-    document.querySelector("#open1").style.display = "block";
-}
-function showDetail2(){
-    document.querySelector("#desc2").style.display = "block";
-    document.querySelector("#open2").style.display = "none";
-}
-
-function hideDetail2(){
-    document.querySelector("#desc2").style.display = "none";
-    document.querySelector("#open2").style.display = "block";
-}
-
-
-$(document).ready(function() {
-	
-	$("#btnBack").click(function() {
-		history.go(-1) });
-})
-
-function btnActive()  {
-	
-	console.log($("#target_btn").attr("disabled"))
-	
-	if($("#target_btn").attr("disabled") == "disabled" ){
-		// 버튼 비활성화 상태일 경우
-		$("#target_btn").attr("disabled", false); //활성화
-		
-	} else {
-		// 버튼 활성화 상태일 경우
-		$("#target_btn").attr("disabled", true); //비활성화
-	}
-	
-};
-</script>
-
 <style>
 .detail {
 	display: none;
@@ -216,7 +119,7 @@ function btnActive()  {
 		</div> 
 			
 			<br><br><br>
-			<button id="btnBack" class="flex-c-m trans-04 pointer stext-110 m-lr-15-xl p-tb-5 p-lr-15 cl0 bg3 hov-btn3 m-b-15"" >
+			<button id="btnBack" class="flex-c-m trans-04 pointer stext-110 m-lr-15-xl p-tb-5 p-lr-15 cl0 bg3 hov-btn3 m-b-15">
 				취소
 			</button>
 			<br><br><br><br><br><br>
@@ -227,33 +130,28 @@ function btnActive()  {
 	<div style="float: left;">
 		<div class="stickyWrap" style="width: 100%; height: 10px; position: sticky; top:90px; margin-left: 30px; margin-top: 105px;">
 			<div class="select" style="width: 330px;">
-					
-				<!-- 유저 번호 전송 -->
-				<input type="hidden" name="userNo" value="${userNo }" />
-						
-				<!-- 공연 게시글 번호 전송 -->
-				<input type="hidden" name="conNo" value="${conNo }" />
 							
 				<fieldset style="border: 2px solid #ccc; border-radius: 2px; height: 370px; width: 330px;"><br>
 					<div style="margin-left: 25px; font-size: 16px;">
 					
 						<!-- 예매 정보 -->
 						<div><b>공연명</b></div>
-						<div name="conTitle">${conTitle }</div><br>
+						<div>${conTitle }</div><br>
 						
 						<div><b>관람일</b></div>
-						<div name="date" >${date}</div><br>
+						<div>${date}</div><br>
 						
 						<div><b>회차</b></div>
-						<div id="round" name="round">${round } 회차</div><br>
+						<div id="round">${round } 회차</div><br>
 						
 						<div><b>좌석</b></div>
 						<div id="selectSeat">
-							<c:forEach items="${selectedSeat}" var="i">
+							<c:forEach items="${selectedSeat}" var="i" varStatus="status">
 								${i}
+								<input type="hidden" id="${status.index }" value="${i }"/>
 							</c:forEach>
 						</div>
-
+						
 					<hr style="margin-bottom: 2px;">
 					
 					</div>
@@ -288,5 +186,137 @@ function btnActive()  {
 
 	</div>
 </div>
+
+<script type="text/javascript">
+	
+var con = "${seatLength}";
+
+var seat = [];
+
+for(var i=0; i < con; i++) {
+
+	seat.push(document.getElementById(i).value);
+
+	console.log("seat:" + seat);
+
+}
+	
+function requestPay(){
+	
+	var IMP = window.IMP;
+	IMP.init('imp59933008'); // SKIP 가맹점 키 (아임포트 관리자 페이지 -> 내정보 -> 가맹점식별코드)
+
+	IMP.request_pay({
+			
+		    pg : 'html5_inicis', 								// PG사 (이니시스(웹표준결제))
+		    pay_method : 'card',								// 결제방식
+		    merchant_uid : 'merchant_' + new Date().getTime(),	// 고유주문번호
+		    name : '${conTitle}'+'${date}',						// 주문명
+		    amount : '${price }', 								// 결제금액
+		    buyer_email : '${userEmail }',						// 주문자 Email
+		    buyer_name : '${userName }',						// 주문자명
+		    buyer_tel : '${userPhone }',						// 주문자 연락처
+		    buyer_addr : '${userAddr }',						// 주문자 주소
+		   
+		    
+		}, function(rsp) { // callback함수
+			console.log(rsp);
+			
+			var result = '';
+		    if ( rsp.success ) { // 결제 성공 시 로직
+		    	
+		    	$.ajax({
+		    		url: "/pay/complete"
+		    		, method: "get"
+		    		, headers : {"Content-Type" : "application/json"}
+		    		, traditional : true
+		    		, data : {
+		    		 	userNo : '${userNo}',
+		    		   	conNo : '${conNo}',
+		    		   	date : '${date}',
+		    		   	round : '${round}',
+		    		   	price : '${price}',
+		    		   	selectedSeat : seat,
+		    		   	uid : rsp.imp_uid,
+		    		   	applynum : rsp.apply_num
+  		   	
+		    		}
+		    	});
+		    	
+		    	var msg = '결제가 완료되었습니다.';
+//	 		    msg += ' , 고유ID : ' + rsp.imp_uid;
+//	 		    msg += ' , 상점 거래ID : ' + rsp.merchant_uid;
+//	 		    msg += ' , 결제 금액 : ' + rsp.paid_amount;
+//	 		    msg += ' , 카드 승인번호 : ' + rsp.apply_num;
+			    result = '0';
+		       
+		    } else { //결제 실패 시 로직
+		        var msg = '결제에 실패하였습니다.';
+// 		        msg += '에러내용 : ' + rsp.error_msg;
+		        result = '1';
+		        
+		    }
+		    
+		    if(result == '0') {	    	
+			    location.href='/pay/success';
+			    
+		    }
+		    
+		    alert(msg);
+		    
+		});
+	
+}
+
+function showDetail(){
+    document.querySelector("#desc").style.display = "block";
+    document.querySelector("#open").style.display = "none";
+}
+
+function hideDetail(){
+    document.querySelector("#desc").style.display = "none";
+    document.querySelector("#open").style.display = "block";
+}
+function showDetail1(){
+    document.querySelector("#desc1").style.display = "block";
+    document.querySelector("#open1").style.display = "none";
+}
+
+function hideDetail1(){
+    document.querySelector("#desc1").style.display = "none";
+    document.querySelector("#open1").style.display = "block";
+}
+function showDetail2(){
+    document.querySelector("#desc2").style.display = "block";
+    document.querySelector("#open2").style.display = "none";
+}
+
+function hideDetail2(){
+    document.querySelector("#desc2").style.display = "none";
+    document.querySelector("#open2").style.display = "block";
+}
+
+
+$(document).ready(function() {
+	
+	$("#btnBack").click(function() {
+		history.go(-1) });
+})
+
+function btnActive()  {
+	
+	console.log($("#target_btn").attr("disabled"))
+	
+	if($("#target_btn").attr("disabled") == "disabled" ){
+		// 버튼 비활성화 상태일 경우
+		$("#target_btn").attr("disabled", false); //활성화
+		
+	} else {
+		// 버튼 활성화 상태일 경우
+		$("#target_btn").attr("disabled", true); //비활성화
+	}
+	
+};
+</script>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />
